@@ -9,3 +9,54 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Client {
+  id         Int      @id @default(autoincrement())
+  name       String
+  lastName   String
+  email      String   @unique
+  user       String   @unique
+  passWord   String
+  totalRates Int
+  totalRated Int
+  rating     Int
+  business   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+}
+
+model Services {
+  id         Int      @id @default(autoincrement())
+  name       String
+  price      Float
+  time       String
+  category   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  businessid Int
+  business   Business @relation(fields: [businessid], references: [id])
+}
+
+model Business {
+  id         Int        @id @default(autoincrement())
+  user       String     @unique
+  password   String
+  name       String
+  adress     String
+  totalRates Int
+  totalRated Int
+  rating     Int
+  schedule   String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @default(now())
+  services   Services[]
+}
+
+model Booking {
+  id         Int      @id @default(autoincrement())
+  state      String
+  date       DateTime
+  idClient   Int
+  idBusiness Int
+  idServices Int
+}
