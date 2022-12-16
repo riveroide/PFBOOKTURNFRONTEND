@@ -50,6 +50,31 @@ router.delete("/:id", async (req, res)=> {
     }
 })
 
+router.put("/:id", async (req, res) => {
+    const  id  = parseInt(req.params.id)
+    const { state, date, idClient, idBusiness, idServices } = req.body;
+    
+    try {
 
+        const actualBooking = await prisma.booking.update({
+            where: {
+                id: id
+            },
+             data: {
+                state: state,
+                date: date,
+                idClient: idClient,
+                idBusiness: idBusiness, 
+                idServices: idServices
+             },
+        })
+
+        console.log(actualBooking);
+        return res.status(200).send(actualBooking)
+    } catch (error) {
+        console.log(error);
+        return "error en route."
+    }
+})
 
 export default router;
