@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { getAllBookings } from "../controllers/booking";
+import { getAllBookings, putOneBooking } from "../controllers/booking";
 const { PrismaClient } = require("@prisma/client");
 // import { addBooking } from "../controllers/booking";
 const router = Router();
@@ -56,18 +56,7 @@ router.put("/:id", async (req, res) => {
     
     try {
 
-        const actualBooking = await prisma.booking.update({
-            where: {
-                id: id
-            },
-             data: {
-                state: state,
-                date: date,
-                idClient: idClient,
-                idBusiness: idBusiness, 
-                idServices: idServices
-             },
-        })
+        const actualBooking = await putOneBooking(id, state, date, idClient, idBusiness, idServices )
 
         console.log(actualBooking);
         return res.status(200).send(actualBooking)

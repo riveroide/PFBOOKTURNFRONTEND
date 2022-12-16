@@ -11,3 +11,21 @@ export const getAllBookings = async () => {
     
     
 }
+
+export const putOneBooking = async (id: number, state: string, date: string, idClient: number, idBusiness: number, idServices: number) => {
+
+    const actualBooking = await prisma.booking.update({
+        where: {
+            id: id
+        },
+         data: {
+            state: state,
+            date: date,
+            idClient: idClient,
+            idBusiness: idBusiness, 
+            idServices: idServices
+         },
+    })
+
+    return actualBooking;
+}
