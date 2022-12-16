@@ -1,4 +1,5 @@
 import {Router} from "express"
+import { getAllBookings } from "../controllers/booking";
 const { PrismaClient } = require("@prisma/client");
 // import { addBooking } from "../controllers/booking";
 const router = Router();
@@ -23,6 +24,15 @@ try {
 
 }
 });
+
+router.get("/", async (_req,res) => {
+    try {
+    const result = await getAllBookings();
+    return res.json(result)
+    } catch (error) {
+        return "error en route"
+    }
+})
 
 
 
