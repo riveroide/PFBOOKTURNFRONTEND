@@ -1,0 +1,36 @@
+.NavbarClientsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: rgb(32, 32, 32);
+    height: 5rem;
+}
+
+.logo {
+    margin-left: 4rem;
+    font-size: 2rem;
+}
+
+.buttonsLogin {
+    margin-right: 4rem;
+}
+
+.acceder {
+    background-color: transparent;
+    border: 0px;
+    margin-right: 2rem;
+    font-size: 1.3rem;
+    color: white;
+    cursor: pointer;
+}
+
+.resgistrarse {
+    background-color: white;
+    border: 0px;
+    margin-right: 2rem;
+    font-size: 1.3rem;
+    padding: 1rem;
+    cursor: pointer;
+}
