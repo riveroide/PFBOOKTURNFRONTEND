@@ -1,4 +1,29 @@
+@font-face {
+    font-family: 'coolvetica rg';
+    src: url('.././fonts/coolvetica\ rg.otf');
+  }
+  @font-face {
+    font-family: 'coolvetica condensed';
+    src: url('.././fonts/coolvetica\ condensed\ rg.otf');
+  }
+
+
 .home_client_container {
-    background-color: rgb(236, 236, 236);
+    /*background-color: rgb(236, 236, 236);*/
+    background-image: url("../img/peluqueria-foto.jpg");
     height: 1000px;
+    font-family: 'coolvetica rg';
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.input_container {
+    margin-top: 10rem;
+    color: white;
+}
+.input_container h3{
+    font-size: 3.3rem;
+    
 }

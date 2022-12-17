@@ -4,17 +4,21 @@
     justify-content: space-between;
     align-items: center;
     color: white;
-    background-color: rgb(32, 32, 32);
+    /*background-color: rgb(32, 32, 32);*/
+    background-color: transparent;
     height: 5rem;
+    min-width: 100vw;
+    padding-right:1rem;
 }
 
 .logo {
     margin-left: 4rem;
-    font-size: 2rem;
+    font-size: 2.4rem;
+
 }
 
 .buttonsLogin {
-    margin-right: 4rem;
+    /*margin-right: 4rem;*/
 }
 
 .acceder {
