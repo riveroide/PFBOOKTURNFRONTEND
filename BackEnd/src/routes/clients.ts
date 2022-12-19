@@ -26,5 +26,30 @@ router.post("/", async (req, res) => {
     }
 })
 
+router.put("/:id", async (req, res) => {
+    const { name, email, lastName, user, passWord, business } = req.body
+    const id = parseInt(req.params.id)
+    if (!user || !email) throw new Error ("Faltan datos")
+    try {
+        const updatedClient = await prisma.client.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name: name,
+                lastName: lastName,
+                user: user,
+                email: email,
+                passWord: passWord,
+                business: business
+            }
+        })
+        console.log(updatedClient)
+        res.status(200).send(updatedClient)
+    } catch (error) {
+        res.status(404).send(error)
+    }
+})
+
 
 export default router;

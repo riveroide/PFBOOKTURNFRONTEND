@@ -8,6 +8,4 @@ export const getAllClients = async () => {
     } catch (error) {
         return error
     }
-    
-    
 }
