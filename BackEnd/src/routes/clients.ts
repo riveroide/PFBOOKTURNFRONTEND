@@ -27,8 +27,7 @@ router.get('/:id', async (req, res) => {
             lastName: true,
             email: true,
             user: true,
-            passWord: true,
-            business: true
+            password: true,
          }
     })
    
@@ -55,7 +54,7 @@ router.post("/", async (req, res) => {
 })
 
 router.put("/:id", async (req, res) => {
-    const { name, email, lastName, user, passWord, business } = req.body
+    const { name, email, lastName, user, passWord } = req.body
     const id = parseInt(req.params.id)
     if (!user || !email) throw new Error ("Faltan datos")
     try {
@@ -68,8 +67,7 @@ router.put("/:id", async (req, res) => {
                 lastName: lastName,
                 user: user,
                 email: email,
-                passWord: passWord,
-                business: business
+                password: passWord,
             }
         })
         console.log(updatedClient)
