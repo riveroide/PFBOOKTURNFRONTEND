@@ -10,7 +10,6 @@ export const getAllBusiness = async () => {
   }
 };
 
-
 export const getBusinessById = async (id: number) => {
   try {
     const business = await prisma.business.findFirst({
@@ -21,8 +20,9 @@ export const getBusinessById = async (id: number) => {
     if (business !== null) return business;
     throw new Error("No se encontro el negocio");
   } catch (error) {
-  throw error;
-}
+    throw error;
+  }
+};
 
 export const upDateBusiness = async (body: any, id: number) => {
   try {

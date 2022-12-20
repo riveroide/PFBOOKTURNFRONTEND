@@ -50,6 +50,7 @@ model Business {
   updatedAt  DateTime   @default(now())
   services   Services[]
   booking    Booking[]
+  staff      Staff[]
 }
 
 model Booking {
@@ -62,4 +63,14 @@ model Booking {
   Client     Client   @relation(fields: [idClient], references: [id])
   Business   Business @relation(fields: [idBusiness], references: [id])
   Services   Services @relation(fields: [idServices], references: [id])
+}
+
+model Staff {
+  id         Int      @id @default(autoincrement())
+  businessId Int
+  name       String
+  lastname   String
+  pfpic      String?
+  schedule   String?
+  business   Business @relation(fields: [businessId], references: [id])
 }
