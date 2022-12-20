@@ -28,7 +28,6 @@ router.post("/", async (req, res) => {
   if (!user) throw new Error("Falta informar usuario");
   try {
     const newbusiness = await prisma.business.create({ data: req.body });
-    console.log(newbusiness);
     return res.status(200).send(newbusiness);
   } catch (error) {
     return res.status(404).send(error);

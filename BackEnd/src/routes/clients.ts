@@ -21,8 +21,8 @@ router.post("/", async (req, res) => {
         const newclient = await prisma.client.create({data: req.body})
         console.log(newclient)
         res.status(200).send(newclient)
-    } catch (error) {
-        res.status(404).send(error)
+    } catch (error:any) {
+        res.status(404).send(error.message)
     }
 })
 
