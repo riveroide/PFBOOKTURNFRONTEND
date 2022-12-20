@@ -11,30 +11,30 @@ datasource db {
 }
 
 model Client {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   name       String
   lastName   String
-  email      String   @unique
-  user       String   @unique
-  passWord   String
+  email      String    @unique
+  user       String    @unique
+  password   String
   totalRates Int
   totalRated Int
-  rating     Int
-  business   String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now())
+  Booking    Booking[]
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime  @default(now())
 }
 
 model Services {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   name       String
   price      Float
   time       String
   category   String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now())
   businessid Int
-  business   Business @relation(fields: [businessid], references: [id])
+  business   Business  @relation(fields: [businessid], references: [id])
+  booking    Booking[]
 }
 
 model Business {
@@ -45,11 +45,11 @@ model Business {
   adress     String
   totalRates Int
   totalRated Int
-  rating     Int
   schedule   String
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @default(now())
   services   Services[]
+  booking    Booking[]
 }
 
 model Booking {
@@ -59,4 +59,7 @@ model Booking {
   idClient   Int
   idBusiness Int
   idServices Int
+  Client     Client   @relation(fields: [idClient], references: [id])
+  Business   Business @relation(fields: [idBusiness], references: [id])
+  Services   Services @relation(fields: [idServices], references: [id])
 }

@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { Router } from "express";
-import { getAllBusiness, upDateBusiness } from "../controllers/business";
+
+import { getAllBusiness, upDateBusiness,getBusinessById } from "../controllers/business";
 const router = Router();
 
 router.get("/", async (_req, res) => {
@@ -10,6 +11,16 @@ router.get("/", async (_req, res) => {
     return res.json(result);
   } catch (error) {
     return "error en route";
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const business = await getBusinessById(id);
+    return res.status(200).send(business);
+  } catch (error: any) {
+    return res.status(500).send(error.message);
   }
 });
 
