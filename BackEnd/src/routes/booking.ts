@@ -34,6 +34,21 @@ router.get("/", async (_req,res) => {
     }
 })
 
+router.delete("/:id", async (req, res)=> {
+    const  id  = parseInt(req.params.id)
+    try {
+        const deleteBooking = await prisma.booking.delete({
+            where: {
+                id: id
+            }
+        })
+        console.log("borrado", deleteBooking);
+        return res.status(200).send("Eliminado exitosamente.")
+    } catch (error) {
+        console.log(error);
+        return "error en route."
+    }
+})
 
 
 
