@@ -14,6 +14,34 @@ router.get("/", async (_req,res) => {
     
 })
 
+router.get('/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    try {
+    const client = await prisma.client.findUnique({
+        where: {
+            id: id
+        },
+        select: {
+            id: true,
+            name: true,
+            lastName: true,
+            email: true,
+            user: true,
+            passWord: true,
+            business: true
+         }
+    })
+   
+    return res.json(client)
+     
+    //  const result = await getAllClients();
+    //  return res.json(result)
+     } catch (error) {
+         return "error en route"
+     }
+    
+})
+
 router.post("/", async (req, res) => {
     const { email, user } = req.body
     if (!user || !email) throw new Error ("Faltan datos")
@@ -23,6 +51,31 @@ router.post("/", async (req, res) => {
         res.status(200).send(newclient)
     } catch (error:any) {
         res.status(404).send(error.message)
+    }
+})
+
+router.put("/:id", async (req, res) => {
+    const { name, email, lastName, user, passWord, business } = req.body
+    const id = parseInt(req.params.id)
+    if (!user || !email) throw new Error ("Faltan datos")
+    try {
+        const updatedClient = await prisma.client.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name: name,
+                lastName: lastName,
+                user: user,
+                email: email,
+                passWord: passWord,
+                business: business
+            }
+        })
+        console.log(updatedClient)
+        res.status(200).send(updatedClient)
+    } catch (error) {
+        res.status(404).send(error)
     }
 })
 

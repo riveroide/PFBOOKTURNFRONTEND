@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { Router } from "express";
-import { getAllBusiness, getBusinessById } from "../controllers/business";
+
+import { getAllBusiness, upDateBusiness,getBusinessById } from "../controllers/business";
 const router = Router();
 
 router.get("/", async (_req, res) => {
@@ -28,9 +29,21 @@ router.post("/", async (req, res) => {
   if (!user) throw new Error("Falta informar usuario");
   try {
     const newbusiness = await prisma.business.create({ data: req.body });
-    return res.status(200).send(newbusiness);
+    console.log(newbusiness);
+    res.status(200).send(newbusiness);
   } catch (error) {
-    return res.status(404).send(error);
+    res.status(404).send(error);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  if (!id) return res.status(400).send("Favor de proveer un id");
+  try {
+    const business = await upDateBusiness(req.body, id);
+    return res.status(200).send(business);
+  } catch (error) {
+    return res.status(500).send(error);
   }
 });
 

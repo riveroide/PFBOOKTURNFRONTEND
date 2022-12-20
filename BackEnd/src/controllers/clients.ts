@@ -8,6 +8,14 @@ export const getAllClients = async () => {
     } catch (error) {
         return error
     }
-    
-    
 }
+
+// export const getClientById = async () => {
+   
+
+//     try {
+        
+//     } catch (error) {
+//         return error
+//     }
+// }
