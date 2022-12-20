@@ -1,51 +1,59 @@
 import React from 'react'
-import styles from './profile.module.css'
+import styles from '../styles/profile.module.css'
+import imgProfile from './ImgProvisoria/Default_pfp.png'
 
 const profile = () => {
   return (
     <div>
-      <div>
-        <nav className={styles.navBar}>
-          <a href="#" className={styles.navTitle}>BOOKTURN</a>
-          <input type="text" className={styles.search} />
-          <a href="#" className={styles.navTitle}>Cerrar sesion</a>
-        </nav>
+      <div className={styles.navBar}>
+        <a href="#" className={styles.navTitle}>BOOKTURN</a>
+        <input type="text" className={styles.search} />
+        <a href="#" className={styles.navTitle}>Cerrar sesion</a>
       </div>
-      <div>
-        <div>Profile</div>
+      <div className={styles.sidebar}>
+        <div>
+          <img src={imgProfile.src} className={styles.profilePic} alt="Not Found" />
+          <span>Nombre Apellido</span>
+        </div>
+        <ul className={styles.ul}>
+          <li>
+            <a href="#">
+              <h4>editar informacion</h4>
+            </a>
+            <hr/>
+          </li>
+          <li>
+            <a href="#">
+              <h4>metodo de pago</h4>
+            </a>
+            <hr/>
+          </li>
+          <li>
+            <a href="#">
+              <h4>historial</h4>
+            </a>
+            <hr/>
+          </li>
+          <li>
+            <a href="#">
+              <h4>favoritos</h4>
+            </a>
+            <hr/>
+          </li>
+          <li>
+            <a href="#">
+              <h4>opciones</h4>
+            </a>
+            <hr/>
+          </li>
+          <li>
+            <a href="#">
+              <h4>eliminar cuenta</h4>
+            </a>
+            <hr />
+          </li>
+        </ul>
       </div>
-      <ul>
-        <li>
-          <a href="#">
-            <span>editar informacion</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>metodo de pago</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>historial</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>favoritos</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>opciones</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>eliminar cuenta</span>
-          </a>
-        </li>
-      </ul>
     </div>
   )
 }
