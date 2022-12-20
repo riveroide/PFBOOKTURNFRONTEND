@@ -14,6 +14,34 @@ router.get("/", async (_req,res) => {
     
 })
 
+router.get('/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    try {
+    const client = await prisma.client.findUnique({
+        where: {
+            id: id
+        },
+        select: {
+            id: true,
+            name: true,
+            lastName: true,
+            email: true,
+            user: true,
+            passWord: true,
+            business: true
+         }
+    })
+   
+    return res.json(client)
+     
+    //  const result = await getAllClients();
+    //  return res.json(result)
+     } catch (error) {
+         return "error en route"
+     }
+    
+})
+
 router.post("/", async (req, res) => {
     const { email, user } = req.body
     if (!user || !email) throw new Error ("Faltan datos")

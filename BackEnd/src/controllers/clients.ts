@@ -9,3 +9,13 @@ export const getAllClients = async () => {
         return error
     }
 }
+
+// export const getClientById = async () => {
+   
+
+//     try {
+        
+//     } catch (error) {
+//         return error
+//     }
+// }
