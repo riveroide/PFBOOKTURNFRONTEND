@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { getAllBookings } from "../controllers/booking";
+import { getAllBookings, putOneBooking } from "../controllers/booking";
 const { PrismaClient } = require("@prisma/client");
 // import { addBooking } from "../controllers/booking";
 const router = Router();
@@ -50,6 +50,20 @@ router.delete("/:id", async (req, res)=> {
     }
 })
 
+router.put("/:id", async (req, res) => {
+    const  id  = parseInt(req.params.id)
+    const { state, date, idClient, idBusiness, idServices } = req.body;
+    
+    try {
 
+        const actualBooking = await putOneBooking(id, state, date, idClient, idBusiness, idServices )
+
+        console.log(actualBooking);
+        return res.status(200).send(actualBooking)
+    } catch (error) {
+        console.log(error);
+        return "error en route."
+    }
+})
 
 export default router;
