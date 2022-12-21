@@ -33,5 +33,29 @@ router.delete("/:id", async (req, res) => {
     }
 })
 
+router.put("/:id", async (req, res) => {
+    const id = parseInt(req.params.id) //parseo el numero a int porque typescript reconoce el params como string
+    const {name, price, time, category} = req.body
+    try {
+        await prisma.services.update({where: {
+            id
+        },
+        data: {
+            name,
+            price,
+            time,
+            category
+        }
+    })
+    res.status(200).send("Servicio actualizado")
+    } catch (error) {
+    res.status(400).send(error)
+    }
+    
+    
+    
+
+})
+
 
 export default router;
