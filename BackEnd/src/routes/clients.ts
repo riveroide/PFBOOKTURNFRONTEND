@@ -32,6 +32,7 @@ router.get('/:id', async (req, res) => {
          }
     })
    
+
     return res.json(client)
      
     //  const result = await getAllClients();
@@ -77,6 +78,23 @@ router.put("/:id", async (req, res) => {
     } catch (error) {
         res.status(404).send(error)
     }
+})
+
+router.delete('/:id', async (req, res) => {
+     const id = parseInt(req.params.id);
+  try {
+    const deleteClient = await prisma.client.delete({
+      where: {
+        id: id,
+      },
+    });
+    console.log("borrado", deleteClient);
+    return res.status(200).send("Usuario eliminado");
+  } catch (error) {
+    console.log(error);
+    return "error en route.";
+  }
+        
 })
 
 
