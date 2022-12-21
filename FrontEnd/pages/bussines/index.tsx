@@ -1,5 +1,6 @@
 import React from 'react'
 import NavbarBussines from "../../components/HomeBussines/NavbarBussines/NavbarBussines.jsx"
+import LandingInfoBussines_s1 from "../../components/HomeBussines/LandingInfoBussines-s1/LandingInfoBussines-s1.jsx"
 
   
 
@@ -9,9 +10,9 @@ const index = () => {
     <div>
       <NavbarBussines/>
       <section id='n1'>
-        <div></div>
+        <LandingInfoBussines_s1/>
       </section>
-      <section id='n2'><h1>2</h1></section>
+      <section id='n2'></section>
     </div>
   )
 }

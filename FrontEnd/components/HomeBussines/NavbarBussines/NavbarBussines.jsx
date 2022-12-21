@@ -5,7 +5,7 @@ const NavbarBussines = () => {
   return (
     <div className={styles.container}>
         <div className={styles.logo}>
-            <h1>LOGO</h1>
+            <h1>Bookturn</h1>
         </div>
         <div className={styles.options}>
             <ul>
