@@ -1,0 +1,45 @@
+.about_container {
+  /*
+position: relative;
+top: -10rem;
+*/
+
+display: flex;
+justify-content: center;
+  margin-top: 5rem;
+  background-color: rgb(255, 255, 255);
+  width: 100vw;
+  height: 50rem;
+}
+
+.div_container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: rgb(56, 56, 56);
+}
+
+.div_clientes{  
+  display: flex;
+  justify-content: center;
+  background-color: rgba(168, 141, 20, 0.151);
+  width: 40vw;
+  height: 30rem;
+  margin: 2rem;
+ 
+}
+
+.div_empresa{  
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.082);
+  width: 40vw;
+  height: 30rem;
+  margin: 2rem;
+
+}
+.about_content {
+  margin-top: 2rem;
+}
