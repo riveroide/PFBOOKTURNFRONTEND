@@ -85,3 +85,13 @@
   color: #3f3206;
   right: 4rem;
 }
+
+@media (max-width: 650px) {
+  .input_buscar input {
+    padding-left: 5rem;
+    padding-right: 0rem;
+  }
+  .titulo_input  {
+    font-size: 2.8rem;
+  }
+}

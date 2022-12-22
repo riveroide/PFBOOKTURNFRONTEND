@@ -44,3 +44,8 @@
     cursor: pointer;
 }
 
+@media (max-width: 450px) {
+    .NavbarClientsContainer {
+        flex-direction: column;
+    }
+}

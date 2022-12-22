@@ -9,7 +9,7 @@ justify-content: center;
   margin-top: 5rem;
   background-color: rgb(255, 255, 255);
   width: 100vw;
-  height: 50rem;
+  min-height: 35rem;
 }
 
 .div_container {
@@ -18,17 +18,20 @@ justify-content: center;
   margin-top: 4rem;
   justify-content: center;
   flex-wrap: wrap;
-  color: rgb(56, 56, 56);
+  /*color: rgb(56, 56, 56);*/
+  /*color: rgb(104, 103, 103);*/
+  color: #3f3206ab;
 }
 
 .div_clientes{  
   display: flex;
   justify-content: center;
-  background-color: rgba(168, 141, 20, 0.151);
+  background-color: rgba(214, 176, 6, 0.247);
   width: 40vw;
-  height: 30rem;
+  height: 25rem;
   margin: 2rem;
- 
+  padding: 2rem;
+ border-radius: 1rem;
 }
 
 .div_empresa{  
@@ -36,10 +39,39 @@ justify-content: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.082);
   width: 40vw;
-  height: 30rem;
+ height: 25rem;
   margin: 2rem;
-
+  padding: 2rem;
+ border-radius: 1rem;
 }
 .about_content {
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*margin-top: 2rem;*/
+}
+
+.about_title {
+  font-size: 2rem;
+}
+
+.about_description {
+  font-family: 'Arial', Courier, monospace;
+font-size: 1.2rem;
+  width: 30vw;
+}
+
+@media (max-width: 650px) {
+
+  .div_clientes{
+    width: 80vw;
+  }
+
+  .div_empresa {
+    width: 80vw;
+  }
+
+  .about_description {
+    width: 60vw;
+  }
 }

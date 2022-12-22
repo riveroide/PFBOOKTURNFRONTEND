@@ -4,6 +4,8 @@ import Image from 'next/image'
 import stylesHome from '../styles/HomeClient.module.css'
 import NavBarClients from '../components/NavBarClients'
 import AboutHomeClient from '../components/AboutHomeClient'
+import DetailsClients from '../components/DetailsClients'
+import FooterHomeClient from '../components/FooterHomeClient'
 
 //import video from '../videos/videopeluqueria.mp4'
 
@@ -34,8 +36,10 @@ const Home: NextPage = () => {
           </div>
         </div>
         <AboutHomeClient/>
+      <DetailsClients />
+ 
       </div>
-   
+      <FooterHomeClient />
     </div>
   )
 }
