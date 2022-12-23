@@ -1,0 +1,151 @@
+.beforePrices {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.beforePrices h1 {
+    font-size: 2.5rem;
+    /* color: #3877d6; */
+}
+
+.generalContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.sectionPrice {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.pricesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 45vw;
+    margin-top: 1.25rem;
+    /* border: solid black; */
+}
+
+.textPricesContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+    /* min-width: 50vw; */
+    min-height: 15vh;
+    border: black solid 0.5px;
+    border-radius: 15px 15px 0px 0px;
+    
+}
+
+.titlePrice p{
+    font-size: clamp(1rem, 2rem, 3rem);
+    font-weight: 700;
+    color: #3877d6;
+}
+
+.price {
+    margin-left: 10vh;
+    text-align: center;
+}
+
+.price p {
+    font: clamp(1rem, 1.87rem, 3rem);
+    font-weight: 600;
+}
+
+.priceNumber {
+    font-size: clamp(1rem, 1.87rem, 3rem);
+    font-weight: 700;
+    color: #3877d6;
+}
+
+.benefitContainer {
+    position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    /* min-width: 50vw; */
+    background-color: #3877d6;
+    /* min-height: 30vh; */
+    /* max-height: 80vh; */
+    /* border: gray solid 0.5px; */
+    border-radius: 0px 0px 15px 15px;
+}
+
+.benefitContainer ul {
+    width: 50%;
+    margin-left: 1.25rem;
+    column-count: 2;
+}
+
+.benefitContainer li{
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 600;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    /* DISPLAY: inline; */
+    /* FLOAT: left; */
+    WIDTH: 100%;
+}
+
+.svgIcon {
+    width: 1.2em;
+    height: 1.2em;
+    background-color: white;
+    border-radius: 50%;
+    padding: 4px;
+    margin-right: 10px;
+  }
+  
+  .svgIcon path,
+  .svgIcon polygon,
+  .svgIcon rect {
+    fill: #4691f6;
+  }
+  
+  .svgIcon circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+  }
+
+  .buyButtonContainer {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    right: 10%;
+    min-width: 25%;
+    min-height: 70%;
+  }
+
+  .buyButtonContainer:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+  }
+
+  .buyButton {
+    width: 6rem;
+    height: 7rem;
+  }
+  
+  .buyButton path,
+  .buyButton polygon,
+  .buyButton rect {
+    fill: #4691f6;
+  }
+  
+  .buyButton circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+  }
