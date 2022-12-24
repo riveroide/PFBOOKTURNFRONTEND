@@ -1,58 +1,36 @@
 import React from 'react'
 import styles from '../styles/profile.module.css'
-import imgProfile from './ImgProvisoria/Default_pfp.png'
+import SideBar from './comp/SideBar/SideBar'
+import NavBar from './comp/NavBar/NavBar'
 
 const profile = () => {
   return (
     <div>
-      <div className={styles.navBar}>
-        <a href="#" className={styles.navTitle}>BOOKTURN</a>
-        <input type="text" className={styles.search} />
-        <a href="#" className={styles.navTitle}>Cerrar sesion</a>
-      </div>
-      <div className={styles.sidebar}>
+      <NavBar/>
+      <SideBar/>
+      <div className={styles.content}>
+        <h1>Bienvenid@ a tu historial</h1>
         <div>
-          <img src={imgProfile.src} className={styles.profilePic} alt="Not Found" />
-          <span>Nombre Apellido</span>
+          <ul className={styles.ul}>
+            <li>
+              <h4>Turno de ejemplo</h4>
+              <span>Status</span>
+              <span>12/12/22</span>
+            </li>
+            <li>
+              <h4>Turno de ejemplo</h4>
+              <span>Status</span>
+              <span>12/12/22</span>
+            </li>
+            <li>
+              <h4>Turno de ejemplo</h4>
+              <span>Status</span>
+              <span>12/12/22</span>
+            </li>
+          </ul>
+          <h3>No se registran mas turnos a la fecha</h3>
+          <hr className={styles.hr}/>
         </div>
-        <ul className={styles.ul}>
-          <li>
-            <a href="#">
-              <h4>editar informacion</h4>
-            </a>
-            <hr/>
-          </li>
-          <li>
-            <a href="#">
-              <h4>metodo de pago</h4>
-            </a>
-            <hr/>
-          </li>
-          <li>
-            <a href="#">
-              <h4>historial</h4>
-            </a>
-            <hr/>
-          </li>
-          <li>
-            <a href="#">
-              <h4>favoritos</h4>
-            </a>
-            <hr/>
-          </li>
-          <li>
-            <a href="#">
-              <h4>opciones</h4>
-            </a>
-            <hr/>
-          </li>
-          <li>
-            <a href="#">
-              <h4>eliminar cuenta</h4>
-            </a>
-            <hr />
-          </li>
-        </ul>
       </div>
     </div>
   )

@@ -1,0 +1,26 @@
+.navBar {
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #212121;
+}
+
+.navBar input{
+    padding: 10px 10px 10px 10px;
+    height: 50px;
+    width: 500px;
+    margin: auto;
+    background-color: #3c3c3a;
+    border: 1px solid #ffffff;
+    color: #fff;
+}
+
+.navTitle{
+    font-size: 22px;
+    padding: 10px 10px 10px 10px;
+    color: #fff;
+}
+
+.navTitle:hover{
+    background-color: rgba(0, 0, 0, 0.3) ;
+}
