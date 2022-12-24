@@ -17,7 +17,7 @@ const ImageSlider = () => {
     <>
       <Swiper
         
-        // spaceBetween={30}
+
         slidesPerView={2}
         centeredSlides={true}
         cssMode={true}
