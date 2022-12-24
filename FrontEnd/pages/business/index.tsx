@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import NavbarBussines from "../../components/HomeBussines/NavbarBussines/NavbarBussines.jsx";
+import LandingInfoBussines from "../../components/HomeBussines/LandingInfoBussines/LandingInfoBussines.jsx";
 
 const index = () => {
   return (
-    <div>index</div>
-  )
-}
+    <div>
+      <NavbarBussines/>
+      <LandingInfoBussines/>
+    </div>
+  );
+};
 
-export default index
+export default index;
+
