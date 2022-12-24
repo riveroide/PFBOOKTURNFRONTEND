@@ -9,3 +9,14 @@ export const getService = async () => {
         return "error getService controller"
     }
 }
+
+export const deleteService = async (id: number) => {
+    try {
+        const deletedService = await prisma.services.delete({where: {
+            id: id
+        }})
+        return deletedService.name
+    } catch (error) {
+        return error
+    }
+}

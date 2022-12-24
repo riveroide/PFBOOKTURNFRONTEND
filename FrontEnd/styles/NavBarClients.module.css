@@ -1,0 +1,51 @@
+.NavbarClientsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    /*background-color: rgb(32, 32, 32);*/
+    background-color: transparent;
+    height: 5rem;
+    min-width: 100vw;
+    padding-right:1rem;
+}
+
+.logo {
+    margin-left: 4rem;
+    font-size: 2.4rem;
+
+}
+
+.buttonsLogin {
+    /*margin-right: 4rem;*/
+}
+
+.acceder {
+    background-color: transparent;
+    border: 0px;
+    margin-right: 2rem;
+    font-size: 1.3rem;
+    color: white;
+    cursor: pointer;
+}
+
+
+.resgistrarse {
+    background-color: white;
+    color: #3f3206;
+    border: 0px;
+    margin-right: 2rem;
+    font-size: 1.3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 450px) {
+    .NavbarClientsContainer {
+        flex-direction: column;
+    }
+}

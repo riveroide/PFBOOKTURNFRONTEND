@@ -43,3 +43,6 @@ a {
   width: 15px !important;
   height: 15px !important;
 }
+body {
+  overflow-x: hidden;
+}

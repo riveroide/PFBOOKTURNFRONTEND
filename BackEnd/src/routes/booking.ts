@@ -1,40 +1,87 @@
-import {Router} from "express"
-import { getAllBookings } from "../controllers/booking";
+import { Router } from "express";
+import {
+  getAllBookings,
+  getAllByBusinessId,
+  putOneBooking,
+} from "../controllers/booking";
 const { PrismaClient } = require("@prisma/client");
 // import { addBooking } from "../controllers/booking";
 const router = Router();
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-router.post("/", async (req, res)=>{
- const { state, date, idClient, idBusiness, idServices } = req.body;
-
-try {
-    if(!state || !date || !idClient || !idBusiness || !idServices ){
-        res.status(400).send("Faltan datos.")
+router.post("/", async (req, res) => {
+  const { state, date, idClient, idBusiness, idServices } = req.body;
+  try {
+    if (!state || !date || !idClient || !idBusiness || !idServices) {
+      res.status(400).send("Faltan datos.");
     }
-    const newBooking = await prisma.booking.create({ data: req.body,})
- //formato datetime ===> 2021-03-29T00:00:00.000Z
+    const newBooking = await prisma.booking.create({ data: req.body });
+    //formato datetime ===> 2021-03-29T00:00:00.000Z
     console.log(newBooking);
-    res.status(200).json({newBooking})
-
-} catch (error) {
+    res.status(200).json({ newBooking });
+  } catch (error) {
     console.log(error);
-    res.status(400).json(error)
-
-}
+    res.status(400).json(error);
+  }
 });
 
-router.get("/", async (_req,res) => {
-    try {
+router.get("/", async (_req, res) => {
+  try {
     const result = await getAllBookings();
-    return res.json(result)
-    } catch (error) {
-        return "error en route"
-    }
-})
+    return res.json(result);
+  } catch (error) {
+    return "error en route";
+  }
+});
 
+router.get("/business/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const result = await getAllByBusinessId(id);
+    return res.status(200).send(result);
+  } catch (error: any) {
+    console.log("error")
+    return res.status(500).send(error.message);
+  }
+});
 
+router.delete("/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const deleteBooking = await prisma.booking.delete({
+      where: {
+        id: id,
+      },
+    });
+    console.log("borrado", deleteBooking);
+    return res.status(200).send("Eliminado exitosamente.");
+  } catch (error) {
+    console.log(error);
+    return "error en route.";
+  }
+});
 
+router.put("/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  const { state, date, idClient, idBusiness, idServices } = req.body;
+
+  try {
+    const actualBooking = await putOneBooking(
+      id,
+      state,
+      date,
+      idClient,
+      idBusiness,
+      idServices
+    );
+
+    console.log(actualBooking);
+    return res.status(200).send(actualBooking);
+  } catch (error) {
+    console.log(error);
+    return "error en route.";
+  }
+});
 
 export default router;
