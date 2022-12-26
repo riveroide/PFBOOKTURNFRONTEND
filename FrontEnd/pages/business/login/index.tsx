@@ -19,8 +19,9 @@ const login = () => {
         <h1>LOGIN EMPRESA</h1>
         <h3>Por favor registrá tu negocio o ingresa con Google</h3>
         <button onClick={() => signIn()}>Entrar con Google</button>
+        <br></br>
         <Link href="/business/login/createform">
-          <h3>Clickea para registrar tu empresa</h3></Link>
+          <button>Clickea para registrar tu empresa</button></Link>
           <p>(info resumida sobre facilidades para empresa)</p>
         
       </div>
