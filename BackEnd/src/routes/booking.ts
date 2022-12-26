@@ -4,6 +4,7 @@ import {
   getAllByBusinessId,
   putOneBooking,
 } from "../controllers/booking";
+import { transporter } from "../controllers/nodemailer";
 const { PrismaClient } = require("@prisma/client");
 // import { addBooking } from "../controllers/booking";
 const router = Router();
@@ -18,12 +19,53 @@ router.post("/", async (req, res) => {
     }
     const newBooking = await prisma.booking.create({ data: req.body });
     //formato datetime ===> 2021-03-29T00:00:00.000Z
+
+    try {
+      
+      //traigo la info que se va a usar en los emails
+      const dataClient = await prisma.client.findMany({
+        where: {
+          id: idClient
+        }
+      })
+      const dataBusiness = await prisma.business.findMany({
+        where: {
+          id: idBusiness
+        }
+      })
+      const dataService = await prisma.services.findMany({
+        where: {
+          id: idServices
+        }
+      })
+      
+      //se envia el email al cliente
+      await transporter.sendMail({
+        from: '"BookTurn" <bookturnnotification@gmail.com>',
+        to: dataClient[0].email,
+        subject: "Informacion de turno",
+        text: `Su turno en ${dataBusiness[0].name} para ${dataService[0].name} se ha confirmado`
+      })
+      
+      //se envia el email a la empresa
+      await transporter.sendMail({
+        from: '"BookTurn" <bookturnnotification@gmail.com>',
+        to: dataBusiness[0].adress,
+        subject: "Sacaron un turno",
+        text: `${dataClient[0].name} ha sacado un turno para ${dataService[0].name} a las ${date}`
+      })
+  
+    } catch (error) {
+      console.log(error)
+    }
+
     console.log(newBooking);
     res.status(200).json({ newBooking });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
   }
+  
 });
 
 router.get("/", async (_req, res) => {
