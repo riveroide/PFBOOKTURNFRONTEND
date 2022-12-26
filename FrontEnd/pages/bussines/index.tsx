@@ -1,5 +1,6 @@
 import React from 'react'
-import NavbarBussines from "../../components/HomeBussines/NavbarBussines/NavbarBussines.jsx"
+import NavbarBussines from 'components/NavbarBussines/NavbarBussines.jsx'
+import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
 import LandingInfoBussines_s1 from "../../components/HomeBussines/LandingInfoBussines-s1/LandingInfoBussines-s1.jsx"
 
   
@@ -13,6 +14,7 @@ const index = () => {
         <LandingInfoBussines_s1/>
       </section>
       <section id='n2'></section>
+      <FooterBussines/>
     </div>
   )
 }
