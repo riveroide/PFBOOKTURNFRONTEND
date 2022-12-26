@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./LandingInfoBussines.module.css";
 
 const LandingInfoBussines = () => {
+  //let i = 0
   return (
     <div className={styles.container}>
       <div className={styles.info}>
