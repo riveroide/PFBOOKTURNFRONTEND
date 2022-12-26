@@ -1,3 +1,4 @@
+
 import React from "react";
 import styles from "./LandingInfoBussines.module.css";
 import Image from "next/image";
@@ -32,6 +33,7 @@ const LandingInfoBussines = () => {
         <div className={`${styles.wave} ${styles.wave4}`}></div>
       </div>
       <div className={styles.prueba}>
+
         <ImageSlider/>
       </div>
     </div>
@@ -39,3 +41,4 @@ const LandingInfoBussines = () => {
 };
 
 export default LandingInfoBussines;
+
