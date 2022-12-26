@@ -5,9 +5,9 @@ import imgProfile from '../../ImgProvisoria/Default_pfp.png'
 const SideBar = () => {
     return (
         <div className={styles.sidebar}>
-        <div>
+        <div className={styles.usuario}>
           <img src={imgProfile.src} className={styles.profilePic} alt="Not Found" />
-          <span>Nombre Apellido</span>
+          <p>Nombre Apellido</p>
         </div>
         <ul className={styles.ul}>
           <li className={styles.options}>

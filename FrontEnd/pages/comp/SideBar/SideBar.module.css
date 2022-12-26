@@ -29,3 +29,12 @@
 .profilePic{
     max-width: 125px;
 }
+
+.usuario{
+    display: flex;
+    align-items: center;
+}
+
+.usuario p{
+    margin-left: 2rem;
+}

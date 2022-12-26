@@ -1,7 +1,7 @@
 .content{
     position: absolute;
     height: 100%;
-    width: calc(100% - 240px);
+    width: calc(100% );
     padding-left: 50%;
     z-index: -2;
 }
