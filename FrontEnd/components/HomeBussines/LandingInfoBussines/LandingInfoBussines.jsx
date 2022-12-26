@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from "./LandingInfoBussines_s1.module.css"
+import styles from "./LandingInfoBussines.module.css"
 
-const LandingInfoBussines_s1 = () => {
+const LandingInfoBussines = () => {
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -19,4 +19,4 @@ const LandingInfoBussines_s1 = () => {
   )
 }
 
-export default LandingInfoBussines_s1
+export default LandingInfoBussines
