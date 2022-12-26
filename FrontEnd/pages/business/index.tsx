@@ -1,8 +1,7 @@
-import React from 'react'
-import NavbarBussines from "../../components/HomeBussines/NavbarBussines/NavbarBussines.jsx"
-import LandingInfoBussines from "../../components/HomeBussines/LandingInfoBussines/LandingInfoBussines.jsx"
 
-  
+import React from "react";
+import NavbarBussines from "../../components/HomeBussines/NavbarBussines/NavbarBussines.jsx";
+import LandingInfoBussines from "../../components/HomeBussines/LandingInfoBussines/LandingInfoBussines.jsx";
 
 
 const index = () => {
@@ -11,7 +10,7 @@ const index = () => {
       <NavbarBussines/>
       <LandingInfoBussines/>
     </div>
-  )
-}
+  );
+};
+export default index;
 
-export default index
