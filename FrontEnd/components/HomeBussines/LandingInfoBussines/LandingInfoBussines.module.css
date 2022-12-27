@@ -4,16 +4,31 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+<<<<<<< HEAD
   /* max-height: 1000vh; */
   width: 100vw;
 }
 
 .info {
+=======
+
+  width: 100vw;
+}
+
+.info1 {
+>>>>>>> main
   display: flex;
   position: relative;
   min-width: 100%;
   min-height: 90vh;
+<<<<<<< HEAD
   background-color: #ffffff;
+=======
+  justify-content: center;
+  padding-top: 4rem;
+  background-color: #ffffff;
+  overflow: hidden;
+>>>>>>> main
 }
 
 .wave {
@@ -84,8 +99,59 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
+=======
+  padding-right: 14px;
+>>>>>>> main
   top: -2px;
 }
 .prueba p {
   width: 80%;
 }
+<<<<<<< HEAD
+=======
+
+.info1_cont {
+  display: flex;
+  width: 80%;
+  height: 70%;
+}
+
+.info1_texto {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-width: 50%;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.info1_texto p {
+  font-size: 1rem;
+  letter-spacing: -0.4px;
+  line-height: 2;
+  font-weight: 500;
+  width: 80%;
+  padding-top: 1rem;
+}
+
+.info1_texto h1{
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -.8px;
+    line-height: 1.3;
+    overflow: hidden;
+  }
+
+.info1_img {
+  display: flex;
+  min-width: 50%;
+  min-height: 100%;
+}
+
+.info1_img img{
+    max-width: 26rem;
+    max-height: 26rem;
+  }
+
+>>>>>>> main

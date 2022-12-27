@@ -9,6 +9,8 @@
   color: #3877d6;
 }
 .logo {
+  font-family: "coolvetica rg";
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;

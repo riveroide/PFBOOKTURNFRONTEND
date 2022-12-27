@@ -1,30 +1,103 @@
-import {Router} from "express"
-import { getAllClients } from "../controllers/clients";
+import { Router } from "express";
+import { getAllClients, getClientByEmail } from "../controllers/clients";
 const router = Router();
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-router.get("/", async (_req,res) => {
+router.get("/", async (_req, res) => {
+  const { email } = _req.query;
+  if (email) {
     try {
-    const result = await getAllClients();
-    return res.json(result)
-    } catch (error) {
-        return "error en route"
+      const result = await getClientByEmail(email as string);
+      return res.json(result);
+    } catch (error:any) {
+      return res.status(500).send(error.message);
     }
-    
-})
+  }
+  try {
+    const result = await getAllClients();
+    return res.json(result);
+  } catch (error) {
+    return "error en route";
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const client = await prisma.client.findUnique({
+      where: {
+        id: id,
+      },
+      select: {
+        id: true,
+        name: true,
+        lastName: true,
+        email: true,
+        user: true,
+        password: true,
+      },
+    });
+
+    return res.json(client);
+
+    //  const result = await getAllClients();
+    //  return res.json(result)
+  } catch (error) {
+    return "error en route";
+  }
+});
 
 router.post("/", async (req, res) => {
-    const { email, user } = req.body
-    if (!user || !email) throw new Error ("Faltan datos")
-    try {
-        const newclient = await prisma.client.create({data: req.body})
-        console.log(newclient)
-        res.status(200).send(newclient)
-    } catch (error) {
-        res.status(404).send(error)
-    }
-})
+  const { email, user } = req.body;
+  if (!user || !email) throw new Error("Faltan datos");
+  try {
+    const newclient = await prisma.client.create({ data: req.body });
+    console.log(newclient);
+    res.status(200).send(newclient);
+  } catch (error: any) {
+    res.status(404).send(error.message);
+  }
+});
 
+router.put("/:id", async (req, res) => {
+  const { name, email, lastName, user, passWord } = req.body;
+  const id = parseInt(req.params.id);
+  if (!user || !email) throw new Error("Faltan datos");
+  try {
+    const updatedClient = await prisma.client.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name: name,
+        lastName: lastName,
+        user: user,
+        email: email,
+        password: passWord,
+      },
+    });
+    console.log(updatedClient);
+    res.status(200).send(updatedClient);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const deleteClient = await prisma.client.delete({
+      where: {
+        id: id,
+      },
+    });
+    console.log("borrado", deleteClient);
+    return res.status(200).send("Usuario eliminado");
+  } catch (error) {
+    console.log(error);
+    return "error en route.";
+  }
+});
 
 export default router;

@@ -1,9 +1,19 @@
+@font-face {
+  font-family: 'coolvetica rg';
+  src: url('.././fonts/coolvetica\ rg.otf');
+}
+@font-face {
+  font-family: 'coolvetica condensed';
+  src: url('.././fonts/coolvetica\ condensed\ rg.otf');
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -19,3 +29,28 @@ a {
 }
 
 
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  width: calc(var(--swiper-navigation-size) / 44 * 27);
+  height: var(--swiper-navigation-size);
+  margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+  user-select: none; 
+}
+.swiper-pagination-bullet-active {
+  background: white !important;
+}
+.swiper-pagination-bullet{
+  width: 15px !important;
+  height: 15px !important;
+}
+body {
+  overflow-x: hidden;
+}
