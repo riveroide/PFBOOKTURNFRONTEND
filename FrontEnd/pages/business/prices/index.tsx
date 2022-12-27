@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+import React from 'react'
+
+const index = () => {
+  return (
+    <div>index</div>
+=======
 import NavbarBussines from 'components/HomeBussines/NavbarBussines/NavbarBussines'
 import React from 'react'
 import styles from "../../../styles/BusinessPrices.module.css"
@@ -69,6 +76,7 @@ const index = () => {
       </section>
     </div>
 
+>>>>>>> main
   )
 }
 
