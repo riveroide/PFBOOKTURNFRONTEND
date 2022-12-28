@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../styles/profile.module.css'
-import SideBar from '../components/SideBar/SideBar'
-import NavBar from '../components/NavBar/NavBar'
+import SideBar from '../components/SideBarClientProfile/SideBar'
+import NavBar from '../components/NavBarClientProfile/NavBar'
 
 const profile = () => {
   return (
