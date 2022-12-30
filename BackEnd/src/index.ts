@@ -15,7 +15,7 @@ app.use((_req, res, next) => {
   next();
 });
 
-const PORT = 3000;
+const PORT = 3001;
 
 app.use("/clients", clients);
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const login = () => {
   const { data: session } = useSession();
-
+  console.log(session)
   if (session) {
     return (
       <div>

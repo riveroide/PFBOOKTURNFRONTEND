@@ -1,6 +1,7 @@
 import NextAuth from "next-auth/next"
 import GoogleProvider from "next-auth/providers/google"
 import  CredentialsProvider  from "next-auth/providers/credentials"
+import axios from "axios";
 
 export default NextAuth({
     providers: [
@@ -10,16 +11,21 @@ export default NextAuth({
                 username: { label: "Email", type: "text", placeholder: "example@email.com"},
                 password: { label: "Password", type: "password", placeholder: "password"},
             },
-            authorize: (credentials) =>{
+            authorize: async (credentials) =>{
                 //hacer validacion con la base de datos
-                if(credentials?.username==="nico" && credentials?.password === "nico123"){
-                    return{
-                        id: 2,
-                        name: "nico",
-                        password: "nico123"
-                    };
+                try {
+                    const users = await axios.get('http://localhost:3001/business/login/'+ credentials?.username)
+                    if(credentials?.password === users.data.password){
+                        return{
+                            id: users.data.id,
+                            name: users.data.user,
+                            password: users.data.password
+                        }
+                    }
+                } catch (error) {
+                    
+                    return null
                 }
-                return null
             },
         }),
         GoogleProvider({

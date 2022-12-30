@@ -35,3 +35,18 @@ export const upDateBusiness = async (body: any, id: number) => {
     throw error;
   }
 };
+
+
+export const getBusinessByUser = async (user: string) => {
+  try {
+    const business = await prisma.business.findFirst({
+      where: {
+        user,
+      },
+    });
+    if (business !== null) return business;
+    throw new Error("User not found");
+  } catch (error) {
+    throw error;
+  }
+};
