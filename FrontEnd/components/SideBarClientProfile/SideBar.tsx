@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./SideBar.module.css"
-import imgProfile from '../../ImgProvisoria/Default_pfp.png'
+import imgProfile from '../../pages/ImgProvisoria/Default_pfp.png'
 
 const SideBar = () => {
     return (

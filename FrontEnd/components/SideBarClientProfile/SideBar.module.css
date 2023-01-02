@@ -37,4 +37,11 @@
 
 .usuario p{
     margin-left: 2rem;
+    font-size: x-large;
+}
+
+@media(max-width:425px){
+    .usuario p{
+        left: -100%;
+    }
 }
