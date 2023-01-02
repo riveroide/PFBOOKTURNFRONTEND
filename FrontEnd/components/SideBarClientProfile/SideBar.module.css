@@ -1,0 +1,47 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    background:#e6e5e1;
+    padding: 65px 14px;
+    border-right: 2px solid #c2c1bd;
+    z-index: -1;
+}
+
+.ul {
+    margin-top: 20px;
+    list-style: none;
+}
+
+.options{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 10px;
+}
+
+.ul hr{
+    border-top: 2px solid #c2c1bd;
+}
+
+.profilePic{
+    max-width: 125px;
+}
+
+.usuario{
+    display: flex;
+    align-items: center;
+}
+
+.usuario p{
+    margin-left: 2rem;
+    font-size: x-large;
+}
+
+@media(max-width:425px){
+    .usuario p{
+        left: -100%;
+    }
+}
