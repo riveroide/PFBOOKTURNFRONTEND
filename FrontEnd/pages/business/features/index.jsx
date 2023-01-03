@@ -1,8 +1,13 @@
 import React from 'react'
+import NavbarBussines from 'components/NavbarBussines/NavbarBussines'
+import FeaturesList from 'components/FeaturesBussines/FeaturesList/FeaturesList'
 
 const index = () => {
   return (
-    <div>index</div>
+    <div>
+      <NavbarBussines/>
+      <FeaturesList/>
+    </div>
   )
 }
 

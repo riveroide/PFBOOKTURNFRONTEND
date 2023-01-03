@@ -6,22 +6,26 @@ const NavbarBussines = () => {
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
-        <Link href="/bussines/">
+        <Link href="/business/">
           <h1>Bookturn</h1>
         </Link>
       </div>
       <div className={styles.options}>
         <ul>
-          <li>Funcionalidades</li>
-          <li>Precios</li>
           <li>
-            <Link href="/bussines/about_us">Quiénes Somos</Link>
+            <Link href="/business/features">Funcionalidades</Link>
           </li>
           <li>
-            <Link href="/bussines/categories">Categorias</Link>
+            <Link href="/business/prices">Precios</Link>
           </li>
           <li>
-            <Link href="/bussines/contact">Contacto</Link>
+            <Link href="/business/about_us">Quiénes Somos</Link>
+          </li>
+          <li>
+            <Link href="/business/categories">Categorias</Link>
+          </li>
+          <li>
+            <Link href="/business/contact">Contacto</Link>
           </li>
         </ul>
       </div>
