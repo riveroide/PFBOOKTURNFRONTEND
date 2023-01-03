@@ -6,12 +6,12 @@ export default function AboutHomeClient() {
   return (
     <div className={stylesAbout.about_container} >
       
-      <div className={stylesAbout.cards} >
+      {/*<div className={stylesAbout.cards} >
         Acá van las cards
         <CardResult />
         <CardResult />
         <CardResult />
-      </div>
+  </div>*/}
 
       <div className={stylesAbout.div_container} >
         <div className={stylesAbout.div_clientes} >

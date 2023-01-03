@@ -11,33 +11,45 @@ import FooterHomeClient from "../components/FooterHomeClient";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div >
       <Head>
         <title>Home</title>
         <meta name="description" content="Home page Bookturn" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={stylesHome.home_client_container}>
-        <NavBarClients />
+      <div  className={stylesHome.home_client_container}> 
 
-        <div className={stylesHome.video_container}>
-          <video autoPlay muted loop className="video-home">
-            <source src="/videopeluqueria.mp4" type="video/mp4" />
+        <NavBarClients/>
+
+        <div className={stylesHome.video_container} >
+          <video  autoPlay muted loop className='video-home' >
+          <source src='/videopeluqueria.mp4'  type='video/mp4' />
           </video>
         </div>
-
+         
         <div className={stylesHome.input_container}>
-          <p className={stylesHome.titulo_input}>Reserve su turno</p>
-          <p className={stylesHome.descripcion_input}>
-            busque todo tipo de rubros
-          </p>
-          <div className={stylesHome.input_buscar}>
+          <p className={stylesHome.titulo_input} >Reserve su turno</p>
+          <p className={stylesHome.descripcion_input} >busque todo tipo de rubros</p>
+          <div className={stylesHome.input_buscar} >
             <input></input>
             <p>buscar</p>
           </div>
         </div>
-        <AboutHomeClient />
-        <DetailsClients />
+        <div className={stylesHome.list} >
+          <ul>
+            <li> Peluqueria</li>
+            <li>Barberia</li>
+            <li>Manicuría</li>
+            <li>Estética</li>
+            <li>Cuidados para piel</li>
+            <li>Maquillaje</li>
+            <li>Spa</li>
+            <li>Mas...</li>
+          </ul>
+        </div>
+        <AboutHomeClient/>
+      <DetailsClients />
+ 
       </div>
       <FooterHomeClient />
     </div>
