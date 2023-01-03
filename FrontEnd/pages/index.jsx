@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+// import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import stylesHome from "../styles/HomeClient.module.css";
@@ -9,7 +9,7 @@ import FooterHomeClient from "../components/FooterHomeClient";
 
 //import video from '../videos/videopeluqueria.mp4'
 
-const Home: NextPage = () => {
+const Home/*: NextPage*/ = () => {
   return (
     <div>
       <Head>

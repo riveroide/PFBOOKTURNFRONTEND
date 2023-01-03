@@ -1,7 +1,7 @@
 import { getAllBusiness, getBusinessId } from "redux/reducers/businessSlice";
 import axios from "axios";
 
-export const getBusiness = () => (dispatch: any) => {
+export const getBusiness = () => (dispatch) => {
   axios("http://localhost:3001/business")
     .then((res) => {
       dispatch(getAllBusiness(res.data));
@@ -9,7 +9,7 @@ export const getBusiness = () => (dispatch: any) => {
     .catch((error) => console.log(error));
 };
 
-export const getBusinessById = (id:any) => (dispatch:any) => {
+export const getBusinessById = (id) => (dispatch) => {
   axios(`http://localhost:3001/business/${id}`)
   .then(res => {
       dispatch(getBusinessId(res.data))

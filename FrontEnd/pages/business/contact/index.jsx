@@ -9,13 +9,13 @@ const index = () => {
  
   
 
- const sendEmail = (e:any) => {
+ const sendEmail = (e) => {
    e.preventDefault();
 
    emailjs.sendForm('service_55j4zts', 'template_cpebx08', e.target, 'user_5hA9JKUjBoFTxoijU4HlY')
-     .then((result:any) => {
+     .then((result) => {
          console.log(result.text);
-     }, (error:any) => {
+     }, (error) => {
          console.log(error.text);
       });
       e.target.reset()
