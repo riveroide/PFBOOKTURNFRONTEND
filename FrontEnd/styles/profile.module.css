@@ -1,4 +1,16 @@
+@font-face {
+    font-family: 'coolvetica rg';
+    src: url('.././fonts/coolvetica\ rg.otf');
+}
+@font-face {
+    font-family: 'coolvetica condensed';
+    src: url('.././fonts/coolvetica\ condensed\ rg.otf');
+}
+
+
+
 .content{
+    font-family: 'coolvetica condensed';
     position: absolute;
     height: 100%;
     width: calc(100% );

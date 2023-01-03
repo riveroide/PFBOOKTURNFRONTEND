@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'coolvetica rg';
+    src: url('../../fonts/coolvetica\ rg.otf');
+}
+@font-face {
+    font-family: 'coolvetica condensed';
+    src: url('../../fonts/coolvetica\ condensed\ rg.otf');
+}
+
 .navBar {
     height: 60px;
     display: flex;
@@ -16,7 +25,8 @@
 }
 
 .navTitle{
-    font-size: 22px;
+    font-family: 'coolvetica rg';
+    font-size: 2rem;
     padding: 10px 10px 10px 10px;
     color: #fff;
 }
