@@ -68,7 +68,7 @@
 .benefitContainer {
     position: relative;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
     width: 100%;
@@ -94,7 +94,7 @@
     padding-bottom: 3vh;
     /* DISPLAY: inline; */
     /* FLOAT: left; */
-    WIDTH: 100%;
+    width: 100%;
 }
 
 .svgIcon {

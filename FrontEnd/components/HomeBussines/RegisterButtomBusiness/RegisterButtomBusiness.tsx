@@ -7,7 +7,7 @@ const RegisterButtomBusiness = () => {
       <button className={styles.button}>
         <p>Registrate</p>
         <svg
-          stroke-width="4"
+          strokeWidth="4"
           stroke="currentColor"
           viewBox="0 0 24 24"
           fill="none"

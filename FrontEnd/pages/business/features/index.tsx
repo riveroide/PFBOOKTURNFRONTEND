@@ -1,8 +1,14 @@
 import React from 'react'
+import NavbarBussines from 'components/NavbarBussines/NavbarBussines'
+import FeaturesList from 'components/FeaturesBusiness/FeaturesList/FeaturesList'
+import style from '../../../styles/FeaturesBusiness.module.css'
 
 const index = () => {
   return (
-    <div>index</div>
+    <div>
+      <NavbarBussines/>
+      <FeaturesList/>
+    </div>
   )
 }
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 const login = () => {
   const { data: session } = useSession();
 
-  if (session) {
+  if (session?.user) {
     return (
       <div>
         <h1>LOGIN EMPRESA</h1>

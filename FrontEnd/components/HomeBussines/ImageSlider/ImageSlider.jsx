@@ -17,7 +17,7 @@ const ImageSlider = () => {
     <>
       <Swiper
         
-
+        Autoplay={true}
         slidesPerView={2}
         centeredSlides={true}
         cssMode={true}

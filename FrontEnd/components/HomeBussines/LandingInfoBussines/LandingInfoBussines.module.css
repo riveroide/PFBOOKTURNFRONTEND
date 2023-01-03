@@ -4,31 +4,19 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-<<<<<<< HEAD
-  /* max-height: 1000vh; */
-  width: 100vw;
-}
-
-.info {
-=======
-
   width: 100vw;
 }
 
 .info1 {
->>>>>>> main
   display: flex;
   position: relative;
   min-width: 100%;
   min-height: 90vh;
-<<<<<<< HEAD
-  background-color: #ffffff;
-=======
   justify-content: center;
   padding-top: 4rem;
   background-color: #ffffff;
   overflow: hidden;
->>>>>>> main
+
 }
 
 .wave {
@@ -99,17 +87,12 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-<<<<<<< HEAD
-=======
   padding-right: 14px;
->>>>>>> main
   top: -2px;
 }
 .prueba p {
   width: 80%;
 }
-<<<<<<< HEAD
-=======
 
 .info1_cont {
   display: flex;
@@ -121,7 +104,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  min-width: 50%;
+  min-width: 60%;
   min-height: 100%;
   padding: 2rem;
 }
@@ -145,7 +128,7 @@
 
 .info1_img {
   display: flex;
-  min-width: 50%;
+  min-width: 40%;
   min-height: 100%;
 }
 
@@ -154,4 +137,4 @@
     max-height: 26rem;
   }
 
->>>>>>> main
+

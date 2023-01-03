@@ -16,6 +16,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/HomeBussines/ImageSlider/ImageSlider.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/HomeBussines/ImageSlider/ImageSlider.jsx", "redux/reducers/servicesSlice.js"],
   "exclude": ["node_modules"]
 }

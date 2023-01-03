@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import styles from "./LandingInfoBussines.module.css";
-
-const LandingInfoBussines = () => {
-  //let i = 0
-  return (
-    <div className={styles.container}>
-      <div className={styles.info}>
-=======
 
 import React from "react";
 import styles from "./LandingInfoBussines.module.css";
@@ -36,32 +26,19 @@ const LandingInfoBussines = () => {
             {/* <img src="/lading_img1-removebg-preview.png" alt="img" /> */}
             <img src="https://res.cloudinary.com/dquxxjngk/image/upload/v1671843080/Bookturn/src/lading_img1-removebg-preview_zcjukg.png" alt="img" />
           </div>
-        </div>
->>>>>>> main
+        </div> 
         <div className={`${styles.wave} ${styles.wave1}`}></div>
         <div className={`${styles.wave} ${styles.wave2}`}></div>
         <div className={`${styles.wave} ${styles.wave3}`}></div>
         <div className={`${styles.wave} ${styles.wave4}`}></div>
       </div>
       <div className={styles.prueba}>
-<<<<<<< HEAD
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus
-          neque officia blanditiis? Exercitationem mollitia doloribus accusamus?
-          Explicabo ab, est corrupti minima reiciendis a, voluptates itaque,
-          tempora eveniet reprehenderit nemo obcaecati.
-        </p>
-=======
+
 
         <ImageSlider/>
->>>>>>> main
       </div>
     </div>
   );
 };
 
 export default LandingInfoBussines;
-<<<<<<< HEAD
-=======
-
->>>>>>> main

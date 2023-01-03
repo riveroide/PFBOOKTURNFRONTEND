@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import React from 'react'
 
-const index = () => {
-  return (
-    <div>index</div>
-=======
-import NavbarBussines from 'components/HomeBussines/NavbarBussines/NavbarBussines'
+import NavbarBussines from 'components/NavbarBussines/NavbarBussines'
 import React from 'react'
 import styles from "../../../styles/BusinessPrices.module.css"
+import FooterBussines from 'components/FooterBussines/FooterBussines'
 
 const index = () => {
   return (
@@ -74,9 +69,8 @@ const index = () => {
           </div>
         </div>
       </section>
+      <FooterBussines/>
     </div>
-
->>>>>>> main
   )
 }
 

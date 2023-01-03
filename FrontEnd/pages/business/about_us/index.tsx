@@ -1,5 +1,5 @@
 import React from 'react'
-<<<<<<< HEAD
+
 import NavbarBussines from 'components/NavbarBussines/NavbarBussines.jsx'
 import NavbarCategories from 'components/NavbarCategories/NavbarCategories'
 import AboutUsCard from "components/AboutUsCard/AboutUsCard"
@@ -12,7 +12,6 @@ const index = () => {
   return (
     <>
     <NavbarBussines/>
-    <NavbarCategories/>
     <div className={styles.container}>
     <div className={styles.textContainer}>
       <h3>Somos un equipo de 7 personas y Camilo. Desarrollamos esta app para aprobar el PF de Soy Henry el mejor bootcamp de toda la wea conchesumare</h3>
@@ -32,12 +31,6 @@ const index = () => {
     </div>
     <FooterBussines/>
     </>
-=======
-
-const index = () => {
-  return (
-    <div>index</div>
->>>>>>> main
   )
 }
 
