@@ -1,0 +1,16 @@
+.resultsContainer {
+  background-color: hsl(0, 0%, 89%);
+  width: 100vw;
+  height: 100vh;
+  font-family: 'coolvetica rg';
+}
+
+.categoriaOResultado {
+  font-size: 2rem;
+  color: rgb(53, 53, 53);
+  padding: 2rem;
+}
+
+.mejoresValorados {
+  margin-left: 2rem;
+}

@@ -1,10 +1,18 @@
 import React from 'react'
 import stylesAbout from '../styles/AboutHomeClient.module.css'
-
+import CardResult from './CardResult/CardResult'
 
 export default function AboutHomeClient() {
   return (
     <div className={stylesAbout.about_container} >
+      
+      <div className={stylesAbout.cards} >
+        Acá van las cards
+        <CardResult />
+        <CardResult />
+        <CardResult />
+      </div>
+
       <div className={stylesAbout.div_container} >
         <div className={stylesAbout.div_clientes} >
           <div className={stylesAbout.about_content} >
