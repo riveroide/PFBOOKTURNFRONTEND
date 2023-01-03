@@ -1,0 +1,102 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vw;
+    height: 100vh;
+    background-color: aqua;
+}
+
+.listCont{
+    display: flex;
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 0.507);
+    min-width: 90%;
+    max-width: 95%;
+    height: 80%;
+}
+
+.listInfo{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    padding: 2rem;
+    width: 50%;
+    height: 100%;
+}
+.list{
+    padding: 3rem;
+    display: flex;
+    height: 60%;
+    background-color: azure;
+
+}
+
+.features{
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.features li{
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    width: 50%;
+    height: 4rem;
+
+
+
+}
+
+.xd{
+    display: block;
+    position: relative;
+    width: 60%;
+
+    background-color: brown;
+}
+
+
+
+.desplegable{
+    /* display: none; */
+    position:absolute;
+    left: 30%;
+    visibility: visible;
+    opacity: 0;
+    width: 12rem;
+    height: 6rem;
+    background-color: blueviolet;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    transition: opacity 300ms, visibility 500ms;
+}
+
+.features > li:hover .desplegable{
+    /* display: block; */
+    visibility:visible;
+    opacity: 1;
+
+}
+
+/* .desplegable {
+    width: 8rem;
+    height: 6rem;
+    background: red;
+    position: relative;
+    
+  } */
+  .desplegable:before {
+    content: "";
+    position: relative;
+    right: 100px;
+    top: 18px;
+    width: 0;
+    height: 0;
+    z-index: 999;
+    border-top: 25px solid transparent;
+    border-right: 50px solid rgb(0, 0, 0);
+    border-bottom: 25px solid transparent;
+  }
