@@ -77,10 +77,13 @@ margin-top: 0.5rem;
 .input_buscar input{
 padding-left: 12rem;
 padding-right: 12rem;
+padding-top: 1.5rem;
 border: 0rem;
 
 }
 .input_buscar p {
+  display: flex;
+  align-items: center;
 position: relative;
 color: #3f3206;
 right: 4rem;
