@@ -36,6 +36,18 @@ const Home/*: NextPage*/ = () => {
             <p>buscar</p>
           </div>
         </div>
+        <div className={stylesHome.list} >
+          <ul>
+            <li> Peluqueria</li>
+            <li>Barberia</li>
+            <li>Manicuría</li>
+            <li>Estética</li>
+            <li>Cuidados para piel</li>
+            <li>Maquillaje</li>
+            <li>Spa</li>
+            <li>Mas...</li>
+          </ul>
+        </div>
         <AboutHomeClient />
         <DetailsClients />
       </div>
