@@ -4,6 +4,7 @@ import CardResult from "../../components/CardResult/CardResult";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getBusiness } from "../../redux/actions/business/getBusiness";
+import SearchBar from "../../components/SearchBar/SearchBar"
 
 export default function Results() {
   const dispatch = useDispatch();
@@ -18,6 +19,9 @@ export default function Results() {
 
   return (
     <div className={stylesResults.resultsContainer}>
+      <div className={stylesResults.searchbarContainer}>
+        <SearchBar/>
+      </div>
       <div className={stylesResults.categoriaOResultado}>
         categoría/búsqueda {businessList.length} resultados
       </div>
@@ -26,7 +30,8 @@ export default function Results() {
       </button>
       <div>
         { businessList.length && businessList.map((e) => {
-          return <CardResult key={e.id} name={e.name} services={e.services}/>;
+          console.log(e.attributes.BusinessPic)
+          return <CardResult key={e.id} id={e.id} name={e.attributes.name} services={e.attributes.services.data} image={e.attributes.BusinessPic.data?.attributes.formats.small.url ? `http://localhost:1337${e.attributes.BusinessPic.data?.attributes.formats.small.url}` : "https://avalos.sv/wp-content/uploads/295-default-featured-image.png"}/>
         })}
       </div>
     </div>
