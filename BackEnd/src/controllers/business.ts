@@ -3,7 +3,12 @@ const prisma = new PrismaClient();
 
 export const getAllBusiness = async () => {
   try {
-    const result = await prisma.business.findMany();
+    const result = await prisma.business.findMany({
+      include: {
+        services: true,
+        staff: true,
+      },
+    });
     return result;
   } catch (error) {
     return error;
@@ -35,7 +40,6 @@ export const upDateBusiness = async (body: any, id: number) => {
     throw error;
   }
 };
-
 
 export const getBusinessByUser = async (user: string) => {
   try {
