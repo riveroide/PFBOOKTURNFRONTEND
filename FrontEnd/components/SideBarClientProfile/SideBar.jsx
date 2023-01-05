@@ -2,12 +2,13 @@ import React from "react";
 import styles from "./SideBar.module.css"
 import imgProfile from '../../pages/ImgProvisoria/Default_pfp.png'
 
-const SideBar = () => {
+const SideBar = (props) => {
+    
     return (
         <div className={styles.sidebar}>
         <div className={styles.usuario}>
           <img src={imgProfile.src} className={styles.profilePic} alt="Not Found" />
-          <p>Nombre Apellido</p>
+          <p>{props.client.name} {props.client.lastName}</p>
         </div>
         <ul className={styles.ul}>
           <li className={styles.options}>

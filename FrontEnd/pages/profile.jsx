@@ -1,13 +1,22 @@
-import React from 'react'
-import styles from '../styles/profile.module.css'
-import SideBar from '../components/SideBarClientProfile/SideBar'
-import NavBar from '../components/NavBarClientProfile/NavBar'
+import React from 'react';
+//Hooks
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+//actions
+import { getClient } from 'redux/actions/clients/getClients';
+import styles from '../styles/profile.module.css';
+import SideBar from '../components/SideBarClientProfile/SideBar';
+import NavBar from '../components/NavBarClientProfile/NavBar';
 
 const profile = () => {
+  const dispatch = useDispatch()
+  const client = useSelector((state) => state.clientId)
+
+
   return (
     <div>
       <NavBar/>
-      <SideBar/>
+      <SideBar client={client} />
       <div className={styles.content}>
         <h1>Bienvenid@ a tu historial</h1>
         <div>
