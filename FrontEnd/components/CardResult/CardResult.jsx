@@ -17,9 +17,7 @@ export default function CardResult({ name, services, image, id }) {
             },
           }}
         >
-          <a>
             <p className={stylesCard.nombreEmpresa}> {name} </p>
-          </a>
         </Link>
         {services?.map((e) => {
           console.log(e);
