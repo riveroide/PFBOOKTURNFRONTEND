@@ -7,11 +7,15 @@ import Button from '@mui/material/Button';
 
 import * as yup from 'yup'
 
+import { useRouter } from "next/router";
+
+
 
 
 const createform = () => {
   const dispatch = useDispatch()
-  
+  const router = useRouter();
+
   const isRequired = "Campo obligatorio"
   const validationSchema=yup.object({
       user: yup.string().required(isRequired).email("Debe ser un email valido"),
@@ -30,7 +34,9 @@ const createform = () => {
           user: "",
           password: "",
           name: "",      
-          adress: "",     
+          adress: "",
+          totalRates: 0,
+          totalRated: 0,     
           }}
 
         validationSchema={validationSchema}
@@ -40,6 +46,8 @@ const createform = () => {
           console.log(values)
           dispatch(postBusiness(values))
           resetForm();
+          alert("cliente registrado con éxito");
+          router.push("/");
           // alert(JSON.stringify(values, null, 2));
         }}
       >
