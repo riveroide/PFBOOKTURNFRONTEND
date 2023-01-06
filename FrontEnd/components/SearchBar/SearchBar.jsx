@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getBusinessByName } from "../../redux/actions/business/getBusiness";
+import style from "./SearchBar.module.css"
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -23,15 +24,16 @@ const SearchBar = () => {
   }
 
   return (
-    <div>
+    <div className={style.container}>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
-          type="search"
+        className={style.searchbar}
+          type="text"
           placeholder="Buscar..."
           value={input}
           onChange={handleChange}
         ></input>
-        <button>🔍</button>
+        {/* <button>🔍</button> */}
       </form>
     </div>
   );
