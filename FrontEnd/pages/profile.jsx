@@ -10,17 +10,26 @@ import NavBar from '../components/NavBarClientProfile/NavBar';
 
 const profile = () => {
   const dispatch = useDispatch()
+  
   const {clientId} = useSelector((state) => state.clients)
   const {displayOption} = useSelector((state) => state.clients)
 
   useEffect(() => {
-     dispatch(getClient(1))
-  },[dispatch])
-
+     async function fetchClient(){
+      await dispatch(getClient('1'))
+    }
+    fetchClient()
+  },[])
+  console.log(clientId.attributes)
   return (
     <div>
       <NavBar/>
-      <SideBar client={clientId} />
+      <SideBar 
+        // name={clientId.name} 
+        // lastName={clientId.lastname} 
+        // user={clientId.user} 
+        // email={clientId.email} 
+      />
       <div className={styles.content}>
         {displayOption.length === 0 ? (
           <div>
