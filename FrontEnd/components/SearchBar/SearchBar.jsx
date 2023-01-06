@@ -1,10 +1,12 @@
 import React from "react";
+import { useRouter } from 'next/router'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getBusinessByName } from "../../redux/actions/business/getBusiness";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const [input, setInput] = useState("");
 
@@ -15,7 +17,8 @@ const SearchBar = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getBusinessByName(input, null, null));
+    dispatch(getBusinessByName(input));
+    router.push("/results")
     setInput("");
   }
 
