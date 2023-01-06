@@ -15,7 +15,7 @@ const SearchBar = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getBusinessByName(input));
+    dispatch(getBusinessByName(input, null, null));
     setInput("");
   }
 

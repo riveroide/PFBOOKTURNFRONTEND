@@ -19,7 +19,7 @@ export default function CardResult({ name, services, image, id }) {
         >
             <p className={stylesCard.nombreEmpresa}> {name} </p>
         </Link>
-        {services?.map((e) => {
+        {/* {services?.map((e) => {
           console.log(e);
           return (
             <div className={stylesCard.prices}>
@@ -27,7 +27,7 @@ export default function CardResult({ name, services, image, id }) {
               <p> {e.attributes.price} </p>
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );
