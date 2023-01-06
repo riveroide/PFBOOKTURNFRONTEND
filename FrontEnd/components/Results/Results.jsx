@@ -18,7 +18,7 @@ export default function Results() {
   console.log(businessList);
 
   useEffect(() => {
-    dispatch(getBusiness());
+    if (businessList.length === 0) dispatch(getBusiness());
   }, []);
 
   const [state, setState] = useState({
