@@ -1,6 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import styles from "./index.module.css";
+import Button from '@mui/material/Button';
 
 const login = () => {
   const { data: session } = useSession();
@@ -25,8 +26,9 @@ const login = () => {
         <Link href="/business/login/createform">
           <button>Clickea para registrar tu empresa</button></Link>
           <p>(info resumida sobre facilidades para empresa)</p>
-        
+          <Button variant="contained">Hello World</Button>
       </div>
+      
       </div>
     );
   }
