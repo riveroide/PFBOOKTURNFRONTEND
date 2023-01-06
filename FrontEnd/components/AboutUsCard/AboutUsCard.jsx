@@ -1,5 +1,4 @@
 import React from "react";
-//import Image from "next/image";
 import styles from "./AboutUsCard.module.css";
 const AboutUsCard = () => {
   return (
@@ -49,6 +48,7 @@ const AboutUsCard = () => {
           </svg>
         </p>
       </div>
+      
     </>
   );
 };

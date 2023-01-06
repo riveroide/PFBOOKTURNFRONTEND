@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { getBusinessByName } from "../../redux/actions/business/getBusiness";
 
-export default SearchBar = () => {
+const SearchBar = () => {
   const dispatch = useDispatch();
 
   const [input, setInput] = useState("");
@@ -14,7 +15,7 @@ export default SearchBar = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(/* insertar action por hacer */);
+    dispatch(getBusinessByName(input));
     setInput("");
   }
 
@@ -32,3 +33,5 @@ export default SearchBar = () => {
     </div>
   );
 };
+
+export default SearchBar
