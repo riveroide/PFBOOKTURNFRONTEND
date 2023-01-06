@@ -5,6 +5,12 @@
   font-family: 'coolvetica rg';
 }
 
+.searchBarContainer {
+  width: 200px;
+  display: flex;
+  height: 200px;
+}
+
 .categoriaOResultado {
   font-size: 2rem;
   color: rgb(53, 53, 53);
