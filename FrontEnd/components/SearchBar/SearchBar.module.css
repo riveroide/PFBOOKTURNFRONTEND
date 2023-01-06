@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%;
+  height: 100%; */
+  width: 25vw;
+  height: 5vh;
+  
+}
+
+.searchbar {
+  min-width: 25vw;
+  height: 5vh;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+  border-color: transparent;
+}
+
+.searchbar:focus{
+    outline: none;
+}
