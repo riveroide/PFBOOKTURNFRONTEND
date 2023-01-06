@@ -4,6 +4,7 @@ import axios from "axios";
 export const getBusiness = () => (dispatch) => {
   axios("http://localhost:3001/business")
     .then((res) => {
+      //console.log(res.data, "asdasdasda")
       dispatch(getAllBusiness(res.data));
     })
     .catch((error) => console.log(error));

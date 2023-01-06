@@ -9,6 +9,7 @@ export const businessSlice = createSlice({
     reducers: {
         getAllBusiness: (state, action) => {
             state.businessList = action.payload
+            //console.log(action.payload, "reducer")
         },
         getBusinessId: (state, action) => {
             state.businessId = action.payload
