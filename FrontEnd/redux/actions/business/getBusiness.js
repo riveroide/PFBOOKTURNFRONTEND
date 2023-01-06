@@ -19,9 +19,10 @@ export const getBusinessById = (id) => (dispatch) => {
 };
 
 export const getBusinessByName = (name) => (dispatch) => {
-  axios("http://localhost:1337/api/businesses?populate=*&filters[name][$containsi]=" + name)
-  .then((res) => {
-    dispatch(getAllBusiness(res.data.data))
-  })
-
+  axios(
+    "http://localhost:1337/api/businesses?populate=*&filters[name][$containsi]=" +
+      name
+  ).then((res) => {
+    dispatch(getAllBusiness(res.data.data));
+  });
 };
