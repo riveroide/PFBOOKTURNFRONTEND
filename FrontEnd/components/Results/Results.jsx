@@ -19,7 +19,8 @@ export default function Results() {
 
   useEffect(() => {
     if (businessList.length === 0) dispatch(getBusiness());
-  }, []);
+    else return
+  }, [dispatch, businessList]);
 
   const [state, setState] = useState({
     page: 1,
@@ -29,6 +30,8 @@ export default function Results() {
   const lastBusiness = state.page * state.business;
   const firstBusiness = lastBusiness - state.business
   const actualBusiness = businessList.slice(firstBusiness, lastBusiness)
+
+  console.log(actualBusiness.length)
 
   const paginado = (pageNum) => {
     setState({
