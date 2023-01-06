@@ -10,7 +10,7 @@ export const getBusiness = () => (dispatch) => {
 };
 
 export const getBusinessById = (id) => (dispatch) => {
-  axios(`http://localhost:3001/business/${id}`)
+  axios(`http://localhost:1337/api/businesses/${id}?populate=*`)
     .then((res) => {
       dispatch(getBusinessId(res.data));
     })
