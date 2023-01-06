@@ -4,7 +4,8 @@ import axios from "axios";
 export const getBusiness = () => (dispatch) => {
   axios("http://localhost:1337/api/businesses?populate=*")
     .then((res) => {
-      dispatch(getAllBusiness(res.data.data));
+      //console.log(res.data, "asdasdasda")
+      dispatch(getAllBusiness(res.data));
     })
     .catch((error) => console.log(error));
 };

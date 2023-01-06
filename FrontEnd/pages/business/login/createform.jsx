@@ -23,7 +23,7 @@ const createform = () => {
   const renderError = (message) => <p className="help is-danger">{message}</p>
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>SOY EL FORMULARIO DE CREACION DE EMPRESA</h1>
       <Formik
         initialValues={{ 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getBusinessById } from '../../../redux/actions/business/getBusiness'
+//import styles from "../../../styles/Business.module.css";
 
 const Business = ({ id }) => {
   const [loading, setLoading] = useState(true)
