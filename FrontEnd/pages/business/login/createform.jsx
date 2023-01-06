@@ -29,9 +29,7 @@ const createform = () => {
           password: "",
           name: "",      
           adress: "",     
-          totalRates: 0,
-          totalRated: 0,         
-          schedule: "no se"   }}
+          }}
 
         validationSchema={validationSchema}
         
