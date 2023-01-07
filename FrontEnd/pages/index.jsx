@@ -24,7 +24,7 @@ const Home/*: NextPage*/ = () => {
         <NavBarClients />
 
         <div className={stylesHome.video_container}>
-          <video autoPlay muted loop className="video-home">
+          <video autoPlay muted loop controls="false" className="video-home">
             <source src="/videopeluqueria.mp4" type="video/mp4" />
           </video>
         </div>
