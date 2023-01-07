@@ -53,7 +53,7 @@ const createform = () => {
       >
         <Form>
           <h3>Ingresa correo</h3>
-          <Field name="user" type="email" />
+          <Field className="" name="user" type="email" />
           <ErrorMessage name="user" render={renderError}/>
           <h3>Ingresa contraseña</h3>
           <Field name="password" type="text" />
