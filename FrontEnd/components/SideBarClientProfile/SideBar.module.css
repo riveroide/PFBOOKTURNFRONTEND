@@ -33,6 +33,10 @@
     margin: 25px 100px;
 }
 
+.options a{
+    cursor: pointer;
+}
+
 .ul hr{
     border-top: 2px solid #c2c1bd;
 }
