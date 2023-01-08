@@ -28,6 +28,9 @@ a {
   overflow-x: hidden;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .swiper-button-prev,
 .swiper-button-next {
