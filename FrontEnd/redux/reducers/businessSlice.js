@@ -21,7 +21,9 @@ export const businessSlice = createSlice({
         state.businessList = business.sort((a, b) => {
           if (a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase())
             return 1;
-          else if (a.attributes.name.toLowerCase() < b.attributes.name.toLowerCase())
+          else if (
+            a.attributes.name.toLowerCase() < b.attributes.name.toLowerCase()
+          )
             return -1;
           else return 0;
         });
@@ -30,7 +32,9 @@ export const businessSlice = createSlice({
         state.businessList = business.sort((a, b) => {
           if (a.attributes.name.toLowerCase() < b.attributes.name.toLowerCase())
             return 1;
-          else if (a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase())
+          else if (
+            a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase()
+          )
             return -1;
           else return 0;
         });
@@ -51,14 +55,18 @@ export const businessSlice = createSlice({
       } else state.businessList = business;
     },
     filterByCategory: (state, action) => {
-        const business = state.businessListCopy
-        if (!action.payload) state.businessList = business
-        else state.businessList = action.payload
-    }
+      const business = state.businessListCopy;
+      if (!action.payload) state.businessList = business;
+      else state.businessList = action.payload;
+    },
   },
 });
 
-export const { getAllBusiness, getBusinessId, filterByOrder, filterByCategory } =
-  businessSlice.actions;
+export const {
+  getAllBusiness,
+  getBusinessId,
+  filterByOrder,
+  filterByCategory,
+} = businessSlice.actions;
 
 export default businessSlice.reducer;
