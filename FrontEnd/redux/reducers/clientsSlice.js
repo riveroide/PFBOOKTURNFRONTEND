@@ -4,7 +4,7 @@ export const clientsSlice = createSlice({
     name: "clients",
     initialState: {
         clientsList: [],
-        clientId: {},
+        clientId: null,
         displayOption: ''
     },
     reducers: {

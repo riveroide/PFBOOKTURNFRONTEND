@@ -10,25 +10,26 @@ import NavBar from '../components/NavBarClientProfile/NavBar';
 
 const profile = () => {
   const dispatch = useDispatch()
-  
   const {clientId} = useSelector((state) => state.clients)
   const {displayOption} = useSelector((state) => state.clients)
-
+  
   useEffect(() => {
      async function fetchClient(){
       await dispatch(getClient('1'))
     }
     fetchClient()
   },[])
-  console.log(clientId.attributes)
-  return (
+  console.log(clientId)
+  if(clientId){
+    const {name, lastname, user, email} = clientId.attributes
+    return (
     <div>
       <NavBar/>
       <SideBar 
-        // name={clientId.name} 
-        // lastName={clientId.lastname} 
-        // user={clientId.user} 
-        // email={clientId.email} 
+       name={name}
+       lastname={lastname}
+       user={user}
+       email={email}
       />
       <div className={styles.content}>
         {displayOption.length === 0 ? (
@@ -38,8 +39,8 @@ const profile = () => {
         ) : displayOption === 'edit' ?(
           <div>
           <h1>Edicion pulenta</h1>
-          <h4>NOMBRE APELLIDO</h4>
-          <h4>email</h4>
+          <h4>{user}</h4>
+          <h4></h4>
           <h4>clave</h4>
           </div>
         ) : displayOption === 'pay' ?(
@@ -92,6 +93,12 @@ const profile = () => {
       </div>
     </div>
   )
+}
+else {
+  return(
+    <h2>LOADING</h2>
+  )
+}
 }
 
 export default profile
