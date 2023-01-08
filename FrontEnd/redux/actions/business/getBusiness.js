@@ -5,7 +5,7 @@ export const getBusiness = () => (dispatch) => {
   axios("http://localhost:1337/api/businesses?populate=*")
     .then((res) => {
       //console.log(res.data, "asdasdasda")
-      dispatch(getAllBusiness(res.data));
+      dispatch(getAllBusiness(res.data.data));
     })
     .catch((error) => console.log(error));
 };
