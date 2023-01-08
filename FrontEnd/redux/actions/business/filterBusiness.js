@@ -1,5 +1,8 @@
 import axios from "axios";
-import { filterByOrder, filterByCategory } from "../../reducers/businessSlice";
+import {
+  filterByOrder,
+  filterByCategory,
+} from "../../reducers/businessSlice";
 
 export const filterOrder = (payload) => (dispatch) => {
   dispatch(filterByOrder(payload));

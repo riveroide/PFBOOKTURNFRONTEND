@@ -3,7 +3,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBusinessByName } from "../../redux/actions/business/getBusiness";
-import { filterCategory, filterOrder } from "../../redux/actions/business/filterBusiness";
+import {
+  filterCategory,
+  filterOrder,
+  categoryHandler
+} from "../../redux/actions/business/filterBusiness";
 import { getCategories } from "../../redux/actions/categories/getCategories";
 
 const SearchAndFilter = () => {

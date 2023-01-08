@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { getBusiness } from "../../redux/actions/business/getBusiness";
 import SearchAndFilter from "../searchAndFilter/SearchAndFilter";
 import Paginado from "../Paginado/Paginado";
-import Link from "next/link";
 
 
 export default function Results() {
@@ -15,30 +14,12 @@ export default function Results() {
 
   const { businessList } = useSelector((state) => state.business);
 
-  console.log(businessList);
+  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
-    if (businessList.length === 0) dispatch(getBusiness());
-    else return
-  }, [dispatch, businessList]);
-
-  const [state, setState] = useState({
-    page: 1,
-    business: 6
-  })
-
-  const lastBusiness = state.page * state.business;
-  const firstBusiness = lastBusiness - state.business
-  const actualBusiness = businessList.slice(firstBusiness, lastBusiness)
-
-  console.log(actualBusiness.length)
-
-  const paginado = (pageNum) => {
-    setState({
-      ...state,
-      page: pageNum
-    })
-  }
+    setHydrated(true)
+    if (!businessList.length) dispatch(getBusiness());
+  }, [dispatch]);
 
   useEffect(() => {
     setState({
@@ -47,11 +28,33 @@ export default function Results() {
     })
   },[businessList])
 
+  const [state, setState] = useState({
+    page: 1,
+    business: 6
+  })
+
+  if (!hydrated) {
+    return null;
+  }
+
+  const lastBusiness = state.page * state.business;
+  const firstBusiness = lastBusiness - state.business
+  const actualBusiness = businessList.slice(firstBusiness, lastBusiness)
+
+  const paginado = (pageNum) => {
+    setState({
+      ...state,
+      page: pageNum
+    })
+  }
+
+ 
+
   return (
     <div className={stylesResults.resultsContainer}>
-      <div className={stylesResults.categoriaOResultado}>
+      <p className={stylesResults.categoriaOResultado}>
         categoría/búsqueda {businessList.length} resultados
-      </div>
+      </p>
       <div className={stylesResults.searchbarContainer}>
         <SearchAndFilter />
       </div>
