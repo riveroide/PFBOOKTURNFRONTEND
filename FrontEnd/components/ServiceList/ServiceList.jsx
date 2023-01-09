@@ -3,13 +3,13 @@ import React from 'react'
 const ServiceList = ({services}) => {
     console.log(services)
   return (
-    <div class="bg-white dark:bg-gray-900">
+    <div class="bg-white dark:bg-gray-900 font-cool_p tracking-widest">
     <div class="container px-6 py-8 mx-auto">
-        <p class="text-xl text-center text-gray-500 dark:text-gray-300">
+        <p class="text-xl text-center text-gray-500 dark:text-gray-300 font-cool_g tracking-widest">
             Elija de la siguiente lista:
         </p>
 
-        <h1 class="mt-4 text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white overflow-hidden">Servicios</h1>
+        <h1 class="mt-4 text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white overflow-hidden font-cool_g tracking-widest">Servicios</h1>
 
         <div class="mt-6 space-y-8 xl:mt-12">
             {services.data?.map(e =>{
@@ -32,7 +32,7 @@ const ServiceList = ({services}) => {
 
 
             <div class="flex justify-center">
-                <button class="px-8 py-2 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                <button class="px-8 py-2 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80 font-cool_g">
                     Seleccionar
                 </button>
             </div>

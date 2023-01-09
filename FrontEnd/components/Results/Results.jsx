@@ -56,7 +56,7 @@ export default function Results() {
         <SearchAndFilter />
       </div>
 
-      <h1 className="text-center text-2xl mt-5 font-bold">
+      <h1 className="text-center text-2xl mt-5 font-bold font-cool_p tracking-widest">
         Se han encontrado {businessList.length} resultados
       </h1>
   
