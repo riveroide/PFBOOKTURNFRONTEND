@@ -61,7 +61,7 @@ const createform = () => {
           </div>
 
           <h3>Ingresa contraseña</h3>
-          <Field name="password" type="text" />
+          <Field name="password" type="password" />
           <ErrorMessage name="password" render={renderError} />
           <h3>Ingresa nombre de la empresa</h3>
           <Field name="name" type="text" />
