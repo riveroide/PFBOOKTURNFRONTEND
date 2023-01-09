@@ -5,6 +5,10 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'cool_g':'coolvetica rg',
+      'cool_p': 'coolvetica condensed'
+    },
     extend: {},
   },
   plugins: [],
