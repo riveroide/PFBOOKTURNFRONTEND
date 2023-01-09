@@ -1,11 +1,11 @@
 import React from 'react'
-import NavbarBussines from 'components/NavbarBussines/NavbarBussines'
+import Navbar from 'components/Navbar/Navbar'
 import FeaturesList from 'components/FeaturesBussines/FeaturesList/FeaturesList'
 
 const index = () => {
   return (
     <div>
-      <NavbarBussines/>
+      <Navbar/>
       <FeaturesList/>
     </div>
   )

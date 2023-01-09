@@ -44,7 +44,7 @@ model Business {
   name       String
   adress     String
   totalRates Int
-  totalRated Int
+  totalRated Int        
   schedule   String
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @default(now())

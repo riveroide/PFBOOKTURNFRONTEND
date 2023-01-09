@@ -1,5 +1,5 @@
 import React from 'react'
-import NavbarBussines from 'components/NavbarBussines/NavbarBussines.jsx'
+import Navbar from 'components/Navbar/Navbar.jsx'
 import NavbarCategories from 'components/NavbarCategories/NavbarCategories'
 import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
 import styles from "../../../styles/Contact.module.css";
@@ -24,7 +24,7 @@ const index = () => {
   return (
     <>
     
-    <NavbarBussines/>
+    <Navbar/>
     <NavbarCategories/>
     <div className={styles.container}>
 
