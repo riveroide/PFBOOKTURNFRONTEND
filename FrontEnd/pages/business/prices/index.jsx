@@ -1,11 +1,11 @@
-import NavbarBussines from 'components/NavbarBussines/NavbarBussines'
+import Navbar from 'components/Navbar/Navbar'
 import React from 'react'
 import styles from "../../../styles/BusinessPrices.module.css"
 
 const index = () => {
   return (
     <div className={styles.generalContainer}>
-      <NavbarBussines />
+      <Navbar />
       <section>
         <div className={styles.beforePrices}>
           <h1>Disfruta de nuestros beneficios premium <br/> para tu empresa</h1>
