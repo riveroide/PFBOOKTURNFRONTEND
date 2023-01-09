@@ -4,7 +4,8 @@ export const clientsSlice = createSlice({
     name: "clients",
     initialState: {
         clientsList: [],
-        clientId: {}
+        clientId: null,
+        displayOption: ''
     },
     reducers: {
         getAllClients: (state, action) => {
@@ -12,10 +13,13 @@ export const clientsSlice = createSlice({
         },
         getClientId: (state, action) => {
             state.clientId = action.payload
+        },
+        setDisplayOption: (state, action) => {
+            state.displayOption = action.payload
         }
     }
 })
 
-export const {getAllClients, getClientId} = clientsSlice.actions
+export const {getAllClients, getClientId, setDisplayOption} = clientsSlice.actions
 
 export default clientsSlice.reducer

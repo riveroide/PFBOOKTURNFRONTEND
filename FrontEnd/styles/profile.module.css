@@ -11,9 +11,10 @@
 
 .content{
     font-family: 'coolvetica condensed';
-    position: absolute;
+    position: static;
+    margin-top: 5rem;
     height: 100%;
-    width: calc(100% );
+    width: 100%;
     padding-left: 50%;
     z-index: -2;
 }

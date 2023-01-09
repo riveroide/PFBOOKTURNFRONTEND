@@ -1,6 +1,9 @@
 // import type { NextPage } from "next";
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from 'next/link'
+import SearchBar from "../components/SearchBar/SearchBar"
 import stylesHome from "../styles/HomeClient.module.css";
 import NavBarClients from "../components/NavBarClients";
 import AboutHomeClient from "../components/AboutHomeClient";
@@ -21,7 +24,7 @@ const Home/*: NextPage*/ = () => {
         <NavBarClients />
 
         <div className={stylesHome.video_container}>
-          <video autoPlay muted loop className="video-home">
+          <video autoPlay muted loop controls="false" className="video-home">
             <source src="/videopeluqueria.mp4" type="video/mp4" />
           </video>
         </div>
@@ -32,8 +35,12 @@ const Home/*: NextPage*/ = () => {
             busque todo tipo de rubros
           </p>
           <div className={stylesHome.input_buscar}>
-            <input></input>
-            <p>buscar</p>
+            <SearchBar />
+          </div>
+          <div>
+            <Link href="/results">
+            <button>Ver todos los negocios</button>
+            </Link>
           </div>
         </div>
         <div className={stylesHome.list} >
