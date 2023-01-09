@@ -2,6 +2,14 @@ import React from "react";
 import Link from "next/link";
 // import stylesCard from "../CardResult/CardResult.module.css";
 export default function CardResult({ name, services, image, id, categories }) {
+
+  let arrServices = []
+
+  if (services.length > 4) {
+    arrServices = services.slice(0, 4)
+  }
+  else arrServices = services
+
   return (
     <section className="bg-white mt-4">
        {/* dark:bg-gray-900 */}
@@ -39,7 +47,7 @@ export default function CardResult({ name, services, image, id, categories }) {
                     {name}.
                 </Link>
 
-                {services?.map((e) => {
+                {arrServices?.map((e) => {
                   return (
                     <div className="flex flex-row justify-between w-2/3 font-cool_g tracking-widest">
                     <p className="mt-3 text-sm text-gray-500 md:text-xl underline capitalize"> 
