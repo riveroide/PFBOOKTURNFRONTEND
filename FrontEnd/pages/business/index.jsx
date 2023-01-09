@@ -1,14 +1,15 @@
 import React from 'react'
-import NavbarBussines from 'components/NavbarBussines/NavbarBussines.jsx'
+import Navbar from "../../components/Navbar/Navbar"
 import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
 import LandingInfoBussines from "../../components/HomeBussines/LandingInfoBussines/LandingInfoBussines"
-
 const index = () => {
   return (
     <>
-      <NavbarBussines />
+      
+      <Navbar/>
       <LandingInfoBussines />
       <FooterBussines />
+      
     </>
   )
 }

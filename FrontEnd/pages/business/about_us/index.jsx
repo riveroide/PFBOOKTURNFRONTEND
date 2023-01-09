@@ -1,5 +1,5 @@
 import React from 'react'
-import NavbarBussines from 'components/NavbarBussines/NavbarBussines.jsx'
+import Navbar from 'components/Navbar/Navbar.jsx'
 import NavbarCategories from 'components/NavbarCategories/NavbarCategories'
 import AboutUsCard from "components/AboutUsCard/AboutUsCard"
 import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
@@ -10,7 +10,7 @@ const index = () => {
 
   return (
     <>
-    <NavbarBussines/>
+    <Navbar/>
     <NavbarCategories/>
     <div className={styles.container}>
     <div className={styles.textContainer}>

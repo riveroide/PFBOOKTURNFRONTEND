@@ -1,14 +1,18 @@
-import React from "react";
-import NavbarBussines from "../../components/NavbarBussines/NavbarBussines";
-import CardResult from "../../components/CardResult/CardResult";
-import Results from "../../components/Results/Results";
+
+import React from 'react'
+import Navbar from "../../components/Navbar/Navbar"
+//import CardResult from '../../components/CardResult/CardResult'
+import Results from '../../components/Results/Results'
+
 export default function index() {
   return (
     <div>
-      <NavbarBussines />
-      <div>
-        <Results />
-      </div>
+
+           <Navbar/>
+          <div>
+            <Results />
+          </div>
+
     </div>
   );
 }

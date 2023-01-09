@@ -1,5 +1,5 @@
 import React from 'react'
-import NavbarBussines from '../../../components/NavbarBussines/NavbarBussines'
+import Navbar from "../../../components/Navbar/Navbar"
 import NavbarCategories from 'components/NavbarCategories/NavbarCategories'
 import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
 
@@ -7,7 +7,7 @@ import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
 const index = () => {
   return (
     <>
-    <NavbarBussines/>
+    <Navbar/>
     <NavbarCategories/>
     <FooterBussines/>
     </>
