@@ -3,7 +3,7 @@ import React from "react";
 const DetailsBusiness = ({name, adress, totalRated, user}) => {
   return (
     <div>
-      <section class="relative pt-24 pb-36 bg-white overflow-hidden">
+      <section class="relative pt-24 pb-36 bg-white overflow-hidden font-cool_g tracking-widest">
         <img
           class="absolute bottom-0 left-1/2 transform -translate-x-1/2"
           src="flaro-assets/images/contact/gradient.svg"
