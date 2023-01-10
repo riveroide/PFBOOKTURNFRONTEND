@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const postServices = (data) => () => {
   try {
-    axios.post("http://localhost:3000/services", data)
+    axios.post("http://bookturn-deploy-cthq4.ondigitalocean.app/services", data)
   } catch (error) {
     console.log(error.message)
   }
