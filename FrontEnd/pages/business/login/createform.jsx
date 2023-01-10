@@ -49,7 +49,7 @@ const createform = () => {
         }}
       >
         <Form className="w-1/4 p-4 bg-gray-200 shadow-md rounded-lg items-center justify-center flex flex-col">
-          <h1>SOY EL FORMULARIO DE CREACION DE EMPRESA</h1>
+          <h1>FORMULARIO DE CREACION DE EMPRESA</h1>
           <div>
             <h3 className="">Ingresa correo</h3>
             <Field
