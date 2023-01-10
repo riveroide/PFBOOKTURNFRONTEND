@@ -8,7 +8,8 @@ import * as yup from "yup";
 
 //----material ui
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 //------
 
 const createform = () => {
@@ -30,7 +31,7 @@ const createform = () => {
       .min(8, "Debe ser de minimo 8 caracteres"),
   });
 
-  const renderError = (message) => <p>{message}</p>;
+  const renderError = (message) => <p className="mt-2 text-sm text-red-600 dark:text-red-500">{message}</p>;
   return (
     <div className="flex flex-col w-screen h-screen justify-center items-center">
       <Formik
@@ -47,195 +48,175 @@ const createform = () => {
           router.push("/");
         }}
       >
-        {({ handleChange, handleBlur }) => (
+        {({ handleChange, handleBlur }) => {
+          return (
 
-          
-          <>
-           <Link href="/client/login">
-              <button>Volver al login</button>
-            </Link>
-          
-          <Box className="overflow-hidden flex flex-col justify-center items-center"
-            sx={{
-              width: 300,
-              height: 400,
-              backgroundColor: "primary.light",
-              borderRadius: 2,
-            }}
-          >
-           
-
-          
-            {/* Box de material ui (nombre) */}
-            <Box
-              component="form"
-              sx={{
-      
-                "& > :not(style)": { m: 1, width: "25ch" },
-                color: "black",
+            <>
             
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField className="bg-slate-400 rounded-md"
 
-                type="text"
-                name="name"
-                placeholder="Tu Nombre"
-                id="name"
-                label="Nombre"
-              />
+              <Box className="overflow-hidden flex flex-col items-center"
+                sx={{
+                  width: 430,
+                  height: 580,
+                  backgroundColor: "primary.light",
+                  borderRadius: 2,
+                }}
+              >
+                <h1 className="pt-2">Crea tu usuario</h1>
+                {/* Box de material ui y tailwind(nombre) */}
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                    color: "black",
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
 
-              <ErrorMessage name="name" render={renderError} />
-              {/* NO SE MUESTRA */}
-            </Box>
+               <div className="relative z-0 w-full mb-6 group" style={{"width":"14rem", "height":"4.5rem"}}>
+               <Field 
+               type="text" 
+               name="name" 
+               id="name" 
+               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+               placeholder=" " 
+               />
+               <label 
+               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+               >
+                Nombre
+              </label>
+              <ErrorMessage name="name" render={renderError}/>
+               </div>
 
-            <div>
-              {/* <label>Nombre:</label> */}
-              {/* <Field
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Tu Nombre"
-              /> */}
-              <ErrorMessage name="name" render={renderError} />
-            </div>
+                </Box>
 
-              {/* Box de material ui (Apellido) */}
-            <Box 
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
-                color: "black",
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                type="text"
-                name="lastName"
-                placeholder="Tu Apellido"
-                id="lastName"
-                label="Apellido"
-              />
+                {/* Box de material ui y tailwind (Apellido) */}
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                    color: "black",
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <div className="relative z-0 w-full mb-6 group" style={{"width":"14rem", "height":"4.5rem"}}>
+               <Field 
+               type="text" 
+               name="lastName" 
+               id="lastName" 
+               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+               placeholder=" " 
+               />
+               <label 
+               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+               >
+                Apellido
+                </label>
+                <ErrorMessage name="lastName" render={renderError} />
+               </div>                 
+                </Box>
 
-              <ErrorMessage name="lastName" render={renderError} />
-              {/* NO SE MUESTRA */}
-            </Box>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                    color: "black",
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <div className="relative z-0 w-full mb-6 group" style={{"width":"14rem", "height":"4.5rem"}}>
+               <Field 
+               type="text" 
+               name="email" 
+               id="email" 
+               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+               placeholder=" " 
+               />
+               <label  
+               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+               >
+                Email
+                </label>
+                <ErrorMessage name="email" render={renderError} />
+               </div>
+                </Box>
 
-            <div>
-              {/* <label>Apellido:</label>
-              <Field
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Tu Apellido"
-              /> */}
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                    color: "black",
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <div className="relative z-0 w-full mb-6 group" style={{"width":"14rem", "height":"4.5rem"}}>
+               <Field 
+               type="text" 
+               name="user" 
+               id="user" 
+               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+               placeholder=" " 
+               />
+               <label  
+               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+               >
+                Usuario
+                </label>
+                <ErrorMessage name="user" render={renderError} />
+               </div>
+               
+                </Box>
 
-              <ErrorMessage name="lastName" render={renderError} />
-            </div>
 
-               {/* Box de material ui (Email) */}
-            <Box 
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
-                color: "black",
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                type="text"
-                name="email"
-                placeholder="email@example.com"
-                id="email"
-                label="Email"
-              />
-
-              <ErrorMessage name="email" render={renderError} />
-              {/* NO SE MUESTRA */}
-            </Box>
-
-            <div>
-              {/* <label>Email:</label>
-              <Field
-                type="text"
-                id="email"
-                name="email"
-                placeholder="email@example.com"
-              /> */}
-              <ErrorMessage name="email" render={renderError} />
-            </div>
-
-            <Box 
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
-                color: "black",
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                type="text"
-                name="user"
-                placeholder="Tu Usuario"
-                id="user"
-                label="Tu Usuario"
-              />
-
-              <ErrorMessage name="user" render={renderError} />
-              {/* NO SE MUESTRA */}
-            </Box>
-
-            <div>
-              {/* <label>Usuario:</label>
-              <Field
-                type="text"
-                id="user"
-                name="user"
-                placeholder="Tu Usuario"
-              /> */}
-              <ErrorMessage name="user" render={renderError} />
-            </div>
-
-            <Box 
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
-                color: "black",
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                type="password"
-                name="password"
-                placeholder="Tu Contraseña"
-                id="password"
-                label="Contraseña"
-              />
-
-            <ErrorMessage name="password" render={renderError} />
-              {/* NO SE MUESTRA */}
-            </Box>
-            
-            <div>
-              {/* <label>Contraseña:</label>
-              <Field
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Tu Contraseña"
-              /> */}
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                    color: "black",
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                   <div className="relative z-0 w-full mb-6 group" style={{"width":"14rem", "height":"4.5rem"}}>
+               <Field 
+               type="password" 
+               name="password" 
+               id="password" 
+               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+               placeholder=" " 
+               />
+               <label 
+               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+               >
+                Contraseña
+              </label>
               <ErrorMessage name="password" render={renderError} />
-            </div>
-            <button type="submit">Registrarse</button>
-          </Box>
-          </>
-        )}
+               </div>
+      
+                </Box>
+
+               <div
+                className="overflow-hidden flex flex-col items-center place-content-around"
+               style={{"height":"5rem"}}
+               >
+               <Stack pacing={2} direction="row">
+                  <Button type="submit" variant="contained">Registrarse</Button>
+                </Stack>
+
+                <Link href="/client/login">
+                  <button>Volver al login</button>
+                </Link>
+               </div>
+
+              </Box>
+            </>
+          );
+        }}
       </Formik>
     </div>
   );

@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const deleteClient = (id) => () => {
-  axios.delete(`http://localhost:3001/clients/${id}`).catch((error) => error);
+  axios.delete(`http://bookturn-deploy-cthq4.ondigitalocean.app/api/clients/${id}`).catch((error) => error);
 };

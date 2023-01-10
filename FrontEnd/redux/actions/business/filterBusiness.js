@@ -10,7 +10,7 @@ export const filterOrder = (payload) => (dispatch) => {
 
 export const filterCategory = (name) => (dispatch) => {
   axios(
-    `http://localhost:1337/api/businesses?populate=*&filters[categories][name][$containsi]=${name}`
+    `http://bookturn-deploy-cthq4.ondigitalocean.app/api/businesses?populate=*&filters[categories][name][$containsi]=${name}`
   ).then((res) => {
     dispatch(filterByCategory(res.data.data));
   });
