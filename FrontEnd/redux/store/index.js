@@ -7,6 +7,13 @@ import storage from "redux-persist/lib/storage"
 import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 
+import {
+  PERSIST,
+  REHYDRATE,
+  REGISTER,
+} from 'redux-persist'
+
+
 const persistConfig = {
   key: "root",
   storage
@@ -23,6 +30,12 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [REHYDRATE, PERSIST, REGISTER],
+      },
+    }),
   devTools: process.env.NODE_ENV !== "production"
 });
 
