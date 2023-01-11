@@ -1,10 +1,14 @@
 import React from "react";
-import styles from "./NavbarCategories.module.css";
+
 const NavbarCategories = () => {
   return (
     <>
-      <div className={styles.container}>
-        <ul className={styles.ul}>
+      <div
+      className="flex bg-white h-20 items-center justify-center text-blue-600 min-w-[100vw]"
+      >
+        <ul 
+        className="flex justify-between w-4/5"
+        >
           <li>Psicología</li>
           <li>Peluquería</li>
           <li>Barbería</li>

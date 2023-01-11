@@ -1,14 +1,30 @@
 import React from "react";
-import styles from "./AboutUsCard.module.css";
+
 const AboutUsCard = () => {
   return (
     <>
-      <div className={styles.card}>
-        <div className={styles.img}></div>
-        <span className={styles.heading}>John Doe</span>
-        <p className={styles.p}>
+      <div
+      className="w-48 h-64 bg-blue-600 rounded text-center text-gray-200 hover:scale-110 border border-solid border-gray-200 transition group-hover:opacity-100"
+      style={{
+        "font-family": "inherit",
+      "z-index": "1"}}
+      >
+        <div
+         className="flex mt-16 mr-auto mb-2 ml-auto w-20 h-20 border border-solid border-gray-200 justify-center items-center bg-blue-600 transition rounded-full"
+        style={{
+          "font-size": "11px",
+          "z-index":"99"}}
+          ></div>
+        <span
+        className="p-2 font-medium text-lg"
+         >John Doe</span>
+        <p 
+        // className={styles.p}
+        className="opacity-0 hover:opacity-100"
+        style={{"transition":"all 0.5s"}}
+        >
           <svg
-            className={styles.icon}
+            className="pt-0 pb-0 pl-1 pr-1 cursor-pointer"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +37,7 @@ const AboutUsCard = () => {
             ></path>
           </svg>
           <svg
-            className={styles.icon}
+            className="pt-0 pb-0 pl-1 pr-1 cursor-pointer"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +50,7 @@ const AboutUsCard = () => {
             ></path>
           </svg>
           <svg
-            className={styles.icon}
+            className="pt-0 pb-0 pl-1 pr-1 cursor-pointer"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"

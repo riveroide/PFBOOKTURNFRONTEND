@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-// import stylesCard from "../CardResult/CardResult.module.css";
+
 export default function CardResult({ name, services, image, id, categories }) {
 
   let arrServices = []
