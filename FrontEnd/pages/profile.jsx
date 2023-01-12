@@ -8,7 +8,7 @@ import styles from '../styles/profile.module.css';
 import SideBar from '../components/SideBarClientProfile/SideBar';
 import NavBar from '../components/NavBarClientProfile/NavBar';
 
-const profile = () => {
+const Profile = () => {
   const dispatch = useDispatch()
   const {clientId} = useSelector((state) => state.clients)
   const {displayOption} = useSelector((state) => state.clients)
@@ -101,4 +101,4 @@ else {
 }
 }
 
-export default profile
+export default Profile

@@ -16,7 +16,7 @@ const Business = ({ id }) => {
       dispatch(getBusinessById(id))
       setLoading(false)
     }
-  }, [])
+  }, [dispatch])
   if (loading) { return (<h3>loading</h3>) }
   if (business.data) {
     const { adress, createdAt, name, totalRated, totalRates, categories, services, user } = business.data?.attributes
