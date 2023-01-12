@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 //------
 
-const createform = () => {
+const Createform = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const isRequired = "Campo obligatorio";
@@ -222,4 +222,4 @@ const createform = () => {
   );
 };
 
-export default createform;
+export default Createform;
