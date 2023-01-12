@@ -35,8 +35,6 @@ const createform = () => {
           password: "",
           name: "",
           adress: "",
-          totalRates: 0,
-          totalRated: 0,
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
