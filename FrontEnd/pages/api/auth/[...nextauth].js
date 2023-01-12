@@ -8,8 +8,8 @@ export default NextAuth({
         CredentialsProvider({
             name: "credentials",
             credentials: {
-                username: { label: "Email", type: "text", placeholder: "example@email.com"},
-                password: { label: "Password", type: "password", placeholder: "password"},
+                username: { label: "Email", type: "text", placeholder: "ejemplo@email.com"},
+                password: { label: "Password", type: "password", placeholder: "contraseña"},
             },
             authorize: async (credentials) =>{
                 //hacer validacion con la base de datos
