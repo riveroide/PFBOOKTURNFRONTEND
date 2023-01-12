@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
-const login = () => {
+const Login = () => {
   const { data: session } = useSession();
   console.log(session)
   if (session) {
@@ -29,4 +29,4 @@ const login = () => {
   }
 };
 
-export default login;
+export default Login;
