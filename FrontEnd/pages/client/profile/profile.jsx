@@ -8,7 +8,8 @@ import { getFavourites } from 'redux/actions/clients/getFavourites'
 import styles from '../../../styles/profile.module.css';
 import SideBar from '../../../components/SideBarClientProfile/SideBar';
 import NavBar from '../../../components/NavBarClientProfile/NavBar';
-// ../../../components/SideBarClientProfile/SideBar
+import FavCard from '../../../components/Favourites/FavCard'
+
 const Profile = () => {
   const dispatch = useDispatch()
   const {clientId} = useSelector((state) => state.clients)
@@ -36,10 +37,10 @@ const Profile = () => {
   if (!hydrated) {
     return null;
   }
-  console.log(clientId)
-  console.log(favouritesList)
+
   if(clientId){
     const {nameComplete, bookings} = clientId.attributes
+    const favourites = favouritesList.attributes.businesses.data
     return (
     <div>
       <NavBar/>
@@ -89,7 +90,16 @@ const Profile = () => {
         </div>
         ): displayOption === 'favs' ?(
           <div>
-          <h1>Favoritos</h1>
+          {favourites.length && favourites.map(e => {
+            return(
+              <FavCard 
+                name={e.attributes.name} 
+                address={e.attributes.address} 
+                telephone={e.attributes.telephone} 
+                id={e.id}
+              />
+            )
+          })}
           </div>
         ): displayOption === 'options' ?(
           <div>

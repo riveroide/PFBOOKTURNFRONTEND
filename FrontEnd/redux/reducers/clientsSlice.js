@@ -28,6 +28,6 @@ export const clientsSlice = createSlice({
     }
 })
 
-export const {getAllClients, getClientId, setDisplayOption, getClientEmail, getFavourites} = clientsSlice.actions
+export const {getAllClients, getClientId, setDisplayOption, getClientEmail, getFavouritesList} = clientsSlice.actions
 
 export default clientsSlice.reducer
