@@ -8,7 +8,7 @@ import * as yup from "yup";
 
 import { useRouter } from "next/router";
 
-const createform = () => {
+const Createform = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -37,12 +37,15 @@ const createform = () => {
           adress: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(values, { resetForm }) => {
+        onSubmit={(values) => {
           console.log(values);
           dispatch(postBusiness(values));
+
           resetForm();
-          alert("cliente registrado con éxito"); 
+  
           router.push("/");
+          alert("cliente registrado con éxito");
+          
           // alert(JSON.stringify(values, null, 2));
         }}
       >
@@ -74,4 +77,4 @@ const createform = () => {
   );
 };
 
-export default createform;
+export default Createform;

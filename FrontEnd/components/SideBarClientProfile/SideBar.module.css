@@ -16,7 +16,7 @@
     background:#e6e5e1;
     padding: 65px 14px;
     border-right: 2px solid #c2c1bd;
-    z-index: -1;
+    z-index: 1;
 }
 
 .ul {

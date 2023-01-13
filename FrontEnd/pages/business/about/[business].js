@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getBusinessById } from '../../../redux/actions/business/getBusiness'
 import DetailsBusiness from '../../../components/DetailsBusiness/DetailsBusiness';
-import ServiceList from '../../../components/ServiceList/ServiceList';
-//import styles from "../../../styles/Business.module.css";
+import ServiceList from '../../../components/DetailsBusiness/ServiceList';
+import BookingService from '../../../components/BookingSteps/Booking';
 
 const Business = ({ id }) => {
   const [loading, setLoading] = useState(true)
@@ -16,7 +16,7 @@ const Business = ({ id }) => {
       dispatch(getBusinessById(id))
       setLoading(false)
     }
-  }, [])
+  }, [dispatch])
   if (loading) { return (<h3>loading</h3>) }
   if (business.data) {
     const { adress, createdAt, name, totalRated, totalRates, categories, services, user } = business.data?.attributes
@@ -33,7 +33,11 @@ const Business = ({ id }) => {
         /></div>
         <div>
           <ServiceList 
-          services={services}/>
+          services={services}
+          id={id}/>
+        </div>
+        <div>
+          <BookingService/>
         </div>
       </div>
     )

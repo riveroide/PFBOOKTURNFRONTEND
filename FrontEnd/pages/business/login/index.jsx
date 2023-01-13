@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 import Button from '@mui/material/Button';
 
 
-const login = () => {
+const Login = () => {
   const { data: session } = useSession();
   //console.log(session)
   if (session) {
@@ -37,4 +37,4 @@ const login = () => {
   }
 };
 
-export default login;
+export default Login;

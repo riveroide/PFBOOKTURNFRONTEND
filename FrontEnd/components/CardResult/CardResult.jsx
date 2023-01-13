@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 // import stylesCard from "../CardResult/CardResult.module.css";
 export default function CardResult({ name, services, image, id, categories }) {
 
@@ -23,7 +24,7 @@ export default function CardResult({ name, services, image, id, categories }) {
               businessId: id,
             },
           }} className="lg:w-1/3 rounded-xl">
-            <img className="object-cover w-full lg:mx-6 lg:w-full rounded-xl h-72 lg:h-90" src={image} alt={name} />
+            <img className="object-cover w-full lg:mx-6 lg:w-full rounded-xl h-72 lg:h-90" src={image} alt={name} width="150" height="150"/>
 
           </Link>
             <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
