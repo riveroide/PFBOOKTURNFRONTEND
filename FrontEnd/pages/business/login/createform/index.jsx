@@ -35,13 +35,14 @@ const Createform = () => {
           password: "",
           name: "",
           adress: "",
-          totalRates: 0,
-          totalRated: 0,
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
           dispatch(postBusiness(values));
+
+          resetForm();
+  
           router.push("/");
           alert("cliente registrado con éxito");
           
