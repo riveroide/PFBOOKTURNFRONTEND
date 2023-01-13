@@ -41,7 +41,7 @@ const createform = () => {
           console.log(values);
           dispatch(postBusiness(values));
           resetForm();
-          alert("cliente registrado con éxito");
+          alert("cliente registrado con éxito"); 
           router.push("/");
           // alert(JSON.stringify(values, null, 2));
         }}
