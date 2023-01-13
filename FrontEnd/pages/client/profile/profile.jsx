@@ -3,33 +3,48 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //actions
-import { getClient } from 'redux/actions/clients/getClients';
-import styles from '../styles/profile.module.css';
-import SideBar from '../components/SideBarClientProfile/SideBar';
-import NavBar from '../components/NavBarClientProfile/NavBar';
-
+import { getClient, getClientByEmail } from 'redux/actions/clients/getClients';
+import { getFavourites } from 'redux/actions/clients/getFavourites'
+import styles from '../../../styles/profile.module.css';
+import SideBar from '../../../components/SideBarClientProfile/SideBar';
+import NavBar from '../../../components/NavBarClientProfile/NavBar';
+// ../../../components/SideBarClientProfile/SideBar
 const Profile = () => {
   const dispatch = useDispatch()
   const {clientId} = useSelector((state) => state.clients)
   const {displayOption} = useSelector((state) => state.clients)
-  
+  const {clientAcc} = useSelector((state) => state.clients)
+  const {favouritesList} = useSelector((state) => state.clients)
+  const [hydrated, setHydrated] = useState(false)
+
   useEffect(() => {
-     async function fetchClient(){
-      await dispatch(getClient('1'))
+    setHydrated(true)
+    async function fetchClientEmail(){
+      await dispatch(getClientByEmail('tomasgp30@gmail.com'))
+    }
+    fetchClientEmail()
+    async function fetchClient(){
+      await dispatch(getClient(clientAcc))
     }
     fetchClient()
+    async function fetchFavList(){
+      await dispatch(getFavourites(clientId.attributes.favourite_lists.data[0].id))
+    }
+    fetchFavList()
   },[])
+
+  if (!hydrated) {
+    return null;
+  }
   console.log(clientId)
+  console.log(favouritesList)
   if(clientId){
-    const {name, lastname, user, email} = clientId.attributes
+    const {nameComplete, bookings} = clientId.attributes
     return (
     <div>
       <NavBar/>
       <SideBar 
-       name={name}
-       lastname={lastname}
-       user={user}
-       email={email}
+       name={nameComplete}
       />
       <div className={styles.content}>
         {displayOption.length === 0 ? (
@@ -39,8 +54,7 @@ const Profile = () => {
         ) : displayOption === 'edit' ?(
           <div>
           <h1>Edicion pulenta</h1>
-          <h4>{user}</h4>
-          <h4></h4>
+          <h4>USER</h4>
           <h4>clave</h4>
           </div>
         ) : displayOption === 'pay' ?(
