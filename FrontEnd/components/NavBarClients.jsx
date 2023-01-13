@@ -8,7 +8,10 @@ export default function NavBarClients() {
       <div className={stylesNavBar.logo}>bookturn</div>
 
       <div className={stylesNavBar.buttonsLogin}>
+        <Link href="/client/login">
         <button className={stylesNavBar.acceder}>acceder</button>
+        </Link>
+        
         <Link href="/business/login/createform">
           <button className={stylesNavBar.resgistrarse}>Registrarse</button>
         </Link>
