@@ -9,7 +9,7 @@ const Business = ({ id }) => {
   const [loading, setLoading] = useState(true)
   const { businessId: business } = useSelector(state => state.business)
   const dispatch = useDispatch()
-
+  // const { adress, createdAt, name, totalRated, totalRates, categories, services, user } = business.data?.attributes
 
   useEffect(() => {
     if (id) {
@@ -19,7 +19,7 @@ const Business = ({ id }) => {
   }, [dispatch])
   if (loading) { return (<h3>loading</h3>) }
   if (business.data) {
-    const { adress, createdAt, name, totalRated, totalRates, categories, services, user } = business.data?.attributes
+    const { adress, createdAt, name } = business.data?.attributes
     const date = new Date(createdAt)
     return (
       <div>
