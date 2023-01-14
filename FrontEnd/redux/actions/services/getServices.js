@@ -8,13 +8,13 @@ export const getServices = () => (dispatch) => {
 };
 
 export const getServiceId = (id) => (dispatch) => {
-  axios(`http://localhost:1336/services/${id}`)
+  axios(`${process.env.PATH_BACKEND}/services/${id}`)
     .then((res) => dispatch(getServiceById(res.data)))
     .catch((error) => console.log(error));
 };
 
 export const getServiceName = (name) => (dispatch) => {
-    axios(`http://localhost:1336/services?name=${name}`)
+    axios(`${process.env.PATH_BACKEND}/services?name=${name}`)
       .then((res) => dispatch(getServiceByName(res.data)))
       .catch((error) => console.log(error));
   };
