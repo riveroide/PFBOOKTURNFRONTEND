@@ -1,6 +1,6 @@
 import React from "react";
 
-const DetailsBusiness = ({name, adress, totalRated, user}) => {
+const DetailsBusiness = ({name, address, email, telephone, createdAt}) => {
   return (
     <div>
       <section class="relative pt-24 pb-36 bg-white overflow-hidden font-cool_g tracking-widest">
@@ -14,7 +14,7 @@ const DetailsBusiness = ({name, adress, totalRated, user}) => {
             {name}
           </p>
           <p class="mb-20 text-lg text-gray-600 text-center font-medium leading-normal md:max-w-lg mx-auto">
-            Valoración: {totalRated}
+            Ofrece sus servicios en Bookturn desde: {createdAt}
           </p>
           <div class="flex flex-wrap -m-3">
             <div class="w-full md:w-1/3 p-3">
@@ -41,7 +41,7 @@ const DetailsBusiness = ({name, adress, totalRated, user}) => {
                 <h3 class="mb-3 text-xl font-bold font-heading leading-snug">
                   Email
                 </h3>
-                <p class="font-medium leading-relaxed">{user}@userbookturn.com</p>
+                <p class="font-medium leading-relaxed">{email}</p>
                 <p class="font-medium leading-relaxed">support@mail.com</p>
               </div>
             </div>
@@ -69,7 +69,7 @@ const DetailsBusiness = ({name, adress, totalRated, user}) => {
                 <h3 class="mb-3 text-xl font-bold font-heading leading-snug">
                   Teléfono
                 </h3>
-                <p class="font-medium leading-relaxed">+1 8408 412 569</p>
+                <p class="font-medium leading-relaxed">{telephone}</p>
                 <p class="font-medium leading-relaxed">+1 8408 412 569</p>
               </div>
             </div>
@@ -105,7 +105,7 @@ const DetailsBusiness = ({name, adress, totalRated, user}) => {
                   Dirección
                 </h3>
                 <p class="font-medium max-w-xs mx-auto leading-relaxed">
-                  {adress}
+                  {address}
                 </p>
               </div>
             </div>

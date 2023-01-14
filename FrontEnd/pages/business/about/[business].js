@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBusinessById } from '../../../redux/actions/business/getBusiness'
 import DetailsBusiness from '../../../components/DetailsBusiness/DetailsBusiness';
 import ServiceList from '../../../components/DetailsBusiness/ServiceList';
-import BookingService from '../../../components/BookingSteps/Booking';
+import BookingService from '../../../components/BookingSteps/BookingService';
+import Loader from '../../../components/Loader/Loader';
+
 
 const Business = ({ id }) => {
   const [loading, setLoading] = useState(true)
@@ -17,19 +19,20 @@ const Business = ({ id }) => {
       setLoading(false)
     }
   }, [dispatch])
-  if (loading) { return (<h3>loading</h3>) }
+  if (loading) { return (<Loader/>) }
   if (business.data) {
-    const { adress, createdAt, name } = business.data?.attributes
+    const { address, createdAt, name , services, email , telephone} = business.data?.attributes
     const date = new Date(createdAt)
     return (
       <div>
         <div>
         <DetailsBusiness 
-        adress ={adress}
+        address ={address}
+        telephone ={telephone}
         name ={name}
-        totalRated={totalRated}
         services={services}
-        user = {user}
+        email = {email}
+        createdAt = {createdAt}
         /></div>
         <div>
           <ServiceList 
@@ -37,7 +40,8 @@ const Business = ({ id }) => {
           id={id}/>
         </div>
         <div>
-          <BookingService/>
+          <BookingService
+          services={services}/>
         </div>
       </div>
     )
