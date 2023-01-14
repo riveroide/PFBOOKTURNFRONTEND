@@ -27,7 +27,7 @@ export const getBusinessByName = (name) => (dispatch) => {
 };
 
 export const getBusinessByEmail = (email) => (dispatch) => {
-  axios("http://localhost:1336/api/businesses?populate=*&filters[email][$containsi]=" +
+  axios(`${process.env.PATH_BACKEND}/api/businesses?populate=*&filters[email][$containsi]=` +
   email)
     .then((res) => {
       dispatch(getBusinessEmail(res.data.data));
