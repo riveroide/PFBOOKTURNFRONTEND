@@ -62,7 +62,8 @@ export default function Results() {
   
       <>
         { actualBusiness.length && actualBusiness.map((e) => {
-          return <CardResult key={e.id} id={e.id} name={e.attributes.name} services={e.attributes.services?.data} categories={e.attributes.categories.data} image={e.attributes.BusinessPic?.data?.attributes.formats.small.url ? `http://localhost:1337${e.attributes.BusinessPic.data?.attributes.formats.small.url}` : "https://avalos.sv/wp-content/uploads/295-default-featured-image.png"}/>
+          return <CardResult key={e.id} id={e.id} name={e.attributes.name} services={e.attributes.services.data} categories={e.attributes.categories.data} image={"https://avalos.sv/wp-content/uploads/295-default-featured-image.png"}/>
+
 
 
 
