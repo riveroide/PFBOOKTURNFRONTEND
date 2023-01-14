@@ -13,7 +13,7 @@ export default function Results() {
   const dispatch = useDispatch();
 
   const { businessList } = useSelector((state) => state.business);
-
+  console.log(businessList)
   const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
