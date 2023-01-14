@@ -14,6 +14,7 @@
     display: flex;
     justify-content: space-around;
     background-color: #212121;
+    z-index: 5;
 }
 
 .navBar input{

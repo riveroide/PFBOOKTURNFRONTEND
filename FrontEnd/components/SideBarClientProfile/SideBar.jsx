@@ -4,7 +4,7 @@ import { display } from "redux/actions/clients/displayOption";
 import styles from "./SideBar.module.css"
 import imgProfile from '../../pages/ImgProvisoria/Default_pfp.png'
 
-const SideBar = ({name, lastname, user, email}) => {
+const SideBar = ({name}) => {
     const dispatch = useDispatch();
 
     const handleOption = (e) => {
@@ -16,7 +16,7 @@ const SideBar = ({name, lastname, user, email}) => {
         <div className={styles.sidebar}>
         <div className={styles.usuario}>
           <img src={imgProfile.src} className={styles.profilePic} alt="Not Found" />
-          <p>{name} {lastname}</p>
+          <p>{name}</p>
         </div>
         <ul className={styles.ul}>
           <li className={styles.options}>

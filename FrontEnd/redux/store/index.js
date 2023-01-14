@@ -3,6 +3,7 @@ import business from "../reducers/businessSlice"
 import clients from "../reducers/clientsSlice"
 import bookings from "../reducers/bookingsSlice";
 import categories from "../reducers/categoriesSlice"
+import users from "../reducers/usersSlice";
 import storage from "redux-persist/lib/storage"
 import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
@@ -23,7 +24,8 @@ const reducer = combineReducers({
   business,
   clients,
   bookings,
-  categories
+  categories,
+  users
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)
