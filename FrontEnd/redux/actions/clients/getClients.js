@@ -8,13 +8,13 @@ export const getClients = () => (dispatch) => {
 };
 
 export const getClient = (id) => (dispatch) => {
-  axios(`http://localhost:1336/api/clients/${id}?populate=*`)
+  axios(`${process.env.PATH_BACKEND}/api/clients/${id}?populate=*`)
     .then((res) => dispatch(getClientId(res.data.data)))
     .catch((error) => console.log(error));
 };
 
 export const getClientByEmail = (email) => (dispatch) => {
-  axios(`http://localhost:1336/api/users?populate=*&filters[email][$contains]=${email}`)
+  axios(`${process.env.PATH_BACKEND}/api/users?populate=*&filters[email][$contains]=${email}`)
     .then((res) => dispatch(getClientEmail(res.data[0].client.id)))
     .catch((error) => console.log(error));
 }
