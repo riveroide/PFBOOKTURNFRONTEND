@@ -1,5 +1,5 @@
 // import type { NextPage } from "next";
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from 'next/link'
@@ -9,13 +9,19 @@ import NavBarClients from "../components/NavBarClients";
 import AboutHomeClient from "../components/AboutHomeClient";
 import DetailsClients from "../components/DetailsClients";
 import FooterHomeClient from "../components/FooterHomeClient";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 //import video from '../videos/videopeluqueria.mp4'
 
 const Home/*: NextPage*/ = () => {
+  useEffect(()=> {
+    AOS.init()
+  })
+  
   return (
     <div>
-      <Head>
+      <Head >
         <title>Home</title>
         <meta name="description" content="Home page Bookturn" />
         <link rel="icon" href="/favicon.ico" />
@@ -29,7 +35,7 @@ const Home/*: NextPage*/ = () => {
           </video>
         </div>
 
-        <div className={stylesHome.input_container}>
+        <div data-aos="fade-up"  className={stylesHome.input_container}>
           <p className={stylesHome.titulo_input}>Reserve su turno</p>
           <p className={stylesHome.descripcion_input}>
             busque todo tipo de rubros
@@ -43,7 +49,7 @@ const Home/*: NextPage*/ = () => {
             </Link>
           </div>
         </div>
-        <div className={stylesHome.list} >
+        <div data-aos="fade-up"  className={stylesHome.list} >
           <ul>
             <li> Peluqueria</li>
             <li>Barberia</li>
@@ -55,7 +61,7 @@ const Home/*: NextPage*/ = () => {
             <li>Mas...</li>
           </ul>
         </div>
-        <AboutHomeClient />
+        < AboutHomeClient />
         <DetailsClients />
       </div>
       <FooterHomeClient />
