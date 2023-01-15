@@ -3,21 +3,31 @@ import { useSession } from "next-auth/react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { getBusinessByEmail } from "redux/actions/business/getBusiness.js";
+import { getBusinessIdByEmail, getBusinessData } from "redux/actions/business/getBusiness.js";
 
 const dashboard = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useState(true);
   const { BusinessAcc } = useSelector((state) => state.business);
+  const { BusinessIdSession } = useSelector((state) => state.business);
   const [hydrated, setHydrated] = useState(false);
   const dispatch = useDispatch();
-  const AccData = BusinessAcc[0]?.attributes;
-  console.log(AccData);
+  const userEmail=session?.user.email
+  const AccData = BusinessAcc.attributes;
+  
+  
 
   useEffect(() => {
     try {
       setHydrated(true);
-      dispatch(getBusinessByEmail(session?.user.email));
+      async function fetchBusinessEmail(){
+        await dispatch(getBusinessIdByEmail(userEmail))
+      } 
+      fetchBusinessEmail()
+      async function fetchData(){
+        await dispatch(getBusinessData(BusinessIdSession))
+      }
+      fetchData()
     } catch (error) {
       console.log(error.message);
     }
@@ -70,9 +80,9 @@ const dashboard = () => {
           <Link href={"/business"}>
             <div className="flex gap-x-4 items-center">
               <img
-                src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673587894/Bookturn/src/logo_ft1fbn.png"
-                className={`cursor-pointer duration-500 ${
-                  open && "rotate-[360deg]"
+                src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673731534/Bookturn/src/1_ihckv8.png"
+                className={`cursor-pointer duration-500 w-10 h-10 ${
+                  open && " rotate-[360deg]"
                 }`}
               />
 

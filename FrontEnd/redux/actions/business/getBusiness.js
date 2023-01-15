@@ -1,4 +1,4 @@
-import { getAllBusiness, getBusinessId, getBusinessEmail } from "redux/reducers/businessSlice";
+import { getAllBusiness, getBusinessId, getIdBusiness, getiInfoBusiness } from "redux/reducers/businessSlice";
 import axios from "axios";
 
 export const getBusiness = () => (dispatch) => {
@@ -26,11 +26,14 @@ export const getBusinessByName = (name) => (dispatch) => {
   });
 };
 
-export const getBusinessByEmail = (email) => (dispatch) => {
-  axios(`${process.env.PATH_BACKEND}/api/businesses?populate=*&filters[email][$containsi]=` +
-  email)
-    .then((res) => {
-      dispatch(getBusinessEmail(res.data.data));
-    })
-    .catch((error) => console.log(error.message));
+export const getBusinessIdByEmail = (email) => (dispatch) => {
+  axios(`http://localhost:1337/api/users?populate=*&filters[email][$contains]=${email}`)
+    .then((res) => dispatch(getIdBusiness(res.data[0].business.id)))
+    .catch((error) => console.log(error));
+};
+
+export const getBusinessData = (id) => (dispatch) => {
+  axios(`http://localhost:1337/api/businesses/${id}?populate=*`)
+    .then((res) => dispatch(getiInfoBusiness(res.data.data)))
+    .catch((error) => console.log(error));
 };
