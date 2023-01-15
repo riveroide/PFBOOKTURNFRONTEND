@@ -21,8 +21,8 @@ const Profile = () => {
   useEffect(() => {
     setHydrated(true)
     async function fetchClientEmail(){
-      await dispatch(getClientByEmail('tomasgp30@gmail.com'))
-    }
+      await dispatch(getClientByEmail('federicoputoamo@gmail.com'))
+    } 
     fetchClientEmail()
     async function fetchClient(){
       await dispatch(getClient(clientAcc))
@@ -43,7 +43,7 @@ const Profile = () => {
     const favourites = favouritesList.attributes.businesses.data
     return (
     <div>
-      <NavBar/>
+      {/* <NavBar/> */}
       <SideBar 
        name={nameComplete}
       />
