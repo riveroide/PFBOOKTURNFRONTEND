@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSession } from 'next-auth/react';
 //Hooks
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,36 +10,48 @@ import styles from '../../../styles/profile.module.css';
 import SideBar from '../../../components/SideBarClientProfile/SideBar';
 import NavBar from '../../../components/NavBarClientProfile/NavBar';
 import FavCard from '../../../components/Favourites/FavCard'
+import Loader from '../../../components/Loader/Loader'
 
 const Profile = () => {
   const dispatch = useDispatch()
+  const {data: session} = useSession()
   const {clientId} = useSelector((state) => state.clients)
   const {displayOption} = useSelector((state) => state.clients)
   const {clientAcc} = useSelector((state) => state.clients)
   const {favouritesList} = useSelector((state) => state.clients)
   const [hydrated, setHydrated] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const userEmail = session?.user.email
 
   useEffect(() => {
-    setHydrated(true)
-    async function fetchClientEmail(){
-      await dispatch(getClientByEmail('federicoputoamo@gmail.com'))
+    setLoading(true)
+    try {
+      if(userEmail){  
+      setHydrated(true)
+      async function fetchClientEmail(){
+        await dispatch(getClientByEmail(userEmail))
+      }
+      fetchClientEmail()
+      async function fetchClient(){
+        await dispatch(getClient(clientAcc))
+      }
+      fetchClient()
+      async function fetchFavList(){
+        await dispatch(getFavourites(clientId.attributes.favourite_lists.data[0].id))
+      }
+      fetchFavList()
+      setLoading(false)
+    }
+    } catch (error) {
+      console.log(error.message)
     } 
-    fetchClientEmail()
-    async function fetchClient(){
-      await dispatch(getClient(clientAcc))
-    }
-    fetchClient()
-    async function fetchFavList(){
-      await dispatch(getFavourites(clientId.attributes.favourite_lists.data[0].id))
-    }
-    fetchFavList()
-  },[])
+  },[session, dispatch])
 
   if (!hydrated) {
     return null;
   }
 
-  if(clientId){
+  if(!loading && clientId){
     const {nameComplete, bookings} = clientId.attributes
     const favourites = favouritesList.attributes.businesses.data
     return (
@@ -120,7 +133,7 @@ const Profile = () => {
 }
 else {
   return(
-    <h2>LOADING</h2>
+    <Loader/>
   )
 }
 }
