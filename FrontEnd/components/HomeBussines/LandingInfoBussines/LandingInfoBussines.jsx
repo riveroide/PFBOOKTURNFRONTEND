@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./LandingInfoBussines.module.css";
 import Image from "next/image";
 import RegisterButtomBusiness from "../RegisterButtomBusiness/RegisterButtomBusiness";
 import ImageSlider from "../ImageSlider/ImageSlider";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const LandingInfoBussines = () => {
+  useEffect(() => {
+    
+    AOS.init()
+  })
   return (
     <div className={styles.container}>
       <div className={styles.info1}>
@@ -13,7 +19,7 @@ const LandingInfoBussines = () => {
             <h1>
               El mejor software para peluquerías, centros de estética y negocios
             </h1>
-            <p>
+            <p data-aos="fade-up"  >
               Bookturn te permite gestionar tu peluquería, barbería, centro de
               belleza, salón de uñas, etc, desde cualquier lugar con: agenda
               digital, herramientas de marketing, protección contra
@@ -31,8 +37,8 @@ const LandingInfoBussines = () => {
         <div className={`${styles.wave} ${styles.wave3}`}></div>
         <div className={`${styles.wave} ${styles.wave4}`}></div>
       </div>
-      <div className={styles.prueba}>
-        <ImageSlider/>
+      <div data-aos="fade-up" className={styles.prueba}>
+        <ImageSlider data-aos="fade-up"/>
       </div>
     </div>
   );
