@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
+import Link from "next/link"
 //Hooks
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,8 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getClient, getClientByEmail } from 'redux/actions/clients/getClients';
 import { getFavourites } from 'redux/actions/clients/getFavourites'
 import styles from '../../../styles/profile.module.css';
-import SideBar from '../../../components/SideBarClientProfile/SideBar';
-import NavBar from '../../../components/NavBarClientProfile/NavBar';
 import FavCard from '../../../components/Favourites/FavCard'
 import Loader from '../../../components/Loader/Loader'
 
@@ -19,6 +18,7 @@ const Profile = () => {
   const {displayOption} = useSelector((state) => state.clients)
   const {clientAcc} = useSelector((state) => state.clients)
   const {favouritesList} = useSelector((state) => state.clients)
+  const [open, setOpen] = useState(true)
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
@@ -51,91 +51,99 @@ const Profile = () => {
     return null;
   }
 
+  const Menus = [
+    {
+      title: "Dashboard",
+      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587813/Bookturn/src/Chart_fill_r59zsx.png",
+    },
+    {
+      title: "Inbox",
+      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587827/Bookturn/src/Chat_uzro5p.png",
+    },
+    // {
+    //   title: "Accounts",
+    //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587880/Bookturn/src/User_xuo8og.png",
+    // //   gap: true,
+    // },
+    {
+      title: "Tus turnos ",
+      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587765/Bookturn/src/Calendar_mefkpn.png",
+    },
+    // { title: "Search", src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587862/Bookturn/src/Search_xukvg1.png" },
+    {
+      title: "Favoritos ",
+      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587850/Bookturn/src/Folder_kkndkc.png",
+      //   gap: true,
+    },
+    {
+      title: "Settings",
+      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587874/Bookturn/src/Setting_qjfzlb.png",
+    },
+  ];
+
   if(!loading && clientId){
     const {nameComplete, bookings} = clientId.attributes
     const favourites = favouritesList.attributes.businesses.data
     return (
-    <div>
-      {/* <NavBar/> */}
-      <SideBar 
-       name={nameComplete}
-      />
-      <div className={styles.content}>
-        {displayOption.length === 0 ? (
-          <div>
-            <h1>Bienvenid@ a tu perfil</h1>
-          </div>
-        ) : displayOption === 'edit' ?(
-          <div>
-          <h1>Edicion pulenta</h1>
-          <h4>USER</h4>
-          <h4>clave</h4>
-          </div>
-        ) : displayOption === 'pay' ?(
-          <div>
-          <h1>Editar info de pago</h1>
-          <h4>datos del banco 🤑</h4>
-          </div>
-        ): displayOption === 'history' ?(
-        <div>
-          <h1>Bienvenid@ a tu historial</h1>
-          <div>
-            <ul className={styles.ul}>
-              <li>
-                <h4>Turno de ejemplo</h4>
-                <span>Status</span>
-                <span>12/12/22</span>
-              </li>
-              <li>
-                <h4>Turno de ejemplo</h4>
-                <span>Status</span>
-                <span>12/12/22</span>
-              </li>
-              <li>
-                <h4>Turno de ejemplo</h4>
-                <span>Status</span>
-                <span>12/12/22</span>
-              </li>
-            </ul>
-            <h3>No se registran mas turnos a la fecha</h3>
-            <hr className={styles.hr}/>
-          </div>
-        </div>
-        ): displayOption === 'favs' ?(
-          <div>
-          {favourites.length && favourites.map(e => {
-            return(
-              <FavCard 
-                name={e.attributes.name} 
-                address={e.attributes.address} 
-                telephone={e.attributes.telephone} 
-                id={e.id}
+      <div className="flex scroll-smooth">
+        <div
+          className={` ${
+            open ? "w-72" : "w-20 "
+          } bg-black h-screen p-5 pt-8 relative duration-500`}
+        >
+          <img
+            src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673587887/Bookturn/src/control_xi6vpx.png"
+            className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
+             border-2 rounded-full  ${!open && "rotate-180"}`}
+            onClick={() => setOpen(!open)}
+          />
+          <Link href={"/business"}>
+            <div className="flex gap-x-4 items-center">
+              <img
+                src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673731534/Bookturn/src/1_ihckv8.png"
+                className={`cursor-pointer duration-500 w-10 h-10 ${
+                  open && " rotate-[360deg]"
+                }`}
               />
-            )
-          })}
-          </div>
-        ): displayOption === 'options' ?(
-          <div>
-          <h1>Opciones</h1>
-          </div>
-        ): displayOption === 'delete' ?(
-          <div>
-          <h1>Borrar cuenta</h1>
-          </div>
-        ): (
-          <div>
-          <h1>OTRA COSA</h1>
-          </div>
-        )}
+
+              <h1
+                className={`text-white origin-left font-medium text-xl duration-200 ${
+                  !open && "scale-0 "
+                }`}
+              >
+                {nameComplete}
+              </h1>
+            </div>
+          </Link>
+          <ul className="pt-6 mt-2">
+            {Menus.map((Menu, index) => (
+              <div
+                key={index}
+                className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+                ${Menu.gap ? "mt-0" : "mt-0"} ${
+                  index === 0 && "bg-light-white"
+                } `}
+              >
+                <img src={Menu.src} />
+                <span
+                  className={`${!open && "hidden"} origin-left duration-200`}
+                >
+                  {Menu.title}
+                </span>
+              </div>
+            ))}
+          </ul>
+        </div>
+        <div className={`${open && "hidden"} h-screen xl:flex p-7 lg:flex md:flex w-full`}>
+          <h1>SEX</h1>
+        </div>
       </div>
-    </div>
-  )
-}
-else {
-  return(
-    <Loader/>
-  )
-}
+     )
+  } else {
+    return(
+      <Loader/>
+    )
+  }
 }
 
 export default Profile
