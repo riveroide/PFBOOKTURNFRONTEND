@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getUsers } from "../../redux/actions/users/getUsers";
-import { putUser } from "../../redux/actions/users/putUser";
 import { useDispatch, useSelector } from "react-redux";
+import NavBarAdmin from "../../components/NavBarAdmin/NavBarAdmin";
+import TableUsers from "../../components/TableUsers/TableUsers";
 
-
-//slider control material ui
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 
 const admin = () => {
+  var sesion = true
+  
     const dispatch = useDispatch()
 
     const {usersList} = useSelector(state => state.users)
@@ -23,39 +22,24 @@ const admin = () => {
     if (!hydrated) {
         return null;
       }
-
-      const handleChange = (e) => {
-        let id = parseInt(e.target.id)
-        // console.log(e.target.id);
-        // console.log(id);
-        // console.log(e.target.checked);
-        dispatch(putUser(id, {blocked: e.target.checked}))
-        setChange(!change)
-      };
-
-      // console.log("Cambios en el estado changes", changes);
-      // console.log("estado", usersList);
-   return(
+             
+   if(sesion){
+    return(
       <div>
-        <h1>Todos los culiaos blokiados</h1>
-        {
-            usersList?.map((e) =>(
-            <div key={e.id}>
-                <h1>{e.username}</h1>
-                <h2>{e.email}</h2>
-                <FormControlLabel
-          control={
-            <Switch 
-            id={`${e.id}`} 
-            defaultChecked={e.blocked} onChange={e => handleChange(e)} />
-          }
-          label={e.blocked? "Bloqueado" : "Desbloqueado"}
-        />
-            </div>
-            ))
-        }
+        <div>
+        <NavBarAdmin/>
+
+        <TableUsers usersList={usersList} change={change} setChange={setChange}/>
+
+        </div>
+     
     </div>
    )
+   }else{
+    return(
+      <h1>Pagina no disponible</h1>
+    )
+   }
 };
 
 export default admin
