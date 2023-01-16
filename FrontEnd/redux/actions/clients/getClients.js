@@ -14,7 +14,7 @@ export const getClient = (id) => (dispatch) => {
 };
 
 export const getClientByEmail = (email) => (dispatch) => {
-  axios(`http://localhost:1337/api/users?populate=*&filters[client][email][$contains]=${email}`)
+  axios(`http://localhost:1337/api/users?populate=*&filters[email][$contains]=${email}`)
     .then((res) => {dispatch(getClientEmail(res.data[0].client))
     console.log(res.data)})
 
