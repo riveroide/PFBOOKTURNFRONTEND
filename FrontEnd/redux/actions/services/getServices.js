@@ -18,3 +18,5 @@ export const getServiceName = (name) => (dispatch) => {
       .then((res) => dispatch(getServiceByName(res.data)))
       .catch((error) => console.log(error));
   };
+
+// 
