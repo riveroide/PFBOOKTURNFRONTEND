@@ -58,19 +58,19 @@ const Profile = () => {
     await dispatch(display(e.target.title))
   }
   const Menus = [
-    {
-      title: "Dashboard",
-      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587813/Bookturn/src/Chart_fill_r59zsx.png",
-    },
-    {
-      title: "Inbox",
-      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587827/Bookturn/src/Chat_uzro5p.png",
-    },
     // {
-    //   title: "Accounts",
-    //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587880/Bookturn/src/User_xuo8og.png",
-    // //   gap: true,
+    //   title: "Dashboard",
+    //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587813/Bookturn/src/Chart_fill_r59zsx.png",
     // },
+    // {
+    //   title: "Inbox",
+    //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587827/Bookturn/src/Chat_uzro5p.png",
+    // },
+    {
+      title: "Cuenta",
+      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587880/Bookturn/src/User_xuo8og.png",
+    //   gap: true,
+    },
     {
       title: "Tus turnos",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587765/Bookturn/src/Calendar_mefkpn.png",
@@ -82,14 +82,14 @@ const Profile = () => {
       //   gap: true,
     },
     {
-      title: "Settings",
+      title: "Configuracion",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587874/Bookturn/src/Setting_qjfzlb.png",
     },
   ];
   
   if(!loading && clientId){
     const {nameComplete, bookings} = clientId.attributes
-    const favourites = favouritesList[0].attributes.businesses.data
+    const favourites = favouritesList[0]?.attributes.businesses.data
     return (
       <div className="flex scroll-smooth">
         <div
@@ -155,7 +155,7 @@ const Profile = () => {
           ):displayOption === 'Favoritos' ?(
             <div>
               <h1>LISTA DE FAVORITOS</h1>
-              {favourites.length && favourites.map(e => {
+              {favourites?.length && favourites?.map(e => {
               return(
                 <FavCard 
                   name={e.attributes.name} 

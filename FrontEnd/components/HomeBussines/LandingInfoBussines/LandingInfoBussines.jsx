@@ -37,7 +37,7 @@ const LandingInfoBussines = () => {
         <div className={`${styles.wave} ${styles.wave3}`}></div>
         <div className={`${styles.wave} ${styles.wave4}`}></div>
       </div>
-      <div data-aos="fade-up" className={styles.prueba}>
+      <div className={styles.prueba}>
         <ImageSlider data-aos="fade-up"/>
       </div>
     </div>
