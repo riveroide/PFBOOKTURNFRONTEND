@@ -8,7 +8,11 @@ export const getBookings = () => (dispatch) => {
 };
 
 export const getBookingByBusinessId = (id) => (dispatch) => {
-    axios(`http://localhost:1337/api/booking/business/${id}`)
+    axios(`http://localhost:1337/api/booking/${id}`)
     .then(res => dispatch(getBookingId(res.data)))
     .catch(error => console.log(error))
 };
+
+export const getServicesById = (data) => (dispatch) =>{
+      axios(`http://localhost:1337/api/services?populate=*&filters[email][$contains]=${email}`)
+    }
