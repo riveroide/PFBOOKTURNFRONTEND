@@ -35,11 +35,11 @@ const Profile = () => {
       }
       fetchClientEmail()
       async function fetchClient(){
-        await dispatch(getClient(clientAcc))
+        await dispatch(getClient(clientAcc.id))
       }
       fetchClient()
       async function fetchFavList(){
-        await dispatch(getFavourites(clientAcc))
+        await dispatch(getFavourites(clientAcc.id))
       }
       fetchFavList()
       dispatch(display(''))
@@ -86,9 +86,7 @@ const Profile = () => {
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587874/Bookturn/src/Setting_qjfzlb.png",
     },
   ];
-  console.log(clientId, "INFO DE CLIENTE")
-  console.log(clientAcc, "ID DE USUARIO")
-  console.log(favouritesList, "LISTA DE FAVORITOS!!")
+  
   if(!loading && clientId){
     const {nameComplete, bookings} = clientId.attributes
     const favourites = favouritesList[0].attributes.businesses.data
@@ -105,7 +103,7 @@ const Profile = () => {
              border-2 rounded-full  ${!open && "rotate-180"}`}
             onClick={() => setOpen(!open)}
           />
-          <Link href={"/business"}>
+          <Link href={"/"}>
             <div className="flex gap-x-4 items-center">
               <img
                 src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673731534/Bookturn/src/1_ihckv8.png"
