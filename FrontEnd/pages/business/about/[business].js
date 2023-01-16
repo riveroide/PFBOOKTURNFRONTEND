@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getBusinessById } from '../../../redux/actions/business/getBusiness'
 import DetailsBusiness from '../../../components/DetailsBusiness/DetailsBusiness';
-import ServiceList from '../../../components/ServiceList/ServiceList';
-//import styles from "../../../styles/Business.module.css";
+import ServiceList from '../../../components/DetailsBusiness/ServiceList';
+import BookingService from '../../../components/BookingSteps/BookingService';
+import Loader from '../../../components/Loader/Loader';
+import NavBar2 from '../../../components/Navbar/Navbar';
+
 
 const Business = ({ id }) => {
   const [loading, setLoading] = useState(true)
   const { businessId: business } = useSelector(state => state.business)
+  
   const dispatch = useDispatch()
-
 
   useEffect(() => {
     if (id) {
@@ -17,23 +20,33 @@ const Business = ({ id }) => {
       setLoading(false)
     }
   }, [dispatch])
-  if (loading) { return (<h3>loading</h3>) }
+  if (loading) { return (<Loader/>) }
   if (business.data) {
-    const { adress, createdAt, name, totalRated, totalRates, categories, services, user } = business.data?.attributes
+    const { address, createdAt, name , services, email , telephone} = business.data?.attributes
     const date = new Date(createdAt)
     return (
       <div>
         <div>
-        <DetailsBusiness 
-        adress ={adress}
-        name ={name}
-        totalRated={totalRated}
-        services={services}
-        user = {user}
-        /></div>
+          <NavBar2/>
+        </div>
         <div>
+        <DetailsBusiness 
+        address ={address}
+        telephone ={telephone}
+        name ={name}
+        services={services}
+        email = {email}
+        createdAt = {createdAt}
+        /></div>
+        {/* <div>
           <ServiceList 
-          services={services}/>
+          services={services}
+          id={id}/>
+        </div> */}
+        <div>
+          <BookingService
+          services={services}
+          />
         </div>
       </div>
     )

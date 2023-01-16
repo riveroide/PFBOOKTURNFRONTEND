@@ -6,6 +6,8 @@ export const businessSlice = createSlice({
     businessList: [],
     businessListCopy: [],
     businessId: {},
+    BusinessIdSession: "",
+    BusinessAcc: {},
   },
   reducers: {
     getAllBusiness: (state, action) => {
@@ -59,6 +61,12 @@ export const businessSlice = createSlice({
       if (!action.payload) state.businessList = business;
       else state.businessList = action.payload;
     },
+    getIdBusiness: (state, action) => {
+      state.BusinessIdSession = action.payload;
+    },
+    getiInfoBusiness: (state,action) => {
+      state.BusinessAcc = action.payload
+    }
   },
 });
 
@@ -67,6 +75,8 @@ export const {
   getBusinessId,
   filterByOrder,
   filterByCategory,
+  getIdBusiness,
+  getiInfoBusiness
 } = businessSlice.actions;
 
 export default businessSlice.reducer;

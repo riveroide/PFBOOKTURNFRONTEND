@@ -3,33 +3,49 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //actions
-import { getClient } from 'redux/actions/clients/getClients';
-import styles from '../styles/profile.module.css';
-import SideBar from '../components/SideBarClientProfile/SideBar';
-import NavBar from '../components/NavBarClientProfile/NavBar';
+import { getClient, getClientByEmail } from 'redux/actions/clients/getClients';
+import { getFavourites } from 'redux/actions/clients/getFavourites'
+import styles from '../../../styles/profile.module.css';
+import SideBar from '../../../components/SideBarClientProfile/SideBar';
+import NavBar from '../../../components/NavBarClientProfile/NavBar';
+import FavCard from '../../../components/Favourites/FavCard'
 
 const Profile = () => {
   const dispatch = useDispatch()
   const {clientId} = useSelector((state) => state.clients)
   const {displayOption} = useSelector((state) => state.clients)
-  
+  const {clientAcc} = useSelector((state) => state.clients)
+  const {favouritesList} = useSelector((state) => state.clients)
+  const [hydrated, setHydrated] = useState(false)
+
   useEffect(() => {
-     async function fetchClient(){
-      await dispatch(getClient('1'))
+    setHydrated(true)
+    async function fetchClientEmail(){
+      await dispatch(getClientByEmail('federicoputoamo@gmail.com'))
+    } 
+    fetchClientEmail()
+    async function fetchClient(){
+      await dispatch(getClient(clientAcc))
     }
     fetchClient()
+    async function fetchFavList(){
+      await dispatch(getFavourites(clientId.attributes.favourite_lists.data[0].id))
+    }
+    fetchFavList()
   },[])
-  console.log(clientId)
+
+  if (!hydrated) {
+    return null;
+  }
+
   if(clientId){
-    const {name, lastname, user, email} = clientId.attributes
+    const {nameComplete, bookings} = clientId.attributes
+    const favourites = favouritesList.attributes.businesses.data
     return (
     <div>
-      <NavBar/>
+      {/* <NavBar/> */}
       <SideBar 
-       name={name}
-       lastname={lastname}
-       user={user}
-       email={email}
+       name={nameComplete}
       />
       <div className={styles.content}>
         {displayOption.length === 0 ? (
@@ -39,8 +55,7 @@ const Profile = () => {
         ) : displayOption === 'edit' ?(
           <div>
           <h1>Edicion pulenta</h1>
-          <h4>{user}</h4>
-          <h4></h4>
+          <h4>USER</h4>
           <h4>clave</h4>
           </div>
         ) : displayOption === 'pay' ?(
@@ -75,7 +90,16 @@ const Profile = () => {
         </div>
         ): displayOption === 'favs' ?(
           <div>
-          <h1>Favoritos</h1>
+          {favourites.length && favourites.map(e => {
+            return(
+              <FavCard 
+                name={e.attributes.name} 
+                address={e.attributes.address} 
+                telephone={e.attributes.telephone} 
+                id={e.id}
+              />
+            )
+          })}
           </div>
         ): displayOption === 'options' ?(
           <div>

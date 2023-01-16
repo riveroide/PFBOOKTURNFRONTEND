@@ -1,9 +1,16 @@
 import Link from "next/link";
-import React from "react";
+import React, {useEffect} from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const NavBar2 = () => {
+  useEffect(() => {
+    
+    AOS.init()
+  })
+
   return (
-    <nav className="bg-white shadow dark:bg-blue-700 ali">
+    <nav  className="bg-white shadow dark:bg-blue-700 ali">
       <div className="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300 font-cool_g">
       <Link
           href="/"
