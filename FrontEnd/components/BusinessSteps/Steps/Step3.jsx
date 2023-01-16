@@ -34,8 +34,14 @@ const Step3 = ({ step, setStep }) => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      STEP 33333
-      <h1>ACA VA EL METODO DE PAGO AGUSSS</h1>
+      <div
+        data-aos="fade-up"
+        className="flex flex-col justify-center items-center min-h-screen"
+      >
+        <h1>STEP33333</h1>
+        <h2>ACA VA EL METODO DE PAGO AGUSSS</h2>
+      </div>
+
       {/* <h3>service</h3>
       <select name="service" id="">
         <option value=""></option>
