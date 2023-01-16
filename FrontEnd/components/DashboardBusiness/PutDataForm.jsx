@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { putBusiness } from "../../redux/actions/business/putBusiness";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
 
 const PutDataForm = () => {
   const dispatch = useDispatch();
@@ -181,12 +182,19 @@ const PutDataForm = () => {
         </div>
         <div class="flex mb-2 w-full justify-evenly">
           {disabled ? (
-            <button
-              onClick={handlerClick}
-              class="bg-blue-500 w-24 hover:bg-blue-400 tracking-widest text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-            >
-              EDITAR
-            </button>
+            <div className="flex mb-2 w-full justify-evenly">
+              <button
+                onClick={handlerClick}
+                class="bg-blue-500 w-24 hover:bg-blue-400 tracking-widest text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              >
+                EDITAR
+              </button>
+              <Link href={`/business/about/${BusinessAcc.id}`}>
+                <button class="bg-blue-500 w-24 hover:bg-blue-400 tracking-widest text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                  PERFIL
+                </button>
+              </Link>
+            </div>
           ) : (
             <button
               type="submit"
