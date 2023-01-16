@@ -8,13 +8,14 @@ export const getClients = () => (dispatch) => {
 };
 
 export const getClient = (id) => (dispatch) => {
-  axios(`${process.env.PATH_BACKEND}/api/clients/${id}?populate=*`)
+  axios(`http://localhost:1337/api/clients/${id}?populate=*`)
     .then((res) => dispatch(getClientId(res.data.data)))
     .catch((error) => console.log(error));
 };
 
 export const getClientByEmail = (email) => (dispatch) => {
-  axios(`${process.env.PATH_BACKEND}/api/users?populate=*&filters[email][$contains]=${email}`)
-    .then((res) => dispatch(getClientEmail(res.data[0].client.id)))
+  axios(`http://localhost:1337/api/users?populate=*&filters[client][email][$contains]=${email}`)
+    .then((res) => {dispatch(getClientEmail(res.data[0].client))
+    console.log(res.data)})
     .catch((error) => console.log(error));
 }

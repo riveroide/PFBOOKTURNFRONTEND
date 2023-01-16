@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const deleteClient = (id) => () => {
-  axios.delete(`${process.env.PATH_BACKEND}/api/clients/${id}`).catch((error) => error);
+  axios.delete(`http://localhost:1337/api/clients/${id}`).catch((error) => error);
 };

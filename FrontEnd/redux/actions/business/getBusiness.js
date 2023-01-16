@@ -22,12 +22,13 @@ export const getBusinessByName = (name) => (dispatch) => {
     "http://localhost:1337/api/businesses?populate=*&filters[name][$containsi]=" +
       name
   ).then((res) => {
+    if (!res.data.data.length) return alert("No se encontraron resultados")
     dispatch(getAllBusiness(res.data.data));
-  });
+  }).catch((error) => console.log(error))
 };
 
 export const getBusinessByEmail = (email) => (dispatch) => {
-  axios(`${process.env.PATH_BACKEND}/api/businesses?populate=*&filters[email][$containsi]=` +
+  axios(`http://localhost:1337/api/businesses?populate=*&filters[email][$containsi]=` +
   email)
     .then((res) => {
       dispatch(getBusinessEmail(res.data.data));
