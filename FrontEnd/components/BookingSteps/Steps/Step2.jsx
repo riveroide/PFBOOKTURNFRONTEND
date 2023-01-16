@@ -1,9 +1,9 @@
 import React from 'react'
 import Calendar from '../Calendar/Calendar'
 
-const Step2 = () => {
+const Step2 = ({setbookingPost , bookingPost}) => {
   return (
-    <Calendar/>
+    <Calendar setbookingPost={setbookingPost} bookingPost={bookingPost}/>
   )
 }
 

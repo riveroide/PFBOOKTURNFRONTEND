@@ -2,17 +2,40 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import StepsNav from "./StepsNav";
 import StepsContents from "./StepsContents";
+import { useDispatch, useSelector } from "react-redux";
+import { postBooking } from "../../redux/actions/Bookings/postBooking";
 
-const BookingService = ({ services }) => {
+const BookingService = () => {
+  const { clientAcc: client } = useSelector((state) => state.clients);
+  const { businessId: business } = useSelector((state) => state.business);
   const [stepnum, setstepnum] = useState(1);
+  const [bookingPost, setbookingPost] = useState({
+    businesses: "",
+    client: "",
+    services: [],
+    dateinfo: "",
+  });
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  console.log(bookingPost, "a despachar");
+
+  async function handleSubmit() {
+    dispatch(postBooking(bookingPost));
+    alert("posteado");
+  }
+
   return (
     <div>
       <div>
         <StepsNav stepnum={stepnum} />
       </div>
       <div>
-        <StepsContents stepnum={stepnum} services={services} />
+        <StepsContents
+          stepnum={stepnum}
+          setbookingPost={setbookingPost}
+          bookingPost={bookingPost}
+        />
       </div>
       <div className="flex justify-around">
         <button
@@ -32,8 +55,13 @@ const BookingService = ({ services }) => {
           onClick={() => {
             if (stepnum < 3) {
               setstepnum(stepnum + 1);
+              setbookingPost({
+                ...bookingPost,
+                client: client,
+                businesses: business.data.id,
+              });
             } else {
-              alert("se deberia hacer el post");
+              handleSubmit();
             }
           }}
         >

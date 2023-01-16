@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAllServices, getServiceById, getServiceByName } from "redux/reducers/servicesSlice";
 
 export const getServices = () => (dispatch) => {
-  axios("http://localhost:1336/services")
+  axios("http://localhost:1337/services")
     .then((res) => dispatch(getAllServices(res.data)))
     .catch((error) => console.log(error));
 };

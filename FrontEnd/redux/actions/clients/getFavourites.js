@@ -6,5 +6,6 @@ export const getFavourites = (id) => (dispatch) => {
         .then((res) => {
             dispatch(getFavouritesList(res.data.data))
         })
+
         .catch((error) => console.log(error));
 } 

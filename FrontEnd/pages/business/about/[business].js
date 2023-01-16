@@ -5,13 +5,14 @@ import DetailsBusiness from '../../../components/DetailsBusiness/DetailsBusiness
 import ServiceList from '../../../components/DetailsBusiness/ServiceList';
 import BookingService from '../../../components/BookingSteps/BookingService';
 import Loader from '../../../components/Loader/Loader';
+import NavBar2 from '../../../components/Navbar/Navbar';
 
 
 const Business = ({ id }) => {
   const [loading, setLoading] = useState(true)
   const { businessId: business } = useSelector(state => state.business)
+  
   const dispatch = useDispatch()
-  // const { adress, createdAt, name, totalRated, totalRates, categories, services, user } = business.data?.attributes
 
   useEffect(() => {
     if (id) {
@@ -26,6 +27,9 @@ const Business = ({ id }) => {
     return (
       <div>
         <div>
+          <NavBar2/>
+        </div>
+        <div>
         <DetailsBusiness 
         address ={address}
         telephone ={telephone}
@@ -34,14 +38,15 @@ const Business = ({ id }) => {
         email = {email}
         createdAt = {createdAt}
         /></div>
-        <div>
+        {/* <div>
           <ServiceList 
           services={services}
           id={id}/>
-        </div>
+        </div> */}
         <div>
           <BookingService
-          services={services}/>
+          services={services}
+          />
         </div>
       </div>
     )
