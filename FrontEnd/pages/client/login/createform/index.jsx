@@ -6,9 +6,10 @@ const Createform = () => {
   const [formstep, setformstep] = useState(1)
   const [emailuser, setemailuser] = useState() 
 
+  
 if (formstep === 1)
   return (
-    <FormUser setformstep={setformstep} formstep={formstep} setidclient={setemailuser}/>
+    <FormUser setformstep={setformstep} formstep={formstep} setemailuser={setemailuser}/>
   ) 
 if (formstep===2)
     return (
