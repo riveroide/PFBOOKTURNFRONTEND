@@ -2,20 +2,30 @@ import React from "react";
 import { useState } from "react";
 import Step1 from "./Steps/Step1";
 import Step2 from "./Steps/Step2";
+import Step3 from "./Steps/Step3";
 
 const Stepper = () => {
   const [step, setStep] = useState(1);
+  const [userEmail, setUserEmail] = useState(0);
+  console.log(userEmail, "stepper");
   if (step === 1) {
     return (
       <>
-        <Step1 setStep={setStep} step={step} />
+        <Step1 setUserEmail={setUserEmail} setStep={setStep} step={step} />
       </>
     );
   }
   if (step === 2) {
     return (
       <>
-        <Step2 setStep={setStep} step={step} />
+        <Step2 userEmail={userEmail} setStep={setStep} step={step} />
+      </>
+    );
+  }
+  if (step === 3) {
+    return (
+      <>
+        <Step3 setStep={setStep} step={step} />
       </>
     );
   }
