@@ -7,11 +7,13 @@ import Step3 from "./Steps/Step3";
 const Stepper = () => {
   const [step, setStep] = useState(1);
   const [userEmail, setUserEmail] = useState(0);
+  const [name, setName] = useState(0)
   console.log(userEmail, "stepper");
+  console.log(name, "stepperName")
   if (step === 1) {
     return (
       <>
-        <Step1 setUserEmail={setUserEmail} setStep={setStep} step={step} />
+        <Step1 setUserEmail={setUserEmail} setName={setName} setStep={setStep} step={step} />
       </>
     );
   }
@@ -25,7 +27,7 @@ const Stepper = () => {
   if (step === 3) {
     return (
       <>
-        <Step3 setStep={setStep} step={step} />
+        <Step3 setStep={setStep} step={step} email={userEmail} name={name} />
       </>
     );
   }

@@ -4,7 +4,7 @@ import { postUser } from "../../../redux/actions/users/postUser";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const Step1 = ({ step, setStep, setUserEmail }) => {
+const Step1 = ({ step, setStep, setUserEmail, setName }) => {
   const [input, setInput] = useState({
     username: "",
     email: "",
@@ -19,6 +19,7 @@ const Step1 = ({ step, setStep, setUserEmail }) => {
       [e.target.name]: e.target.value,
     });
     setUserEmail(input.email);
+    setName(input.username)
   };
   const dispatch = useDispatch();
 
