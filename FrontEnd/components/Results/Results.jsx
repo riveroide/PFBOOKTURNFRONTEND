@@ -1,25 +1,29 @@
 import React from "react";
 import { useState } from "react";
-import stylesResults from "../Results/Results.module.css";
+import { useSession } from "next-auth/react";
 import CardResult from "../../components/CardResult/CardResult";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getBusiness } from "../../redux/actions/business/getBusiness";
+import {getClient, getClientByEmail} from "../../redux/actions/clients/getClients"
 import SearchAndFilter from "../searchAndFilter/SearchAndFilter";
 import Paginado from "../Paginado/Paginado";
-
 
 export default function Results() {
   const dispatch = useDispatch();
 
+  const { data: session } = useSession();
+  console.log(session)
   const { businessList } = useSelector((state) => state.business);
   console.log(businessList)
   const [hydrated, setHydrated] = useState(false)
-
+  const { clientId } = useSelector((state) => state.clients)
+  console.log(clientId)
   useEffect(() => {
     setHydrated(true)
     if (!businessList.length) dispatch(getBusiness());
-  }, [dispatch]);
+    if (session) dispatch(getClientByEmail(session?.user.email))
+  }, [dispatch, session]);
 
   useEffect(() => {
     setState({
@@ -51,8 +55,8 @@ export default function Results() {
  
 
   return (
-    <div className={stylesResults.resultsContainer}>
-      <div className={stylesResults.searchbarContainer}>
+    <div>
+      <div>
         <SearchAndFilter />
       </div>
 
@@ -62,7 +66,7 @@ export default function Results() {
   
       <>
         { actualBusiness.length && actualBusiness.map((e) => {
-          return <CardResult key={e.id} id={e.id} name={e.attributes.name} services={e.attributes.services.data} categories={e.attributes.categories.data} image={"https://avalos.sv/wp-content/uploads/295-default-featured-image.png"}/>
+          return <CardResult key={e.id} id={e.id} name={e.attributes.name} services={e.attributes.services.data} categories={e.attributes.categories.data} image={"https://avalos.sv/wp-content/uploads/295-default-featured-image.png"} session={session} />
 
 
 
