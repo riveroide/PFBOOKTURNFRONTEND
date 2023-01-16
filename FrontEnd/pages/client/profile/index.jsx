@@ -86,10 +86,12 @@ const Profile = () => {
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587874/Bookturn/src/Setting_qjfzlb.png",
     },
   ];
-
+  console.log(clientId)
+  console.log(clientAcc)
+  console.log(favouritesList)
   if(!loading && clientId){
     const {nameComplete, bookings} = clientId.attributes
-    const favourites = favouritesList.attributes.businesses.data
+    //const favourites = favouritesList.attributes.businesses.data
     return (
       <div className="flex scroll-smooth">
         <div
@@ -154,16 +156,17 @@ const Profile = () => {
             <h1>ACA TU HISTORIAL DE TURNOS</h1>
           ):displayOption === 'Favoritos' ?(
             <div>
-              {favourites.length && favourites.map(e => {
+              <h1>LISTA DE FAVORITOS</h1>
+              {/* {favourites.length && favourites.map(e => {
               return(
-                <FavCard 
-                  name={e.attributes.name} 
-                  address={e.attributes.address} 
-                  telephone={e.attributes.telephone} 
-                  id={e.id}
-                />
-              )
-            })}
+                // <FavCard 
+                //   name={e.attributes.name} 
+                //   address={e.attributes.address} 
+                //   telephone={e.attributes.telephone} 
+                //   id={e.id}
+                // />
+              ) */}
+            {/* })} */}
             </div>
           ):displayOption === 'Settings' ?(
             <h1>ACA SETTINGS DE USUARIO</h1>
