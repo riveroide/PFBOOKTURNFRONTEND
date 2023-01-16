@@ -42,6 +42,7 @@ const Profile = () => {
         await dispatch(getFavourites(clientId.attributes.favourite_lists.data[0].id))
       }
       fetchFavList()
+      dispatch(display(''))
       setLoading(false)
     }
     } catch (error) {
