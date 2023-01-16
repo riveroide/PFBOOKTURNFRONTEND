@@ -9,9 +9,9 @@ export default NextAuth({
       name: "credentials",
       credentials: {
         email: {
-          label: "user",
+          label: "email",
           type: "email",
-          placeholder: "tu usuario",
+          placeholder: "tu email",
         },
         password: {
           label: "Password",
