@@ -1,17 +1,21 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import styles from "./index.module.css";
-import Button from '@mui/material/Button';
+
 
 
 
 const Login = () => {
   const { data: session } = useSession();
+  
+
+    
   //console.log(session)
   if (session) {
     return (
       <div className={styles.container}>
-        <h1>LOGIN EMPRESA</h1>
+       
+        <h1 >LOGIN EMPRESA</h1>
         <p>Bienvenido {session.user.name}</p>
         <p>No eres tu?</p>
         <button onClick={() => signOut()}>Cerrar sesión</button>
@@ -26,7 +30,7 @@ const Login = () => {
 
 
 
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+<div data-aos="fade-up" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
     </a>

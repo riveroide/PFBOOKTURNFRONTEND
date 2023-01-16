@@ -2,11 +2,17 @@ import React from "react";
 //import Link from "next/link";
 //import styles from "./FooterBussines.module.css";
 //import Image from "next/image";
+import AOS, { init } from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 const FooterBussines = () => {
-  return (
+useEffect(() => {
+    AOS.init()
+})
+    return (
     <>
-    <footer className="bg-white dark:bg-blue-700">
+    <footer  className="bg-white dark:bg-blue-700">
     <div className="container px-6 py-12 mx-auto">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
             <div className="sm:col-span-2">
