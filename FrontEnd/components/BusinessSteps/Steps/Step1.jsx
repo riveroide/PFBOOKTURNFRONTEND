@@ -4,7 +4,7 @@ import { postUser } from "../../../redux/actions/users/postUser";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const Step1 = ({ step, setStep }) => {
+const Step1 = ({ step, setStep, setUserEmail }) => {
   const [input, setInput] = useState({
     username: "",
     email: "",
@@ -18,11 +18,13 @@ const Step1 = ({ step, setStep }) => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    setUserEmail(input.email);
   };
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     dispatch(postUser(input));
+    alert("post step 1");
   };
 
   useEffect(() => {
