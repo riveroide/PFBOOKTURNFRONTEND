@@ -8,10 +8,10 @@ const StepsContents = ({ stepnum ,setbookingPost, bookingPost }) => {
 if(stepnum===1) return (<div className='h-full'>
   <Step1 setbookingPost={setbookingPost} bookingPost={bookingPost}/>
 </div>)
-if(stepnum===2) return (<div>
+if(stepnum===2) return (<div className='h-full'>
   <Step2 setbookingPost={setbookingPost} bookingPost={bookingPost}/>
 </div>)
-  return (<div>
+  return (<div className='h-full'>
     <Step3 setbookingPost={setbookingPost} bookingPost={bookingPost}/>
   </div>
   )
