@@ -4,10 +4,14 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { getBusinessIdByEmail, getBusinessData } from "redux/actions/business/getBusiness.js";
+import PutDataForm from "../../../components/DashboardBusiness/PutDataForm";
+import Services from "../../../components/DashboardBusiness/Services";
+import Pedidos from "../../../components/DashboardBusiness/Pedidos";
 
 const dashboard = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useState(true);
+  const [page, setPage] = useState(1);
   const { BusinessAcc } = useSelector((state) => state.business);
   const { BusinessIdSession } = useSelector((state) => state.business);
   const [hydrated, setHydrated] = useState(false);
@@ -33,34 +37,42 @@ const dashboard = () => {
     }
   }, [session]);
 
+  const handlerClick=(e,pagina)=>{
+    e.preventDefault()
+    setPage(pagina)
+  }
+
   const Menus = [
+    {
+      title: "Profile",
+      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587880/Bookturn/src/User_xuo8og.png",
+    //   gap: true,
+      page:1
+    },
     {
       title: "Dashboard",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587813/Bookturn/src/Chart_fill_r59zsx.png",
-    },
-    {
-      title: "Inbox",
-      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587827/Bookturn/src/Chat_uzro5p.png",
+      page:2
     },
     // {
-    //   title: "Accounts",
-    //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587880/Bookturn/src/User_xuo8og.png",
-    // //   gap: true,
+    //   title: "Inbox",
+    //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587827/Bookturn/src/Chat_uzro5p.png",
     // },
     {
-      title: "Schedule ",
+      title: "Pedidos ",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587765/Bookturn/src/Calendar_mefkpn.png",
+      page:3
     },
     // { title: "Search", src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587862/Bookturn/src/Search_xukvg1.png" },
-    {
-      title: "Files ",
-      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587850/Bookturn/src/Folder_kkndkc.png",
-      //   gap: true,
-    },
-    {
-      title: "Setting",
-      src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587874/Bookturn/src/Setting_qjfzlb.png",
-    },
+    // {
+    //   title: "Files ",
+    //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587850/Bookturn/src/Folder_kkndkc.png",
+    //   //   gap: true,
+    // },
+    // {
+    //   title: "Setting",
+    //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587874/Bookturn/src/Setting_qjfzlb.png",
+    // },
   ];
 
   if (hydrated && AccData) {
@@ -69,7 +81,7 @@ const dashboard = () => {
         <div
           className={` ${
             open ? "w-72" : "w-20 "
-          } bg-black h-screen p-5 pt-8 relative duration-500`}
+          } bg-black min-h-screen p-5 pt-8 relative duration-500`}
         >
           <img
             src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673587887/Bookturn/src/control_xi6vpx.png"
@@ -99,6 +111,7 @@ const dashboard = () => {
             {Menus.map((Menu, index) => (
               <div
                 key={index}
+                onClick={(e)=>handlerClick(e,Menu.page)}
                 className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
                 ${Menu.gap ? "mt-0" : "mt-0"} ${
                   index === 0 && "bg-light-white"
@@ -114,14 +127,18 @@ const dashboard = () => {
             ))}
           </ul>
         </div>
-        <div className={`${!open? "":"hidden"} h-screen xl:flex-1 p-7  lg:flex`}>
-          <div className="flex flex-col ">
-            <h1 className="text-2xl font-semibold ">{AccData.name}</h1>
-            <h1 className="text-2xl font-semibold ">{AccData.address}</h1>
-          </div>
-
-          {/* <h1 className="text-2xl font-semibold ">{AccData.telephone}</h1>   */}
-          {/* <img src={AccData.} alt="" /> */}
+        <div className={`${open && "hidden"} h-screen xl:flex p-7 lg:flex md:flex w-full`}>
+          {
+            page===1?(
+              <PutDataForm />
+            ):page===2 ? (
+              <Services/>):
+              page===3 && <Pedidos/>
+            // ):(
+            //   <div>asdas</div>
+            // )
+          }
+          
         </div>
       </div>
     );
