@@ -1,55 +1,105 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { postUser } from '../../redux/actions/users/postUser'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postUser } from "../../redux/actions/users/postUser";
 
-const FormUser = ({setformstep,formstep, setidclient}) => {
-    const dispatch = useDispatch()
-    const [userinfo, setuserinfo] = useState({
-        role: 2,
-        username: "",
-        email: "",
-        password: ""
-    })
+const FormUser = ({ setformstep, formstep, setemailuser }) => {
+  const dispatch = useDispatch();
+  const [userinfo, setuserinfo] = useState({
+    role: 2,
+    username: "",
+    email: "",
+    password: "",
+  });
 
-    function handleChange(e){
-        e.preventDefault()
-        setuserinfo({
-            ...userinfo,
-            [e.target.name]: e.target.value
-        })
-        setidclient(userinfo.email)
-    }
+  function handleChange(e) {
+    
+    setuserinfo({
+      ...userinfo,
+      [e.target.name]: e.target.value,
+    });
+    setemailuser(userinfo.email);
+  }
 
-     function handleSubmit (e){
-         dispatch(postUser(userinfo))
-        alert("usuario creado")
-        
-
-    }
-    console.log(userinfo)
+  function handleSubmit(e) {
+    dispatch(postUser(userinfo));
+    alert("usuario creado");
+  }
+  console.log(userinfo);
   return (
-    <div className='flex flex-col justify-center items-center'>
-        <h2>FORMULARIO CREACION USER</h2>
-            <div>
-                <h4>Nombre y Apellido</h4>
-                <input type="text" name='username' placeholder='Nombre Ejemplo' value={userinfo.username} onChange={(e)=> handleChange(e)}></input>
-            </div>
-            <div>
-                <h4>Email</h4>
-                <input type="text" name='email' placeholder='Email' value={userinfo.email} onChange={(e)=> handleChange(e)}></input>
-            </div>
-            <div>
-                <h4>Contraseña</h4>
-                <input type="password" name='password' placeholder='********' value={userinfo.password} onChange={(e)=> handleChange(e)}></input>
-            </div>
-            <button type='submit' onClick={()=>{
-                handleSubmit()
-                setformstep(formstep + 1)}}>ENVIAR</button>
-    </div>
-  )
-}
+    <div className="flex flex-col justify-center items-center h-screen">
+      <h1 className="font-cool_g text-3xl mb-12">Primero, creá tu usuario en BookTurn</h1>
+      <div>
+        <label
+          className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+        >
+          <span className="text-xs font-medium text-gray-700">
+            {" "}
+            Nombre de Usuario{" "}
+          </span>
 
-export default FormUser
+          <input
+            type="text"
+            name="username"
+            placeholder="Tu Usuario"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            value={userinfo.username}
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+
+        <label
+          
+          className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+        >
+          <span className="text-xs font-medium text-gray-700"> Email </span>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="email@ejemplo.com"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            value={userinfo.email}
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+
+        <label
+          
+          className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+        >
+          <span className="text-xs font-medium text-gray-700">
+            {" "}
+            Contraseña{" "}
+          </span>
+
+          <input
+            type="password"
+            name="password"
+            placeholder="*********"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            value={userinfo.password}
+            onChange={(e) => handleChange(e)}
+          />
+        </label>
+      </div>
+      <div className="mt-12">
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        type="submit"
+        onClick={() => {
+          handleSubmit();
+          setformstep(formstep + 1);
+        }}
+      >
+        Siguiente
+      </button>
+      </div>
+      
+    </div>
+  );
+};
+
+export default FormUser;
 
 // import React, { useState } from "react";
 // import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -57,8 +107,6 @@ export default FormUser
 // import * as yup from "yup";
 // import { useDispatch } from "react-redux";
 // import { postUser } from "../../redux/actions/users/postUser";
-
-
 
 // const FormUser = ({setformstep,formstep}) => {
 //   const dispatch = useDispatch();
@@ -82,7 +130,7 @@ export default FormUser
 //           username: "",
 //           email: "",
 //           password: "",
-          
+
 //         }}
 //         validationSchema={validationSchema}
 //         onSubmit={(values) => {
