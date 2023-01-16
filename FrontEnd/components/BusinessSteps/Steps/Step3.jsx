@@ -38,7 +38,7 @@ const Step3 = ({ step, setStep }) => {
         data-aos="fade-up"
         className="flex flex-col justify-center items-center min-h-screen"
       >
-        <h1>STEP33333</h1>
+        <h1 className="font-cool_g text-3xl mb-12"> Realizá el pago de tu suscripción a BookTurn </h1>
         <h2>ACA VA EL METODO DE PAGO AGUSSS</h2>
       </div>
 

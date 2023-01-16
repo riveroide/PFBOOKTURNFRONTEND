@@ -9,14 +9,15 @@
 .button {
   --primary-color: #111;
   --hovered-color: #3877d6;
-  position: relative;
+  position: end;
   display: flex;
-  justify-content: flex-start;
+  justify-content: end;
   font-weight: 600;
   font-size: 3px;
   gap: 0.1rem;
   align-items: center;
-  width: 8rem;
+  width: 24rem;
+  padding-left: 12rem
 }
 
 .button p {

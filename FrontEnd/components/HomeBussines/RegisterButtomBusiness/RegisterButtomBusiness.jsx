@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./RegisterButtomBusiness.module.css";
+import Link from "next/link";
 
 const RegisterButtomBusiness = () => {
   return (
-    <div className="">
+    <div className="mt-0">
+      <Link href="/business/login/createform">
       <button className={styles.button}>
         <p>Registrate</p>
         <svg
@@ -11,7 +13,7 @@ const RegisterButtomBusiness = () => {
           stroke="currentColor"
           viewBox="0 0 24 24"
           fill="none"
-          className="h-6 w-6"
+          className="h-3 w-3"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -21,6 +23,7 @@ const RegisterButtomBusiness = () => {
           ></path>
         </svg>
       </button>
+      </Link>
     </div>
   );
 };

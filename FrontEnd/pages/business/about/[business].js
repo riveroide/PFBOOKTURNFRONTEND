@@ -5,7 +5,8 @@ import DetailsBusiness from '../../../components/DetailsBusiness/DetailsBusiness
 import ServiceList from '../../../components/DetailsBusiness/ServiceList';
 import BookingService from '../../../components/BookingSteps/BookingService';
 import Loader from '../../../components/Loader/Loader';
-import NavBar2 from '../../../components/Navbar/Navbar';
+import NabvarResults from '../../../components/NavbarResults/NavbarResults';
+
 
 
 const Business = ({ id }) => {
@@ -27,7 +28,7 @@ const Business = ({ id }) => {
     return (
       <div>
         <div>
-          <NavBar2/>
+          <NabvarResults/>
         </div>
         <div>
         <DetailsBusiness 

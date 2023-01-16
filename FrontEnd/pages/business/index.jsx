@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Navbar from "../../components/Navbar/Navbar"
+import NabvarResults from "../../components/NavbarResults/NavbarResults"
 import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
 import LandingInfoBussines from "../../components/HomeBussines/LandingInfoBussines/LandingInfoBussines"
 import AOS from 'aos';
@@ -13,8 +13,7 @@ const index = () => {
   })
   return (
     <>
-      
-      <Navbar  />
+      <NabvarResults/>
       <LandingInfoBussines />
       <FooterBussines />
       

@@ -11,7 +11,7 @@ const Createform = () => {
       <FormUser
         setformstep={setformstep}
         formstep={formstep}
-        setidclient={setemailuser}
+        setemailuser={setemailuser}
       />
     );
   if (formstep === 2) return <FormClient emailuser={emailuser} />;
