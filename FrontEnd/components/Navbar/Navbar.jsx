@@ -59,6 +59,12 @@ const NavBar2 = () => {
         >
           Dashboard
         </a>
+        <a
+          href="/business/login"
+          className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
+        >
+          Acceder(empresa)
+        </a>
       </div>
     </nav>
   );
