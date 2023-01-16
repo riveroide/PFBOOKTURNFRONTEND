@@ -7,17 +7,19 @@ import { useDispatch, useSelector } from 'react-redux';
 //actions
 import { getClient, getClientByEmail } from 'redux/actions/clients/getClients';
 import { getFavourites } from 'redux/actions/clients/getFavourites'
-import styles from '../../../styles/profile.module.css';
+import { display } from 'redux/actions/clients/displayOption'
 import FavCard from '../../../components/Favourites/FavCard'
 import Loader from '../../../components/Loader/Loader'
 
 const Profile = () => {
   const dispatch = useDispatch()
   const {data: session} = useSession()
+  
   const {clientId} = useSelector((state) => state.clients)
   const {displayOption} = useSelector((state) => state.clients)
   const {clientAcc} = useSelector((state) => state.clients)
   const {favouritesList} = useSelector((state) => state.clients)
+  
   const [open, setOpen] = useState(true)
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -51,6 +53,9 @@ const Profile = () => {
     return null;
   }
 
+  const handleClick = async (e) => {
+    await dispatch(display(e.target.title))
+  }
   const Menus = [
     {
       title: "Dashboard",
@@ -66,12 +71,12 @@ const Profile = () => {
     // //   gap: true,
     // },
     {
-      title: "Tus turnos ",
+      title: "Tus turnos",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587765/Bookturn/src/Calendar_mefkpn.png",
     },
     // { title: "Search", src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587862/Bookturn/src/Search_xukvg1.png" },
     {
-      title: "Favoritos ",
+      title: "Favoritos",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587850/Bookturn/src/Folder_kkndkc.png",
       //   gap: true,
     },
@@ -89,7 +94,7 @@ const Profile = () => {
         <div
           className={` ${
             open ? "w-72" : "w-20 "
-          } bg-black h-screen p-5 pt-8 relative duration-500`}
+          } bg-black h-screen p-5 pt-8 relative duration-500 `}
         >
           <img
             src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673587887/Bookturn/src/control_xi6vpx.png"
@@ -115,6 +120,7 @@ const Profile = () => {
               </h1>
             </div>
           </Link>
+          <div>
           <ul className="pt-6 mt-2">
             {Menus.map((Menu, index) => (
               <div
@@ -123,19 +129,46 @@ const Profile = () => {
                 ${Menu.gap ? "mt-0" : "mt-0"} ${
                   index === 0 && "bg-light-white"
                 } `}
+                title={Menu.title}
+                onClick={(e) => handleClick(e)}
               >
-                <img src={Menu.src} />
+                <img src={Menu.src} title={Menu.title}/>
                 <span
                   className={`${!open && "hidden"} origin-left duration-200`}
+                  title={Menu.title}
                 >
                   {Menu.title}
                 </span>
               </div>
             ))}
           </ul>
+          </div>
         </div>
         <div className={`${open && "hidden"} h-screen xl:flex p-7 lg:flex md:flex w-full`}>
-          <h1>SEX</h1>
+          {displayOption === 'Dashboard' ? (
+            <h1>DASHBOARD</h1>
+          ):displayOption === 'Inbox' ? (
+            <h1>TUS MENSAJES</h1>
+          ):displayOption === 'Tus turnos' ?(
+            <h1>ACA TU HISTORIAL DE TURNOS</h1>
+          ):displayOption === 'Favoritos' ?(
+            <div>
+              {favourites.length && favourites.map(e => {
+              return(
+                <FavCard 
+                  name={e.attributes.name} 
+                  address={e.attributes.address} 
+                  telephone={e.attributes.telephone} 
+                  id={e.id}
+                />
+              )
+            })}
+            </div>
+          ):displayOption === 'Settings' ?(
+            <h1>ACA SETTINGS DE USUARIO</h1>
+          ):(
+            <h1>BIENVENIDO A TU PERFIL</h1>
+          )}
         </div>
       </div>
      )
