@@ -39,7 +39,7 @@ const Profile = () => {
       }
       fetchClient()
       async function fetchFavList(){
-        await dispatch(getFavourites(clientId.attributes.favourite_lists.data[0].id))
+        await dispatch(getFavourites(clientAcc))
       }
       fetchFavList()
       dispatch(display(''))
@@ -86,10 +86,12 @@ const Profile = () => {
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587874/Bookturn/src/Setting_qjfzlb.png",
     },
   ];
-
+  console.log(clientId, "INFO DE CLIENTE")
+  console.log(clientAcc, "ID DE USUARIO")
+  console.log(favouritesList, "LISTA DE FAVORITOS!!")
   if(!loading && clientId){
     const {nameComplete, bookings} = clientId.attributes
-    const favourites = favouritesList.attributes.businesses.data
+    const favourites = favouritesList[0].attributes.businesses.data
     return (
       <div className="flex scroll-smooth">
         <div
@@ -154,6 +156,7 @@ const Profile = () => {
             <h1>ACA TU HISTORIAL DE TURNOS</h1>
           ):displayOption === 'Favoritos' ?(
             <div>
+              <h1>LISTA DE FAVORITOS</h1>
               {favourites.length && favourites.map(e => {
               return(
                 <FavCard 
@@ -162,8 +165,8 @@ const Profile = () => {
                   telephone={e.attributes.telephone} 
                   id={e.id}
                 />
-              )
-            })}
+              ) 
+             })}
             </div>
           ):displayOption === 'Settings' ?(
             <h1>ACA SETTINGS DE USUARIO</h1>
