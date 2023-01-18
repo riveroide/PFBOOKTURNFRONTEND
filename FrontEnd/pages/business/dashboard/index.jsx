@@ -44,13 +44,13 @@ const dashboard = () => {
 
   const Menus = [
     {
-      title: "Profile",
+      title: "Perfiles",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587880/Bookturn/src/User_xuo8og.png",
     //   gap: true,
       page:1
     },
     {
-      title: "Dashboard",
+      title: "Servicios",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587813/Bookturn/src/Chart_fill_r59zsx.png",
       page:2
     },
@@ -59,7 +59,7 @@ const dashboard = () => {
     //   src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587827/Bookturn/src/Chat_uzro5p.png",
     // },
     {
-      title: "Pedidos ",
+      title: "Reservas",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587765/Bookturn/src/Calendar_mefkpn.png",
       page:3
     },

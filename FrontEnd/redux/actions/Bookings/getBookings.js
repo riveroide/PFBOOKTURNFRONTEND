@@ -12,3 +12,7 @@ export const getBookingByBusinessId = (id) => (dispatch) => {
     .then(res => dispatch(getBookingId(res.data)))
     .catch(error => console.log(error))
 };
+
+export const getServicesById = (data) => (dispatch) =>{
+      axios(`http://localhost:1337/api/services?populate=*&filters[email][$contains]=${email}`)
+    }
