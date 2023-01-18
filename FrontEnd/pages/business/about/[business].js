@@ -9,6 +9,7 @@ import NabvarResults from '../../../components/NavbarResults/NavbarResults';
 import ReviewInput from '../../../components/reviewInput/reviewInput';
 import { useSession } from 'next-auth/react';
 import { getClient, getClientByEmail } from '../../../redux/actions/clients/getClients';
+import { getRatingFromClientAndBusiness } from '../../../redux/actions/Rating/getRating';
 
 
 
@@ -25,6 +26,7 @@ const Business = ({ id }) => {
     if (id) {
       dispatch(getBusinessById(id))
       dispatch(getClientByEmail(session?.user.email))
+      dispatch(getRatingFromClientAndBusiness(clientId.id, id))
       dispatch(getClient())
       setLoading(false)
     }
