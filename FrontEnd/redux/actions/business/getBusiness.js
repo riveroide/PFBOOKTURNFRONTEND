@@ -1,7 +1,7 @@
 import { getAllBusiness, getBusinessId, getIdBusiness, getiInfoBusiness } from "redux/reducers/businessSlice";
 import axios from "axios";
 
-export const getBusiness = () => (dispatch) => 
+export const getBusiness = () => (dispatch) => {
   axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/businesses?populate=*`)
     .then((res) => {
       dispatch(getAllBusiness(res.data.data));
