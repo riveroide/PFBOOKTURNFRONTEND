@@ -14,5 +14,5 @@ export const getBookingByBusinessId = (id) => (dispatch) => {
 };
 
 export const getServicesById = (data) => (dispatch) =>{
-      axios(`http://localhost:1337/api/services?populate=*&filters[email][$contains]=${email}`)
+      axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/services?populate=*&filters[email][$contains]=${email}`)
     }

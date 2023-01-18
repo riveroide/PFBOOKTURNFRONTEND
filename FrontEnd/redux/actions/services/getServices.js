@@ -3,6 +3,7 @@ import { getAllServices, getServiceById, getServiceByName } from "redux/reducers
 
 export const getServices = () => (dispatch) => {
   axios("https://plankton-app-jy8jr.ondigitalocean.app/api/services")
+
     .then((res) => dispatch(getAllServices(res.data)))
     .catch((error) => console.log(error));
 };
