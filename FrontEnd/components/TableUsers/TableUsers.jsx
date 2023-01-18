@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { putUser } from "../../redux/actions/users/putUser";
 import { useDispatch } from "react-redux";
+import { useSession } from "next-auth/react";
 
 //material ui
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -10,22 +11,24 @@ import Switch from '@mui/material/Switch';
  import TablePagination from '@mui/material/TablePagination';
 
 const TableUsers = ({usersList, change, setChange}) => {
+  const session = useSession()
+  console.log(session)
 
     const dispatch = useDispatch()
     const [order, setOrder] = useState('asc');
     
 
-    // const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    // const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [page, setPage] = React.useState(0);
 
-    // const handleChangePage = (event, newPage) => {
-    //   setPage(newPage);
-    // };
+    const handleChangePage = (event, newPage) => {
+      setPage(newPage);
+    };
   
-    // const handleChangeRowsPerPage = (event) => {
-    //   setRowsPerPage(parseInt(event.target.value, 10));
-    //   setPage(0);
-    // };
+    const handleChangeRowsPerPage = (event) => {
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
+    };
 
     const  descendingComparator = (a, b) => {
       if (b.id < a.id) {
@@ -71,7 +74,7 @@ const TableUsers = ({usersList, change, setChange}) => {
       };
   
       const rows = usersList
-  
+
 
     return(
         <div className="bg-[#ffffff] rounded-sm w-auto">
@@ -106,7 +109,7 @@ const TableUsers = ({usersList, change, setChange}) => {
             <tbody className="text-center">
             {
              stableSort(rows, getComparator(order))
-            //  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((e) =>(
                 <tr key={e.id} className=" hover:bg-[#3b82f6] cursor-pointer duration-300">
                 <td className="py-3 px-6">{e.id}</td>
@@ -125,19 +128,29 @@ const TableUsers = ({usersList, change, setChange}) => {
               ))
             }
             </tbody>
-            {/* <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+            <TablePagination
+            className="w-[25rem]"
+          rowsPerPageOptions={[5, 10, 15, 20, 25]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-        /> */}
+        />
           </table>
          </div>
           </Box>
           
+          {/* <Pagina
+          usersForPage={rowsPerPage}
+          usersList={usersList.length}
+          paginado={paginado}
+          avanza={avanza}
+          retrocede={retrocede}
+        /> */}
+
+
         </div>
     )
 };

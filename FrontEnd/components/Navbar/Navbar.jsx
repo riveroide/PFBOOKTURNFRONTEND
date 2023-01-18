@@ -19,36 +19,38 @@ const NavBar2 = () => {
         >
           Bookturn 
         </Link>
+
         <Link
-          href="#"
+          href="/business/features"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Funcionalidades
         </Link>
 
         <Link
-          href="#"
+          href="/business/about_us"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Quiénes Somos
         </Link>
 
         <Link
-          href="#"
+          href="/business/prices"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Precios
         </Link>
 
         <Link
-          href="#"
+          href="/business/categories"
+
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Categorias
         </Link>
 
         <Link
-          href="#"
+          href="/business/contact"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Contacto

@@ -33,7 +33,7 @@ export const NabvarResults = () => {
             <Link href={`/client/profile`}>
               <img
                 class="w-10 h-10 rounded-full"
-                src={user.profilePic ? `${user.profilePic}` : session.user.image ? `${session.user.image}` : "https://icon-library.com/images/generic-profile-icon/generic-profile-icon-23.jpg"} 
+                src={user?.profilePic ? `${user?.profilePic}` : session.user.image ? `${session.user.image}` : "https://icon-library.com/images/generic-profile-icon/generic-profile-icon-23.jpg"} 
                 alt="user photo"
               />
             </Link>
