@@ -19,52 +19,52 @@ const NavBar2 = () => {
         >
           Bookturn 
         </Link>
-        <a
+        <Link
           href="#"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Funcionalidades
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="#"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Quiénes Somos
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="#"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Precios
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="#"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Categorias
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="#"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Contacto
-        </a>
-        <a
+        </Link>
+        <Link
           href="/business/dashboard"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Dashboard
-        </a>
-        <a
+        </Link>
+        <Link
           href="/business/login"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Acceder(empresa)
-        </a>
+        </Link>
       </div>
     </nav>
   );

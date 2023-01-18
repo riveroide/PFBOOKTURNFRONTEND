@@ -24,8 +24,9 @@ const Step1 = ({setbookingPost , bookingPost}) => {
     <div className="flex font-cool_g flex-col w-full items-center">
       {services.data?.map((e) => {
         return (
-          <div className="flex w-1/4 items-center">
+          <div key={e.id} className="flex w-1/4 items-center">
             <input
+            key={e.id}
               id={e.id}
               type="checkbox"
               className="cursor-pointer rounded border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75 mr-2"
@@ -38,6 +39,7 @@ const Step1 = ({setbookingPost , bookingPost}) => {
             <label
               for="basic"
               className="cursor-pointer truncate text-3xl font-medium text-gray-500"
+              key={e.id}
             >
               {e.attributes.name} (${e.attributes.price})
             </label>
