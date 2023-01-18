@@ -14,15 +14,15 @@ const ServiceList = ({services}) => {
         <div className="mt-2 space-y-8 xl:mt-12">
             {services.data?.map(e =>{
                 return(
-                    <div className="flex items-center justify-between max-w-2xl px-8 py-4 mx-auto border cursor-pointer rounded-xl dark:border-gray-700">
-                <div className="flex items-center">
+                    <div key={e.id} className="flex items-center justify-between max-w-2xl px-8 py-4 mx-auto border cursor-pointer rounded-xl dark:border-gray-700">
+                <div key={e.id} className="flex items-center">
              
-                    <div className="flex flex-col items-center mx-5 space-y-1">
-                        <h2 className="text-lg font-medium text-gray-700 sm:text-2xl dark:text-gray-200 capitalize">{e.attributes.name}</h2>
+                    <div key={e.id} className="flex flex-col items-center mx-5 space-y-1">
+                        <h2 key={e.id} className="text-lg font-medium text-gray-700 sm:text-2xl dark:text-gray-200 capitalize">{e.attributes.name}</h2>
                     </div>
                 </div>
 
-                <h2 className="text-2xl font-semibold text-gray-500 sm:text-4xl dark:text-gray-300 overflow-hidden">${e.attributes.price}</h2>
+                <h2 key={e.id} className="text-2xl font-semibold text-gray-500 sm:text-4xl dark:text-gray-300 overflow-hidden">${e.attributes.price}</h2>
             </div>
                 )
             })}

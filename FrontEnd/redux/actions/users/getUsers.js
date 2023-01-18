@@ -8,7 +8,7 @@ export const getUsers = () => (dispatch) => {
 };
 
 export const getUserByEmail = (email) => (dispatch) => {
-    axios(`http://plankton-app-jy8jr.ondigitalocean.app/api/users?populate=*&filters[email][$containsi]=` +
+    axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/users?populate=*&filters[email][$containsi]=` +
     email)
       .then((res) => {
         dispatch(getUserEmail(res.data));
