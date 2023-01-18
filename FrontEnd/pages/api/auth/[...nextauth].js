@@ -23,7 +23,7 @@ export default NextAuth({
         //hacer validacion con la base de datos
         try {
           const { data: users } = await axios.post(
-            `http://localhost:1337/api/auth/local?populate=*`,
+            `https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local?populate=*`,
             {
               identifier: credentials.email,
               password: credentials.password,
