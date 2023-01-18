@@ -23,7 +23,7 @@ export default NextAuth({
         //hacer validacion con la base de datos
         try {
           const { data: users } = await axios.post(
-            `http://localhost:1337/api/auth/local?populate=*`,
+            `http://localhost:1336/api/auth/local?populate=*`,
             {
               identifier: credentials.email,
               password: credentials.password,
