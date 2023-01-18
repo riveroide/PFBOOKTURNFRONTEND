@@ -56,6 +56,7 @@ const Profile = () => {
 
   const handleClick = async (e) => {
     await dispatch(display(e.target.title))
+    .then(console.log("holu"))
   }
   const Menus = [
     // {
@@ -133,10 +134,11 @@ const Profile = () => {
                 title={Menu.title}
                 onClick={(e) => handleClick(e)}
               >
-                <img src={Menu.src} title={Menu.title}/>
+                <img src={Menu.src} key={index} title={Menu.title}/>
                 <span
                   className={`${!open && "hidden"} origin-left duration-200`}
                   title={Menu.title}
+                  key={index}
                 >
                   {Menu.title}
                 </span>
@@ -162,6 +164,7 @@ const Profile = () => {
                   address={e.attributes.address} 
                   telephone={e.attributes.telephone} 
                   id={e.id}
+                  key={e.id}
                 />
               ) 
              })}

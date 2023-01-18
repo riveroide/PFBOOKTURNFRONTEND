@@ -1,4 +1,5 @@
 import { getCsrfToken, signIn } from "next-auth/react";
+import Link from "next/link";
 
 export default function SignIn({ csrfToken }) {
   return (
@@ -91,7 +92,7 @@ export default function SignIn({ csrfToken }) {
               o sino también podés
             </p>
 
-            <a
+            <Link
               href="/" onClick={()=> signIn(GoogleProvider)}
               className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
@@ -115,15 +116,15 @@ export default function SignIn({ csrfToken }) {
               </svg>
 
               <span className="mx-2">Entrar con Google</span>
-            </a>
+            </Link>
 
             <div className="mt-6 text-center ">
-              <a
+              <Link
                 href="/client/login/createform"
                 className="text-sm text-blue-500 hover:underline dark:text-blue-400"
               >
                 No tenés cuenta? Creá la tuya haciendo click aquí
-              </a>
+              </Link>
             </div>
           </div>
         </form>
