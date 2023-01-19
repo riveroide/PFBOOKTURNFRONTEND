@@ -29,7 +29,7 @@ export default NextAuth({
               password: credentials.password,
             }
           )
-          const { data } = await axios.get(`http://localhost:1337/api/users/${users.user.id}?populate=*`, { identifier: credentials.identifier, password: credentials.password })
+          const { data } = await axios.get(`https://plankton-app-jy8jr.ondigitalocean.app/api/users/${users.user.id}?populate=*`, { identifier: credentials.identifier, password: credentials.password })
           console.log(users)
           if (users){
             return {
