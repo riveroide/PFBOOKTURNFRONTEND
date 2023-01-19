@@ -40,14 +40,14 @@ export async function getServerSideProps(context){
   //si no hay sesion iniciada redirige al login
   const session = await getSession(context)
   
-    // if(!session) {
-    //   return {
-    //     redirect: {
-    //       destination: "/client/login",
-    //       permanent: false
-    //     },
-    //   }
-    // }
+    if(!session) {
+      return {
+        redirect: {
+          destination: "/client/login",
+          permanent: false
+        },
+      }
+    }
     //si el usuario no tiene el mail del admin redirige al inicio
     if(session?.user.role !== "Admin")  {
       return {
