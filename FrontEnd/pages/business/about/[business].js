@@ -10,6 +10,7 @@ import ReviewInput from '../../../components/reviewInput/reviewInput';
 import { useSession } from 'next-auth/react';
 import { getClient, getClientByEmail } from '../../../redux/actions/clients/getClients';
 import { getRatingFromClientAndBusiness } from '../../../redux/actions/Rating/getRating';
+import {getBookingFromBusinessAndClientId} from "../../../redux/actions/Bookings/getBookings"
 
 
 
@@ -27,7 +28,8 @@ const Business = ({ id }) => {
       dispatch(getBusinessById(id))
       dispatch(getClientByEmail(session?.user.email))
       dispatch(getRatingFromClientAndBusiness(clientId.id, id))
-      dispatch(getClient())
+      // dispatch(getClient())
+      dispatch(getBookingFromBusinessAndClientId(id, clientId.id))
       setLoading(false)
     }
   }, [dispatch])

@@ -18,7 +18,8 @@ import {
 
 const persistConfig = {
   key: "root",
-  storage
+  storage,
+  blacklist: ["ratings"]
 }
 
 const reducer = combineReducers({
