@@ -72,7 +72,7 @@ export default NextAuth({
         session.role = token.role;
       }
       return session;
-    },
+    }
   },
     secret: "test",
   encription: true,
