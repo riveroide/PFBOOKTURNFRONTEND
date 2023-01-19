@@ -96,7 +96,7 @@ export default function CardResult({ name, services, image, id, categories, sess
           <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
             {categories?.map((e) => {
               return (
-                <p className="text-sm text-blue-500 uppercase">
+                <p key={e.id} className="text-sm text-blue-500 uppercase">
                   {" "}
                   {e.attributes.name}{" "}
                 </p>
@@ -118,12 +118,12 @@ export default function CardResult({ name, services, image, id, categories, sess
 
             {arrServices?.map((e) => {
               return (
-                <div className="flex flex-row justify-between w-2/3 font-cool_g tracking-widest">
-                  <p className="mt-3 text-sm text-gray-500 md:text-xl underline capitalize">
+                <div key={e.id} className="flex flex-row justify-between w-2/3 font-cool_g tracking-widest">
+                  <p key={e.id} className="mt-3 text-sm text-gray-500 md:text-xl underline capitalize">
                     {/* dark:text-gray-300*/}
                     {e.attributes.name}
                   </p>
-                  <p className="mt-3 text-sm text-blue-500 md:text-xl ">
+                  <p key={e.id} className="mt-3 text-sm text-blue-500 md:text-xl ">
                     {" "}
                     ${e.attributes.price}{" "}
                   </p>

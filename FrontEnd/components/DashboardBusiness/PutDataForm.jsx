@@ -18,6 +18,10 @@ const PutDataForm = () => {
     closehour: AccData.closehour,
   });
 
+  const hours = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23, 24,
+  ];
   const handlerClick = (e) => {
     e.preventDefault();
     setDisabled(!disabled);
@@ -131,16 +135,28 @@ const PutDataForm = () => {
               Hora de Apertura
             </label>
             <div class="relative">
-              <input
-                type="number"
-                min="0"
-                max="24"
+              <select
                 disabled={disabled}
                 onChange={(e) => handleChange(e)}
-                value={putData.openhour}
                 name="openhour"
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              />
+              >
+                <option selected disabled hidden>
+                  {putData.openhour}
+                </option>
+                {hours.map((e) => {
+                  return <option key={e.id} value={e}>{e}</option>;
+                })}
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  class="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
             </div>
           </div>
           <div class="w-full md:w-3/6 px-3 mb-6 md:mb-0">

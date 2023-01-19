@@ -23,19 +23,21 @@ export default NextAuth({
         //hacer validacion con la base de datos
         try {
           const { data: users } = await axios.post(
-            `http://localhost:1337/api/auth/local?populate=*`,
+            `https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local?populate=*`,
             {
               identifier: credentials.email,
               password: credentials.password,
             }
           )
+          const { data } = await axios.get(`https://plankton-app-jy8jr.ondigitalocean.app/api/users/${users.user.id}?populate=*`, { identifier: credentials.identifier, password: credentials.password })
           console.log(users)
           if (users){
             return {
                 id: users.user.id,
                 token: users.jwt,
                 email: users.user.email,
-                name: users.user.username   
+                name: users.user.username,
+                 role: data.role.name
               }
           }
             
@@ -58,6 +60,7 @@ export default NextAuth({
         token.id = user.id;
         token.name = user.name;
         token.password = user.password;
+        token.role = user.role;
       }
       return token;
     },
@@ -66,10 +69,11 @@ export default NextAuth({
         session.id = token.id;
         session.name = token.name;
         session.password = token.password;
+        session.role = token.role;
       }
       return session;
     },
   },
-  secret: "test",
+    secret: "test",
   encription: true,
 });

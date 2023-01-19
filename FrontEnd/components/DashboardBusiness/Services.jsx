@@ -79,15 +79,15 @@ const Services = () => {
       >
         {data.map((s) => {
           return (
-            <div class="flex flex-wrap pl-5 mb-3">
-              <div class="w-full md:w-2/4 px-3 mb-3 md:mb-0">
-                <label
+            <div key={s.id} class="flex flex-wrap pl-5 mb-3">
+              <div key={s.id} class="w-full md:w-2/4 px-3 mb-3 md:mb-0">
+                <label key={s.id}
                   class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
                   for="grid-first-name"
                 >
                   Servicio
                 </label>
-                <input
+                <input key={s.id}
                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   type="text"
                   name="name"
@@ -97,14 +97,14 @@ const Services = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </div>
-              <div class="w-full md:w-1/4 px-3 mb-3">
-                <label
+              <div key={s.id} class="w-full md:w-1/4 px-3 mb-3">
+                <label key={s.id}
                   class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
                   for="grid-last-name"
                 >
                   Precio
                 </label>
-                <input
+                <input key={s.id}
                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="text"
                   name="price"
@@ -114,15 +114,17 @@ const Services = () => {
                   onChange={(e) => handleChange(e)}
                 />
               </div>
-              <div class="w-full md:w-1/4 px-3 mb-3 form-check form-switch">
-                <label
+              <div key={s.id} class="w-full md:w-1/4 px-3 mb-3 form-check form-switch">
+                <label key={s.id}
                   class="block pl-2 uppercase mb-3 tracking-wide text-gray-700 text-xl font-bold "
                   for="grid-last-name"
                 >
                   Activo
                 </label>
-                <div className="fles items-center">
+                <div key={s.id}
+                className="fles items-center">
                   <Switch
+                  key={s.id}
                     name="active"
                     id={s.index}
                     index={s.index}

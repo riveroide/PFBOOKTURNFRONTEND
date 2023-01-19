@@ -33,3 +33,4 @@ export const getBookingFromBusinessAndClientId =
       .then((res) => dispatch(getBookingByBusinessAndClient(res.data.data)))
       .catch((err) => console.log(err));
   };
+

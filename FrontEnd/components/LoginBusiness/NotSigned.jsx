@@ -13,7 +13,7 @@ const NotSigned = () => {
       Ingresar/Login
     </button>
     <br></br>
-    <Link href="/client/login/createform">
+    <Link href="/business/login/createform">
       <button className="overflow-hidden"> O hace click aquí para registrarte</button>
     </Link>
     <p className="overflow-hidden my-20">(info resumida sobre facilidades para empresas)</p>
