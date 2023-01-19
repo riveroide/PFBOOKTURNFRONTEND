@@ -6,7 +6,7 @@ import {
 } from "redux/reducers/bookingsSlice";
 
 export const getBookings = () => (dispatch) => {
-  axios(`http://localhost:1337/api/booking`)
+  axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/booking`)
     .then((res) => {
       dispatch(getAllBookings(res.data));
     })
@@ -14,21 +14,21 @@ export const getBookings = () => (dispatch) => {
 };
 
 export const getBookingByBusinessId = (id) => (dispatch) => {
-  axios(`http://localhost:1337/api/booking/${id}`)
+  axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/booking/${id}`)
     .then((res) => dispatch(getBookingId(res.data)))
     .catch((error) => console.log(error));
 };
 
 export const getServicesById = (data) => (dispatch) => {
   axios(
-    `http://localhost:1337/api/services?populate=*&filters[email][$contains]=${email}`
+    `https://plankton-app-jy8jr.ondigitalocean.app/api/services?populate=*&filters[email][$contains]=${email}`
   );
 };
 
 export const getBookingFromBusinessAndClientId =
   (businessId, clientId) => (dispatch) => {
     axios(
-      `http://localhost:1337/api/bookings?filters[businesses][id][$eq]=${businessId}&filters[client][id][$eq]=${clientId}`
+      `https://plankton-app-jy8jr.ondigitalocean.app/api/bookings?filters[businesses][id][$eq]=${businessId}&filters[client][id][$eq]=${clientId}`
     )
       .then((res) => dispatch(getBookingByBusinessAndClient(res.data.data)))
       .catch((err) => console.log(err));
