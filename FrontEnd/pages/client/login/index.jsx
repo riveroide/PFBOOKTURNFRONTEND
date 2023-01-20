@@ -6,7 +6,7 @@ import NavBar2 from "../../../components/Navbar/Navbar";
 
 const Login = () => {
   const { data: session } = useSession();
-  console.log(session)
+  console.log(session, "soy session")
   if (session) {
     return (
       <div>

@@ -27,31 +27,36 @@ export default NextAuth({
           //   identifier: credentials.email,
           //   password: credentials.password
           // })
-          const res = await fetch(
-            "https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local",
-            {
-              method: "POST",
-              body: JSON.stringify(credentials),
-              headers: { "Content-Type": "application/json" },
-            }
-          );
-          const user = await res.json();
+          // si existe el email
+          // comprar si la password es la misma que tiene el user
+          const user = await axios.get("https://plankton-app-jy8jr.ondigitalocean.app/api/users?populate=*&filters[email][$eq]=" + credentials.email)
 
-          if (res.ok && user) {
-            console.log(user, "soy user pos post");
-            const data = await axios.get(
-              `http://localhost:1337/api/users/${user.user.id}?populate=*`
-            );
+          // const res = await fetch(
+          //   "https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local",
+          //   {
+          //     method: "POST",
+          //     body: JSON.stringify(credentials),
+          //     headers: { "Content-Type": "application/json" },
+          //   }
+          // );
+          // const user = await res.json();
+
+          // if (res.ok && user) {
+          //   console.log(user, "soy user pos post");
+          //   const data = await axios.get(
+          //     `http://localhost:1337/api/users/${user.user.id}?populate=*`
+          //   );
 
             if (user) {
+              console.log(user, "soy user")
               return {
-                id: user.user.id,
-                token: user.jwt,
-                email: user.user.email,
-                name: user.user.username,
-                role: data.role.name,
+                id: user.data[0].id,
+                // token: user.jwt,
+                email: user.data[0].email,
+                name: user.data[0].username,
+                // role: data.role.name,
               };
-            }
+            
           }
         } catch (error) {
           return null;
@@ -69,8 +74,8 @@ export default NextAuth({
       if (user) {
         token.id = user.id;
         token.name = user.name;
-        token.password = user.password;
-        token.role = user.role;
+        // token.password = user.password;
+        // token.role = user.role;
       }
       return token;
     },
@@ -78,8 +83,8 @@ export default NextAuth({
       if (token) {
         session.id = token.id;
         session.name = token.name;
-        session.password = token.password;
-        session.role = token.role;
+        // session.password = user.password;
+        // session.role = user.role;
       }
       return session;
     },
