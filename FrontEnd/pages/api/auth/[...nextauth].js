@@ -2,6 +2,7 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
+import { loginUser } from "../../../redux/actions/users/postUser";
 
 export default NextAuth({
   providers: [
@@ -19,32 +20,40 @@ export default NextAuth({
           placeholder: "******",
         },
       },
-      authorize: async (credentials) => {
+      authorize: async (credentials, req) => {
         //hacer validacion con la base de datos
-        console.log("antes del try")
         try {
-          const users = await axios.post(
+          // const {data: user} = await axios.post(`https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local`,{
+          //   identifier: credentials.email,
+          //   password: credentials.password
+          // })
+          const res = await fetch(
             "https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local",
             {
-              identifier: credentials.email,
-              password: credentials.password,
-            },
-          ).then(res => res.data)
-          
-          const data = await axios.get(`http://localhost:1337/api/users/${users.user.id}?populate=*`)
-          
-          if (users){
-            return {
-                id: users.user.id,
-                token: users.jwt,
-                email: users.user.email,
-                name: users.user.username,
-                 role: data.role.name
-              }
-          }       
+              method: "POST",
+              body: JSON.stringify(credentials),
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          const user = await res.json();
+
+          if (res.ok && user) {
+            console.log(user, "soy user pos post");
+            const data = await axios.get(
+              `http://localhost:1337/api/users/${user.user.id}?populate=*`
+            );
+
+            if (user) {
+              return {
+                id: user.user.id,
+                token: user.jwt,
+                email: user.user.email,
+                name: user.user.username,
+                role: data.role.name,
+              };
+            }
           }
-        catch (error) {
-          console.log(error, "error")
+        } catch (error) {
           return null;
         }
       },
@@ -75,6 +84,6 @@ export default NextAuth({
       return session;
     },
   },
-   secret: "test",
+  secret: "test",
   encription: true,
 });
