@@ -78,7 +78,7 @@ export const ReviewInput = ({ client, businessId }) => {
   }
 
   return (
-    <div className="w-full sm:w-3/4 lg:w-1/3 md:w-1/2 my-8">
+    <div className="w-full px-2 sm:px-0 lg:px-0 md:px-0 sm:w-3/4 lg:w-1/3 md:w-1/2 my-8">
       {
         !booking.length ? <h1 className="text-center text-2xl text-gray-500 mb-4"> Necesitas haber recibido un turno al menos una vez para dejar tu reseña </h1> : null 
       }
