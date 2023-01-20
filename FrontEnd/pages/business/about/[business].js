@@ -9,8 +9,9 @@ import NabvarResults from '../../../components/NavbarResults/NavbarResults';
 import ReviewInput from '../../../components/reviewInput/reviewInput';
 import { useSession } from 'next-auth/react';
 import { getClient, getClientByEmail } from '../../../redux/actions/clients/getClients';
-import { getRatingFromClientAndBusiness } from '../../../redux/actions/Rating/getRating';
+import { getRatingBusiness, getRatingFromClientAndBusiness } from '../../../redux/actions/Rating/getRating';
 import {getBookingFromBusinessAndClientId} from "../../../redux/actions/Bookings/getBookings"
+import ReviewsSection from '../../../components/ReviewsSection/ReviewsSection';
 
 
 
@@ -27,6 +28,7 @@ const Business = ({ id }) => {
     if (id) {
       dispatch(getBusinessById(id))
       dispatch(getClientByEmail(session?.user.email))
+      dispatch(getRatingBusiness(id))
       dispatch(getRatingFromClientAndBusiness(clientId.id, id))
       // dispatch(getClient())
       dispatch(getBookingFromBusinessAndClientId(id, clientId.id))
@@ -66,6 +68,9 @@ const Business = ({ id }) => {
         </div>
         <div className='flex justify-center'>
           <ReviewInput client={clientId} businessId={id} />
+        </div>
+        <div className='flex justify-center'>
+          <ReviewsSection />
         </div>
       </div>
     )
