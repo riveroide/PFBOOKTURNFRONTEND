@@ -10,7 +10,7 @@ import { getFavourites } from 'redux/actions/clients/getFavourites'
 import { display } from 'redux/actions/clients/displayOption'
 import FavCard from '../../../components/Favourites/FavCard'
 import Loader from '../../../components/Loader/Loader'
-
+import { getSession } from 'next-auth/react'
 const Profile = () => {
   const dispatch = useDispatch()
   const {data: session} = useSession()
@@ -183,5 +183,32 @@ const Profile = () => {
     )
   }
 }
+
+export async function getServerSideProps(context){
+  //si no hay sesion iniciada redirige al login
+  const session = await getSession(context)
+
+  if(session.status === "unauthenticated") {
+    return {
+      redirect: {
+        destination: "/client/login",
+        permanent: false
+      },
+    }
+  }
+  
+    if(!session) {
+      return {
+        redirect: {
+          destination: "/client/login",
+          permanent: false
+        },
+      }
+    }
+  
+    return {
+      props: { session }
+    }
+  };
 
 export default Profile

@@ -23,6 +23,7 @@ export default NextAuth({
       authorize: async (credentials, req) => {
         //hacer validacion con la base de datos
         try {
+
           // const {data: user} = await axios.post(`https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local`,{
           //   identifier: credentials.email,
           //   password: credentials.password
@@ -56,6 +57,7 @@ export default NextAuth({
                 name: user.data[0].username,
                 // role: data.role.name,
               };
+
             
           }
         } catch (error) {
@@ -87,8 +89,9 @@ export default NextAuth({
         // session.role = user.role;
       }
       return session;
-    },
+    }
   },
-  secret: "test",
+
+    secret: "test",
   encription: true,
 });

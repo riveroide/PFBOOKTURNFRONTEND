@@ -15,6 +15,8 @@ const BookingService = () => {
     services: [],
     dateinfo: "",
   });
+  
+
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -35,6 +37,7 @@ const BookingService = () => {
           stepnum={stepnum}
           setbookingPost={setbookingPost}
           bookingPost={bookingPost}
+       
         />
       </div>
       <div className="flex justify-around">

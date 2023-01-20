@@ -5,7 +5,7 @@ import { add , format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useSelector } from "react-redux";
 
-const Calendar = ({setbookingPost , bookingPost}) => {
+const Calendar = ({setbookingPost , bookingPost , finaldata , setfinaldata }) => {
   const { businessId: business } = useSelector(state => state.business)
   const { openhour, closehour} = business.data?.attributes
   const [date, setDate] = useState({
@@ -39,13 +39,21 @@ if(e.target.checked){
     ...bookingPost,
     dateinfo: e.target.value
   })
+  setfinaldata({
+    ...finaldata,
+    dateinfo:e.target.value
+  })
 }else {
   setbookingPost({
     ...bookingPost,
     dateinfo:""
   })
+  setfinaldata({
+    ...finaldata,
+    dateinfo:""
+  })
 }
-
+console.log(finaldata, "soy final data")
 }
 
   return (

@@ -4,6 +4,7 @@ import clients from "../reducers/clientsSlice"
 import bookings from "../reducers/bookingsSlice";
 import categories from "../reducers/categoriesSlice"
 import users from "../reducers/usersSlice";
+import ratings from "../reducers/ratingsSlice"
 import storage from "redux-persist/lib/storage"
 import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
@@ -17,7 +18,8 @@ import {
 
 const persistConfig = {
   key: "root",
-  storage
+  storage,
+  blacklist: ["ratings"]
 }
 
 const reducer = combineReducers({
@@ -25,7 +27,8 @@ const reducer = combineReducers({
   clients,
   bookings,
   categories,
-  users
+  users,
+  ratings
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

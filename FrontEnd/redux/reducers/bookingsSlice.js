@@ -4,7 +4,8 @@ export const bookingsSlice = createSlice({
     name: "bookings",
     initialState: {
         bookingsList: [],
-        bookingId: {}
+        bookingId: {},
+        bookingByBusinessAndClient: []
     },
     reducers: {
         getAllBookings: (state, action) => {
@@ -12,10 +13,13 @@ export const bookingsSlice = createSlice({
         },
         getBookingId: (state, action) => {
             state.bookingId = action.payload
+        },
+        getBookingByBusinessAndClient: (state, action) => {
+            state.bookingByBusinessAndClient = action.payload
         }
     }
 });
 
-export const { getAllBookings, getBookingId } = bookingsSlice.actions;
+export const { getAllBookings, getBookingId, getBookingByBusinessAndClient } = bookingsSlice.actions;
 
 export default bookingsSlice.reducer
