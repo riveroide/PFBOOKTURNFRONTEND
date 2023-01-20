@@ -5,3 +5,12 @@ export const postUser = (data) => () => {
     .then(r => console.log(r.data))
     .catch(error => console.log(error))
 };
+
+
+export async function signIn({ email, password }) {
+  const res = await axios.post(`https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local`, {
+    identifier: email,
+    password,
+  });
+  return res.data;
+}

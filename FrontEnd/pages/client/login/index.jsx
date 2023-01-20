@@ -6,6 +6,7 @@ import NavBar2 from "../../../components/Navbar/Navbar";
 
 const Login = () => {
   const { data: session } = useSession();
+
   if (session?.id.length === 21){
     console.log ("es de google")
     // try {
@@ -33,6 +34,7 @@ const Login = () => {
   } 
 
   console.log(session, "session entera")
+
   if (session) {
     return (
       <div>
