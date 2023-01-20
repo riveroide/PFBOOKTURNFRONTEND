@@ -14,23 +14,25 @@ export default NextAuth({
           placeholder: "tu email",
         },
         password: {
-          label: "Password",
+          label: "Contraseña",
           type: "password",
-          placeholder: "contraseña",
+          placeholder: "******",
         },
       },
-      authorize: async (credentials,req) => {
+      authorize: async (credentials) => {
         //hacer validacion con la base de datos
+        console.log("antes del try")
         try {
-          const { data: users } = await axios.post(
-            `https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local?populate=*`,
+          const users = await axios.post(
+            "https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local",
             {
               identifier: credentials.email,
               password: credentials.password,
-            }
-          )
-          const { data } = await axios.get(`http://localhost:1337/api/users/${users.user.id}?populate=*`, { identifier: credentials.identifier, password: credentials.password })
-          console.log(users)
+            },
+          ).then(res => res.data)
+          
+          const data = await axios.get(`http://localhost:1337/api/users/${users.user.id}?populate=*`)
+          
           if (users){
             return {
                 id: users.user.id,
@@ -39,11 +41,10 @@ export default NextAuth({
                 name: users.user.username,
                  role: data.role.name
               }
-          }
-            
-            
+          }       
           }
         catch (error) {
+          console.log(error, "error")
           return null;
         }
       },
