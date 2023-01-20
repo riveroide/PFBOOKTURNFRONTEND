@@ -150,6 +150,15 @@ const dashboard = () => {
 export async function getServerSideProps(context){
   //si no hay sesion iniciada redirige al login
   const session = await getSession(context)
+
+  if(session.status === "unauthenticated") {
+    return {
+      redirect: {
+        destination: "/client/login",
+        permanent: false
+      },
+    }
+  }
   
     if(!session) {
       return {
