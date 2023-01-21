@@ -30,6 +30,7 @@ const dashboard = () => {
       // fetchBusinessEmail()
       async function fetchData(){
         await dispatch(getBusinessData(2))
+
       }
       fetchData()
     } catch (error) {
@@ -77,11 +78,11 @@ const dashboard = () => {
 
   if (hydrated && AccData) {
     return (
-      <div className="flex scroll-smooth min-h-fit ">
+      <div className="flex scroll-smooth min-h-screen ">
         <div
           className={` ${
             open ? "w-72" : "w-20 "
-          } bg-black min-h-full p-5 pt-8 relative duration-500`}
+          } bg-gray-800  min-h-full p-5 pt-8 relative duration-500`}
         >
           <img
             src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673587887/Bookturn/src/control_xi6vpx.png"
