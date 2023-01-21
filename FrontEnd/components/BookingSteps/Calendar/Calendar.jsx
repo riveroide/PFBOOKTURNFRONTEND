@@ -62,10 +62,14 @@ console.log(finaldata, "soy final data")
         <ReactCalendar
         className="REACT-CALENDAR p-2"
         minDate={new Date()}
-          onClickDay={(date) =>
+        onClickDay={(date) =>
             setDate((prev) => ({ ...prev, justDate: date }))
           }
-          
+          tileDisabled={({ date }) =>(
+            date.getDay() === 0
+          )
+            
+          }
           view="month"
           locale="es-ES"
         />
