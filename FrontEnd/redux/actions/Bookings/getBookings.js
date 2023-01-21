@@ -3,6 +3,7 @@ import {
   getAllBookings,
   getBookingByBusinessAndClient,
   getBookingId,
+  getBookingIncomplete,
 } from "redux/reducers/bookingsSlice";
 
 export const getBookings = () => (dispatch) => {
@@ -34,3 +35,6 @@ export const getBookingFromBusinessAndClientId =
       .catch((err) => console.log(err));
   };
 
+export const getBookingPending = (payload) =>(dispatch) =>{
+  dispatch(getBookingIncomplete(payload))
+}

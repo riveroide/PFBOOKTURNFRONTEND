@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import StepsNav from "./StepsNav";
 import StepsContents from "./StepsContents";
 import { useDispatch, useSelector } from "react-redux";
 import { postBooking } from "../../redux/actions/Bookings/postBooking";
+import { getBookingPending} from "../../redux/actions/Bookings/getBookings"
 
 const BookingService = () => {
   const { clientAcc: client } = useSelector((state) => state.clients);
   const { businessId: business } = useSelector((state) => state.business);
+  const { bookingPending: bukin } = useSelector((state) => state.bookings)
   const [stepnum, setstepnum] = useState(1);
   const [bookingPost, setbookingPost] = useState({
     businesses: "",
@@ -16,15 +18,23 @@ const BookingService = () => {
     dateinfo: "",
   });
   
+  
 
   const router = useRouter();
   const dispatch = useDispatch();
 
-  console.log(bookingPost, "a despachar");
+  useEffect(() => {
+    if(stepnum ===1)
+   dispatch(getBookingPending(bookingPost.services))
+  }, [bookingPost])
+  
+  
+  console.log(bukin, "soy del redux");
 
   async function handleSubmit() {
     dispatch(postBooking(bookingPost));
-    alert("posteado");
+    alert("reserva creada");
+    router.push("/client/profile")
   }
 
   return (
