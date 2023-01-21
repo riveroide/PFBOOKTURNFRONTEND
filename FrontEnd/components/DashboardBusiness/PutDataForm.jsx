@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { putBusiness } from "../../redux/actions/business/putBusiness";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
+import { getBusinessData } from "../../redux/actions/business/getBusiness";
 
 const PutDataForm = () => {
   const dispatch = useDispatch();
@@ -18,10 +19,21 @@ const PutDataForm = () => {
     closehour: AccData.closehour,
   });
 
+  useEffect(()=>{
+    async function fetchData(){
+      await dispatch(getBusinessData(2))
+    }
+    fetchData()
+    
+  },[dispatch,disabled])
+
+
   const hours = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     21, 22, 23, 24,
   ];
+
+
   const handlerClick = (e) => {
     e.preventDefault();
     setDisabled(!disabled);
@@ -42,7 +54,7 @@ const PutDataForm = () => {
       });
   };
   return (
-    <div className="flex flex-col w-full  items-center justify-center font-cool_p tracking-wide">
+    <div className="flex flex-col w-full h-fit items-center justify-center font-cool_p tracking-wide">
       <div class="w-full max-w-lg flex justify-center mb-6">
         <h1 className="text-5xl text-gray-700 font-semibold">
           DATOS DE LA EMPRESA

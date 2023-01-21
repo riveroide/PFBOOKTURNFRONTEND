@@ -1,30 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postServices } from "../../redux/actions/services/postServices";
 import { useSelector } from "react-redux";
+import { getBusinessData } from "../../redux/actions/business/getBusiness";
+import { ConstructionOutlined } from "@mui/icons-material";
 
-export const ModalPostService = () => {
+export const ModalPostService = ({ index, setData }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const { BusinessAcc } = useSelector((state) => state.business);
-  const [data, setData] = useState({
+  const [data, setDataC] = useState({
     name: "",
     price: 0,
-    businesses: BusinessAcc.id
+    businesses: BusinessAcc.id,
   });
+
+  const services = BusinessAcc.attributes.services.data;
+  const serviData = services.map((s) => {
+    return {
+      index: index++,
+      id: s.id,
+      name: s.attributes.name,
+      price: s.attributes.price,
+      active: s.attributes.active,
+    };
+  });
+  useEffect(() => {
+    dispatch(getBusinessData(2));
+    
+  }, [dispatch, showModal]);
 
   const handlerChange = (e) => {
     e.preventDefault();
-    setData({
+    setDataC({
       ...data,
       [e.target.name]: e.target.value,
     });
+    // setData(serviData)
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data)
-    dispatch(postServices(data));
+    try {
+      await dispatch(postServices(data));
+    } catch (error) {console.log(error.message)}
+
+    // const services = BusinessAcc.attributes.services.data;
+    // const serviData = services.map((s) => {
+    //   return {
+    //     index: index++,
+    //     id: s.id,
+    //     name: s.attributes.name,
+    //     price: s.attributes.price,
+    //     active: s.attributes.active,
+    //   };
+    // });
+    // console.log(serviData);
+    setData([...serviData,{...data, index:index++}]);
+    
     setShowModal(false);
   };
 
@@ -50,38 +83,38 @@ export const ModalPostService = () => {
                   </h3>
                 </div>
                 {/*body*/}
-                  <div className="relative p-6 flex flex-wrap">
-                    <div class="w-full md:w-2/4 px-3 mb-3 md:mb-0">
-                      <label
-                        class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
-                        for="grid-first-name"
-                      >
-                        Servicio
-                      </label>
-                      <input
-                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                        type="text"
-                        name="name"
-                        value={data.name}
-                        onChange={(e) => handlerChange(e)}
-                      />
-                    </div>
-                    <div class="w-full md:w-2/4 px-3 mb-3">
-                      <label
-                        class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
-                        for="grid-last-name"
-                      >
-                        Precio
-                      </label>
-                      <input
-                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        type="number"
-                        name="price"
-                        value={data.price}
-                        onChange={(e) => handlerChange(e)}
-                      />
-                    </div>
+                <div className="relative p-6 flex flex-wrap">
+                  <div class="w-full md:w-2/4 px-3 mb-3 md:mb-0">
+                    <label
+                      class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
+                      for="grid-first-name"
+                    >
+                      Servicio
+                    </label>
+                    <input
+                      class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                      type="text"
+                      name="name"
+                      value={data.name}
+                      onChange={(e) => handlerChange(e)}
+                    />
                   </div>
+                  <div class="w-full md:w-2/4 px-3 mb-3">
+                    <label
+                      class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
+                      for="grid-last-name"
+                    >
+                      Precio
+                    </label>
+                    <input
+                      class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="number"
+                      name="price"
+                      value={data.price}
+                      onChange={(e) => handlerChange(e)}
+                    />
+                  </div>
+                </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
