@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 //actions
 import { getClient, getClientByEmail } from 'redux/actions/clients/getClients';
 import { getFavourites } from 'redux/actions/clients/getFavourites'
+import { getBooked } from 'redux/actions/clients/getBooked'
 import { display } from 'redux/actions/clients/displayOption'
 import FavCard from '../../../components/Favourites/FavCard'
+import BookedList from '../../../components/BookedList/BookedList'
 import Loader from '../../../components/Loader/Loader'
-import { getSession } from 'next-auth/react'
+
 const Profile = () => {
   const dispatch = useDispatch()
   const {data: session} = useSession()
@@ -19,11 +21,13 @@ const Profile = () => {
   const {displayOption} = useSelector((state) => state.clients)
   const {clientAcc} = useSelector((state) => state.clients)
   const {favouritesList} = useSelector((state) => state.clients)
+  const {bookedList} = useSelector((state) => state.clients)
   
   const [open, setOpen] = useState(true)
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
+  console.log(bookedList)
 
   useEffect(() => {
     setLoading(true)
@@ -42,6 +46,10 @@ const Profile = () => {
         await dispatch(getFavourites(clientAcc.id))
       }
       fetchFavList()
+      async function fetchBookList(){
+        await dispatch(getBooked(clientAcc.id))
+      }
+      fetchBookList()
       dispatch(display(''))
       setLoading(false)
     }
@@ -56,8 +64,8 @@ const Profile = () => {
 
   const handleClick = async (e) => {
     await dispatch(display(e.target.title))
-    .then(console.log("holu"))
   }
+
   const Menus = [
     // {
     //   title: "Dashboard",
@@ -89,7 +97,7 @@ const Profile = () => {
   ];
   
   if(!loading && clientId){
-    const {nameComplete, bookings} = clientId.attributes
+    const {nameComplete} = clientId.attributes
     const favourites = favouritesList[0]?.attributes.businesses.data
     return (
       <div className="flex scroll-smooth">
@@ -153,7 +161,18 @@ const Profile = () => {
           ):displayOption === 'Inbox' ? (
             <h1>TUS MENSAJES</h1>
           ):displayOption === 'Tus turnos' ?(
-            <h1>ACA TU HISTORIAL DE TURNOS</h1>
+            <div>
+              <h1>ACA TU HISTORIAL DE TURNOS</h1>
+              {bookedList === undefined ?(
+                <h1>NO TENES TURNOS CAPO</h1>
+              ): (
+                <div>
+                  <h2>ACA TENES TUS TURNOS</h2>
+                  <BookedList props={bookedList}/>
+                </div>
+              )}
+            </div>
+            
           ):displayOption === 'Favoritos' ?(
             <div>
               <h1>LISTA DE FAVORITOS</h1>
@@ -183,32 +202,5 @@ const Profile = () => {
     )
   }
 }
-
-export async function getServerSideProps(context){
-  //si no hay sesion iniciada redirige al login
-  const session = await getSession(context)
-
-  if(session.status === "unauthenticated") {
-    return {
-      redirect: {
-        destination: "/client/login",
-        permanent: false
-      },
-    }
-  }
-  
-    if(!session) {
-      return {
-        redirect: {
-          destination: "/client/login",
-          permanent: false
-        },
-      }
-    }
-  
-    return {
-      props: { session }
-    }
-  };
 
 export default Profile
