@@ -1,6 +1,6 @@
 import React from "react";
 
-const DetailsBusiness = ({name, address, email, telephone, createdAt}) => {
+const DetailsBusiness = ({name, address, email, telephone, createdAt, rating}) => {
   return (
     <div>
       <section class="relative pt-24 pb-36 bg-white overflow-hidden font-cool_g tracking-widest">
@@ -13,6 +13,10 @@ const DetailsBusiness = ({name, address, email, telephone, createdAt}) => {
           <p class="mb-3 text-3xl md:text-5xl xl:text-6xl text-center font-bold font-heading tracking-px-n leading-none h-20 my-3">
             {name}
           </p>
+          <div className="flex justify-center items-end">
+          <p class="text-4xl mx-1 mb-4"> {rating} </p>
+          <span className="text-yellow-300 text-3xl mb-4"> &#9733;</span>
+          </div>
           <p class="mb-20 text-lg text-gray-600 text-center font-medium leading-normal md:max-w-lg mx-auto">
             Ofrece sus servicios en Bookturn desde: {createdAt}
           </p>
