@@ -5,11 +5,12 @@ import StepsContents from "./StepsContents";
 import { useDispatch, useSelector } from "react-redux";
 import { postBooking } from "../../redux/actions/Bookings/postBooking";
 import { getBookingPending} from "../../redux/actions/Bookings/getBookings"
+import { useSession } from "next-auth/react";
 
 const BookingService = () => {
   const { clientAcc: client } = useSelector((state) => state.clients);
   const { businessId: business } = useSelector((state) => state.business);
-  const { bookingPending: bukin } = useSelector((state) => state.bookings)
+  const { data: session } = useSession();
   const [stepnum, setstepnum] = useState(1);
   const [bookingPost, setbookingPost] = useState({
     businesses: "",
@@ -23,13 +24,10 @@ const BookingService = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if(stepnum ===1)
-   dispatch(getBookingPending(bookingPost.services))
-  }, [bookingPost])
+
   
-  
-  console.log(bukin, "soy del redux");
+  console.log(session, "soy session")
+  console.log(bookingPost, "soy el pedido");
 
   async function handleSubmit() {
     dispatch(postBooking(bookingPost));
