@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useSelector } from "react-redux";
-import PaginadoReviews from "../paginadoReviews/PaginadoReviews";
-import Review from "../Review/Review";
+import PaginadoReviews from "../PaginadoReviews/PaginadoReviews.jsx";
+import Review from "../Review";
 
 export const ReviewsSection = () => {
 

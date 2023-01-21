@@ -6,12 +6,12 @@ import ServiceList from '../../../components/DetailsBusiness/ServiceList';
 import BookingService from '../../../components/BookingSteps/BookingService';
 import Loader from '../../../components/Loader/Loader';
 import NabvarResults from '../../../components/NavbarResults/NavbarResults';
-import ReviewInput from '../../../components/reviewInput/reviewInput';
+import ReviewInput from '../../../components/Review/ReviewInput/ReviewInput.jsx';
 import { useSession } from 'next-auth/react';
 import { getClient, getClientByEmail } from '../../../redux/actions/clients/getClients';
 import { getRatingBusiness, getRatingFromClientAndBusiness } from '../../../redux/actions/Rating/getRating';
 import {getBookingFromBusinessAndClientId} from "../../../redux/actions/Bookings/getBookings"
-import ReviewsSection from '../../../components/ReviewsSection/ReviewsSection';
+import ReviewsSection from '../../../components/Review/ReviewsSection/ReviewsSection.jsx';
 
 
 
