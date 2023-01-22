@@ -51,7 +51,7 @@ export const ReviewInput = ({ client, businessId }) => {
       alert("Se publicó la reseña");
       router.reload(window.location.pathname)
     } else {
-      dispatch(putRating(rating[0].id, input))
+      dispatch(putRating(rating[0]?.id, input))
       setDisable(true)
       alert("Se actualizó el comentario")
     }
@@ -65,13 +65,13 @@ export const ReviewInput = ({ client, businessId }) => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteRating(rating[0].id))
+    dispatch(deleteRating(rating[0]?.id))
     setInput({
       score: 0,
       title: "",
       comment: "",
       business: parseInt(businessId),
-      client: parseInt(client.id),
+      client: parseInt(client?.id),
     })
     alert("Comentario eliminado")   
     router.reload(window.location.pathname)

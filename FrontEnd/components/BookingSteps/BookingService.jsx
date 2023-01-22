@@ -36,7 +36,7 @@ const BookingService = () => {
   }
 
   return (
-    <div key={business.id}>
+    <div key={business?.id}>
       <div>
         <StepsNav stepnum={stepnum} />
       </div>
@@ -68,8 +68,8 @@ const BookingService = () => {
               setstepnum(stepnum + 1);
               setbookingPost({
                 ...bookingPost,
-                client: client.id,
-                businesses: business.data.id,
+                client: client?.id,
+                businesses: business?.data.id,
               });
             } else {
               handleSubmit();
