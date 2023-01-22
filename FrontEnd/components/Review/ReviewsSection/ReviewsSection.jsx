@@ -30,7 +30,7 @@ return (
         {
             actualReview?.map(e => <Review score={e.attributes.score} title={e.attributes.title} comment={e.attributes.comment}/>)
         }
-        { ratings.length > 6 ? <PaginadoReviews paginado={paginado} reviewsPerPage={state.reviews} reviews={ratings.length} currentPage={state.page} /> : <></>}
+        { ratings?.length > 6 ? <PaginadoReviews paginado={paginado} reviewsPerPage={state.reviews} reviews={ratings?.length} currentPage={state.page} /> : <></>}
     </div>
 )
 }
