@@ -100,7 +100,7 @@ const Profile = () => {
     const {nameComplete} = clientId.attributes
     const favourites = favouritesList[0]?.attributes.businesses.data
     return (
-      <div className="flex scroll-smooth">
+      <div className="flex scroll-smooth ">
         <div
           className={` ${
             open ? "w-72" : "w-20 "
@@ -155,19 +155,23 @@ const Profile = () => {
           </ul>
           </div>
         </div>
-        <div className={`${open && "hidden"} h-screen xl:flex p-7 lg:flex md:flex w-full`}>
+        <div className={`${open && "hidden"} h-screen xl:flex p-7 lg:flex md:flex w-full justify-center`}>
           {displayOption === 'Dashboard' ? (
             <h1>DASHBOARD</h1>
           ):displayOption === 'Inbox' ? (
             <h1>TUS MENSAJES</h1>
           ):displayOption === 'Tus turnos' ?(
             <div>
-              <h1>ACA TU HISTORIAL DE TURNOS</h1>
-              {bookedList === undefined ?(
-                <h1>NO TENES TURNOS CAPO</h1>
+              <h1 className='font-cool_g text-4xl'>HISTORIAL DE TURNOS</h1>
+              {bookedList?.length === 0 ?(
+                <div>
+                  <h2 className='font-cool_p text-3xl'>Aun no tiene ningun turno agendado</h2>
+                  <Link href={'/results'}>
+                    <h2 className='font-cool_p text-2xl text-blue-600 hover:text-blue-500'>Ingresa aca para agendar tu primer turno!</h2>
+                  </Link>
+                </div>  
               ): (
                 <div>
-                  <h2>ACA TENES TUS TURNOS</h2>
                   <BookedList props={bookedList}/>
                 </div>
               )}
@@ -175,7 +179,7 @@ const Profile = () => {
             
           ):displayOption === 'Favoritos' ?(
             <div>
-              <h1>LISTA DE FAVORITOS</h1>
+              <h1 className='font-cool_g text-4xl'>LISTA DE FAVORITOS</h1>
               {favourites?.length && favourites?.map(e => {
               return(
                 <FavCard 
@@ -188,10 +192,10 @@ const Profile = () => {
               ) 
              })}
             </div>
-          ):displayOption === 'Settings' ?(
-            <h1>ACA SETTINGS DE USUARIO</h1>
+          ):displayOption === 'Configuracion' ?(
+            <h1 className='font-cool_g text-4xl'>ACA SETTINGS DE USUARIO</h1>
           ):(
-            <h1>BIENVENIDO A TU PERFIL</h1>
+            <h1 className='font-cool_g text-4xl'>BIENVENIDO A TU PERFIL</h1>
           )}
         </div>
       </div>
