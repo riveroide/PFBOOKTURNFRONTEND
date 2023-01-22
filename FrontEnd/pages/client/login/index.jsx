@@ -2,7 +2,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import axios from "axios";
 import Signed from "../../../components/LoginClient/Signed";
 import NotSigned from "../../../components/LoginClient/NotSigned";
-import NavBar2 from "../../../components/Navbar/Navbar";
+import NavBarClientLogin from "../../../components/Navbar/NavBarClientLogin";
 
 const Login = () => {
   const { data: session } = useSession();
@@ -38,15 +38,15 @@ const Login = () => {
   if (session) {
     return (
       <div>
-        <NavBar2/>
-      <Signed session={session}/>
+        <NavBarClientLogin/>
+        <Signed session={session}/>
       </div>
       
     );
   } else {
     return (
       <div>
-        <NavBar2/>
+        <NavBarClientLogin/>
         <NotSigned/>
       </div>
       
