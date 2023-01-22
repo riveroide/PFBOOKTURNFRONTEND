@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getBusinessById } from '../../../redux/actions/business/getBusiness'
 import DetailsBusiness from '../../../components/DetailsBusiness/DetailsBusiness';
-import ServiceList from '../../../components/DetailsBusiness/ServiceList';
+
 import BookingService from '../../../components/BookingSteps/BookingService';
 import Loader from '../../../components/Loader/Loader';
 import NabvarResults from '../../../components/NavbarResults/NavbarResults';
 import ReviewInput from '../../../components/Review/ReviewInput/ReviewInput.jsx';
 import { useSession } from 'next-auth/react';
-import { getClient, getClientByEmail } from '../../../redux/actions/clients/getClients';
+import { getClientByEmail } from '../../../redux/actions/clients/getClients';
 import { getRatingBusiness, getRatingFromClientAndBusiness } from '../../../redux/actions/Rating/getRating';
 import {getBookingFromBusinessAndClientId} from "../../../redux/actions/Bookings/getBookings"
 import ReviewsSection from '../../../components/Review/ReviewsSection/ReviewsSection.jsx';
@@ -34,7 +34,7 @@ const Business = ({ id }) => {
       dispatch(getBookingFromBusinessAndClientId(id, clientId.id))
       setLoading(false)
     }
-  }, [dispatch, id])
+  }, [dispatch])
   if (loading) { return (<Loader/>) }
   if (business.data) {
     const { address, createdAt, name , services, email , telephone} = business.data?.attributes
@@ -81,6 +81,7 @@ export default Business
 
 export async function getServerSideProps(context) {
   const { business } = context.params
+  console.log(business, "funcion extra")
   return {
     props: { id: business },
   }
