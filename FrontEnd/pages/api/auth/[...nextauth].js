@@ -95,6 +95,7 @@ export default NextAuth({
       return session;
     }
   },
-  secret: 'test',
+
+    secret: "test",
   encription: true,
 });
