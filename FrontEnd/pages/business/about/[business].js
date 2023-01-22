@@ -54,7 +54,7 @@ const Business = ({ id }) => {
         services={services}
         email = {email}
         createdAt = {createdAt}
-        rating={Math.round(rating)}
+        rating={ rating ? Math.round(rating) : 0}
         /></div>
         {/* <div>
           <ServiceList 

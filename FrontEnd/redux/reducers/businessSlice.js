@@ -43,15 +43,15 @@ export const businessSlice = createSlice({
       }
       if (action.payload === "Rating asc") {
         state.businessList = business.sort((a, b) => {
-          if (a.attributes.totalRated < b.attributes.totalRated) return 1;
-          else if (a.attributes.totalRated > b.attributes.totalRated) return -1;
+          if (a.attributes.totalRating > b.attributes.totalRating) return 1;
+          else if (a.attributes.totalRating < b.attributes.totalRating) return -1;
           else return 0;
         });
       }
       if (action.payload === "Rating desc") {
         state.businessList = business.sort((a, b) => {
-          if (a.attributes.totalRated > b.attributes.totalRated) return 1;
-          else if (a.attributes.totalRated < b.attributes.totalRated) return -1;
+          if (a.attributes.totalRating < b.attributes.totalRating) return 1;
+          else if (a.attributes.totalRating > b.attributes.totalRating) return -1;
           else return 0;
         });
       } else state.businessList = business;

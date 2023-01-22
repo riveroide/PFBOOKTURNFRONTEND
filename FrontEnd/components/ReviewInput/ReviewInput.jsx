@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteRating } from "../../redux/actions/Rating/deleteRating";
 import { postRating } from "../../redux/actions/Rating/postRating";
 import { putRating } from "../../redux/actions/Rating/putRating";
+import { putBusiness } from "../../redux/actions/business/putBusiness"
 import { useRouter } from 'next/router'
 
 export const ReviewInput = ({ client, businessId }) => {
@@ -14,6 +15,16 @@ export const ReviewInput = ({ client, businessId }) => {
 
   const { bookingByBusinessAndClient: booking } = useSelector((state) => state.bookings)
 
+  const { businessId: business } = useSelector(state => state.business)
+  console.log(business)
+  const sumRating = business.data?.attributes.ratings.data?.map(e => e.attributes.score).reduce((prev, curr) => prev + curr, 0)
+  console.log(sumRating)
+  const totalRated =  business.data?.attributes.ratings.data.length
+  console.log(totalRated)
+  let totalRating = sumRating / totalRated
+  if (!totalRating || totalRating === NaN) totalRating = 0 
+
+  console.log(totalRating)
   console.log(rating);
 
   const [disable, setDisable] = useState(false)
@@ -49,12 +60,15 @@ export const ReviewInput = ({ client, businessId }) => {
     if (!rating.length) {
       dispatch(postRating(input));
       alert("Se publicó la reseña");
+      dispatch(putBusiness(businessId, {totalRating: totalRating}))
       router.reload(window.location.pathname)
     } else {
       dispatch(putRating(rating[0].id, input))
       setDisable(true)
       alert("Se actualizó el comentario")
+      dispatch(putBusiness(businessId, {totalRating: totalRating}))
     }
+    dispatch(putBusiness(businessId, {totalRating: totalRating}))
   };
 
   const handleChange = (e) => {
@@ -64,8 +78,8 @@ export const ReviewInput = ({ client, businessId }) => {
     });
   };
 
-  const handleDelete = () => {
-    dispatch(deleteRating(rating[0].id))
+  const handleDelete = async () => {
+    await dispatch(deleteRating(rating[0].id))
     setInput({
       score: 0,
       title: "",
@@ -74,6 +88,7 @@ export const ReviewInput = ({ client, businessId }) => {
       client: parseInt(client.id),
     })
     alert("Comentario eliminado")   
+    await dispatch(putBusiness(businessId, {totalRating: totalRating}))
     router.reload(window.location.pathname)
   }
 
