@@ -1,10 +1,42 @@
 import React from "react";
 import Link from "next/link";
+import swal from 'sweetalert';
+import { useDispatch } from "react-redux";
+import {deleteBooking} from '../../redux/actions/Bookings/deleteBooking'
 
 export default function BookedList(props){
-    console.log(props)
+    const dispatch = useDispatch()    
+
+    const cancelarTurno = (e) =>{
+        console.log(e.target.id)
+        swal({
+            title: 'Estas seguro que deseas cancelar el turno?',
+            text: 'No podras revertir esta accion',
+            icon: 'warning',
+            buttons: ['No', 'Si']
+        }).then(respuesta =>{
+            if(respuesta){
+                try {
+                    dispatch(deleteBooking(e.target.id))
+                    swal({
+                        text: 'El turno se ha cancelado con éxito',
+                        icon: 'success',
+                        timer: 3000
+                    }) 
+                } catch (error) {
+                    console.log(error)
+                    swal({
+                        title: 'No pudimos eliminar su turno',
+                        text: 'Intentelo de nuevo mas tarde',
+                        icon: 'error',
+                        timer: 3000
+                    })
+                }  
+            }
+        })
+    }
     return(
-        <div className="max-w-2xl mx-auto ">
+        <div className="max-w-3xl mx-auto ">
             <div className="flex flex-col">
                 <div className="overflow-x-auto shadow-md sm:rounded-lg">
                     <div className="inline-block min-w-full align-middle">
@@ -12,12 +44,6 @@ export default function BookedList(props){
                             <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                                 <thead className="bg-gray-100 dark:bg-gray-700">
                                     <tr>
-                                        <th scope="col" className="p-4">
-                                            <div className="flex items-center">
-                                                <input id="checkbox-all" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for="checkbox-all" className="sr-only">checkbox</label>
-                                            </div>
-                                        </th>
                                         <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                             Nombre del Local
                                         </th>
@@ -39,20 +65,14 @@ export default function BookedList(props){
                                     {props.props?.length && props.props.map(booking => {
                                         return(
                                             <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                                        <td className="p-4 w-4">
-                                            <div className="flex items-center">
-                                                <input id={booking.id} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                <label for={booking.id} className="sr-only">checkbox</label>
-                                            </div>
-                                        </td>
-                                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{booking.attributes.businesses.data[0].attributes.name}</td>
-                                        <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{booking.attributes.dateinfo}</td>
-                                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{booking.attributes.services.data[0].attributes.name}</td>
-                                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">${booking.attributes.services.data[0].attributes.price}</td>
-                                        <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                            <a href="#" className="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{booking.attributes.businesses.data[0].attributes.name}</td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{booking.attributes.dateinfo}</td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{booking.attributes.services.data[0].attributes.name}</td>
+                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">${booking.attributes.services.data[0].attributes.price}</td>
+                                                <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                                    <a id={booking.id} onClick={(e) => cancelarTurno(e)} className="text-red-500 hover:underline cursor-pointer">Cancelar</a>
+                                                </td>
+                                        |   </tr>
                                         )
                                     })}
                                 </tbody>
