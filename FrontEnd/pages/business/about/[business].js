@@ -16,7 +16,7 @@ import ReviewsSection from '../../../components/Review/ReviewsSection/ReviewsSec
 
 
 const Business = ({ id }) => {
-
+  console.log(id, "id que llega")
   const {data: session} = useSession()
   const { clientId } = useSelector((state) => state.clients)
   const [loading, setLoading] = useState(true)
@@ -34,7 +34,7 @@ const Business = ({ id }) => {
       dispatch(getBookingFromBusinessAndClientId(id, clientId.id))
       setLoading(false)
     }
-  }, [dispatch])
+  }, [dispatch, id])
   if (loading) { return (<Loader/>) }
   if (business.data) {
     const { address, createdAt, name , services, email , telephone} = business.data?.attributes
