@@ -17,9 +17,9 @@ const Profile = () => {
   const dispatch = useDispatch()
   const {data: session} = useSession()
   
-  const {clientAcc} = useSelector((state) => state.clients)
-  const {displayOption} = useSelector((state) => state.clients)
   const {clientId} = useSelector((state) => state.clients)
+  const {displayOption} = useSelector((state) => state.clients)
+  const {clientAcc} = useSelector((state) => state.clients)
   const {favouritesList} = useSelector((state) => state.clients)
   const {bookedList} = useSelector((state) => state.clients)
   
@@ -28,6 +28,9 @@ const Profile = () => {
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
   
+  console.log('LISTA DE TURNOS',bookedList)
+  console.log('LISTA DE FAVORITOS',favouritesList)
+  console.log('CLIENTE',clientId)
 
   useEffect(() => {
     setLoading(true)
@@ -39,15 +42,15 @@ const Profile = () => {
       }
       fetchClientEmail()
       async function fetchClient(){
-        await dispatch(getClient(clientId.id))
+        await dispatch(getClient(clientAcc.id))
       }
       fetchClient()
       async function fetchFavList(){
-        await dispatch(getFavourites(clientId.id))
+        await dispatch(getFavourites(clientAcc.id))
       }
       fetchFavList()
       async function fetchBookList(){
-        await dispatch(getBooked(clientId.id))
+        await dispatch(getBooked(clientAcc.id))
       }
       fetchBookList()
       dispatch(display(''))
@@ -96,9 +99,10 @@ const Profile = () => {
     },
   ];
   
-  if(!loading && clientAcc){
-    const {nameComplete} = clientAcc
+  if(!loading && clientId){
+    const {nameComplete} = clientId.attributes
     const favourites = favouritesList[0]?.attributes.businesses.data
+    console.log(favourites)
     return (
       <div className="flex scroll-smooth min-h-screen">
         <div
@@ -180,17 +184,27 @@ const Profile = () => {
           ):displayOption === 'Favoritos' ?(
             <div>
               <h1 className='font-cool_g text-4xl'>LISTA DE FAVORITOS</h1>
-              {favourites?.length && favourites?.map(e => {
-              return(
-                <FavCard 
-                  name={e.attributes.name} 
-                  address={e.attributes.address} 
-                  telephone={e.attributes.telephone} 
-                  id={e.id}
-                  key={e.id}
-                />
-              ) 
-             })}
+              {favourites === undefined ?(
+                <div>
+                  <h2 className='font-cool_p text-3xl'>Tu lista de favoritos aun esta vacia!!</h2>
+                  <h2 className='font-cool_p text-3xl'>Agrega tus locales de confianza para encontrarlos aqui</h2>
+                </div>
+              ): (
+                <div>
+                  {favourites?.length && favourites?.map(e => {
+                    return(
+                      <FavCard 
+                        name={e.attributes.name} 
+                        address={e.attributes.address} 
+                        telephone={e.attributes.telephone} 
+                        id={e.id}
+                        key={e.id}
+                      />
+                    ) 
+                  })}
+                </div>
+              )}
+              
             </div>
           ):displayOption === 'Configuracion' ?(
             <div className='flex flex-col items-center'>
