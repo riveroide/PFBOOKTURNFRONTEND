@@ -9,12 +9,26 @@ const FormClient = ({ emailuser }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { userInfo } = useSelector((state) => state.users);
+  const [error, setError] = useState({})
   const [clientinfo, setclientinfo] = useState({
     nameComplete: "",
     telephone:"",
     user: "",
   });
   console.log(emailuser, "LO QUE ROMPE")
+
+  function validate (userinfo){
+    let error = {}
+  if (!clientinfo.nameComplete){
+    error.nameComplete="Nombre Completo requerido"
+  }
+  if(!clientinfo.telephone){
+    error.telephone="Tu número de teléfono es requerido"
+  }
+
+return error
+}
+
   useEffect(() => {
     dispatch(getUserByEmail(emailuser));
     console.log(emailuser,"en el useeffect")
@@ -27,6 +41,10 @@ const FormClient = ({ emailuser }) => {
       [e.target.name]: e.target.value,
       user: userInfo[0].id
     });
+    setError(validate({
+      ...clientinfo,
+      [e.target.name]:e.target.value
+    }))
   }
   function handleSubmit (){
     dispatch(postClient(clientinfo))
@@ -54,6 +72,7 @@ const FormClient = ({ emailuser }) => {
             value={clientinfo.nameComplete}
             onChange={(e) => handleChange(e)}
           />
+           {error.nameComplete &&(<p className="text-xs text-red-600">{error.nameComplete}</p>)}
         </label>
 
         <label
@@ -72,6 +91,7 @@ const FormClient = ({ emailuser }) => {
             value={clientinfo.telephone}
             onChange={(e) => handleChange(e)}
           />
+          {error.telephone &&(<p className="text-xs text-red-600">{error.telephone}</p>)}
         </label>
       </div>
 

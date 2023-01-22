@@ -5,7 +5,7 @@ import StepsContents from "./StepsContents";
 import { useDispatch, useSelector } from "react-redux";
 import { postBooking } from "../../redux/actions/Bookings/postBooking";
 import { getBookingPending} from "../../redux/actions/Bookings/getBookings"
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 
 const BookingService = () => {
   const { clientAcc: client } = useSelector((state) => state.clients);
@@ -36,7 +36,7 @@ const BookingService = () => {
   }
 
   return (
-    <div>
+    <div key={business.id}>
       <div>
         <StepsNav stepnum={stepnum} />
       </div>
@@ -68,7 +68,7 @@ const BookingService = () => {
               setstepnum(stepnum + 1);
               setbookingPost({
                 ...bookingPost,
-                client: client,
+                client: client.id,
                 businesses: business.data.id,
               });
             } else {
