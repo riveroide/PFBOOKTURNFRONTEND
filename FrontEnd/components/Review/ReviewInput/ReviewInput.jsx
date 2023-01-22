@@ -33,7 +33,7 @@ export const ReviewInput = ({ client, businessId }) => {
     if (!booking.length) {
       setDisable(true)
     }
-    else if (rating.length) {
+    else if (rating?.length) {
       setInput({
         ...input,
         score: rating[0].attributes.score,
@@ -162,10 +162,10 @@ export const ReviewInput = ({ client, businessId }) => {
           Publicar{" "}
         </button>
         {
-          rating.length ? <button type="button" onClick={() => setDisable(!disable)} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-8"> Editar </button> : null
+          rating?.length ? <button type="button" onClick={() => setDisable(!disable)} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-8"> Editar </button> : null
         }
         {
-          rating.length ? <button type="button" onClick={() => handleDelete()} className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-8"> Eliminar </button> : null
+          rating?.length ? <button type="button" onClick={() => handleDelete()} className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-8"> Eliminar </button> : null
         }
       </form>
     </div>
