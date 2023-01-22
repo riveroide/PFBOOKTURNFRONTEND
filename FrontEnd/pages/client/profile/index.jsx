@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut, getSession } from 'next-auth/react';
 import Link from "next/link"
 //Hooks
 import { useState, useEffect } from 'react';
@@ -17,9 +17,9 @@ const Profile = () => {
   const dispatch = useDispatch()
   const {data: session} = useSession()
   
-  const {clientId} = useSelector((state) => state.clients)
-  const {displayOption} = useSelector((state) => state.clients)
   const {clientAcc} = useSelector((state) => state.clients)
+  const {displayOption} = useSelector((state) => state.clients)
+  const {clientId} = useSelector((state) => state.clients)
   const {favouritesList} = useSelector((state) => state.clients)
   const {bookedList} = useSelector((state) => state.clients)
   
@@ -27,7 +27,7 @@ const Profile = () => {
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
-  console.log(bookedList)
+  
 
   useEffect(() => {
     setLoading(true)
@@ -39,15 +39,15 @@ const Profile = () => {
       }
       fetchClientEmail()
       async function fetchClient(){
-        await dispatch(getClient(clientAcc.id))
+        await dispatch(getClient(clientId.id))
       }
       fetchClient()
       async function fetchFavList(){
-        await dispatch(getFavourites(clientAcc.id))
+        await dispatch(getFavourites(clientId.id))
       }
       fetchFavList()
       async function fetchBookList(){
-        await dispatch(getBooked(clientAcc.id))
+        await dispatch(getBooked(clientId.id))
       }
       fetchBookList()
       dispatch(display(''))
@@ -96,11 +96,11 @@ const Profile = () => {
     },
   ];
   
-  if(!loading && clientId){
-    const {nameComplete} = clientId.attributes
+  if(!loading && clientAcc){
+    const {nameComplete} = clientAcc
     const favourites = favouritesList[0]?.attributes.businesses.data
     return (
-      <div className="flex scroll-smooth ">
+      <div className="flex scroll-smooth min-h-screen">
         <div
           className={` ${
             open ? "w-72" : "w-20 "
@@ -193,7 +193,13 @@ const Profile = () => {
              })}
             </div>
           ):displayOption === 'Configuracion' ?(
-            <h1 className='font-cool_g text-4xl'>ACA SETTINGS DE USUARIO</h1>
+            <div className='flex flex-col items-center'>
+              <h1 className='font-cool_g text-4xl mb-4'>ACA SETTINGS DE USUARIO</h1>
+              <Link href='/' onClick={() => signOut()}>
+                <button className="overflow-hidden px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" >Cerrar Sesion</button>   
+              </Link>
+            </div>
+            
           ):(
             <h1 className='font-cool_g text-4xl'>BIENVENIDO A TU PERFIL</h1>
           )}
@@ -206,5 +212,23 @@ const Profile = () => {
     )
   }
 }
+
+export async function getServerSideProps(context){
+  //si no hay sesion iniciada redirige al login
+  const session = await getSession(context)
+  
+    if(!session) {
+      return {
+        redirect: {
+          destination: "/client/login",
+          permanent: false
+        },
+      }
+    }
+  
+    return {
+      props: { session }
+    }
+};
 
 export default Profile
