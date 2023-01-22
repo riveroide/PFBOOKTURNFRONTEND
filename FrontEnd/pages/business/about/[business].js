@@ -74,9 +74,7 @@ const Business = ({ id }) => {
         </div>
       </div>
     )
-  }
-
-}
+  } else { return (<Loader/>) }}
 
 export default Business
 
