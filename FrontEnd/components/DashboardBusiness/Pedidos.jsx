@@ -35,7 +35,7 @@ const Pedidos = (idBusiness) => {
   };
 
   useEffect(() => {
-    dispatch(BookingsUnconfirmed(2));
+    dispatch(BookingsUnconfirmed(idBusiness));
   }, [dispatch, reload]);
   return (
     <div className="flex flex-col flex-wrap w-full h-fit items-center font-cool_p tracking-wide">

@@ -12,6 +12,7 @@ const Services = () => {
   const { BusinessAcc } = useSelector((state) => state.business);
   let index = 0;
   const servicio = BusinessAcc.attributes.services.data;
+  const { BusinessIdSession } = useSelector((state) => state.business);
   const servi = servicio.map((s) => {
     return {
       index: index++,
@@ -26,7 +27,7 @@ const Services = () => {
   
 
   useEffect(() => {
-    dispatch(getBusinessData(2));
+    dispatch(getBusinessData(BusinessIdSession));
   }, [dispatch, putServices]);
 
   const handleChange = (e) => {
@@ -145,7 +146,7 @@ const Services = () => {
             >
               GUARDAR
             </button>
-            <ModalPostService index={index} setData={setData} />
+            <ModalPostService index={index} setData={setData} idBusiness={BusinessIdSession} />
           </div>
       </div>
     );
