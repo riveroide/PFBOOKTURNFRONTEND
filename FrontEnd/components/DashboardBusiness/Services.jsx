@@ -17,9 +17,9 @@ const Services = () => {
     return {
       index: index++,
       id: s.id,
-      name: s.attributes.name,
-      price: s.attributes.price,
-      active: s.attributes.active,
+      name: s.attributes?.name,
+      price: s.attributes?.price,
+      active: s.attributes?.active,
     };
   });
   // console.log(servi)
@@ -62,7 +62,7 @@ const Services = () => {
     e.preventDefault();
     data.map(async (s) => {
       await dispatch(
-        putServices(s.id, { name: s.name, price: s.price, active: s.active })
+        putServices(s.id, { name: s?.name, price: s?.price, active: s?.active })
       );
     });
     dispatch(getBusinessData(2));

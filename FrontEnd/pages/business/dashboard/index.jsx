@@ -85,7 +85,7 @@ const dashboard = () => {
   ];
 
   // if (hydrated) {
-    if(loader === false){
+    if(loader === false && BusinessAcc){
     return (
       <div className="flex scroll-smooth min-h-screen ">
         <div

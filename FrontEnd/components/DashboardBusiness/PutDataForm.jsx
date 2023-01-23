@@ -12,12 +12,12 @@ const PutDataForm = () => {
   const AccData = BusinessAcc.attributes;
   const { BusinessIdSession } = useSelector((state) => state.business);
   const [putData, setPutData] = useState({
-    name: AccData.name,
-    telephone: AccData.telephone,
-    email: AccData.email,
-    address: AccData.address,
-    openhour: AccData.openhour,
-    closehour: AccData.closehour,
+    name: AccData?.name,
+    telephone: AccData?.telephone,
+    email: AccData?.email,
+    address: AccData?.address,
+    openhour: AccData?.openhour,
+    closehour: AccData?.closehour,
   });
 
   useEffect(()=>{
