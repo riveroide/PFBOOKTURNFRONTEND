@@ -27,10 +27,6 @@ const Profile = () => {
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
-  
-  console.log('LISTA DE TURNOS',bookedList)
-  console.log('LISTA DE FAVORITOS',favouritesList)
-  console.log('CLIENTE',clientId)
 
   useEffect(() => {
     setLoading(true)
@@ -59,7 +55,7 @@ const Profile = () => {
     } catch (error) {
       console.log(error.message)
     } 
-  },[session, dispatch])
+  },[userEmail, dispatch])
 
   if (!hydrated) {
     return null;
@@ -186,8 +182,8 @@ const Profile = () => {
               <h1 className='font-cool_g text-4xl'>LISTA DE FAVORITOS</h1>
               {favourites === undefined ?(
                 <div>
-                  <h2 className='font-cool_p text-3xl'>Tu lista de favoritos aun esta vacia!!</h2>
-                  <h2 className='font-cool_p text-3xl'>Agrega tus locales de confianza para encontrarlos aqui</h2>
+                  <h2 className='font-cool_p text-3xl tracking-wide'>Tu lista de favoritos aun esta vacia!!</h2>
+                  <h2 className='font-cool_p text-3xl tracking-wide'>Agrega tus locales de confianza para encontrarlos aqui</h2>
                 </div>
               ): (
                 <div>
