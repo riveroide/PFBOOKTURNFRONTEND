@@ -22,9 +22,11 @@ const dashboard = () => {
   const dispatch = useDispatch();
   const userEmail = session?.user.email;
   const AccData = BusinessAcc.attributes;
+  const [loader,setLoader] = useState(false)
 
   useEffect(() => {
     try {
+      setLoader(true)
       setHydrated(true);
       async function fetchBusinessEmail(){
         await dispatch(getBusinessIdByEmail(userEmail))
@@ -37,6 +39,7 @@ const dashboard = () => {
     } catch (error) {
       console.log(error.message);
     }
+    setLoader(false)
   }, [dispatch]);
 
   const handlerClick = (e, pagina) => {
@@ -81,7 +84,8 @@ const dashboard = () => {
     // },
   ];
 
-  if (hydrated && AccData) {
+  // if (hydrated) {
+    if(loader === false){
     return (
       <div className="flex scroll-smooth min-h-screen ">
         <div
@@ -151,37 +155,41 @@ const dashboard = () => {
           }
         </div>
       </div>
-    );
-  } else {
-    return null;
-  }
+    )}else{
+      return (
+        <div> cargando </div>
+      )
+    }
+  // } else {
+  //   return null;
+  // }
 };
 
-export async function getServerSideProps(context) {
-  //si no hay sesion iniciada redirige al login
-  const session = await getSession(context);
+// export async function getServerSideProps(context) {
+//   //si no hay sesion iniciada redirige al login
+//   const session = await getSession(context);
 
-  if (session.status === "unauthenticated") {
-    return {
-      redirect: {
-        destination: "/client/login",
-        permanent: false,
-      },
-    };
-  }
+//   if (session.status === "unauthenticated") {
+//     return {
+//       redirect: {
+//         destination: "/client/login",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/client/login",
-        permanent: false,
-      },
-    };
-  }
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/client/login",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: { session },
-  };
-}
+//   return {
+//     props: { session },
+//   };
+// }
 
 export default dashboard;
