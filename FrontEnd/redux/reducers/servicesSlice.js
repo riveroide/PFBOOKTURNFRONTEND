@@ -6,7 +6,7 @@ export const servicesSlice = createSlice({
         servicesList: [],
         servicesById: {},
         servicesByName: [],
-    },
+    }, 
     reducers: {
         getAllServices: (state, action) => {
             state.servicesList = action.payload
