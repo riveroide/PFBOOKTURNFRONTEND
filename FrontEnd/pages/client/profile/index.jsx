@@ -96,7 +96,7 @@ const Profile = () => {
   ];
   
   if(!loading && clientId){
-    const {nameComplete} = clientId.attributes
+    const {nameComplete} = clientId?.attributes
     const favourites = favouritesList[0]?.attributes.businesses.data
     console.log(favourites)
     return (
