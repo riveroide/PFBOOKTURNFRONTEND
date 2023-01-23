@@ -14,11 +14,8 @@ import Paginado from "../Paginado/Paginado";
 
 export default function Results() {
   const dispatch = useDispatch();
-
   const { data: session } = useSession();
-
   const { businessList } = useSelector((state) => state.business);
-
   const [hydrated, setHydrated] = useState(false);
   const { clientId } = useSelector((state) => state.clients);
 
@@ -54,7 +51,6 @@ export default function Results() {
       page: pageNum,
     });
   };
-  console.log(actualBusiness.attributes?.BusinessPic.data.attributes);
 
   return (
     <div>
@@ -74,7 +70,7 @@ export default function Results() {
                 key={e.id}
                 id={e.id}
                 name={e.attributes.name}
-                services={e.attributes.services.data}
+                services={e.attributes.services?.data}
                 categories={e.attributes.categories.data}
                 image={
                   e.attributes?.BusinessPic.data?.attributes

@@ -39,7 +39,7 @@ const Login = () => {
     return (
       <div>
         <NavBar2/>
-      <Signed session={session}/>
+        <Signed session={session}/>
       </div>
       
     );

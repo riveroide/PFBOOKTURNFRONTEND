@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import SearchbarResults from "../SearchbarResults/SearchbarResults";
-import {getClientByEmail} from "../../redux/actions/clients/getClients"
+import {getClient, getClientByEmail} from "../../redux/actions/clients/getClients"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,12 +10,14 @@ export const NabvarResults = () => {
     
     const dispatch = useDispatch()
     const { data: session } = useSession()
-    const {clientAcc: user} = useSelector((state) => state.clients)
-  
-    console.log(session);
+    const {clientAcc: user, clientId: client} = useSelector((state) => state.clients)
+    console.log(client, "soy client")
+    console.log(user, "soy user")
+    console.log(session, "soy session");
 
    useEffect(() => {
     dispatch(getClientByEmail(session?.user.email))
+    dispatch(getClient(user.id))
    }, [])
 
 
@@ -33,7 +35,7 @@ export const NabvarResults = () => {
             <Link href={`/client/profile`}>
               <img
                 class="w-10 h-10 rounded-full"
-                src={user?.profilePic ? `${user?.profilePic}` : session.user.image ? `${session.user.image}` : "https://icon-library.com/images/generic-profile-icon/generic-profile-icon-23.jpg"} 
+                src={client.attributes.profilePic?.data ? `${client.attributes.profilePic.data}` : session.user.image ? `${session.user.image}` : "https://icon-library.com/images/generic-profile-icon/generic-profile-icon-23.jpg"} 
                 alt="user photo"
               />
             </Link>

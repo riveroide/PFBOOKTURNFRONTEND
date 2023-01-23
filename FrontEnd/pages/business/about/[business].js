@@ -2,26 +2,32 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getBusinessById } from '../../../redux/actions/business/getBusiness'
 import DetailsBusiness from '../../../components/DetailsBusiness/DetailsBusiness';
-import ServiceList from '../../../components/DetailsBusiness/ServiceList';
+
 import BookingService from '../../../components/BookingSteps/BookingService';
 import Loader from '../../../components/Loader/Loader';
 import NabvarResults from '../../../components/NavbarResults/NavbarResults';
 import ReviewInput from '../../../components/Review/ReviewInput/ReviewInput.jsx';
 import { useSession } from 'next-auth/react';
-import { getClient, getClientByEmail } from '../../../redux/actions/clients/getClients';
+import { getClientByEmail } from '../../../redux/actions/clients/getClients';
 import { getRatingBusiness, getRatingFromClientAndBusiness } from '../../../redux/actions/Rating/getRating';
 import {getBookingFromBusinessAndClientId} from "../../../redux/actions/Bookings/getBookings"
 import ReviewsSection from '../../../components/Review/ReviewsSection/ReviewsSection.jsx';
+import Image from 'next/image';
+import Grid from '@mui/material/Grid'
 
 
 
 const Business = ({ id }) => {
-
+  console.log(id, "id que llega")
   const {data: session} = useSession()
   const { clientId } = useSelector((state) => state.clients)
   const [loading, setLoading] = useState(true)
   const { businessId: business } = useSelector(state => state.business)
-  
+
+  const sumRating = business.data?.attributes.ratings.data?.map(e => e.attributes.score).reduce((prev, curr) => prev + curr, 0)
+  const totalRated =  business.data?.attributes.ratings.data.length
+  const rating = sumRating / totalRated
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -44,6 +50,7 @@ const Business = ({ id }) => {
         <div>
           <NabvarResults/>
         </div>
+        
         <div>
         <DetailsBusiness 
         address ={address}
@@ -52,6 +59,8 @@ const Business = ({ id }) => {
         services={services}
         email = {email}
         createdAt = {createdAt}
+        rating={ rating ? Math.round(rating) : 0}
+        business={business}
         /></div>
         {/* <div>
           <ServiceList 
@@ -74,15 +83,14 @@ const Business = ({ id }) => {
         </div>
       </div>
     )
-  }
-
-}
+  } else { return (<Loader/>) }}
 
 export default Business
 
 
 export async function getServerSideProps(context) {
   const { business } = context.params
+  console.log(business, "funcion extra")
   return {
     props: { id: business },
   }

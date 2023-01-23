@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { putRating } from "../../../redux/actions/Rating/putRating"
+import { putBusiness } from "../../../redux/actions/business/putBusiness"
 import { deleteRating } from "../../../redux/actions/Rating/deleteRating";
 import { postRating } from "../../../redux/actions/Rating/postRating";
-import { putRating } from "../../../redux/actions/Rating/putRating";
 import { useRouter } from 'next/router'
 
 export const ReviewInput = ({ client, businessId }) => {
@@ -14,6 +15,16 @@ export const ReviewInput = ({ client, businessId }) => {
 
   const { bookingByBusinessAndClient: booking } = useSelector((state) => state.bookings)
 
+  const { businessId: business } = useSelector(state => state.business)
+  console.log(business)
+  const sumRating = business.data?.attributes.ratings.data?.map(e => e.attributes.score).reduce((prev, curr) => prev + curr, 0)
+  console.log(sumRating)
+  const totalRated =  business.data?.attributes.ratings.data.length
+  console.log(totalRated)
+  let totalRating = sumRating / totalRated
+  if (!totalRating || totalRating === NaN) totalRating = 0 
+
+  console.log(totalRating)
   console.log(rating);
 
   const [disable, setDisable] = useState(false)
@@ -33,7 +44,7 @@ export const ReviewInput = ({ client, businessId }) => {
     if (!booking.length) {
       setDisable(true)
     }
-    else if (rating.length) {
+    else if (rating?.length) {
       setInput({
         ...input,
         score: rating[0].attributes.score,
@@ -49,12 +60,15 @@ export const ReviewInput = ({ client, businessId }) => {
     if (!rating.length) {
       dispatch(postRating(input));
       alert("Se publicó la reseña");
+      dispatch(putBusiness(businessId, {totalRating: totalRating}))
       router.reload(window.location.pathname)
     } else {
-      dispatch(putRating(rating[0].id, input))
+      dispatch(putRating(rating[0]?.id, input))
       setDisable(true)
       alert("Se actualizó el comentario")
+      dispatch(putBusiness(businessId, {totalRating: totalRating}))
     }
+    dispatch(putBusiness(businessId, {totalRating: totalRating}))
   };
 
   const handleChange = (e) => {
@@ -64,16 +78,17 @@ export const ReviewInput = ({ client, businessId }) => {
     });
   };
 
-  const handleDelete = () => {
-    dispatch(deleteRating(rating[0].id))
+  const handleDelete = async () => {
+    await dispatch(deleteRating(rating[0].id))
     setInput({
       score: 0,
       title: "",
       comment: "",
       business: parseInt(businessId),
-      client: parseInt(client.id),
+      client: parseInt(client?.id),
     })
     alert("Comentario eliminado")   
+    await dispatch(putBusiness(businessId, {totalRating: totalRating}))
     router.reload(window.location.pathname)
   }
 
@@ -162,10 +177,10 @@ export const ReviewInput = ({ client, businessId }) => {
           Publicar{" "}
         </button>
         {
-          rating.length ? <button type="button" onClick={() => setDisable(!disable)} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-8"> Editar </button> : null
+          rating?.length ? <button type="button" onClick={() => setDisable(!disable)} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-8"> Editar </button> : null
         }
         {
-          rating.length ? <button type="button" onClick={() => handleDelete()} className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-8"> Eliminar </button> : null
+          rating?.length ? <button type="button" onClick={() => handleDelete()} className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-8"> Eliminar </button> : null
         }
       </form>
     </div>

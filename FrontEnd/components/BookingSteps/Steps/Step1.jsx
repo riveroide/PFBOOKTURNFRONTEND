@@ -32,7 +32,7 @@ const Step1 = ({setbookingPost , bookingPost , finaldata , setfinaldata}) => {
     <div className="flex font-cool_g flex-col w-full items-center py-24">
       {services.data?.map((e) => {
         return (
-          <div key={e.value} className="flex w-1/4 items-center">
+          <div className="flex w-1/4 items-center">
             <input
               id={e.id}
               type="checkbox"

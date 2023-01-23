@@ -13,7 +13,7 @@ export const getRatingFromClientAndBusiness =
 
 export const getRatingBusiness = (id) => (dispatch) => {
   axios(
-    `https://plankton-app-jy8jr.ondigitalocean.app/api/ratings?filters[business][id][$eq]=${id}`
+    `https://plankton-app-jy8jr.ondigitalocean.app/api/ratings?filters[business][id][$eq]=${id}&sort[0]=createdAt%3Adesc`
   )
     .then((res) => dispatch(getAllRatings(res.data.data)))
     .catch((res) => console.log(res));
