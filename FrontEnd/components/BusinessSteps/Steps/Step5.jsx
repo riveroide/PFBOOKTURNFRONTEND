@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllServices } from "../../../redux/reducers/servicesSlide";
+//import { getAllServices } from "../../../redux/reducers/servicesSlide";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Step5 = ({ step, setStep, finalData, finalServices }) => {
   // LLAMAR A LOS SERVICIOS PARA PASAR ID PARA RELACIONAR
-  const userInfo = useSelector((state) => state.users);
+  //const userInfo = useSelector((state) => state.users);
 
-  const { businessId: business } = useSelector((state) => state.business);
-  console.log(business);
+  //const { businessId: business } = useSelector((state) => state.business);
+  //console.log(business);
   //console.log(userInfo, "soy userinfo");
-  const dispatch = useDispatch();
+  ///const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllServices());
+    //dispatch(getAllServices());
     AOS.init;
-  }, [dispatch]);
+  }, []);
   return (
     <div className="flex flex-col justify-center items-center">
       <div
