@@ -13,7 +13,7 @@ const Calendar = ({setbookingPost , bookingPost , finaldata , setfinaldata }) =>
     dateTime: null,
   });
 
-  console.log(date.dateTime)
+  console.log(date.dateTime,"soy la fecha")
   const getTimes = () => {
     if (!date.justDate) return;
 
@@ -62,10 +62,14 @@ console.log(finaldata, "soy final data")
         <ReactCalendar
         className="REACT-CALENDAR p-2"
         minDate={new Date()}
-          onClickDay={(date) =>
+        onClickDay={(date) =>
             setDate((prev) => ({ ...prev, justDate: date }))
           }
-          
+          tileDisabled={({ date }) =>(
+            date.getDay() === 0
+          )
+            
+          }
           view="month"
           locale="es-ES"
         />
@@ -76,7 +80,7 @@ console.log(finaldata, "soy final data")
             <div key={`time-${i}`} className="rounded-sm bg-gray-100 p-2 flex">
 
               <input
-                value={format(time, 'EEEE d MMMM R - kk:mm',{locale:es})}
+                value={format(time, 'EEEE d MMMM R kk:mm',{locale:es})}
                 type="checkbox" className="border-solid border-2 capitalize h-4 w-4 flex align-middle "
                 onChange={(e) =>{
                   handlerDate(e) 

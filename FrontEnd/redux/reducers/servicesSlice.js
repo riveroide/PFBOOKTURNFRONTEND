@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const servicesSlice = createSlice({
-    name: "clients",
+    name: "services",
     initialState: {
         servicesList: [],
         servicesById: {},
         servicesByName: [],
-    },
+    }, 
     reducers: {
         getAllServices: (state, action) => {
             state.servicesList = action.payload
@@ -17,6 +17,7 @@ export const servicesSlice = createSlice({
         getServiceByName: (state, action) => {
             state.servicesByName = action.payload
         }
+        
     }
 })
 

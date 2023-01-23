@@ -4,6 +4,9 @@ import { deleteRating } from "../../redux/actions/Rating/deleteRating";
 import { postRating } from "../../redux/actions/Rating/postRating";
 import { putRating } from "../../redux/actions/Rating/putRating";
 import { putBusiness } from "../../redux/actions/business/putBusiness"
+import { deleteRating } from "../../../redux/actions/Rating/deleteRating";
+import { postRating } from "../../../redux/actions/Rating/postRating";
+import { putRating } from "../../../redux/actions/Rating/putRating";
 import { useRouter } from 'next/router'
 
 export const ReviewInput = ({ client, businessId }) => {
@@ -44,7 +47,7 @@ export const ReviewInput = ({ client, businessId }) => {
     if (!booking.length) {
       setDisable(true)
     }
-    else if (rating.length) {
+    else if (rating?.length) {
       setInput({
         ...input,
         score: rating[0].attributes.score,
@@ -63,7 +66,7 @@ export const ReviewInput = ({ client, businessId }) => {
       dispatch(putBusiness(businessId, {totalRating: totalRating}))
       router.reload(window.location.pathname)
     } else {
-      dispatch(putRating(rating[0].id, input))
+      dispatch(putRating(rating[0]?.id, input))
       setDisable(true)
       alert("Se actualizó el comentario")
       dispatch(putBusiness(businessId, {totalRating: totalRating}))
@@ -85,7 +88,7 @@ export const ReviewInput = ({ client, businessId }) => {
       title: "",
       comment: "",
       business: parseInt(businessId),
-      client: parseInt(client.id),
+      client: parseInt(client?.id),
     })
     alert("Comentario eliminado")   
     await dispatch(putBusiness(businessId, {totalRating: totalRating}))
@@ -95,7 +98,7 @@ export const ReviewInput = ({ client, businessId }) => {
   return (
     <div className="w-full px-2 sm:px-0 lg:px-0 md:px-0 sm:w-3/4 lg:w-1/3 md:w-1/2 my-8">
       {
-        !booking.length ? <h1 className="text-center text-2xl text-gray-500 mb-4"> Necesitas haber recibido un turno al menos una vez para dejar tu reseña </h1> : null 
+        !booking?.length ? <h1 className="text-center text-2xl text-gray-500 mb-4"> Necesitas haber recibido un turno al menos una vez para dejar tu reseña </h1> : null 
       }
       <form className="justify-between" onSubmit={(e) => handleSubmit(e)}>
         <label className="block mb-2 text-lg font-medium text-gray-900">
@@ -177,10 +180,10 @@ export const ReviewInput = ({ client, businessId }) => {
           Publicar{" "}
         </button>
         {
-          rating.length ? <button type="button" onClick={() => setDisable(!disable)} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-8"> Editar </button> : null
+          rating?.length ? <button type="button" onClick={() => setDisable(!disable)} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-8"> Editar </button> : null
         }
         {
-          rating.length ? <button type="button" onClick={() => handleDelete()} className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-8"> Eliminar </button> : null
+          rating?.length ? <button type="button" onClick={() => handleDelete()} className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-8"> Eliminar </button> : null
         }
       </form>
     </div>

@@ -2,22 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { PaymentForm } from "../../PaymentForm/PaymentForm"
+import { PaymentForm } from "../../PaymentForm/PaymentForm";
 
-const stripePromise = loadStripe("pk_test_51MPXPIJ5lraTagsW3ffrIM2S7BHMMYrWJOJsIKBynltyOtAuGb08yWRcRJqQMdAG4XfJWZ2rnbTOHrNjvrmSh1iz00lnZQ3Erk");
+const stripePromise = loadStripe(
+  "pk_test_51MPXPIJ5lraTagsW3ffrIM2S7BHMMYrWJOJsIKBynltyOtAuGb08yWRcRJqQMdAG4XfJWZ2rnbTOHrNjvrmSh1iz00lnZQ3Erk"
+);
 //import { getServices } from "../../../redux/actions/business/postBusiness";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Step3 = ({ step, setStep, email, name }) => {
-  const prices = useSelector((state) => state.servicesList);
-  const dispatch = useDispatch();
-
   useEffect(() => {
     AOS.init();
   });
-
-  console.log(prices, "soy prices");
 
   const [input, setInput] = useState({
     service: "",
@@ -53,7 +50,7 @@ const Step3 = ({ step, setStep, email, name }) => {
           </Elements>
         </div>
       </div>
-     
+
       {/* <h3>service</h3>
       <select name="service" id="">
         <option value=""></option>

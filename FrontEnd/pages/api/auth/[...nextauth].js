@@ -30,7 +30,9 @@ export default NextAuth({
           // })
           // si existe el email
           // comprar si la password es la misma que tiene el user
-          const user = await axios.get("https://plankton-app-jy8jr.ondigitalocean.app/api/users?populate=*&filters[email][$eq]=" + credentials.email)
+          const user = await axios.get("https://plankton-app-jy8jr.ondigitalocean.app/api/users?populate=*&filters[email][$eq]=" + credentials.email,{ 
+            headers: { "Accept-Encoding": "gzip,deflate,compress" } 
+        })
 
           // const res = await fetch(
           //   "https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local",
@@ -47,20 +49,18 @@ export default NextAuth({
           //   const data = await axios.get(
           //     `http://localhost:1337/api/users/${user.user.id}?populate=*`
           //   );
-
+          console.log(user, "soy user")
             if (user) {
-              console.log(user, "soy user")
               return {
                 id: user.data[0].id,
                 // token: user.jwt,
                 email: user.data[0].email,
                 name: user.data[0].username,
-                // role: data.role.name,
+                role: user.data[0].role.id, 
               };
-
-            
           }
         } catch (error) {
+          console.log(error)
           return null;
         }
       },
@@ -77,7 +77,9 @@ export default NextAuth({
         token.id = user.id;
         token.name = user.name;
         // token.password = user.password;
-        // token.role = user.role;
+        token.role = user.role,
+        token.client = user.client,
+        token.business = user.business
       }
       return token;
     },
@@ -86,7 +88,9 @@ export default NextAuth({
         session.id = token.id;
         session.name = token.name;
         // session.password = user.password;
-        // session.role = user.role;
+        session.role = token.role;
+        session.client = token.client,
+        session.business = token.business
       }
       return session;
     }

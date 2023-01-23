@@ -5,10 +5,66 @@ import { getUserByEmail } from "../../../redux/actions/users/getUsers";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const Step2 = ({ step, setStep, userEmail }) => {
+function valida(input) {
+  let errors = {};
+
+  //only letters
+  if (!input.name || input.name === "") {
+    errors.name = "Name required";
+  } else if (/[0-9]/.test(input.name)) {
+    errors.name = "Invalid name";
+  }
+
+  //letters and numbers
+  if (!input.address || input.address === "") {
+    errors.address = "Name required";
+  } else if (/[0-9]/.test(input.address)) {
+    errors.address = "Address must contains letters and numbers";
+  }
+
+  // numeros
+  if (!input.telephone || input.telephone === "") {
+    errors.telephone = "Name required";
+  } else if (/[0-9]/.test(input.telephone)) {
+    errors.telephone = "Address must contains letters and numbers";
+  }
+
+  //email
+  if (!input.email || input.email === "") {
+    errors.email = "Email required";
+  } else if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(input.name)) {
+    errors.email = "Invalid email";
+  }
+
+  //only numbers
+  if (!input.openhour || input.openhour === "") {
+    errors.openhour = "Open hour required";
+  } else if (input.openhour < 0 || input.openhour > 24) {
+    errors.openhour = "open hour must be between 0 and 24";
+  }
+
+  //only numbers
+  if (!input.closehour || input.closehour === "") {
+    errors.closehour = "Close hour required";
+  } else if (input.closehour < 0 || input.closehour > 24) {
+    errors.closehour = "close hour must be between 0 and 24";
+  }
+
+  return errors;
+}
+
+const Step2 = ({
+  step,
+  setStep,
+  userEmail,
+  setEmailBusiness,
+  finalData,
+  setFinalData,
+}) => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.users);
-
+  const [errors, setErrors] = useState({});
+  //console.log(userInfo[0].id);
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -26,6 +82,22 @@ const Step2 = ({ step, setStep, userEmail }) => {
       [e.target.name]: e.target.value,
       user: userInfo[0].id,
     });
+    setEmailBusiness(input.email); // validar para que no rompa
+    setFinalData({
+      ...finalData,
+      name: input.name,
+      email: input.email,
+      address: input.address,
+      telephone: input.telephone,
+      openhour: input.openhour,
+      closehour: input.closehour,
+    });
+    setErrors(
+      valida({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleSubmit = (e) => {
@@ -38,8 +110,6 @@ const Step2 = ({ step, setStep, userEmail }) => {
     AOS.init();
   }, [userEmail]);
 
-  console.log(userInfo, "USER INFOOO");
-
   return (
     <div
       data-aos="fade-up"
@@ -49,10 +119,9 @@ const Step2 = ({ step, setStep, userEmail }) => {
         <h1 className="font-cool_g text-3xl mb-8">
           Ahora, contanos de tu empresa...
         </h1>
-        <label class="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-          <span class="text-xs font-medium text-gray-700">
-            {" "}
-            Nombre de tu Empresa{" "}
+        <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+          <span className="text-xs font-medium text-gray-700">
+            Nombre de tu Empresa
           </span>
 
           <input
@@ -60,50 +129,53 @@ const Step2 = ({ step, setStep, userEmail }) => {
             name="name"
             onChange={(e) => handleChange(e)}
             placeholder="Tu negocio"
-            class="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-
-        <label class="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-          <span class="text-xs font-medium text-gray-700"> Dirección </span>
+        <p>{errors.name}</p>
+        <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+          <span className="text-xs font-medium text-gray-700"> Dirección </span>
 
           <input
             type="text"
             name="address"
             onChange={(e) => handleChange(e)}
             placeholder="Calle Ejemplo 323"
-            class="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-
-        <label class="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-          <span class="text-xs font-medium text-gray-700"> Teléfono </span>
+        <p>{errors.address}</p>
+        <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+          <span className="text-xs font-medium text-gray-700"> Teléfono </span>
 
           <input
             type="text"
             name="telephone"
             onChange={(e) => handleChange(e)}
             placeholder="111222333"
-            class="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-
-        <label class="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-          <span class="text-xs font-medium text-gray-700"> Email de tu Empresa</span>
+        <p>{errors.telephone}</p>
+        <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+          <span className="text-xs font-medium text-gray-700">
+            {" "}
+            Email de tu Empresa
+          </span>
 
           <input
             type="email"
             name="email"
             onChange={(e) => handleChange(e)}
             placeholder="email@empresa.com"
-            class="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-
-        <label class="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-          <span class="text-xs font-medium text-gray-700">
+        <p>{errors.email}</p>
+        <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+          <span className="text-xs font-medium text-gray-700">
             {" "}
-            Hora de abertura{" "}
+            Hora de apertura{" "}
           </span>
 
           <input
@@ -111,12 +183,12 @@ const Step2 = ({ step, setStep, userEmail }) => {
             name="openhour"
             onChange={(e) => handleChange(e)}
             placeholder="00-24"
-            class="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-
-        <label class="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-          <span class="text-xs font-medium text-gray-700">
+        <p>{errors.openhour}</p>
+        <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+          <span className="text-xs font-medium text-gray-700">
             {" "}
             Hora de cierre{" "}
           </span>
@@ -126,9 +198,10 @@ const Step2 = ({ step, setStep, userEmail }) => {
             name="closehour"
             onChange={(e) => handleChange(e)}
             placeholder="00-24"
-            class="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
+        <p>{errors.closehour}</p>
         <div className="mt-4">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-24"

@@ -24,18 +24,18 @@ const dashboard = () => {
   useEffect(() => {
     try {
       setHydrated(true);
-      async function fetchBusinessEmail(){
-        await dispatch(getBusinessIdByEmail(userEmail))
-      } 
-      fetchBusinessEmail()
+      // async function fetchBusinessEmail(){
+      //   await dispatch(getBusinessIdByEmail(userEmail))
+      // } 
+      // fetchBusinessEmail()
       async function fetchData(){
-        await dispatch(getBusinessData(BusinessIdSession))
+        await dispatch(getBusinessData(2))
       }
       fetchData()
     } catch (error) {
       console.log(error.message);
     }
-  }, [session]);
+  }, [dispatch]);
 
   const handlerClick=(e,pagina)=>{
     e.preventDefault()
@@ -77,11 +77,11 @@ const dashboard = () => {
 
   if (hydrated && AccData) {
     return (
-      <div className="flex scroll-smooth">
+      <div className="flex scroll-smooth min-h-fit ">
         <div
           className={` ${
             open ? "w-72" : "w-20 "
-          } bg-black min-h-screen p-5 pt-8 relative duration-500`}
+          } bg-black min-h-full p-5 pt-8 relative duration-500`}
         >
           <img
             src="https://res.cloudinary.com/dquxxjngk/image/upload/v1673587887/Bookturn/src/control_xi6vpx.png"
@@ -127,7 +127,7 @@ const dashboard = () => {
             ))}
           </ul>
         </div>
-        <div className={`${open && "hidden"} h-screen xl:flex p-7 lg:flex md:flex w-full`}>
+        <div className={`${open && "hidden"} min-h-screen xl:flex p-7 lg:flex md:flex w-full h-full`}>
           {
             page===1?(
               <PutDataForm />
