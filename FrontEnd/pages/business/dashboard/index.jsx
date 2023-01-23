@@ -10,6 +10,7 @@ import {
 import PutDataForm from "../../../components/DashboardBusiness/PutDataForm";
 import Services from "../../../components/DashboardBusiness/Services";
 import Pedidos from "../../../components/DashboardBusiness/Pedidos";
+import Calendario from "../../../components/DashboardBusiness/Calendario";
 import { getSession } from "next-auth/react";
 const dashboard = () => {
   const { data: session } = useSession();
@@ -25,12 +26,12 @@ const dashboard = () => {
   useEffect(() => {
     try {
       setHydrated(true);
-      // async function fetchBusinessEmail(){
-      //   await dispatch(getBusinessIdByEmail(userEmail))
-      // }
-      // fetchBusinessEmail()
+      async function fetchBusinessEmail(){
+        await dispatch(getBusinessIdByEmail(userEmail))
+      }
+      fetchBusinessEmail()
       async function fetchData() {
-        await dispatch(getBusinessData(2));
+        await dispatch(getBusinessData(BusinessIdSession));
       }
       fetchData();
     } catch (error) {
@@ -142,9 +143,8 @@ const dashboard = () => {
               <PutDataForm />
             ) : page === 2 ? (
               <Services />
-            ) : (
-              page === 3 && <Pedidos />
-            )
+            ) : page === 3 ? (<Pedidos/>
+            ) : (page === 4 && <Calendario/>)
             // ):(
             //   <div>asdas</div>
             // )

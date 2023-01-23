@@ -10,6 +10,7 @@ const PutDataForm = () => {
   const { BusinessAcc } = useSelector((state) => state.business);
   const [disabled, setDisabled] = useState(true);
   const AccData = BusinessAcc.attributes;
+  const { BusinessIdSession } = useSelector((state) => state.business);
   const [putData, setPutData] = useState({
     name: AccData.name,
     telephone: AccData.telephone,
@@ -21,7 +22,7 @@ const PutDataForm = () => {
 
   useEffect(()=>{
     async function fetchData(){
-      await dispatch(getBusinessData(2))
+      await dispatch(getBusinessData(BusinessIdSession))
     }
     fetchData()
     

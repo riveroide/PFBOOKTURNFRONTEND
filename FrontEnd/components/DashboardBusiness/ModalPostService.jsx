@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getBusinessData } from "../../redux/actions/business/getBusiness";
 import { ConstructionOutlined } from "@mui/icons-material";
 
-export const ModalPostService = ({ index, setData }) => {
+export const ModalPostService = ({ index, setData, idBusiness }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const { BusinessAcc } = useSelector((state) => state.business);
@@ -26,7 +26,7 @@ export const ModalPostService = ({ index, setData }) => {
     };
   });
   useEffect(() => {
-    dispatch(getBusinessData(2));
+    dispatch(getBusinessData(idBusiness));
     
   }, [dispatch, showModal]);
 

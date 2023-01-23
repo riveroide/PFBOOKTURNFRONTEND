@@ -17,7 +17,7 @@ export const NabvarResults = () => {
 
    useEffect(() => {
     dispatch(getClientByEmail(session?.user.email))
-    dispatch(getClient(user.id))
+    dispatch(getClient(user?.id))
    }, [])
 
 
