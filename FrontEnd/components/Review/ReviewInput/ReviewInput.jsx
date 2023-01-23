@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteRating } from "../../redux/actions/Rating/deleteRating";
-import { postRating } from "../../redux/actions/Rating/postRating";
 import { putRating } from "../../redux/actions/Rating/putRating";
 import { putBusiness } from "../../redux/actions/business/putBusiness"
 import { deleteRating } from "../../../redux/actions/Rating/deleteRating";
 import { postRating } from "../../../redux/actions/Rating/postRating";
-import { putRating } from "../../../redux/actions/Rating/putRating";
 import { useRouter } from 'next/router'
 
 export const ReviewInput = ({ client, businessId }) => {
