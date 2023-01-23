@@ -70,7 +70,7 @@ export default function CardResult({ name, services, image, id, categories, sess
         {/* <h1 className="text-3xl font-medium text-gray-800 capitalize lg:text-3xl dark:text-white"> {name} </h1> */}
 
         <div className="mt-8 lg:-mx-6 lg:flex lg:items-center w-full justify-center">
-          <div className="relative mr-8">
+          <div className="relative mr-8 lg:w-96 w-full">
             <Link
               href={{
                 pathname: "/business/about/[businessId]",
@@ -81,7 +81,7 @@ export default function CardResult({ name, services, image, id, categories, sess
               className=" lg:w-1/3 rounded-xl mr-8 relative"
             >
               <img
-                className="object-cover w-full lg:mx-6 lg:w-full rounded-xl h-72 lg:h-90"
+                className="object-cover w-full lg:ml-6 lg:w-full rounded-xl h-72 lg:h-90"
                 src={image}
                 alt={name}
                 width="150"
