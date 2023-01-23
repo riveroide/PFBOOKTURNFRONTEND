@@ -23,7 +23,11 @@ const Business = ({ id }) => {
   const { clientId } = useSelector((state) => state.clients)
   const [loading, setLoading] = useState(true)
   const { businessId: business } = useSelector(state => state.business)
-  console.log("business data", business)
+
+  const sumRating = business.data?.attributes.ratings.data?.map(e => e.attributes.score).reduce((prev, curr) => prev + curr, 0)
+  const totalRated =  business.data?.attributes.ratings.data.length
+  const rating = sumRating / totalRated
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -55,6 +59,7 @@ const Business = ({ id }) => {
         services={services}
         email = {email}
         createdAt = {createdAt}
+        rating={ rating ? Math.round(rating) : 0}
         business={business}
         /></div>
         {/* <div>
