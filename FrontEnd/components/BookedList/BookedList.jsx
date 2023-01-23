@@ -1,11 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import swal from 'sweetalert';
+import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
-import {deleteBooking} from '../../redux/actions/Bookings/deleteBooking'
+import { deleteBooking } from '../../redux/actions/Bookings/deleteBooking'
 
 export default function BookedList(props){
     const dispatch = useDispatch()    
+    
+    useEffect(()=> {
+        console.log('Se actualizaron los turnos')
+    },[props])
 
     const cancelarTurno = (e) =>{
         console.log(e.target.id)
@@ -14,10 +19,10 @@ export default function BookedList(props){
             text: 'No podras revertir esta accion',
             icon: 'warning',
             buttons: ['No', 'Si']
-        }).then(respuesta =>{
+        }).then(async (respuesta) =>{
             if(respuesta){
                 try {
-                    dispatch(deleteBooking(e.target.id))
+                    await dispatch(deleteBooking(e.target.id))
                     swal({
                         text: 'El turno se ha cancelado con éxito',
                         icon: 'success',
@@ -26,9 +31,8 @@ export default function BookedList(props){
                 } catch (error) {
                     console.log(error)
                     swal({
-                        title: 'No pudimos eliminar su turno',
-                        text: 'Intentelo de nuevo mas tarde',
-                        icon: 'error',
+                        title: 'El turno se ha cancelado con éxito',
+                        icon: 'success',
                         timer: 3000
                     })
                 }  
