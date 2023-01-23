@@ -11,7 +11,7 @@ const Services = () => {
   const dispatch = useDispatch();
   const { BusinessAcc } = useSelector((state) => state.business);
   let index = 0;
-  const servicio = BusinessAcc.attributes.services.data;
+  const servicio = BusinessAcc.attributes.services?.data;
   const { BusinessIdSession } = useSelector((state) => state.business);
   const servi = servicio.map((s) => {
     return {
