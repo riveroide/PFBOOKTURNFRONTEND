@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import StepsNav from "./StepsNav";
 import StepsContents from "./StepsContents";
 import { useDispatch, useSelector } from "react-redux";
 import { postBooking } from "../../redux/actions/Bookings/postBooking";
+import { getBookingPending} from "../../redux/actions/Bookings/getBookings"
+import { getSession, useSession } from "next-auth/react";
 
 const BookingService = () => {
   const { clientAcc: client } = useSelector((state) => state.clients);
   const { businessId: business } = useSelector((state) => state.business);
+  const { data: session } = useSession();
   const [stepnum, setstepnum] = useState(1);
   const [bookingPost, setbookingPost] = useState({
     businesses: "",
@@ -15,18 +18,25 @@ const BookingService = () => {
     services: [],
     dateinfo: "",
   });
+  
+  
+
   const router = useRouter();
   const dispatch = useDispatch();
 
-  console.log(bookingPost, "a despachar");
+
+  
+  console.log(session, "soy session")
+  console.log(bookingPost, "soy el pedido");
 
   async function handleSubmit() {
     dispatch(postBooking(bookingPost));
-    alert("posteado");
+    alert("reserva creada");
+    router.push("/client/profile")
   }
 
   return (
-    <div>
+    <div key={business?.id}>
       <div>
         <StepsNav stepnum={stepnum} />
       </div>
@@ -35,6 +45,7 @@ const BookingService = () => {
           stepnum={stepnum}
           setbookingPost={setbookingPost}
           bookingPost={bookingPost}
+       
         />
       </div>
       <div className="flex justify-around">
@@ -57,8 +68,8 @@ const BookingService = () => {
               setstepnum(stepnum + 1);
               setbookingPost({
                 ...bookingPost,
-                client: client,
-                businesses: business.data.id,
+                client: client?.id,
+                businesses: business?.data.id,
               });
             } else {
               handleSubmit();

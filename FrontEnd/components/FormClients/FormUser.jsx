@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../redux/actions/users/postUser";
 
+
+
 const FormUser = ({ setformstep, formstep, setemailuser }) => {
   const dispatch = useDispatch();
+  const [error, setError] = useState({})
+  const [passwordval, setPasswordval] = useState()
   const [userinfo, setuserinfo] = useState({
     role: 2,
     username: "",
@@ -11,20 +15,45 @@ const FormUser = ({ setformstep, formstep, setemailuser }) => {
     password: "",
   });
 
+  function validate (userinfo){
+    let error = {}
+  if (!userinfo.username){
+    error.username="Nombre de usuario requerido"
+  }
+  if(!userinfo.email){
+    error.email="Email es requerido"
+  }
+  if(userinfo.password.length < 6){
+    error.password = "La contraseña tiene que tener mínimo 6 carácteres"
+  }
+  if(passwordval !== userinfo.password){
+    error.password= "Las contraseñas no coinciden"
+  }
+return error
+}
+
+
   function handleChange(e) {
-    
     setuserinfo({
       ...userinfo,
       [e.target.name]: e.target.value,
     });
+    
+    setError(validate({
+      ...userinfo,
+      [e.target.name]:e.target.value
+    }))
     setemailuser(userinfo.email);
   }
-
+ 
   function handleSubmit(e) {
-    dispatch(postUser(userinfo));
-    alert("usuario creado");
+      dispatch(postUser(userinfo));
+      setformstep(formstep + 1);
+      alert("usuario creado");
+    
   }
   console.log(userinfo);
+  console.log(error, "validacion")
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <h1 className="font-cool_g text-3xl mb-12">Primero, creá tu usuario en BookTurn</h1>
@@ -45,6 +74,7 @@ const FormUser = ({ setformstep, formstep, setemailuser }) => {
             value={userinfo.username}
             onChange={(e) => handleChange(e)}
           />
+          {error.username &&(<p className="text-xs text-red-600">{error.username}</p>)}
         </label>
 
         <label
@@ -61,6 +91,7 @@ const FormUser = ({ setformstep, formstep, setemailuser }) => {
             value={userinfo.email}
             onChange={(e) => handleChange(e)}
           />
+          {error.email &&(<p className="text-xs text-red-600">{error.email}</p>)}
         </label>
 
         <label
@@ -74,13 +105,37 @@ const FormUser = ({ setformstep, formstep, setemailuser }) => {
 
           <input
             type="password"
+            name="passwordval"
+            placeholder="*********"
+            className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            value={passwordval}
+            onChange={(e)=>{
+              setPasswordval(e.target.value)
+            }}
+          />
+          {error.passwordval &&(<p className="text-xs text-red-600 tracking-widest">{error.passwordval}</p>)}
+        </label>
+
+        <label
+          
+          className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+        >
+          <span className="text-xs font-medium text-gray-700">
+            {" "}
+            Repetir Contraseña{" "}
+          </span>
+
+          <input
+            type="password"
             name="password"
             placeholder="*********"
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             value={userinfo.password}
             onChange={(e) => handleChange(e)}
           />
+          {error.password &&(<p className="text-xs text-red-600">{error.password}</p>)}
         </label>
+        
       </div>
       <div className="mt-12">
       <button
@@ -88,7 +143,7 @@ const FormUser = ({ setformstep, formstep, setemailuser }) => {
         type="submit"
         onClick={() => {
           handleSubmit();
-          setformstep(formstep + 1);
+          
         }}
       >
         Siguiente

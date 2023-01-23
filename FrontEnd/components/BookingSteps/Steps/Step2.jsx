@@ -1,10 +1,15 @@
-import React from 'react'
-import Calendar from '../Calendar/Calendar'
+import React from "react";
+import Calendar from "../Calendar/Calendar";
 
-const Step2 = ({setbookingPost , bookingPost}) => {
+const Step2 = ({ setbookingPost, bookingPost, finaldata, setfinaldata }) => {
   return (
-    <Calendar setbookingPost={setbookingPost} bookingPost={bookingPost}/>
-  )
-}
+    <Calendar
+      setbookingPost={setbookingPost}
+      bookingPost={bookingPost}
+      finaldata={finaldata}
+      setfinaldata={setfinaldata}
+    />
+  );
+};
 
-export default Step2
+export default Step2;

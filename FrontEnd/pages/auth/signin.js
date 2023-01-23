@@ -1,7 +1,40 @@
-import { getCsrfToken, signIn } from "next-auth/react";
+import { getCsrfToken, getProviders, getSession, signIn } from "next-auth/react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function SignIn({ csrfToken }) {
+  const [input, setInput] = useState({
+    email: "",
+    password: ""
+  })
+  const [error, setError] = useState ({
+    error:false,
+    message: "Los datos informados son inválidos, intente nuevamente"
+  })
+  console.log(input)
+  function handleChange(e){
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    try {
+      const user = await SignIn('credentials', {
+        redirect: false,
+        identifier: input.email.toLowerCase(),
+        password: input.password
+      })
+      if (user.error) throw new Error(user.error)
+      router.push("/client/login")
+    } catch (error) {
+      setError({ error: true, message: "algo saió mal"})
+    }
+  }
+
   return (
+    // ----------------------------------------
     // <form method="post" action="/api/auth/callback/credentials">
     //   <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
     //   <label>
@@ -14,17 +47,18 @@ export default function SignIn({ csrfToken }) {
     //   </label>
     //   <button type="submit">Sign in</button>
     // </form>
-
-    <section className="bg-white dark:bg-gray-900">
+// ----------------------------------------------------------
+    <section className="bg-white">
   
       <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
         <form
           className="w-full max-w-md"
           method="post"
           action="/api/auth/callback/credentials"
+          onSubmit={(e)=> handleSubmit(e)}
         >
           <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-          <h1 className="flex text-2xl font-semibold text-gray-800  dark:text-white justify-center">
+          <h1 className="flex text-2xl font-semibold text-gray-800 justify-center">
             Hola de nuevo!
           </h1>
 
@@ -32,15 +66,15 @@ export default function SignIn({ csrfToken }) {
             <span className="absolute">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                className="w-6 h-6 mx-3 text-gray-300"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
@@ -49,8 +83,11 @@ export default function SignIn({ csrfToken }) {
             <input
               type="email"
               name="email"
-              className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Email address"
+              onChange={(e)=>handleChange(e)}
+              error={error.error}
+              value={input.email}
+              className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Email@ejemplo.com"
             />
           </div>
 
@@ -58,15 +95,15 @@ export default function SignIn({ csrfToken }) {
             <span className="absolute">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                className="w-6 h-6 mx-3 text-gray-300"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                 />
               </svg>
@@ -74,8 +111,12 @@ export default function SignIn({ csrfToken }) {
 
             <input
               type="password"
-              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Password"
+              name="password"
+              onChange={(e)=>handleChange(e)}
+              error={error.error}
+              value={input.password}
+              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Contraseña"
             />
           </div>
 
@@ -87,13 +128,13 @@ export default function SignIn({ csrfToken }) {
               Entrar
             </button>
 
-            <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-center text-gray-600">
               o sino también podés
             </p>
 
-            <a
-              href="/" onClick={()=> signIn(GoogleProvider)}
-              className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+            <button
+              onClick={()=> signIn(process.env.GOOGLE_CLIENT_ID)}
+              className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50"
             >
               <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                 <path
@@ -115,15 +156,15 @@ export default function SignIn({ csrfToken }) {
               </svg>
 
               <span className="mx-2">Entrar con Google</span>
-            </a>
+            </button>
 
             <div className="mt-6 text-center ">
-              <a
+              <Link
                 href="/client/login/createform"
-                className="text-sm text-blue-500 hover:underline dark:text-blue-400"
+                className="text-sm text-blue-600 hover:underline"
               >
                 No tenés cuenta? Creá la tuya haciendo click aquí
-              </a>
+              </Link>
             </div>
           </div>
         </form>
@@ -133,9 +174,13 @@ export default function SignIn({ csrfToken }) {
 }
 
 export async function getServerSideProps(context) {
-  return {
-    props: {
-      csrfToken: await getCsrfToken(context),
-    },
-  };
+  const session = await getSession(context)
+  const providers = await getProviders()
+  if (session) return { redirect: { destination: '/dashboard', permanent: false } }
+
+  return { props: { 
+    session,
+    csrfToken: await getCsrfToken(context),
+    providers } }
+ 
 }

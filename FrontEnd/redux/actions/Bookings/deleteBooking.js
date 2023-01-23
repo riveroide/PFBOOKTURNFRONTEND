@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const deleteBooking = (id) => {
-    axios.delete(`http://localhost:1337/api/booking/${id}`)
+    axios.delete(`https://plankton-app-jy8jr.ondigitalocean.app/api/bookings/${id}`)
     .catch(error => console.log(error))
 };

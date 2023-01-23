@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const Step1 = ({setbookingPost , bookingPost}) => {
+const Step1 = ({setbookingPost , bookingPost , finaldata , setfinaldata}) => {
   const { businessId: business } = useSelector((state) => state.business);
   const { services } = business.data?.attributes;
   
@@ -11,17 +11,25 @@ const Step1 = ({setbookingPost , bookingPost}) => {
         ...bookingPost,
         services: [...bookingPost.services, e.target.id],
       });
+      setfinaldata({
+        ...finaldata,
+        services:[...finaldata.services, e.target.name]
+      })
       
     } else {
       setbookingPost({
         ...bookingPost,
         services: bookingPost.services.filter((r) => r !== e.target.id),
       });
+      setfinaldata({
+        ...finaldata,
+        services:finaldata.services.filter((r) => r!== e.target.value)
+      })
     }
-    
   }
+  
   return (
-    <div className="flex font-cool_g flex-col w-full items-center">
+    <div className="flex font-cool_g flex-col w-full items-center py-24">
       {services.data?.map((e) => {
         return (
           <div className="flex w-1/4 items-center">
@@ -38,6 +46,7 @@ const Step1 = ({setbookingPost , bookingPost}) => {
             <label
               for="basic"
               className="cursor-pointer truncate text-3xl font-medium text-gray-500"
+            
             >
               {e.attributes.name} (${e.attributes.price})
             </label>

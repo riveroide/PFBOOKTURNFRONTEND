@@ -2,6 +2,7 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
+import { loginUser } from "../../../redux/actions/users/postUser";
 
 export default NextAuth({
   providers: [
@@ -14,36 +15,52 @@ export default NextAuth({
           placeholder: "tu email",
         },
         password: {
-          label: "Password",
+          label: "Contraseña",
           type: "password",
-          placeholder: "contraseña",
+          placeholder: "******",
         },
       },
-      authorize: async (credentials,req) => {
+      authorize: async (credentials, req) => {
         //hacer validacion con la base de datos
         try {
-          const { data: users } = await axios.post(
-            `http://localhost:1337/api/auth/local?populate=*`,
-            {
-              identifier: credentials.email,
-              password: credentials.password,
-            }
-          )
-          const { data } = await axios.get(`http://localhost:1337/api/users/${users.user.id}?populate=*`, { identifier: credentials.identifier, password: credentials.password })
-          console.log(users)
-          if (users){
-            return {
-                id: users.user.id,
-                token: users.jwt,
-                email: users.user.email,
-                name: users.user.username,
-                 role: data.role.name
-              }
+
+          // const {data: user} = await axios.post(`https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local`,{
+          //   identifier: credentials.email,
+          //   password: credentials.password
+          // })
+          // si existe el email
+          // comprar si la password es la misma que tiene el user
+          const user = await axios.get("https://plankton-app-jy8jr.ondigitalocean.app/api/users?populate=*&filters[email][$eq]=" + credentials.email,{ 
+            headers: { "Accept-Encoding": "gzip,deflate,compress" } 
+        })
+
+          // const res = await fetch(
+          //   "https://plankton-app-jy8jr.ondigitalocean.app/api/auth/local",
+          //   {
+          //     method: "POST",
+          //     body: JSON.stringify(credentials),
+          //     headers: { "Content-Type": "application/json" },
+          //   }
+          // );
+          // const user = await res.json();
+
+          // if (res.ok && user) {
+          //   console.log(user, "soy user pos post");
+          //   const data = await axios.get(
+          //     `http://localhost:1337/api/users/${user.user.id}?populate=*`
+          //   );
+          console.log(user, "soy user")
+            if (user) {
+              return {
+                id: user.data[0].id,
+                // token: user.jwt,
+                email: user.data[0].email,
+                name: user.data[0].username,
+                role: user.data[0].role.id, 
+              };
           }
-            
-            
-          }
-        catch (error) {
+        } catch (error) {
+          console.log(error)
           return null;
         }
       },
@@ -59,8 +76,10 @@ export default NextAuth({
       if (user) {
         token.id = user.id;
         token.name = user.name;
-        token.password = user.password;
-        token.role = user.role;
+        // token.password = user.password;
+        token.role = user.role,
+        token.client = user.client,
+        token.business = user.business
       }
       return token;
     },
@@ -68,12 +87,15 @@ export default NextAuth({
       if (token) {
         session.id = token.id;
         session.name = token.name;
-        session.password = token.password;
+        // session.password = user.password;
         session.role = token.role;
+        session.client = token.client,
+        session.business = token.business
       }
       return session;
-    },
+    }
   },
-   secret: "test",
+
+    secret: "test",
   encription: true,
 });
