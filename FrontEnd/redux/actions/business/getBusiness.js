@@ -1,4 +1,4 @@
-import { getAllBusiness, getBusinessId, getIdBusiness, getiInfoBusiness } from "redux/reducers/businessSlice";
+import { getAllBusiness, getBusinessId, getIdBusiness, getiInfoBusiness, getBusinessEmail } from "redux/reducers/businessSlice";
 import axios from "axios";
 
 export const getBusiness = () => (dispatch) => {

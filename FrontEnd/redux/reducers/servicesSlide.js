@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const servicesSlice = createSlice({
-    name: "clients",
+    name: "services",
     initialState: {
         servicesList: [],
         servicesById: {},

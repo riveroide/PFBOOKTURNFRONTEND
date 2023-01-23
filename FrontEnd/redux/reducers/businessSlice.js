@@ -66,8 +66,12 @@ export const businessSlice = createSlice({
     },
     getiInfoBusiness: (state,action) => {
       state.BusinessAcc = action.payload
+    },
+    getBusinessEmail: (state,action) => {
+      state.BusinessAcc = action.payload
     }
   },
+  
 });
 
 export const {
@@ -76,7 +80,8 @@ export const {
   filterByOrder,
   filterByCategory,
   getIdBusiness,
-  getiInfoBusiness
+  getiInfoBusiness,
+  getBusinessEmail
 } = businessSlice.actions;
 
 export default businessSlice.reducer;
