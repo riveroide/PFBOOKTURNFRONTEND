@@ -9,6 +9,7 @@ const NotSigned = () => {
         data-aos="fade-up"
         className="flex flex-col justify-center items-center min-h-screen"
       >
+        
         <h3 className="overflow-hidden my-12">
           Por favor registrate o ingresá con tu cuenta haciendo clic en este
           botón:

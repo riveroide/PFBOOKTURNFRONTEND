@@ -17,6 +17,7 @@ export const servicesSlice = createSlice({
         getServiceByName: (state, action) => {
             state.servicesByName = action.payload
         }
+        
     }
 })
 
