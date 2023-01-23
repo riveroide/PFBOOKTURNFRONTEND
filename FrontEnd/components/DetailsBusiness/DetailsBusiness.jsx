@@ -16,7 +16,7 @@ const DetailsBusiness = ({name, address, email, telephone, createdAt, business})
             {name}
           </p>
 
-          <div className='flex justify-center align-center mt-4'><Image src={business.data.attributes.BusinessPic.data.attributes.url} height={650} width={500} alt='/'/> </div>
+          <div className='flex justify-center align-center mt-4'><Image src={business?.data.attributes.BusinessPic.data.attributes.url} height={650} width={500} alt='/'/> </div>
           
           <p className="mb-20 text-lg text-gray-600 text-center font-medium leading-normal md:max-w-lg mx-auto">
             Ofrece sus servicios en Bookturn desde: {createdAt}
