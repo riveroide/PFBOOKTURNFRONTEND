@@ -34,15 +34,15 @@ const Calendario = () => {
         locale="es-ES"
       />
       {confirmedBookings &&
-        confirmedBookings.map((bookings) => {
-          const fecha = bookings.attributes.dateinfo.split(" ");
-          const fechaCalendar = date.split(" ");
+        confirmedBookings?.map((bookings) => {
+          const fecha = bookings.attributes.dateinfo?.split(" ");
+          const fechaCalendar = date?.split(" ");
           console.log(fecha);
           console.log(fechaCalendar);
           if (fecha[2] == fechaCalendar[2] && fecha[1] == fechaCalendar[1]) {
             return (
               <div
-                key={bookings.id}
+                key={bookings?.id}
                 class="md:flex shadow rounded-xl border-solid border-2 border-gray-700 w-full md:w-4/6 lg:w-3/6 mb-8"
               >
                 <div class="bg-gray-700 rounded-lg  md:w-3/12 justify-center items-center flex min-h-full shadow-inner">
@@ -70,13 +70,13 @@ const Calendario = () => {
                     <div className="flex gap-2 w-full justify-center md:justify-start">
                       <p className="text-gray-900">Cliente:</p>
                       <p className="text-gray-800">
-                        {bookings.attributes.client.data.attributes.nameComplete}
+                        {bookings.attributes.client.data?.attributes.nameComplete}
                       </p>
                     </div>
                     <div className="flex gap-2 w-full justify-center md:justify-start">
                       <p className="text-gray-900">Telefono:</p>
                       <p className="text-gray-800">
-                        {bookings.attributes.client.data.attributes.telephone}
+                        {bookings.attributes.client.data?.attributes.telephone}
                       </p>
                     </div>
                   </div>

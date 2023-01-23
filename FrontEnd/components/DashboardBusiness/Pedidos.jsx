@@ -45,8 +45,8 @@ const Pedidos = (idBusiness) => {
           RESERVAS POR CONFIRMAR
         </h1>
       </div>
-      {unconfirmedBookings?.map((bookings) => {
-        const fecha = bookings.attributes.dateinfo.split(" ");
+      {unconfirmedBookings && unconfirmedBookings?.map((bookings) => {
+        const fecha = bookings.attributes.dateinfo?.split(" ");
         return (
           <div
             key={bookings.id}
