@@ -9,6 +9,7 @@ import { useState } from "react";
 const Pedidos = (idBusiness) => {
   const dispatch = useDispatch();
   const { unconfirmedBookings } = useSelector((state) => state.businessacc);
+  const { BusinessIdSession } = useSelector((state) => state.business);
   const [reload, setReload] = useState(false);
   const put = async () => {
     await dispatch(putBooking(e.target.id, { confirmed: true }));
@@ -35,7 +36,7 @@ const Pedidos = (idBusiness) => {
   };
 
   useEffect(() => {
-    dispatch(BookingsUnconfirmed(idBusiness));
+    dispatch(BookingsUnconfirmed(BusinessIdSession));
   }, [dispatch, reload]);
   return (
     <div className="flex flex-col flex-wrap w-full h-fit items-center font-cool_p tracking-wide">

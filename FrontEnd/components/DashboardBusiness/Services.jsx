@@ -77,7 +77,7 @@ const Services = () => {
           onSubmit={(e) => {
             handlerSubmit(e);
           }}
-          class="w-full flex flex-wrap justify-around px-12"
+          class="w-full flex flex-wrap justify-around px-2 md:px-16"
         >
           {data.map((s) => {
             return (

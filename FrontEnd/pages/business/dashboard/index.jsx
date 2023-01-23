@@ -143,8 +143,8 @@ const dashboard = () => {
               <PutDataForm />
             ) : page === 2 ? (
               <Services />
-            ) : page === 3 ? (<Pedidos idBusiness={BusinessIdSession} />
-            ) : (page === 4 && <Calendario idBusiness={BusinessIdSession} />)
+            ) : page === 3 ? (<Pedidos/>
+            ) : (page === 4 && <Calendario/>)
             // ):(
             //   <div>asdas</div>
             // )
