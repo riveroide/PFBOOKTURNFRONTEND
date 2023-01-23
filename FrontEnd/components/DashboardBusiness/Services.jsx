@@ -68,7 +68,7 @@ const Services = () => {
   };
   if (data) {
     return (
-      <div className="flex flex-col w-full h-fit items-center justify-center font-cool_p tracking-wide">
+      <div className="flex flex-col flex-wrap w-full h-fit items-center font-cool_p tracking-wide">
         <div class="w-full max-w-lg flex justify-center mb-6">
           <h1 className="text-5xl text-gray-700 font-semibold">SERVICIOS</h1>
         </div>
@@ -76,7 +76,7 @@ const Services = () => {
           onSubmit={(e) => {
             handlerSubmit(e);
           }}
-          class="w-full max-w-lg"
+          class="w-full flex flex-wrap justify-around px-12"
         >
           {data.map((s) => {
             return (
@@ -137,7 +137,8 @@ const Services = () => {
             );
           })}
 
-          <div class="flex mb-2 w-full justify-evenly">
+        </form>
+          <div class="flex mb-2 w-full justify-center gap-32 mt-12">
             <button
               type="submit"
               class="bg-blue-500 w-24 hover:bg-blue-400 tracking-widest text-white font-light py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
@@ -146,7 +147,6 @@ const Services = () => {
             </button>
             <ModalPostService index={index} setData={setData} />
           </div>
-        </form>
       </div>
     );
   }

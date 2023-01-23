@@ -14,14 +14,11 @@ import Paginado from "../Paginado/Paginado";
 
 export default function Results() {
   const dispatch = useDispatch();
-
   const { data: session } = useSession();
-  console.log(session);
   const { businessList } = useSelector((state) => state.business);
-  console.log(businessList);
   const [hydrated, setHydrated] = useState(false);
   const { clientId } = useSelector((state) => state.clients);
-  console.log(clientId);
+
   useEffect(() => {
     setHydrated(true);
     if (!businessList.length) dispatch(getBusiness());

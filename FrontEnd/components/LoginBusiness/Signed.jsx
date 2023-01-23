@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react'
 
 const Signed = ({session}) => {
-    
+  
   return (
     <div className="flex justify-center flex-col items-center py-20 font-cool_p text-4xl my-auto ">
         <h2 className="overflow-hidden my-12">Bienvenido {session.user.name}</h2>
