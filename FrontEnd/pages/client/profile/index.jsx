@@ -223,22 +223,4 @@ const Profile = () => {
   }
 }
 
-export async function getServerSideProps(context){
-  //si no hay sesion iniciada redirige al login
-  const session = await getSession(context)
-  
-    if(!session) {
-      return {
-        redirect: {
-          destination: "/client/login",
-          permanent: false
-        },
-      }
-    }
-  
-    return {
-      props: { session }
-    }
-};
-
 export default Profile
