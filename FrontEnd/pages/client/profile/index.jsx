@@ -97,7 +97,7 @@ const Profile = () => {
   
   if(!loading && clientId){
     const {nameComplete} = clientId?.attributes
-    const favourites = favouritesList[0]?.attributes.businesses.data
+    const favourites = favouritesList[0]?.attributes?.businesses.data
     console.log(favourites)
     return (
       <div className="flex scroll-smooth min-h-screen">
@@ -190,9 +190,9 @@ const Profile = () => {
                   {favourites?.length && favourites?.map(e => {
                     return(
                       <FavCard 
-                        name={e.attributes.name} 
-                        address={e.attributes.address} 
-                        telephone={e.attributes.telephone} 
+                        name={e.attributes?.name} 
+                        address={e.attributes?.address} 
+                        telephone={e.attributes?.telephone} 
                         id={e.id}
                         key={e.id}
                       />
