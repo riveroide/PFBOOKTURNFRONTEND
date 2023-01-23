@@ -1,26 +1,31 @@
+import Image from "next/image";
 import React from "react";
 
-const DetailsBusiness = ({name, address, email, telephone, createdAt}) => {
+const DetailsBusiness = ({name, address, email, telephone, createdAt, business}) => {
   return (
     <div>
-      <section class="relative pt-24 pb-36 bg-white overflow-hidden font-cool_g tracking-widest">
-        <img
-          class="absolute bottom-0 left-1/2 transform -translate-x-1/2"
+      <section className="relative pt-24 pb-36 bg-white overflow-hidden font-cool_g tracking-widest">
+        {/* <img
+          className="absolute bottom-0 left-1/2 transform -translate-x-1/2"
           src="flaro-assets/images/contact/gradient.svg"
           alt=""
-        />
-        <div class="relative z-10 container px-4 mx-auto overflow-hidden">
-          <p class="mb-3 text-3xl md:text-5xl xl:text-6xl text-center font-bold font-heading tracking-px-n leading-none h-20 my-3">
+        /> */}
+        <div className="relative z-10 container px-4 mx-auto overflow-hidden">
+          
+          <p className="mb-3 text-3xl md:text-5xl xl:text-6xl text-center font-bold font-heading tracking-px-n leading-none h-20 my-1">
             {name}
           </p>
-          <p class="mb-20 text-lg text-gray-600 text-center font-medium leading-normal md:max-w-lg mx-auto">
+
+          <div className='flex justify-center align-center mt-4'><Image src={business.data.attributes.BusinessPic.data.attributes.url} height={650} width={500} alt='/'/> </div>
+          
+          <p className="mb-20 text-lg text-gray-600 text-center font-medium leading-normal md:max-w-lg mx-auto">
             Ofrece sus servicios en Bookturn desde: {createdAt}
           </p>
-          <div class="flex flex-wrap -m-3">
-            <div class="w-full md:w-1/3 p-3">
-              <div class="p-11 h-full text-center bg-white bg-opacity-90 border border-blueGray-100 rounded-xl shadow-11xl">
-                <div class="mb-6 relative mx-auto w-16 h-16 bg-indigo-600 rounded-full">
-                  <div class="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
+          <div className="flex flex-wrap -m-3">
+            <div className="w-full md:w-1/3 p-3">
+              <div className="p-11 h-full text-center bg-white bg-opacity-90 border border-blueGray-100 rounded-xl shadow-11xl">
+                <div className="mb-6 relative mx-auto w-16 h-16 bg-indigo-600 rounded-full">
+                  <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
                     <svg
                       width="32"
                       height="33"
@@ -38,17 +43,17 @@ const DetailsBusiness = ({name, address, email, telephone, createdAt}) => {
                     </svg>
                   </div>
                 </div>
-                <h3 class="mb-3 text-xl font-bold font-heading leading-snug">
+                <h3 className="mb-3 text-xl font-bold font-heading leading-snug">
                   Email
                 </h3>
-                <p class="font-medium leading-relaxed">{email}</p>
-                <p class="font-medium leading-relaxed">support@mail.com</p>
+                <p className="font-medium leading-relaxed">{email}</p>
+                <p className="font-medium leading-relaxed">support@mail.com</p>
               </div>
             </div>
-            <div class="w-full md:w-1/3 p-3">
-              <div class="p-11 h-full text-center bg-white bg-opacity-90 border border-blueGray-100 rounded-xl shadow-11xl">
-                <div class="mb-6 relative mx-auto w-16 h-16 bg-white border border-blueGray-200 rounded-full">
-                  <div class="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
+            <div className="w-full md:w-1/3 p-3">
+              <div className="p-11 h-full text-center bg-white bg-opacity-90 border border-blueGray-100 rounded-xl shadow-11xl">
+                <div className="mb-6 relative mx-auto w-16 h-16 bg-white border border-blueGray-200 rounded-full">
+                  <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
                     <svg
                       width="32"
                       height="33"
@@ -66,17 +71,17 @@ const DetailsBusiness = ({name, address, email, telephone, createdAt}) => {
                     </svg>
                   </div>
                 </div>
-                <h3 class="mb-3 text-xl font-bold font-heading leading-snug">
+                <h3 className="mb-3 text-xl font-bold font-heading leading-snug">
                   Teléfono
                 </h3>
-                <p class="font-medium leading-relaxed">{telephone}</p>
-                <p class="font-medium leading-relaxed">+1 8408 412 569</p>
+                <p className="font-medium leading-relaxed">{telephone}</p>
+                <p className="font-medium leading-relaxed">+1 8408 412 569</p>
               </div>
             </div>
-            <div class="w-full md:w-1/3 p-3">
-              <div class="p-11 h-full text-center bg-white bg-opacity-90 border border-blueGray-100 rounded-xl shadow-11xl">
-                <div class="mb-6 relative mx-auto w-16 h-16 bg-white border border-blueGray-200 rounded-full">
-                  <div class="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
+            <div className="w-full md:w-1/3 p-3">
+              <div className="p-11 h-full text-center bg-white bg-opacity-90 border border-blueGray-100 rounded-xl shadow-11xl">
+                <div className="mb-6 relative mx-auto w-16 h-16 bg-white border border-blueGray-200 rounded-full">
+                  <div className="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
                     <svg
                       width="32"
                       height="33"
@@ -101,10 +106,10 @@ const DetailsBusiness = ({name, address, email, telephone, createdAt}) => {
                     </svg>
                   </div>
                 </div>
-                <h3 class="mb-3 text-xl font-bold font-heading leading-snug">
+                <h3 className="mb-3 text-xl font-bold font-heading leading-snug">
                   Dirección
                 </h3>
-                <p class="font-medium max-w-xs mx-auto leading-relaxed">
+                <p className="font-medium max-w-xs mx-auto leading-relaxed">
                   {address}
                 </p>
               </div>
