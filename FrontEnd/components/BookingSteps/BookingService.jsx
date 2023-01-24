@@ -18,6 +18,7 @@ const BookingService = () => {
     client: "",
     services: "",
     dateinfo: "",
+    emailClient:""
   });
   
   
@@ -27,11 +28,14 @@ const BookingService = () => {
 
 
   
-  console.log(session, "soy session")
+  console.log(session?.user?.email, "soy session")
   console.log(bookingPost, "soy el pedido");
+  console.log(client, "soy client")
 
   async function handleSubmit() {
-    dispatch(postBooking(bookingPost));
+    dispatch(postBooking({
+      ...bookingPost,
+    emailClient: session?.user.email}));
     dispatch(postEmailNotif({
       subject:'Pedido de reserva',
       email:business?.data.attributes.email,
