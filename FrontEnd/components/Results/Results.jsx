@@ -69,12 +69,12 @@ export default function Results() {
               <CardResult
                 key={e.id}
                 id={e.id}
-                name={e.attributes.name}
-                services={e.attributes.services?.data}
-                categories={e.attributes.categories.data}
+                name={e.attributes?.name}
+                services={e.attributes?.services?.data}
+                categories={e.attributes?.categories.data}
                 image={
                   e.attributes?.BusinessPic.data?.attributes
-                    ? e.attributes.BusinessPic.data.attributes.formats.large?.url
+                    ? e.attributes?.BusinessPic.data?.attributes.formats.large?.url
                     : "https://avalos.sv/wp-content/uploads/295-default-featured-image.png"
                 }
                 session={session}
