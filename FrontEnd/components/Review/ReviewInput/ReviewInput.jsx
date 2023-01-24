@@ -40,7 +40,7 @@ export const ReviewInput = ({ client, businessId }) => {
     title: "",
     comment: "",
     business: parseInt(businessId),
-    client: parseInt(client.id),
+    client: parseInt(client?.id),
     reported: false
   });
   const [hover, setHover] = useState(0);
@@ -97,7 +97,7 @@ export const ReviewInput = ({ client, businessId }) => {
   };
 
   const handleDelete = async () => {
-    await dispatch(deleteRating(rating[0].id))
+    await dispatch(deleteRating(rating[0]?.id))
     setInput({
       score: 0,
       title: "",
