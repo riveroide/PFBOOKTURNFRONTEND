@@ -28,7 +28,7 @@ const Business = ({ id }) => {
   const { businessId: business } = useSelector(state => state.business)
 
   const sumRating = business.data?.attributes.ratings.data?.map(e => e.attributes.score).reduce((prev, curr) => prev + curr, 0)
-  const totalRated =  business.data?.attributes.ratings.data.length
+  const totalRated =  business.data?.attributes?.ratings.data?.length
   const rating = sumRating / totalRated
 
   const dispatch = useDispatch()
@@ -53,12 +53,12 @@ const Business = ({ id }) => {
 
   const handleClick = (e) => {
     e.preventDefault()
-    if(!favourite.length){
+    if(!favourite?.length){
       dispatch(postFavourite({businesses: e.target.id,
         clients: clientId?.id}))
         alert(`Se agregó ${business.data?.attributes.name} a favoritos`)
     } 
-    else if (favourite.length) {
+    else if (favourite?.length) {
       dispatch(deleteFavourite(favourite[0]?.id))
       alert(`Se eliminó ${business.data?.attributes.name} de favoritos`)
     }
@@ -86,7 +86,7 @@ const Business = ({ id }) => {
         rating={ rating ? Math.round(rating) : 0}
         business={business}
         handleClick={handleClick}
-        favourite={favourite.length ? true : false}
+        favourite={favourite?.length ? true : false}
         /></div>
         {/* <div>
           <ServiceList 
