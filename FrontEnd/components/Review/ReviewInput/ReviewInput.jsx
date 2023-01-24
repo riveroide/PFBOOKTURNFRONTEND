@@ -6,7 +6,7 @@ import { deleteRating } from "../../../redux/actions/Rating/deleteRating";
 import { postRating } from "../../../redux/actions/Rating/postRating";
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 
 export const ReviewInput = ({ client, businessId }) => {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ export const ReviewInput = ({ client, businessId }) => {
     e.preventDefault();
     if (!rating.length) {
       await dispatch(postRating(input));
-      await swal({
+      await swal.fire({
         title:'Listo!',
         text: 'Su reseña fue publicada con exito',
         icon: 'success',
@@ -77,7 +77,7 @@ export const ReviewInput = ({ client, businessId }) => {
     } else {
       dispatch(putRating(rating[0]?.id, input))
       setDisable(true)
-      await swal({
+      await swal.fire({
         title:'Listo!',
         text: 'Su comentario fue actualizado con exito',
         icon: 'success',
@@ -105,7 +105,7 @@ export const ReviewInput = ({ client, businessId }) => {
       business: parseInt(businessId),
       client: parseInt(client?.id),
     })
-   await swal({
+   await swal.fire({
       title:'Listo!',
       text: 'Su comentario fue eliminado con exito',
       icon: 'success',

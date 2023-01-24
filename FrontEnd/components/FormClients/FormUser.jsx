@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../redux/actions/users/postUser";
-import swal from 'sweetalert'
+
 
 
 const FormUser = ({ setformstep, formstep, setemailuser }) => {

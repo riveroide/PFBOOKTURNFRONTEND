@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { deleteBooking } from '../../redux/actions/Bookings/deleteBooking'
@@ -14,23 +14,24 @@ export default function BookedList(props){
 
     const cancelarTurno = (e) =>{
         console.log(e.target.id)
-        swal({
+        swal.fire({
             title: 'Estas seguro que deseas cancelar el turno?',
             text: 'No podras revertir esta accion',
             icon: 'warning',
-            buttons: ['No', 'Si']
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar'
         }).then(async (respuesta) =>{
-            if(respuesta){
+            if(respuesta.isConfirmed){
                 try {
                     await dispatch(deleteBooking(e.target.id))
-                    swal({
+                    swal.fire({
                         text: 'El turno se ha cancelado con éxito',
                         icon: 'success',
                         timer: 3000
                     }) 
                 } catch (error) {
                     console.log(error)
-                    swal({
+                    swal.fire({
                         title: 'El turno se ha cancelado con éxito',
                         icon: 'success',
                         timer: 3000

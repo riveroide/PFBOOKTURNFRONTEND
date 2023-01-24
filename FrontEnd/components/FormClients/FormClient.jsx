@@ -4,7 +4,7 @@ import { getUserByEmail } from "../../redux/actions/users/getUsers";
 import { postClient } from "../../redux/actions/clients/postClient"
 import { useState } from "react";
 import { useRouter } from "next/router";
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 
 const FormClient = ({ emailuser }) => {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ return error
   }
   function handleSubmit (){
     dispatch(postClient(clientinfo))
-    swal({
+    swal.fire({
       title:'Listo!',
       text: 'Su cuenta fue creada correctamente',
       icon: 'success',

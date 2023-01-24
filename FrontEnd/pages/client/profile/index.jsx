@@ -27,6 +27,9 @@ const Profile = () => {
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
+  console.log('LISTA DE FAVORITOS',favouritesList)
+  console.log('LISTA DE TURNOS',bookedList)
+  console.log('CLIENTE',clientId)
 
   useEffect(() => {
     setLoading(true)
@@ -42,11 +45,11 @@ const Profile = () => {
       }
       fetchClient()
       async function fetchFavList(){
-        await dispatch(getFavourites(clientAcc.id))
+        await dispatch(getFavourites(clientAcc?.id))
       }
       fetchFavList()
       async function fetchBookList(){
-        await dispatch(getBooked(clientAcc.id))
+        await dispatch(getBooked(clientAcc?.id))
       }
       fetchBookList()
       dispatch(display(''))
