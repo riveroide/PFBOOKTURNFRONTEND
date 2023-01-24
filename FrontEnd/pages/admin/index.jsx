@@ -37,35 +37,4 @@ const admin = () => {
        )
 };
 
-export async function getServerSideProps(context){
-  //si no hay sesion iniciada redirige al login
-  const session = await getSession(context)
-  
-    if(!session) {
-      return {
-        redirect: {
-          destination: "/client/login",
-          permanent: false
-        },
-      }
-    }
-    //si el usuario no tiene el mail del admin redirige al inicio
-    if(session?.role !== 3 || session?.role !== "Admin")  {
-      console.log(session?.role)
-      return {
-        redirect: {
-          destination: "/",
-          permanent: false
-        },
-      }
-    }
-  
-    return {
-      props: { session }
-    }
-  };
-
-
-
-
 export default admin
