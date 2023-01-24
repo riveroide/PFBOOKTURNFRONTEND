@@ -5,7 +5,7 @@ import StepsNav from "./StepsNav";
 import StepsContents from "./StepsContents";
 import { useDispatch, useSelector } from "react-redux";
 import { postBooking } from "../../redux/actions/Bookings/postBooking";
-import { getBookingPending} from "../../redux/actions/Bookings/getBookings"
+import { postEmailNotif } from "../../redux/actions/emailNotifications/postEmail"
 import { getSession, useSession } from "next-auth/react";
 
 const BookingService = () => {
@@ -32,6 +32,17 @@ const BookingService = () => {
 
   async function handleSubmit() {
     dispatch(postBooking(bookingPost));
+    dispatch(postEmailNotif({
+      subject:'Pedido de reserva',
+      email:business?.data.attributes.email,
+      message:`Recibiste una nueva reserva, por favor ingresá a tu dashboard de Bookturn para revisarla`
+    }))
+    dispatch(postEmailNotif({
+      subject:'Pedido de reserva',
+      email:session?.user.email,
+      message:`Tu reserva fue hecha satisfactoriamente. En breve, la empresa a la cual realizaste esta reserva va a confirmar (o no) tu solcitud`
+    }))
+
     swal({
       title:'Listo!',
       text: 'Su turno se creó correctamente',
