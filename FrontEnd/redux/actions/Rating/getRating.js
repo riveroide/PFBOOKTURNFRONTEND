@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   getRatingByClientAndBusiness,
   getAllRatings,
+ getRatings
 } from "../../reducers/ratingsSlice";
 
 export const getRatingFromClientAndBusiness =
@@ -18,3 +19,11 @@ export const getRatingBusiness = (id) => (dispatch) => {
     .then((res) => dispatch(getAllRatings(res.data.data)))
     .catch((res) => console.log(res));
 };
+
+export const getRatingsAll = () => (dispatch) => {
+  axios(
+    "https://plankton-app-jy8jr.ondigitalocean.app/api/ratings?"
+  )
+  .then((res) => dispatch(getRatings(res.data.data)))
+    .catch((res) => console.log(res));
+}

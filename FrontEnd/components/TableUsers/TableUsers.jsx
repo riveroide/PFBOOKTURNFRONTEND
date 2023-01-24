@@ -12,7 +12,7 @@ import Switch from '@mui/material/Switch';
 
 const TableUsers = ({usersList, change, setChange}) => {
   const session = useSession()
-  console.log(session)
+  // console.log(session)
 
     const dispatch = useDispatch()
     const [order, setOrder] = useState('asc');
@@ -77,10 +77,10 @@ const TableUsers = ({usersList, change, setChange}) => {
 
 
     return(
-        <div className="bg-[#ffffff] rounded-sm w-auto">
-        <Box sx={{ width: '90%' }}>
+        <div className="flex justify-center bg-[#ffffff] rounded-sm w-auto">
+        <Box >
           <div>
-          <div className="flex justify-center items-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-500 font-cool_g text-2xl"
+          <div className="flex justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-500 font-cool_g text-2xl"
            style={{"marginLeft":"4rem"}}
                  >
                    Todos los usuarios
@@ -88,8 +88,18 @@ const TableUsers = ({usersList, change, setChange}) => {
                 
           </div>
           
-          <div className="flex flex-col items-center  border-[#1d4ed8]">
-         <table className="font-[Poppins] border-2 w-6/12">
+          <div className="flex flex-col border-2 border-[#1d4ed8] w-[50rem]">
+          <TablePagination
+            className="flex-grow"
+          rowsPerPageOptions={[5, 10, 15, 20, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+         <table className="font-[Poppins]">
          <TableSortLabel
               active={true}
               direction={order}
@@ -122,22 +132,12 @@ const TableUsers = ({usersList, change, setChange}) => {
               id={`${e.id}`} 
               defaultChecked={e.blocked} onChange={e => handleChange(e)} />
             }
-            label={e.blocked? "Bloqueado" : "Desbloqueado"}
+            // label={e.blocked? "Bloqueado" : "Desbloqueado"} 
           /></td>
                 </tr>
               ))
             }
             </tbody>
-            <TablePagination
-            className="w-[25rem]"
-          rowsPerPageOptions={[5, 10, 15, 20, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
           </table>
          </div>
           </Box>
