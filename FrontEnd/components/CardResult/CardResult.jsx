@@ -1,68 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import {getFavourites} from "../../redux/actions/clients/getFavourites"
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from 'next/router'
-import { useEffect } from "react";
-import { useState } from "react";
-import { postFavourite } from "../../redux/actions/clients/postFavourite";
-import { putFavourite } from "../../redux/actions/clients/putFavourite";
 
-
-export default function CardResult({ name, services, image, id, categories, session}) {
+export default function CardResult({ name, services, image, id, categories }) {
   
-  // const { favouritesList, clientAcc } = useSelector((state) => state.clients);
-
-  // const [input, setInput] = useState({
-  //   businesses: id,
-  //   clients: clientAcc.id
-  // })
-
-  // const favourite = favouritesList[0].attributes.businesses.data.map(e => e.id)
-  // console.log(favouritesList[0])
-  // const filter = favourite.filter(e => e !== id)
-  // const exist = favourite.filter(e => e === id)
-
-  // console.log(exist.length)
-  const dispatch = useDispatch()
-  
-  // const router = useRouter()
-  
-  // useEffect(() => {
-  //   dispatch(getFavourites(clientAcc.id))
-  // }, [dispatch, favouritesList, session])
-
   let arrServices = [];
 
   if (services.length > 4) {
     arrServices = services.slice(0, 4);
   } else arrServices = services;
 
-  // const handleChange = () => {
-  //   if (!session) {
-  //     router.push("/client/login")
-  //   } else if (!favouritesList.length) {
-  //     dispatch(postFavourite(input))
-  //     alert(`${name} se agregó a favoritos`)
-  //   } else {
-  //     if (!exist.length) {
-  //       setInput({
-  //         businesses: [...favourite, id],
-  //         clients: clientAcc.id
-  //       })
-  //       dispatch(putFavourite(favouritesList[0].id, input))
-  //       alert(`${name} se agregó a favoritos`)
-  //     } else {
-  //       setInput({
-  //         businesses: [filter],
-  //         clients: clientAcc.id
-  //       })
-  //       dispatch(putFavourite(favouritesList[0].id, input))
-  //       alert(`${name} se eliminó de favoritos`)
-  //     }
-  //   }
-  // };
-
+  
   return (
     <section className="bg-white mt-4">
       {/* dark:bg-gray-900 */}
@@ -88,9 +35,6 @@ export default function CardResult({ name, services, image, id, categories, sess
                 height="150"
               />
             </Link>
-            {/* <div className="absolute top-2 2xl:-right-4 md:right-3 lg:-right-4 right-2 hover:bg-white rounded-md w-8 h-8 items-center text-center justify-center flex">
-              <button onClick={() => handleChange()}>Fav</button> 
-            </div> */}
           </div>
 
           <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">

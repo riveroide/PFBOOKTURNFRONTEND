@@ -17,6 +17,7 @@ import Image from 'next/image';
 import Grid from '@mui/material/Grid'
 import { postFavourite } from '../../../redux/actions/clients/postFavourite';
 import { deleteFavourite } from '../../../redux/actions/clients/deleteFavourite';
+import { useRouter } from 'next/router'
 
 
 
@@ -32,6 +33,7 @@ const Business = ({ id }) => {
   const rating = sumRating / totalRated
 
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const [input, setInput] = useState({
     businesses: "",
@@ -53,6 +55,9 @@ const Business = ({ id }) => {
 
   const handleClick = (e) => {
     e.preventDefault()
+    if (!session) {
+      router.push("/client/login")
+    }
     if(!favourite?.length){
       dispatch(postFavourite({businesses: e.target.id,
         clients: clientId?.id}))
