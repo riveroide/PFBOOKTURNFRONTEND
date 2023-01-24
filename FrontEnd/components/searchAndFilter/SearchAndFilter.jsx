@@ -100,9 +100,9 @@ const SearchAndFilter = () => {
             <option value="">Todos</option>
             {categoriesList?.map((e) => {
               return (
-                <option value={e.attributes.name} key={e.attributes.name}>
+                <option value={e.attributes?.name} key={e.attributes?.name}>
                   {" "}
-                  {e.attributes.name}{" "}
+                  {e.attributes?.name}{" "}
                 </option>
               );
             })}

@@ -98,7 +98,7 @@ export default function CardResult({ name, services, image, id, categories, sess
               return (
                 <p key={e.id} className="text-sm text-blue-500 uppercase">
                   {" "}
-                  {e.attributes.name}{" "}
+                  {e.attributes?.name}{" "}
                 </p>
               );
             })}
@@ -121,11 +121,11 @@ export default function CardResult({ name, services, image, id, categories, sess
                 <div key={e.id} className="flex flex-row justify-between w-2/3 font-cool_g tracking-widest">
                   <p key={e.id} className="mt-3 text-sm text-gray-500 md:text-xl underline capitalize">
                     {/* dark:text-gray-300*/}
-                    {e.attributes.name}
+                    {e.attributes?.name}
                   </p>
                   <p key={e.id} className="mt-3 text-sm text-blue-500 md:text-xl ">
                     {" "}
-                    ${e.attributes.price}{" "}
+                    ${e.attributes?.price}{" "}
                   </p>
                   {/* dark:text-blue-500 */}
                 </div>
