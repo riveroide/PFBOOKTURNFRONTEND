@@ -27,9 +27,6 @@ const Profile = () => {
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
-  console.log('LISTA DE FAVORITOS',favouritesList)
-  console.log('LISTA DE TURNOS',bookedList)
-  console.log('CLIENTE',clientId)
 
   useEffect(() => {
     setLoading(true)
@@ -101,7 +98,6 @@ const Profile = () => {
   if(!loading && clientId){
     const {nameComplete} = clientId?.attributes
     const favourites = favouritesList?.map(e => e.attributes?.businesses.data)
-    console.log(favourites)
     return (
       <div className="flex scroll-smooth min-h-screen">
         <div
@@ -195,7 +191,9 @@ const Profile = () => {
                       <FavCard 
                         name={e.attributes?.name} 
                         address={e.attributes?.address} 
-                        telephone={e.attributes?.telephone} 
+                        telephone={e.attributes?.telephone}
+                        openhour={e.attributes?.openhour}
+                        closehour={e.attributes?.closehour}
                         id={e.id}
                         key={e.id}
                       />

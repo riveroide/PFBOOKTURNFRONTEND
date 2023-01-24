@@ -41,7 +41,7 @@ export default function BookedList(props){
         })
     }
     return(
-        <div className="max-w-3xl mx-auto ">
+        <div className="max-w-5xl mx-auto ">
             <div className="flex flex-col">
                 <div className="overflow-x-auto shadow-md sm:rounded-lg">
                     <div className="inline-block min-w-full align-middle">
@@ -61,6 +61,9 @@ export default function BookedList(props){
                                         <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                             Precio
                                         </th>
+                                        <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                            Confirmado
+                                        </th>
                                         <th scope="col" className="p-4">
                                             <span className="sr-only">Cancelar</span>
                                         </th>
@@ -68,19 +71,23 @@ export default function BookedList(props){
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                     {props.props?.length && props.props.map(booking => {
-                                        console.log(booking.attributes?.businesses.data[0]?.id)
                                         return(
                                             <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                 <Link href={`/business/about/${booking.attributes?.businesses.data[0]?.id}`}>
-                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{booking.attributes?.businesses.data[0]?.attributes.name}</td>
+                                                <td className="py-4 px-6 text-sm font-medium text-white whitespace-nowrap ">{booking.attributes?.businesses.data[0]?.attributes.name}</td>
                                                 </Link>
-                                                <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{booking.attributes?.dateinfo}</td>
-                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{booking.attributes?.services.data[0]?.attributes.name}</td>
-                                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">${booking.attributes?.services.data[0]?.attributes.price}</td>
+                                                <td className="py-4 px-6 text-sm font-medium text-white whitespace-nowrap ">{booking.attributes?.dateinfo}</td>
+                                                <td className="py-4 px-6 text-sm font-medium text-white whitespace-nowrap ">{booking.attributes?.services.data[0]?.attributes.name}</td>
+                                                <td className="py-4 px-6 text-sm font-medium text-white whitespace-nowrap ">${booking.attributes?.services.data[0]?.attributes.price}</td>
+                                                {booking.attributes?.confirmed ?(
+                                                    <td className="py-4 px-6 text-sm font-medium text-green-400 whitespace-nowrap ">CONFIRMADO</td>
+                                                ): (
+                                                    <td className="py-4 px-6 text-sm font-medium text-yellow-400 whitespace-nowrap  ">EN ESPERA</td>
+                                                )}
                                                 <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                                                     <a id={booking.id} onClick={(e) => cancelarTurno(e)} className="text-red-500 hover:underline cursor-pointer">Cancelar</a>
                                                 </td>
-                                        |   </tr>
+                                            </tr>
                                         )
                                     })}
                                 </tbody>
