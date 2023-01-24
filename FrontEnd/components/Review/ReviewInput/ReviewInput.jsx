@@ -45,6 +45,7 @@ export const ReviewInput = ({ client, businessId }) => {
   const [hover, setHover] = useState(0);
 
   useEffect(() => {
+    setDisable(false)
     if (!booking.length || !session) {
       setDisable(true)
     }

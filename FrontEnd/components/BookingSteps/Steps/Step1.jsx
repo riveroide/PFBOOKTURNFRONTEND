@@ -9,11 +9,11 @@ const Step1 = ({setbookingPost , bookingPost , finaldata , setfinaldata}) => {
     if (e.target.checked) {
       setbookingPost({
         ...bookingPost,
-        services: [...bookingPost.services, e.target.id],
+        services: e.target.id,
       });
       setfinaldata({
         ...finaldata,
-        services:[...finaldata.services, e.target.name]
+        services: e.target.value
       })
       
     } else {
@@ -31,27 +31,31 @@ const Step1 = ({setbookingPost , bookingPost , finaldata , setfinaldata}) => {
   return (
     <div className="flex font-cool_g flex-col w-full items-center py-24">
       {services.data?.map((e) => {
-        return (
-          <div className="flex w-1/4 items-center">
-            <input
-              id={e.id}
-              type="checkbox"
-              className="cursor-pointer rounded border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75 mr-2"
-              value={e.attributes.name}
-              name={e.attributes.name}
-              onChange={(e) => {
-                handlerServices(e)
-              }}
-            />
-            <label
-              for="basic"
-              className="cursor-pointer truncate text-3xl font-medium text-gray-500"
-            
-            >
-              {e.attributes.name} (${e.attributes.price})
-            </label>
-          </div>
-        );
+        if (e.attributes.active) {
+          return (
+            <div className="flex w-1/4 items-center">
+              <input
+                id={e.id}
+                type="radio"
+                className="cursor-pointer rounded border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75 mr-2"
+                value={e.attributes.name}
+                name="service"
+                onChange={(e) => {
+                  handlerServices(e)
+                }}
+              />
+              <label
+                for="basic"
+                className="cursor-pointer truncate text-3xl font-medium text-gray-500"
+              
+              >
+                {e.attributes.name} (${e.attributes.price})
+              </label>
+            </div>
+          );
+        } else {
+          return null
+        }     
       })}
     </div>
   );
