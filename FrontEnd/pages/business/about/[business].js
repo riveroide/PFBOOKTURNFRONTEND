@@ -11,16 +11,19 @@ import { useSession } from 'next-auth/react';
 import { getClientByEmail } from '../../../redux/actions/clients/getClients';
 import { getRatingBusiness, getRatingFromClientAndBusiness } from '../../../redux/actions/Rating/getRating';
 import {getBookingFromBusinessAndClientId} from "../../../redux/actions/Bookings/getBookings"
+import { getFavouriteBusinessAndClient } from "../../../redux/actions/clients/getFavourites"
 import ReviewsSection from '../../../components/Review/ReviewsSection/ReviewsSection.jsx';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid'
+import { postFavourite } from '../../../redux/actions/clients/postFavourite';
+import { deleteFavourite } from '../../../redux/actions/clients/deleteFavourite';
 
 
 
 const Business = ({ id }) => {
   console.log(id, "id que llega")
   const {data: session} = useSession()
-  const { clientId } = useSelector((state) => state.clients)
+  const { clientId, favourite } = useSelector((state) => state.clients)
   const [loading, setLoading] = useState(true)
   const { businessId: business } = useSelector(state => state.business)
 
@@ -30,17 +33,38 @@ const Business = ({ id }) => {
 
   const dispatch = useDispatch()
 
+  const [input, setInput] = useState({
+    businesses: "",
+    clients: ""
+  })
+
   useEffect(() => {
     if (id) {
       dispatch(getBusinessById(id))
       dispatch(getClientByEmail(session?.user.email))
       dispatch(getRatingBusiness(id))
-      dispatch(getRatingFromClientAndBusiness(clientId.id, id))
+      dispatch(getRatingFromClientAndBusiness(clientId?.id, id))
       // dispatch(getClient())
-      dispatch(getBookingFromBusinessAndClientId(id, clientId.id))
+      dispatch(getBookingFromBusinessAndClientId(id, clientId?.id))
+      dispatch(getFavouriteBusinessAndClient(clientId?.id, id))
       setLoading(false)
     }
   }, [dispatch])
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    if(!favourite.length){
+      dispatch(postFavourite({businesses: e.target.id,
+        clients: clientId?.id}))
+        alert(`Se agregó ${business.data?.attributes.name} a favoritos`)
+    } 
+    else if (favourite.length) {
+      dispatch(deleteFavourite(favourite[0]?.id))
+      alert(`Se eliminó ${business.data?.attributes.name} de favoritos`)
+    }
+    dispatch(getFavouriteBusinessAndClient(clientId?.id, id))
+  } 
+
   if (loading) { return (<Loader/>) }
   if (business.data) {
     const { address, createdAt, name , services, email , telephone} = business.data?.attributes
@@ -61,6 +85,8 @@ const Business = ({ id }) => {
         createdAt = {createdAt}
         rating={ rating ? Math.round(rating) : 0}
         business={business}
+        handleClick={handleClick}
+        favourite={favourite.length ? true : false}
         /></div>
         {/* <div>
           <ServiceList 
