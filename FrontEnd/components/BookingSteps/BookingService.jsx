@@ -16,7 +16,7 @@ const BookingService = () => {
   const [bookingPost, setbookingPost] = useState({
     businesses: "",
     client: "",
-    services: [],
+    services: "",
     dateinfo: "",
   });
   
@@ -69,7 +69,7 @@ const BookingService = () => {
           Anterior
         </button>
         <button
-          className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 font-cool_p text-2xl"
+          className={`px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg  focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 font-cool_p text-2xl ${bookingPost.services ? "hover:bg-blue-500" : "cursor-not-allowed"}`}
           onClick={() => {
             if (stepnum < 3) {
               setstepnum(stepnum + 1);
@@ -82,7 +82,7 @@ const BookingService = () => {
               handleSubmit();
             }
           }}
-        >
+          disabled={bookingPost.services ? false : true} >
           Proximo
         </button>
       </div>
