@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import swal from 'sweetalert'
 import { useRouter } from "next/router";
 import StepsNav from "./StepsNav";
 import StepsContents from "./StepsContents";
@@ -31,7 +32,13 @@ const BookingService = () => {
 
   async function handleSubmit() {
     dispatch(postBooking(bookingPost));
-    alert("reserva creada");
+    swal({
+      title:'Listo!',
+      text: 'Su turno se creó correctamente',
+      icon: 'success',
+      timer: 3000,
+      stopKeydownPropagation: true,
+    });
     router.push("/client/profile")
   }
 

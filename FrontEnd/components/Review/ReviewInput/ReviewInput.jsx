@@ -6,6 +6,7 @@ import { deleteRating } from "../../../redux/actions/Rating/deleteRating";
 import { postRating } from "../../../redux/actions/Rating/postRating";
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
+import swal from 'sweetalert'
 
 export const ReviewInput = ({ client, businessId }) => {
   const dispatch = useDispatch();
@@ -62,13 +63,25 @@ export const ReviewInput = ({ client, businessId }) => {
     e.preventDefault();
     if (!rating.length) {
       dispatch(postRating(input));
-      alert("Se publicó la reseña");
+      swal({
+        title:'Listo!',
+        text: 'Su reseña fue publicada con exito',
+        icon: 'success',
+        timer: 4000,
+        stopKeydownPropagation: true,
+      });
       dispatch(putBusiness(businessId, {totalRating: totalRating}))
       router.reload(window.location.pathname)
     } else {
       dispatch(putRating(rating[0]?.id, input))
       setDisable(true)
-      alert("Se actualizó el comentario")
+      swal({
+        title:'Listo!',
+        text: 'Su comentario fue actualizado con exito',
+        icon: 'success',
+        timer: 4000,
+        stopKeydownPropagation: true,
+      });
       dispatch(putBusiness(businessId, {totalRating: totalRating}))
     }
     dispatch(putBusiness(businessId, {totalRating: totalRating}))
@@ -90,7 +103,13 @@ export const ReviewInput = ({ client, businessId }) => {
       business: parseInt(businessId),
       client: parseInt(client?.id),
     })
-    alert("Comentario eliminado")   
+    swal({
+      title:'Listo!',
+      text: 'Su comentario fue eliminado con exito',
+      icon: 'success',
+      timer: 4000,
+      stopKeydownPropagation: true,
+    });   
     await dispatch(putBusiness(businessId, {totalRating: totalRating}))
     router.reload(window.location.pathname)
   }

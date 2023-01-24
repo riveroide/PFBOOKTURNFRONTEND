@@ -67,9 +67,12 @@ export default function BookedList(props){
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                     {props.props?.length && props.props.map(booking => {
+                                        console.log(booking.attributes?.businesses.data[0]?.id)
                                         return(
                                             <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                <Link href={`/business/about/${booking.attributes?.businesses.data[0]?.id}`}>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{booking.attributes?.businesses.data[0]?.attributes.name}</td>
+                                                </Link>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">{booking.attributes?.dateinfo}</td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{booking.attributes?.services.data[0]?.attributes.name}</td>
                                                 <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">${booking.attributes?.services.data[0]?.attributes.price}</td>

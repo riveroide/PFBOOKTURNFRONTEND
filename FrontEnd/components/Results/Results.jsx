@@ -74,7 +74,7 @@ export default function Results() {
                 categories={e.attributes.categories.data}
                 image={
                   e.attributes?.BusinessPic.data?.attributes
-                    ? e.attributes.BusinessPic.data.attributes.formats.large.url
+                    ? e.attributes.BusinessPic.data.attributes.formats.large?.url
                     : "https://avalos.sv/wp-content/uploads/295-default-featured-image.png"
                 }
                 session={session}

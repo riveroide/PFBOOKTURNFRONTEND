@@ -4,6 +4,7 @@ import { getUserByEmail } from "../../redux/actions/users/getUsers";
 import { postClient } from "../../redux/actions/clients/postClient"
 import { useState } from "react";
 import { useRouter } from "next/router";
+import swal from 'sweetalert'
 
 const FormClient = ({ emailuser }) => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ return error
     setclientinfo({
       ...clientinfo,
       [e.target.name]: e.target.value,
-      user: userInfo[0].id
+      user: userInfo[0]?.id
     });
     setError(validate({
       ...clientinfo,
@@ -48,7 +49,13 @@ return error
   }
   function handleSubmit (){
     dispatch(postClient(clientinfo))
-   alert("cliente creado")
+    swal({
+      title:'Listo!',
+      text: 'Su cuenta fue creada correctamente',
+      icon: 'success',
+      timer: 3000,
+      stopKeydownPropagation: true,
+    });
    router.push("/client/login")
   }
   console.log(clientinfo)
