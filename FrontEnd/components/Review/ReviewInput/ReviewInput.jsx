@@ -41,6 +41,7 @@ export const ReviewInput = ({ client, businessId }) => {
     comment: "",
     business: parseInt(businessId),
     client: parseInt(client.id),
+    reported: false
   });
   const [hover, setHover] = useState(0);
 
@@ -60,23 +61,23 @@ export const ReviewInput = ({ client, businessId }) => {
     }
   }, [dispatch, businessId, rating]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!rating.length) {
-      dispatch(postRating(input));
-      swal({
+      await dispatch(postRating(input));
+      await swal({
         title:'Listo!',
         text: 'Su reseña fue publicada con exito',
         icon: 'success',
         timer: 4000,
         stopKeydownPropagation: true,
       });
-      dispatch(putBusiness(businessId, {totalRating: totalRating}))
+      await dispatch(putBusiness(businessId, {totalRating: totalRating}))
       router.reload(window.location.pathname)
     } else {
       dispatch(putRating(rating[0]?.id, input))
       setDisable(true)
-      swal({
+      await swal({
         title:'Listo!',
         text: 'Su comentario fue actualizado con exito',
         icon: 'success',
@@ -104,7 +105,7 @@ export const ReviewInput = ({ client, businessId }) => {
       business: parseInt(businessId),
       client: parseInt(client?.id),
     })
-    swal({
+   await swal({
       title:'Listo!',
       text: 'Su comentario fue eliminado con exito',
       icon: 'success',

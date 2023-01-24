@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 
-const DetailsBusiness = ({name, address, email, telephone, createdAt, business, rating}) => {
+const DetailsBusiness = ({name, address, email, telephone, createdAt, business, rating, handleClick, favourite}) => {
   return (
     <div>
       <section className="relative pt-24 pb-36 bg-white overflow-hidden font-cool_g tracking-widest">
@@ -12,10 +12,14 @@ const DetailsBusiness = ({name, address, email, telephone, createdAt, business, 
           alt=""
         /> */}
         <div className="relative z-10 container px-4 mx-auto overflow-hidden">
-          
+          <div className="flex justify-center items-center">
           <p className="mb-3 text-3xl md:text-5xl xl:text-6xl text-center font-bold font-heading tracking-px-n leading-none h-20 my-1">
             {name}
           </p>
+          <button id={business.data.id} className={`text-3xl ml-4 pb-3 ${favourite ? "text-red-500 hover:text-gray-500" : "text-gray-500 hover:text-red-500"}`} onClick={(e) => handleClick(e)}>
+          &#10084;
+          </button>
+          </div>
 
           <div className="flex justify-center items-end">
           <p class="text-4xl mx-1 mb-4"> {rating} </p>
@@ -23,7 +27,7 @@ const DetailsBusiness = ({name, address, email, telephone, createdAt, business, 
           </div>
 
 
-          <div className='flex justify-center align-center mt-4'><Image src={business?.data.attributes.BusinessPic.data.attributes.url} height={650} width={500} alt='/'/> </div>
+          <div className='flex justify-center align-center mt-4'><Image src={business?.data.attributes.BusinessPic.data?.attributes.url} height={650} width={500} alt='/'/> </div>
 
           
           <p className="mb-20 text-lg text-gray-600 text-center font-medium leading-normal md:max-w-lg mx-auto">
