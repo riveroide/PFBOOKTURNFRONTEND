@@ -38,7 +38,7 @@ const Profile = () => {
       }
       fetchClientEmail()
       async function fetchClient(){
-        await dispatch(getClient(clientAcc.id))
+        await dispatch(getClient(clientAcc?.id))
       }
       fetchClient()
       async function fetchFavList(){
