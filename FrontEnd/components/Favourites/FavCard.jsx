@@ -1,13 +1,15 @@
 import React from "react";
 import Link from "next/link";
 
-export default function FavCard({name, address, telephone, id}) {
+export default function FavCard({name, address, telephone, id, closehour, openhour}) {
     return (
-        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 -z-10">
+        <div class="max-w-sm mb-2 p-6 tracking-wide bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 -z-10">
             <a href="#">
-                <h5 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">{name}</h5>
+                <h5 class="mb-2 font-cool_g  text-2xl tracking-tight text-gray-900 dark:text-white">{name}</h5>
             </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+            <span class="mr-5 font-cool_g text-gray-700 dark:text-gray-400">{address}</span>
+            <span class="mb-3 font-cool_g text-gray-700 dark:text-gray-400"> tel: {telephone}</span>
+            <p class="mb-3 font-cool_g text-gray-700 dark:text-gray-400">Horarios: {openhour}:00 - {closehour}:00</p>
             <Link href={{
                 pathname: "/business/about/[businessId]",
                 query: {

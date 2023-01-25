@@ -94,7 +94,6 @@ const Step2 = ({
 
   const handleSubmit = (e) => {
     dispatch(postBusiness(input));
-    alert("post step 2");
   };
 
   useEffect(() => {

@@ -5,28 +5,29 @@ import { useDispatch } from "react-redux";
 import { putServices } from "../../redux/actions/services/putServices";
 import { ModalPostService } from "./ModalPostService";
 import { useEffect } from "react";
-import { getBusinessData } from "../../redux/actions/business/getBusiness";
+import { getBusinessData } from "../../redux/actions/businessAcc/getDashboardData.js";
 
 const Services = () => {
   const dispatch = useDispatch();
-  const { BusinessAcc } = useSelector((state) => state.business);
+  const { BusinessAcc } = useSelector((state) => state.businessacc);
   let index = 0;
-  const servicio = BusinessAcc.attributes.services.data;
-  const servi = servicio.map((s) => {
+  const servicio = BusinessAcc[0]?.attributes?.services?.data;
+  const { IdSession } = useSelector((state) => state.businessacc);
+  const servi = servicio?.map((s) => {
     return {
       index: index++,
       id: s.id,
-      name: s.attributes.name,
-      price: s.attributes.price,
-      active: s.attributes.active,
+      name: s.attributes?.name,
+      price: s.attributes?.price,
+      active: s.attributes?.active,
     };
   });
   // console.log(servi)
   const [data, setData] = useState(servi);
-  
+  console.log("soy data", data)
 
   useEffect(() => {
-    dispatch(getBusinessData(2));
+    dispatch(getBusinessData(IdSession));
   }, [dispatch, putServices]);
 
   const handleChange = (e) => {
@@ -59,16 +60,18 @@ const Services = () => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    data.map(async (s) => {
-      await dispatch(
-        putServices(s.id, { name: s.name, price: s.price, active: s.active })
+    console.log("opa")
+    data.map( (s) => {
+       dispatch(
+        putServices(s.id, {active: s.active })
       );
     });
-    dispatch(getBusinessData(2));
+    dispatch(getBusinessData(IdSession));
+    alert("se cambió el estado")
   };
   if (data) {
     return (
-      <div className="flex flex-col w-full h-fit items-center justify-center font-cool_p tracking-wide">
+      <div className="flex flex-col flex-wrap w-full h-fit items-center font-cool_p tracking-wide">
         <div class="w-full max-w-lg flex justify-center mb-6">
           <h1 className="text-5xl text-gray-700 font-semibold">SERVICIOS</h1>
         </div>
@@ -76,7 +79,7 @@ const Services = () => {
           onSubmit={(e) => {
             handlerSubmit(e);
           }}
-          class="w-full max-w-lg"
+          class="w-full flex flex-wrap justify-around px-2 md:px-16"
         >
           {data.map((s) => {
             return (
@@ -137,17 +140,20 @@ const Services = () => {
             );
           })}
 
-          <div class="flex mb-2 w-full justify-evenly">
+        
+          <div class="flex mb-2 w-full justify-center gap-32 mt-12">
             <button
               type="submit"
               class="bg-blue-500 w-24 hover:bg-blue-400 tracking-widest text-white font-light py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
             >
               GUARDAR
             </button>
-            <ModalPostService index={index} setData={setData} />
+            
+            <ModalPostService index={index} setData={setData} idBusiness={IdSession} />
           </div>
-        </form>
+          </form>
       </div>
+      
     );
   }
 };

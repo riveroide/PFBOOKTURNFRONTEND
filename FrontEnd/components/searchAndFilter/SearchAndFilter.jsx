@@ -36,7 +36,7 @@ const SearchAndFilter = () => {
             onChange={(e) => handleOrder(e)}
             className="form-select appearance-none
           block
-          w-1/4
+          w-1/3
           px-3
           py-1.5
           text-base
@@ -55,7 +55,7 @@ const SearchAndFilter = () => {
             <option value="Rating asc">Rating asc</option>
             <option value="Rating desc">Rating desc</option>
           </select>
-          <select
+          {/* <select
             onChange={(e) => handleOrder(e)}
             className="form-select appearance-none
           block
@@ -77,12 +77,12 @@ const SearchAndFilter = () => {
             <option value="">Orden Alfabetico</option>
             <option value="A-Z">Nombre asc</option>
             <option value="Z-A">Nombre desc</option>
-          </select>
+          </select> */}
           <select
             onChange={(e) => handleFilter(e)}
             className="form-select appearance-none
           block
-          w-1/4
+          w-1/3
           px-3
           py-1.5
           text-base
@@ -100,9 +100,9 @@ const SearchAndFilter = () => {
             <option value="">Todos</option>
             {categoriesList?.map((e) => {
               return (
-                <option value={e.attributes.name} key={e.attributes.name}>
+                <option value={e.attributes?.name} key={e.attributes?.name}>
                   {" "}
-                  {e.attributes.name}{" "}
+                  {e.attributes?.name}{" "}
                 </option>
               );
             })}

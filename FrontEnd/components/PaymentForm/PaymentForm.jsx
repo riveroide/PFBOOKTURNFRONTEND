@@ -5,6 +5,7 @@ import {
     useElements,
     useStripe,
   } from "@stripe/react-stripe-js";
+import swal from 'sweetalert2'
 import React, { useState } from "react";
 import { useRouter } from 'next/router'
 
@@ -30,15 +31,39 @@ export const PaymentForm = ({email, name}) => {
           paymentMethod: paymentMethod.paymentMethod.id,
         }),
       });
-      if (!response.ok) return alert("Pago fallido");
+      if (!response.ok) return swal.fire({
+        title:'Pago fallido',
+        text: 'Algo ocurrio durante la transaccion, intentelo de nuevo mas tarde',
+        icon: 'error',
+        timer: 4000,
+        stopKeydownPropagation: true,
+      });
       const data = await response.json();
       const confirm = await stripe.confirmCardPayment(data.clientSecret);
-      if (confirm.error) return alert("Pago fallido");
-      alert("Pago exitoso. Subscripcion activa");
+      if (confirm.error) return swal.fire({
+        title:'Pago fallido',
+        text: 'Algo ocurrio durante la transaccion, intentelo de nuevo mas tarde',
+        icon: 'error',
+        timer: 4000,
+        stopKeydownPropagation: true,
+      });
+      swal.fire({
+        title:'Pago activado',
+        text: 'Su subscription ya esta activada',
+        icon: 'success',
+        timer: 4000,
+        stopKeydownPropagation: true,
+      });
       router.push("/business/login")
     } catch (error) {
       console.log(error);
-      alert("Pago fallido, verifique los datos ingresados", error.message);
+      swal.fire({
+        title:'Pago fallido',
+        text: 'Verifique los datos ingresados',
+        icon: 'error',
+        timer: 4000,
+        stopKeydownPropagation: true,
+      });
     }
   };
 

@@ -38,15 +38,15 @@ const Profile = () => {
       }
       fetchClientEmail()
       async function fetchClient(){
-        await dispatch(getClient(clientAcc.id))
+        await dispatch(getClient(clientAcc?.id))
       }
       fetchClient()
       async function fetchFavList(){
-        await dispatch(getFavourites(clientAcc.id))
+        await dispatch(getFavourites(clientAcc?.id))
       }
       fetchFavList()
       async function fetchBookList(){
-        await dispatch(getBooked(clientAcc.id))
+        await dispatch(getBooked(clientAcc?.id))
       }
       fetchBookList()
       dispatch(display(''))
@@ -96,9 +96,8 @@ const Profile = () => {
   ];
   
   if(!loading && clientId){
-    const {nameComplete} = clientId.attributes
-    const favourites = favouritesList[0]?.attributes.businesses.data
-    console.log(favourites)
+    const {nameComplete} = clientId?.attributes
+    const favourites = favouritesList?.map(e => e.attributes?.businesses.data)
     return (
       <div className="flex scroll-smooth min-h-screen">
         <div
@@ -180,24 +179,26 @@ const Profile = () => {
           ):displayOption === 'Favoritos' ?(
             <div>
               <h1 className='font-cool_g text-4xl'>LISTA DE FAVORITOS</h1>
-              {favourites === undefined ?(
+              { !favourites.length ?(
                 <div>
                   <h2 className='font-cool_p text-3xl tracking-wide'>Tu lista de favoritos aun esta vacia!!</h2>
                   <h2 className='font-cool_p text-3xl tracking-wide'>Agrega tus locales de confianza para encontrarlos aqui</h2>
                 </div>
               ): (
                 <div>
-                  {favourites?.length && favourites?.map(e => {
+                  {favourites?.length && favourites?.map(e => e.map(e => {
                     return(
                       <FavCard 
-                        name={e.attributes.name} 
-                        address={e.attributes.address} 
-                        telephone={e.attributes.telephone} 
+                        name={e.attributes?.name} 
+                        address={e.attributes?.address} 
+                        telephone={e.attributes?.telephone}
+                        openhour={e.attributes?.openhour}
+                        closehour={e.attributes?.closehour}
                         id={e.id}
                         key={e.id}
                       />
                     ) 
-                  })}
+                  }))}
                 </div>
               )}
               

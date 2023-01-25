@@ -58,7 +58,6 @@ const Step1 = ({ step, setStep, setUserEmail, setName, setFinalData }) => {
 
   const handleSubmit = (e) => {
     dispatch(postUser(input));
-    alert("post step 1");
   };
 
   useEffect(() => {

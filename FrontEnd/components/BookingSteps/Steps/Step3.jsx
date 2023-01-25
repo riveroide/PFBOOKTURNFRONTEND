@@ -12,11 +12,8 @@ const Step3 = ({ finaldata, setfinaldata }) => {
       <h3 className="font-black uppercase tracking-wider">Fecha y horario reservado:</h3> {finaldata.dateinfo}
       <h3 className="font-black uppercase tracking-wider">Servicio/s: </h3>
       <ul>
-      {finaldata.services?.map((e)=>{ 
-      return (<li>{e}</li>)
-
-      })}
-        </ul>
+        <li> {finaldata.services} </li>
+      </ul>
     </div>
   );
 };

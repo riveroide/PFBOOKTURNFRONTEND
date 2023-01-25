@@ -5,7 +5,8 @@ export const ratingsSlice = createSlice({
     initialState: {
         ratingBusinessList: [],
         ratingId: {},
-        ratingByClientAndBusiness: {}
+        ratingByClientAndBusiness: {},
+        allRatings: []
     },
     reducers: {
         getAllRatings: (state, action) => {
@@ -16,10 +17,13 @@ export const ratingsSlice = createSlice({
         },
         getRatingByClientAndBusiness: (state, action) => {
             state.ratingByClientAndBusiness = action.payload
+        },
+        getRatings: (state, action) => {
+            state.allRatings = action.payload
         }
     }
 });
 
-export const { getAllRatings, getRatingId, getRatingByClientAndBusiness } = ratingsSlice.actions;
+export const { getAllRatings, getRatingId, getRatingByClientAndBusiness, getRatings } = ratingsSlice.actions;
 
 export default ratingsSlice.reducer

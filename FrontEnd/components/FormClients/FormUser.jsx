@@ -49,8 +49,6 @@ return error
   function handleSubmit(e) {
       dispatch(postUser(userinfo));
       setformstep(formstep + 1);
-      alert("usuario creado");
-    
   }
   console.log(userinfo);
   console.log(error, "validacion")

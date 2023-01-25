@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { putRating } from "../../../redux/actions/Rating/putRating"
+import { putBusiness } from "../../../redux/actions/business/putBusiness"
 import { deleteRating } from "../../../redux/actions/Rating/deleteRating";
 import { postRating } from "../../../redux/actions/Rating/postRating";
-import { putRating } from "../../../redux/actions/Rating/putRating";
 import { useRouter } from 'next/router'
+import { useSession } from "next-auth/react";
+import swal from 'sweetalert2'
 
 export const ReviewInput = ({ client, businessId }) => {
   const dispatch = useDispatch();
+
+  const { data: session } = useSession();
 
   const { ratingByClientAndBusiness: rating } = useSelector(
     (state) => state.ratings
@@ -14,6 +19,16 @@ export const ReviewInput = ({ client, businessId }) => {
 
   const { bookingByBusinessAndClient: booking } = useSelector((state) => state.bookings)
 
+  const { businessId: business } = useSelector(state => state.business)
+  console.log(business)
+  const sumRating = business.data?.attributes.ratings.data?.map(e => e.attributes.score).reduce((prev, curr) => prev + curr, 0)
+  console.log(sumRating)
+  const totalRated =  business.data?.attributes.ratings.data.length
+  console.log(totalRated)
+  let totalRating = sumRating / totalRated
+  if (!totalRating || totalRating === NaN) totalRating = 0 
+
+  console.log(totalRating)
   console.log(rating);
 
   const [disable, setDisable] = useState(false)
@@ -25,12 +40,14 @@ export const ReviewInput = ({ client, businessId }) => {
     title: "",
     comment: "",
     business: parseInt(businessId),
-    client: parseInt(client.id),
+    client: parseInt(client?.id),
+    reported: false
   });
   const [hover, setHover] = useState(0);
 
   useEffect(() => {
-    if (!booking.length) {
+    setDisable(false)
+    if (!booking.length || !session) {
       setDisable(true)
     }
     else if (rating?.length) {
@@ -44,17 +61,32 @@ export const ReviewInput = ({ client, businessId }) => {
     }
   }, [dispatch, businessId, rating]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!rating.length) {
-      dispatch(postRating(input));
-      alert("Se publicó la reseña");
+      await dispatch(postRating(input));
+      await swal.fire({
+        title:'Listo!',
+        text: 'Su reseña fue publicada con exito',
+        icon: 'success',
+        timer: 4000,
+        stopKeydownPropagation: true,
+      });
+      await dispatch(putBusiness(businessId, {totalRating: totalRating}))
       router.reload(window.location.pathname)
     } else {
       dispatch(putRating(rating[0]?.id, input))
       setDisable(true)
-      alert("Se actualizó el comentario")
+      await swal.fire({
+        title:'Listo!',
+        text: 'Su comentario fue actualizado con exito',
+        icon: 'success',
+        timer: 4000,
+        stopKeydownPropagation: true,
+      });
+      dispatch(putBusiness(businessId, {totalRating: totalRating}))
     }
+    dispatch(putBusiness(businessId, {totalRating: totalRating}))
   };
 
   const handleChange = (e) => {
@@ -64,8 +96,8 @@ export const ReviewInput = ({ client, businessId }) => {
     });
   };
 
-  const handleDelete = () => {
-    dispatch(deleteRating(rating[0]?.id))
+  const handleDelete = async () => {
+    await dispatch(deleteRating(rating[0]?.id))
     setInput({
       score: 0,
       title: "",
@@ -73,14 +105,21 @@ export const ReviewInput = ({ client, businessId }) => {
       business: parseInt(businessId),
       client: parseInt(client?.id),
     })
-    alert("Comentario eliminado")   
+   await swal.fire({
+      title:'Listo!',
+      text: 'Su comentario fue eliminado con exito',
+      icon: 'success',
+      timer: 4000,
+      stopKeydownPropagation: true,
+    });   
+    await dispatch(putBusiness(businessId, {totalRating: totalRating}))
     router.reload(window.location.pathname)
   }
 
   return (
     <div className="w-full px-2 sm:px-0 lg:px-0 md:px-0 sm:w-3/4 lg:w-1/3 md:w-1/2 my-8">
       {
-        !booking?.length ? <h1 className="text-center text-2xl text-gray-500 mb-4"> Necesitas haber recibido un turno al menos una vez para dejar tu reseña </h1> : null 
+        !booking?.length || !session ? <h1 className="text-center text-2xl text-gray-500 mb-4"> Necesitas tener tu cuenta iniciada y haber recibido un turno al menos una vez para dejar tu reseña </h1> : null 
       }
       <form className="justify-between" onSubmit={(e) => handleSubmit(e)}>
         <label className="block mb-2 text-lg font-medium text-gray-900">

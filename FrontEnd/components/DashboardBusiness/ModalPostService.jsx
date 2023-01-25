@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postServices } from "../../redux/actions/services/postServices";
 import { useSelector } from "react-redux";
-import { getBusinessData } from "../../redux/actions/business/getBusiness";
+import { getBusinessData } from "../../redux/actions/businessAcc/getDashboardData";
 import { ConstructionOutlined } from "@mui/icons-material";
 
-export const ModalPostService = ({ index, setData }) => {
+export const ModalPostService = ({ index, setData, idBusiness }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const { BusinessAcc } = useSelector((state) => state.business);
+  const { BusinessAcc } = useSelector((state) => state.businessacc);
   const [data, setDataC] = useState({
     name: "",
     price: 0,
-    businesses: BusinessAcc.id,
+    businesses: BusinessAcc[0].id,
   });
 
-  const services = BusinessAcc.attributes.services.data;
+  const services = BusinessAcc[0]?.attributes.services.data;
   const serviData = services.map((s) => {
     return {
       index: index++,
@@ -26,7 +26,7 @@ export const ModalPostService = ({ index, setData }) => {
     };
   });
   useEffect(() => {
-    dispatch(getBusinessData(2));
+    dispatch(getBusinessData(idBusiness));
     
   }, [dispatch, showModal]);
 
@@ -44,18 +44,6 @@ export const ModalPostService = ({ index, setData }) => {
     try {
       await dispatch(postServices(data));
     } catch (error) {console.log(error.message)}
-
-    // const services = BusinessAcc.attributes.services.data;
-    // const serviData = services.map((s) => {
-    //   return {
-    //     index: index++,
-    //     id: s.id,
-    //     name: s.attributes.name,
-    //     price: s.attributes.price,
-    //     active: s.attributes.active,
-    //   };
-    // });
-    // console.log(serviData);
     setData([...serviData,{...data, index:index++}]);
     
     setShowModal(false);

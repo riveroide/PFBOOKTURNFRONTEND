@@ -8,7 +8,8 @@ export const clientsSlice = createSlice({
         displayOption: '',
         clientAcc: {},
         favouritesList: {},
-        bookedList: {}
+        bookedList: {},
+        favourite: {}
     },
     reducers: {
         getAllClients: (state, action) => {
@@ -28,10 +29,13 @@ export const clientsSlice = createSlice({
         },
         getBookedList: (state, action) => {
             state.bookedList = action.payload
+        },
+        getOneFavourite: (state, action) => {
+            state.favourite = action.payload
         }
     }
 })
 
-export const {getAllClients, getClientId, setDisplayOption, getClientEmail, getFavouritesList, getBookedList} = clientsSlice.actions
+export const {getAllClients, getClientId, setDisplayOption, getClientEmail, getFavouritesList, getBookedList, getOneFavourite} = clientsSlice.actions
 
 export default clientsSlice.reducer

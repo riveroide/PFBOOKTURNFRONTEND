@@ -70,7 +70,6 @@ const Step4 = ({ step, setStep, emailBusiness, setFinalServices }) => {
 
   const handleSubmit = (e) => {
     setStep(5);
-    alert("post step 3");
   };
 
   useEffect(() => {
