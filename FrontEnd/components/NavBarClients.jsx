@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import stylesNavBar from "../styles/NavBarClients.module.css";
 import Link from "next/link";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default function NavBarClients() {
+  useEffect(() => {
+    AOS.init();
+  });
   return (
     <>
       <div className="flex justify-end mr-40 w-full">
