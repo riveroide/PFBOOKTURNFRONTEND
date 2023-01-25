@@ -16,7 +16,7 @@ export default function Paginado({
     paginado(1);
   }
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mb-4">
       <button
         onClick={() =>
           paginado(currentPage === 1 ? pageNumbers.length : currentPage - 1)
