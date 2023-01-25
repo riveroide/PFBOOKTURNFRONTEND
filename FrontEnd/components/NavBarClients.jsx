@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
 import stylesNavBar from "../styles/NavBarClients.module.css";
 import Link from "next/link";
+<<<<<<< business-sections-styles
 import AOS from "aos";
 import "aos/dist/aos.css";
+=======
+import { signIn } from "next-auth/react";
+
+>>>>>>> main
 export default function NavBarClients() {
   useEffect(() => {
     AOS.init();
@@ -18,9 +23,9 @@ export default function NavBarClients() {
         <div className={stylesNavBar.logo}>bookturn</div>
 
         <div className={stylesNavBar.buttonsLogin}>
-          <Link href="/client/login">
-            <button className={stylesNavBar.acceder}>acceder</button>
-          </Link>
+
+            <button className={stylesNavBar.acceder} onClick={()=>signIn()}>acceder</button>
+
 
           <Link href="/client/login/createform">
             <button className={stylesNavBar.resgistrarse}>Registrarse</button>
