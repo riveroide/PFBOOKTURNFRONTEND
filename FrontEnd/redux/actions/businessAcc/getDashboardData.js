@@ -34,7 +34,6 @@ export const getBusinessIdByEmail = (email) => async(dispatch) => {
 };
 
 export const getBusinessData = (id) => async (dispatch) => {
-  console.log(id)
   await axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/businesses/?populate=*&filters[id][$eq]=${id}`)
     .then((res) => dispatch(getiInfoBusiness(res.data.data)))
     .catch((error) => console.log(error));
