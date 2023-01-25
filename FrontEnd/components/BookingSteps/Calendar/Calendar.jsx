@@ -58,44 +58,48 @@ console.log(finaldata, "soy final data")
 
   return (
     
-    <div className="flex justify-evenly items-centers h-[50%]">
+    <div className="flex flex-col justify-center items-center h-full mb-4 gap-4">
+      <div>
+
         <ReactCalendar
         className="REACT-CALENDAR p-2"
         minDate={new Date()}
         onClickDay={(date) =>
-            setDate((prev) => ({ ...prev, justDate: date }))
-          }
-          // tileDisabled={({ date }) =>(
+          setDate((prev) => ({ ...prev, justDate: date }))
+        }
+        // tileDisabled={({ date }) =>(
           //   date.getDay() === 0
           // )
             
           // }
           view="month"
           locale="es-ES"
-        />
+          />
+          </div>
         
         {date.justDate ? (
-        <div className="flex flex-col justify-center">
-          {times?.map((time, i) => (
-            <div key={`time-${i}`} className="rounded-sm bg-gray-100 p-2 flex">
+        <div className="flex flex-row max-w-full flex-wrap justify-center rounded bg-blue-500 border border-zinc-500 border-solid">
+          {times?.map((time, i) =>  (
+              <div key={`time-${i}`} className={` p-2 md:px-5 flex items-center`}>
 
               <input
                 value={format(time, 'EEEE d MMMM R kk:mm',{locale:es})}
-                type="checkbox" className="border-solid border-2 capitalize h-4 w-4 flex align-middle "
+                type="radio" className={`border-solid border-2 capitalize h-3 w-4 flex align-middle my-2 mr-2 bg-blue-500 `}
                 onChange={(e) =>{
                   handlerDate(e) 
                   setDate((prev) => ({ ...prev, dateTime: format(time, 'EEEE d MMMM R kk:mm',{locale:es}) }))
                 } 
-              } name="false" 
+              } name="hour" 
                 />
         
-                <p className="cursor-pointer truncate text-base font-medium text-gray-500 items-center">{format(time, 'EEEE d MMMM R - kk:mm',{locale:es})}</p>
+                <p className="cursor-pointer truncate text-base font-medium text-white items-center ">{format(time, 'kk:mm',{locale:es})}</p>
              
                 
                 
               
             </div>
           ))}
+       
         </div>
       ) : null }
     </div>

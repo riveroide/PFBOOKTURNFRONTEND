@@ -26,7 +26,9 @@ export const NabvarResults = () => {
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-blue-700">
       <div class="container flex items-center md:justify-between justify-around mx-auto">
         <Link href="/" class="flex items-center">
-          <span class="self-center md:text-4xl text-2xl font-semibold font-cool_p whitespace-nowrap dark:text-white tracking-wider">
+          <span class="self-center text-xl md:text-4xl font-semibold font-cool_p whitespace-nowrap dark:text-white tracking-wider">
+
+
             Bookturn
           </span>
         </Link>

@@ -32,7 +32,7 @@ const StepsContents = ({ stepnum, setbookingPost, bookingPost }) => {
       </div>
     );
   return (
-    <div className="h-full">
+    <div className="h-full flex justify-center">
       <Step3
         setbookingPost={setbookingPost}
         bookingPost={bookingPost}
