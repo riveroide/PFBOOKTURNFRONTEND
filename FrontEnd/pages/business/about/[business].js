@@ -18,6 +18,8 @@ import Grid from '@mui/material/Grid'
 import { postFavourite } from '../../../redux/actions/clients/postFavourite';
 import { deleteFavourite } from '../../../redux/actions/clients/deleteFavourite';
 import { useRouter } from 'next/router'
+import swal from 'sweetalert2'
+
 
 
 
@@ -58,14 +60,28 @@ const Business = ({ id }) => {
     if (!session) {
       router.push("/client/login")
     }
-    if(!favourite?.length){
+    else if(!favourite?.length){
       dispatch(postFavourite({businesses: e.target.id,
         clients: clientId?.id}))
-        alert(`Se agregó ${business.data?.attributes.name} a favoritos`)
+        swal.fire({
+          text: `Se agregó ${business.data?.attributes.name} a favoritos`,
+          toast: true,
+          position: 'bottom-end',
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false
+        })
     } 
     else if (favourite?.length) {
       dispatch(deleteFavourite(favourite[0]?.id))
-      alert(`Se eliminó ${business.data?.attributes.name} de favoritos`)
+      swal.fire({
+        text: `Se eliminó ${business.data?.attributes.name} de favoritos`,
+        toast: true,
+        position: 'bottom-end',
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      })
     }
     dispatch(getFavouriteBusinessAndClient(clientId?.id, id))
   } 

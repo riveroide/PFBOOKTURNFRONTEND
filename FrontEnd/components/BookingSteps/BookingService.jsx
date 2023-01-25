@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 import { useRouter } from "next/router";
 import StepsNav from "./StepsNav";
 import StepsContents from "./StepsContents";
@@ -47,7 +47,7 @@ const BookingService = () => {
       message:`Tu reserva fue hecha satisfactoriamente. En breve, la empresa a la cual realizaste esta reserva va a confirmar (o no) tu solcitud`
     }))
 
-    swal({
+    swal.fire({
       title:'Listo!',
       text: 'Su turno se creó correctamente',
       icon: 'success',

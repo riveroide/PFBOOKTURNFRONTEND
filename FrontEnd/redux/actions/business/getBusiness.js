@@ -1,6 +1,6 @@
 import { getAllBusiness, getBusinessId, getIdBusiness, getiInfoBusiness, getBusinessEmail } from "redux/reducers/businessSlice";
 import axios from "axios";
-import swal from 'sweetalert'
+import swal from 'sweetalert2'
 
 export const getBusiness = () => (dispatch) => {
   axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/businesses?populate=*`)
@@ -23,7 +23,7 @@ export const getBusinessByName = (name) => (dispatch) => {
     `https://plankton-app-jy8jr.ondigitalocean.app/api/businesses?populate=*&filters[name][$containsi]=` +
       name
   ).then((res) => {
-    if (!res.data.data.length) return swal({
+    if (!res.data.data.length) return swal.fire({
       title:'No encontramos nada 😔',
       text: `No encontramos ningun local llamado ${name}`,
       icon: 'warning',

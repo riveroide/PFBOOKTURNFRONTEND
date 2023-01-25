@@ -42,11 +42,11 @@ const Profile = () => {
       }
       fetchClient()
       async function fetchFavList(){
-        await dispatch(getFavourites(clientAcc.id))
+        await dispatch(getFavourites(clientAcc?.id))
       }
       fetchFavList()
       async function fetchBookList(){
-        await dispatch(getBooked(clientAcc.id))
+        await dispatch(getBooked(clientAcc?.id))
       }
       fetchBookList()
       dispatch(display(''))
@@ -98,7 +98,6 @@ const Profile = () => {
   if(!loading && clientId){
     const {nameComplete} = clientId?.attributes
     const favourites = favouritesList?.map(e => e.attributes?.businesses.data)
-    console.log(favourites)
     return (
       <div className="flex scroll-smooth min-h-screen">
         <div
@@ -192,7 +191,9 @@ const Profile = () => {
                       <FavCard 
                         name={e.attributes?.name} 
                         address={e.attributes?.address} 
-                        telephone={e.attributes?.telephone} 
+                        telephone={e.attributes?.telephone}
+                        openhour={e.attributes?.openhour}
+                        closehour={e.attributes?.closehour}
                         id={e.id}
                         key={e.id}
                       />
