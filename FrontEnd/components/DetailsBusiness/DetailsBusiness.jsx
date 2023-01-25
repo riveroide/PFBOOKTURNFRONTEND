@@ -12,11 +12,11 @@ const DetailsBusiness = ({name, address, email, telephone, createdAt, business, 
           alt=""
         /> */}
         <div className="relative z-10 container px-4 mx-auto overflow-hidden">
-          <div className="flex justify-center items-center">
-          <p className="mb-3 text-3xl md:text-5xl xl:text-6xl text-center font-bold font-heading tracking-px-n leading-none h-20 my-1">
+          <div className="justify-center items-center flex">
+          <p className="text-4xl md:text-5xl xl:text-6xl text-center font-bold font-heading tracking-px-n leading-none h-20">
             {name}
           </p>
-          <button id={business.data?.id} className={`text-3xl ml-4 pb-3 ${favourite ? "text-red-500 hover:text-gray-500" : "text-gray-500 hover:text-red-500"}`} onClick={(e) => handleClick(e)}>
+          <button id={business.data?.id} className={`text-3xl md:text-4xl xl:text-5xl text-center ml-4 md:pb-6 xl:pb-3 pb-8 ${favourite ? "text-red-500 hover:text-gray-500" : "text-gray-500 hover:text-red-500"}`} onClick={(e) => handleClick(e)}>
           &#10084;
           </button>
           </div>
