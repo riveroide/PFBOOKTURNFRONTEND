@@ -10,7 +10,7 @@ import { putFavourite } from "../../redux/actions/clients/putFavourite";
 
 
 export default function CardResult({ name, services, image, id, categories, session}) {
-  
+  const router = useRouter()
   // const { favouritesList, clientAcc } = useSelector((state) => state.clients);
 
   // const [input, setInput] = useState({
@@ -62,6 +62,14 @@ export default function CardResult({ name, services, image, id, categories, sess
   //     }
   //   }
   // };
+  const onClick = (e) => {
+    if(!session){
+      alert("Primero debes loguearte.")
+      router.push("/client/login")
+    }else{
+      router.push(`/business/about/${e.target.id}`)
+    }
+  }
 
   return (
     <section className="bg-white mt-4">
@@ -71,14 +79,16 @@ export default function CardResult({ name, services, image, id, categories, sess
 
         <div className="mt-8 lg:-mx-6 lg:flex lg:items-center w-full justify-center">
           <div className="relative mr-8 lg:w-96 w-full">
-            <Link
-              href={{
-                pathname: "/business/about/[businessId]",
-                query: {
-                  businessId: id,
-                },
-              }}
-              className=" lg:w-1/3 rounded-xl mr-8 relative"
+            <div
+            id={id}
+            onClick={e => onClick(e)}
+              // href={{
+              //   pathname: "/business/about/[businessId]",
+              //   query: {
+              //     businessId: id,
+              //   },
+              // }}
+              className=" rounded-xl mr-8 relative"
             >
               <img
                 className="object-cover w-full lg:ml-6 lg:w-full rounded-xl h-72 lg:h-90"
@@ -87,7 +97,7 @@ export default function CardResult({ name, services, image, id, categories, sess
                 width="150"
                 height="150"
               />
-            </Link>
+            </div>
             {/* <div className="absolute top-2 2xl:-right-4 md:right-3 lg:-right-4 right-2 hover:bg-white rounded-md w-8 h-8 items-center text-center justify-center flex">
               <button onClick={() => handleChange()}>Fav</button> 
             </div> */}
@@ -103,18 +113,20 @@ export default function CardResult({ name, services, image, id, categories, sess
               );
             })}
 
-            <Link
-              href={{
-                pathname: "/business/about/[businessId]",
-                query: {
-                  businessId: id,
-                },
-              }}
+            <div
+            id={id}
+            onClick={e => onClick(e)}
+              // href={{
+              //   pathname: "/business/about/[businessId]",
+              //   query: {
+              //     businessId: id,
+              //   },
+              // }}
               className="block mt-4 text-2xl font-semibold text-gray-800 hover:underline md:text-3xl h-10 capitalize"
             >
               {/* dark:text-white */}
               {name}.
-            </Link>
+            </div>
 
             {arrServices?.map((e) => {
               return (
