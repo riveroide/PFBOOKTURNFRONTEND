@@ -9,7 +9,7 @@ const PutDataForm = () => {
   const dispatch = useDispatch();
   const { BusinessAcc } = useSelector((state) => state.businessacc);
   const [disabled, setDisabled] = useState(true);
-  const AccData = BusinessAcc.attributes;
+  const AccData = BusinessAcc[0]?.attributes;
   const { IdSession } = useSelector((state) => state.businessacc);
   const [putData, setPutData] = useState({
     name: AccData?.name,
@@ -19,14 +19,13 @@ const PutDataForm = () => {
     openhour: AccData?.openhour,
     closehour: AccData?.closehour,
   });
-
+  
   useEffect(()=>{
-    async function fetchData(){
-      await dispatch(getBusinessData(IdSession))
-    }
-    fetchData()
+  
+    dispatch(getBusinessData(IdSession))
+ 
     
-  },[dispatch,disabled])
+  },[dispatch,disabled, IdSession])
 
 
   const hours = [
@@ -41,7 +40,7 @@ const PutDataForm = () => {
   };
   const handlerSubmit = (e) => {
     e.preventDefault();
-    let id = BusinessAcc.id;
+    let id = BusinessAcc[0]?.id;
     let data = putData;
     dispatch(putBusiness(id, data));
     alert("se actualiza");

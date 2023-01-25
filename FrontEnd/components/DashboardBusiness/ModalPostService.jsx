@@ -12,10 +12,10 @@ export const ModalPostService = ({ index, setData, idBusiness }) => {
   const [data, setDataC] = useState({
     name: "",
     price: 0,
-    businesses: BusinessAcc.id,
+    businesses: BusinessAcc[0].id,
   });
 
-  const services = BusinessAcc.attributes.services.data;
+  const services = BusinessAcc[0]?.attributes.services.data;
   const serviData = services.map((s) => {
     return {
       index: index++,

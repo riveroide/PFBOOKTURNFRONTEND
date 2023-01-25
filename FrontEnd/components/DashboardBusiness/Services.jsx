@@ -11,7 +11,7 @@ const Services = () => {
   const dispatch = useDispatch();
   const { BusinessAcc } = useSelector((state) => state.businessacc);
   let index = 0;
-  const servicio = BusinessAcc.attributes.services?.data;
+  const servicio = BusinessAcc[0]?.attributes?.services?.data;
   const { IdSession } = useSelector((state) => state.businessacc);
   const servi = servicio?.map((s) => {
     return {
@@ -24,7 +24,7 @@ const Services = () => {
   });
   // console.log(servi)
   const [data, setData] = useState(servi);
-  
+  console.log("soy data", data)
 
   useEffect(() => {
     dispatch(getBusinessData(IdSession));
@@ -60,12 +60,14 @@ const Services = () => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    data.map(async (s) => {
-      await dispatch(
-        putServices(s.id, { name: s?.name, price: s?.price, active: s?.active })
+    console.log("opa")
+    data.map( (s) => {
+       dispatch(
+        putServices(s.id, {active: s.active })
       );
     });
-    dispatch(getBusinessData(2));
+    dispatch(getBusinessData(IdSession));
+    alert("se cambió el estado")
   };
   if (data) {
     return (
@@ -138,7 +140,7 @@ const Services = () => {
             );
           })}
 
-        </form>
+        
           <div class="flex mb-2 w-full justify-center gap-32 mt-12">
             <button
               type="submit"
@@ -146,9 +148,12 @@ const Services = () => {
             >
               GUARDAR
             </button>
+            
             <ModalPostService index={index} setData={setData} idBusiness={IdSession} />
           </div>
+          </form>
       </div>
+      
     );
   }
 };

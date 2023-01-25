@@ -11,6 +11,7 @@ const Login = () => {
   
   //console.log(session)
   if (session) {
+    
     return (
       <div>
         <NavBar2/>

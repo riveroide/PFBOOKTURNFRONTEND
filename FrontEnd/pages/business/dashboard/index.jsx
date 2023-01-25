@@ -21,23 +21,13 @@ const dashboard = () => {
   const dispatch = useDispatch();
   const userEmail = session?.user.email;
   const [loader,setLoader] = useState(false)
-
+  
   useEffect(() => {
-    try {
       setLoader(true)
-      async function fetchBusinessEmail(){
-        await dispatch(getBusinessIdByEmail(userEmail))
-      }
-      fetchBusinessEmail()
-      // async function fetchData() {
-      //   await dispatch(getBusinessData(IdSession));
-      // }
-      // fetchData();
-    } catch (error) {
-      console.log(error.message);
-    }
+      dispatch(getBusinessIdByEmail(userEmail));
+      dispatch(getBusinessData(IdSession));
     setLoader(false)
-  }, [dispatch]);
+  }, [dispatch,session]);
 
   const handlerClick = (e, pagina) => {
     e.preventDefault();
@@ -82,7 +72,9 @@ const dashboard = () => {
   ];
 
   // if (hydrated) {
-    if(loader === false && BusinessAcc){
+    if(loader === false && !BusinessAcc){
+      return (<h1>cargando pa</h1>)
+    }else {
     return (
       <div className="flex scroll-smooth min-h-screen ">
         <div
@@ -152,11 +144,7 @@ const dashboard = () => {
           }
         </div>
       </div>
-    )}else{
-      return (
-        <div> cargando </div>
-      )
-    }
+    )}
   // } else {
   //   return null;
   // }
