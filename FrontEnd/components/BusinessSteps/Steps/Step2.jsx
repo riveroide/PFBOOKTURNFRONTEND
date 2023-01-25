@@ -9,42 +9,33 @@ function valida(input) {
   let errors = {};
 
   //only letters
-  if (!input.name || input.name === "") {
+  if (!input.name) {
     errors.name = "Name required";
-  } else if (/[0-9]/.test(input.name)) {
-    errors.name = "Invalid name";
   }
-
   //letters and numbers
-  if (!input.address || input.address === "") {
-    errors.address = "Name required";
-  } else if (/[0-9]/.test(input.address)) {
-    errors.address = "Address must contains letters and numbers";
+  if (!input.address) {
+    errors.address = "Address required";
   }
 
   // numeros
-  if (!input.telephone || input.telephone === "") {
-    errors.telephone = "Name required";
-  } else if (/[0-9]/.test(input.telephone)) {
-    errors.telephone = "Address must contains letters and numbers";
+  if (!input.telephone) {
+    errors.telephone = "Telephone required";
   }
 
   //email
-  if (!input.email || input.email === "") {
+  if (!input.email) {
     errors.email = "Email required";
-  } else if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(input.name)) {
-    errors.email = "Invalid email";
   }
 
   //only numbers
-  if (!input.openhour || input.openhour === "") {
+  if (!input.openhour) {
     errors.openhour = "Open hour required";
   } else if (input.openhour < 0 || input.openhour > 24) {
     errors.openhour = "open hour must be between 0 and 24";
   }
 
   //only numbers
-  if (!input.closehour || input.closehour === "") {
+  if (!input.closehour) {
     errors.closehour = "Close hour required";
   } else if (input.closehour < 0 || input.closehour > 24) {
     errors.closehour = "close hour must be between 0 and 24";
@@ -64,7 +55,8 @@ const Step2 = ({
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.users);
   const [errors, setErrors] = useState({});
-  //console.log(userInfo[0].id);
+  console.log(finalData, "soy final data");
+
   const [input, setInput] = useState({
     name: "",
     email: "",
