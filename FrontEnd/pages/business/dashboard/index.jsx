@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import {
   getBusinessIdByEmail,
   getBusinessData,
-} from "redux/actions/business/getBusiness.js";
+} from "redux/actions/businessAcc/getDashboardData.js";
 import PutDataForm from "../../../components/DashboardBusiness/PutDataForm";
 import Services from "../../../components/DashboardBusiness/Services";
 import Pedidos from "../../../components/DashboardBusiness/Pedidos";
@@ -16,24 +16,21 @@ const dashboard = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useState(true);
   const [page, setPage] = useState(1);
-  const { BusinessAcc } = useSelector((state) => state.business);
-  const { BusinessIdSession } = useSelector((state) => state.business);
-  const [hydrated, setHydrated] = useState(false);
+  const { BusinessAcc } = useSelector((state) => state.businessacc);
+  const { IdSession } = useSelector((state) => state.businessacc);
   const dispatch = useDispatch();
   const userEmail = session?.user.email;
-  const AccData = BusinessAcc.attributes;
   const [loader,setLoader] = useState(false)
 
   useEffect(() => {
     try {
       setLoader(true)
-      setHydrated(true);
       async function fetchBusinessEmail(){
         await dispatch(getBusinessIdByEmail(userEmail))
       }
       fetchBusinessEmail()
       async function fetchData() {
-        await dispatch(getBusinessData(BusinessIdSession));
+        await dispatch(getBusinessData(IdSession));
       }
       fetchData();
     } catch (error) {

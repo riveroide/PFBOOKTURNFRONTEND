@@ -44,15 +44,3 @@ export const getBusinessByEmail = (email) => (dispatch) => {
 
   }
 
-export const getBusinessIdByEmail = (email) => (dispatch) => {
-  axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/users?populate=*&filters[email][$contains]=${email}`)
-    .then((res) => dispatch(getIdBusiness(res.data[0].business.id)))
-    .catch((error) => console.log(error));
-};
-
-export const getBusinessData = (id) => (dispatch) => {
-  axios(`https://plankton-app-jy8jr.ondigitalocean.app/api/businesses/${id}?populate=*`)
-    .then((res) => dispatch(getiInfoBusiness(res.data.data)))
-    .catch((error) => console.log(error));
-
-};
