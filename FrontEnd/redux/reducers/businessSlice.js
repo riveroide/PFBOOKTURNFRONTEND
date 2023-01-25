@@ -6,7 +6,6 @@ export const businessSlice = createSlice({
     businessList: [],
     businessListCopy: [],
     businessId: {},
-    BusinessIdSession: "",
     BusinessAcc: {},
   },
   reducers: {
@@ -60,12 +59,6 @@ export const businessSlice = createSlice({
       const business = state.businessListCopy;
       if (!action.payload) state.businessList = business;
       else state.businessList = action.payload;
-    },
-    getIdBusiness: (state, action) => {
-      state.BusinessIdSession = action.payload;
-    },
-    getiInfoBusiness: (state,action) => {
-      state.BusinessAcc = action.payload
     },
     getBusinessEmail: (state,action) => {
       state.BusinessAcc = action.payload

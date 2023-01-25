@@ -5,14 +5,14 @@ import { useDispatch } from "react-redux";
 import { putServices } from "../../redux/actions/services/putServices";
 import { ModalPostService } from "./ModalPostService";
 import { useEffect } from "react";
-import { getBusinessData } from "../../redux/actions/business/getBusiness";
+import { getBusinessData } from "../../redux/actions/businessAcc/getDashboardData.js";
 
 const Services = () => {
   const dispatch = useDispatch();
-  const { BusinessAcc } = useSelector((state) => state.business);
+  const { BusinessAcc } = useSelector((state) => state.businessacc);
   let index = 0;
   const servicio = BusinessAcc.attributes.services?.data;
-  const { BusinessIdSession } = useSelector((state) => state.business);
+  const { IdSession } = useSelector((state) => state.businessacc);
   const servi = servicio.map((s) => {
     return {
       index: index++,
@@ -27,7 +27,7 @@ const Services = () => {
   
 
   useEffect(() => {
-    dispatch(getBusinessData(BusinessIdSession));
+    dispatch(getBusinessData(IdSession));
   }, [dispatch, putServices]);
 
   const handleChange = (e) => {
@@ -146,7 +146,7 @@ const Services = () => {
             >
               GUARDAR
             </button>
-            <ModalPostService index={index} setData={setData} idBusiness={BusinessIdSession} />
+            <ModalPostService index={index} setData={setData} idBusiness={IdSession} />
           </div>
       </div>
     );

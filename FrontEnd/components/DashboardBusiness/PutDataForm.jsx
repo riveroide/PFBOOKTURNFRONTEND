@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { putBusiness } from "../../redux/actions/business/putBusiness";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
-import { getBusinessData } from "../../redux/actions/business/getBusiness";
+import { getBusinessData } from "../../redux/actions/businessAcc/getDashboardData.js";
 
 const PutDataForm = () => {
   const dispatch = useDispatch();
-  const { BusinessAcc } = useSelector((state) => state.business);
+  const { BusinessAcc } = useSelector((state) => state.businessacc);
   const [disabled, setDisabled] = useState(true);
   const AccData = BusinessAcc.attributes;
-  const { BusinessIdSession } = useSelector((state) => state.business);
+  const { IdSession } = useSelector((state) => state.businessacc);
   const [putData, setPutData] = useState({
     name: AccData?.name,
     telephone: AccData?.telephone,
@@ -22,7 +22,7 @@ const PutDataForm = () => {
 
   useEffect(()=>{
     async function fetchData(){
-      await dispatch(getBusinessData(BusinessIdSession))
+      await dispatch(getBusinessData(IdSession))
     }
     fetchData()
     

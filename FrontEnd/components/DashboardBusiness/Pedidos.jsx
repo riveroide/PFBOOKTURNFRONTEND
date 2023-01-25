@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { BookingsUnconfirmed } from "../../redux/actions/businessAcc/getDashboardData";
+import { BookingsUnconfirmed } from "../../redux/actions/businessAcc/getDashboardData.js";
 import { putBooking } from "../../redux/actions/Bookings/putBooking";
 import { deleteBooking } from "../../redux/actions/Bookings/deleteBooking";
 import { useState } from "react";
@@ -11,7 +11,7 @@ import { postEmailNotif } from "../../redux/actions/emailNotifications/postEmail
 const Pedidos = (idBusiness) => {
   const dispatch = useDispatch();
   const { unconfirmedBookings } = useSelector((state) => state.businessacc);
-  const { BusinessIdSession } = useSelector((state) => state.business);
+  const { IdSession } = useSelector((state) => state.businessacc);
   const [reload, setReload] = useState(false);
   const put = async () => {
     await dispatch(putBooking(e.target.id, { confirmed: true }));
@@ -54,7 +54,7 @@ const Pedidos = (idBusiness) => {
   };
 
   useEffect(() => {
-    dispatch(BookingsUnconfirmed(BusinessIdSession));
+    dispatch(BookingsUnconfirmed(IdSession));
   }, [dispatch, reload]);
   return (
     <div className="flex flex-col flex-wrap w-full h-fit items-center font-cool_p tracking-wide">

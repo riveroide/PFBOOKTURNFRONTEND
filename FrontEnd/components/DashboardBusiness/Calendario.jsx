@@ -10,14 +10,14 @@ import { es } from "date-fns/locale";
 
 const Calendario = () => {
   const { confirmedBookings } = useSelector((state) => state.businessacc);
-  const { BusinessIdSession } = useSelector((state) => state.business);
+  const { IdSession } = useSelector((state) => state.businessacc);
   const dispatch = useDispatch();
   const [date, setDate] = useState(
     format(new Date(), "EEEE d MMMM R", { locale: es })
   );
 
   useEffect(() => {
-    dispatch(BookingsConfirmed(BusinessIdSession));
+    dispatch(BookingsConfirmed(IdSession));
   }, [dispatch]);
 
   return (

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postServices } from "../../redux/actions/services/postServices";
 import { useSelector } from "react-redux";
-import { getBusinessData } from "../../redux/actions/business/getBusiness";
+import { getBusinessData } from "../../redux/actions/businessAcc/getDashboardData";
 import { ConstructionOutlined } from "@mui/icons-material";
 
 export const ModalPostService = ({ index, setData, idBusiness }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const { BusinessAcc } = useSelector((state) => state.business);
+  const { BusinessAcc } = useSelector((state) => state.businessacc);
   const [data, setDataC] = useState({
     name: "",
     price: 0,
