@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { putUser } from "../../redux/actions/users/putUser";
 import { useDispatch } from "react-redux";
 import { useSession } from "next-auth/react";
+import { postEmailNotif } from "../../redux/actions/emailNotifications/postEmail";
 
 //material ui
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,8 +12,8 @@ import Switch from '@mui/material/Switch';
  import TablePagination from '@mui/material/TablePagination';
 
 const TableUsers = ({usersList, change, setChange}) => {
-  const session = useSession()
-  // console.log(session)
+  const { data: session } = useSession();
+   console.log(session)
 
     const dispatch = useDispatch()
     const [order, setOrder] = useState('asc');
@@ -60,8 +61,14 @@ const TableUsers = ({usersList, change, setChange}) => {
 
     //handlers
     const handleChange = (e) => {
+      console.log(session?.user.email)
         let id = parseInt(e.target.id)
         dispatch(putUser(id, {blocked: e.target.checked}))
+        dispatch(postEmailNotif({
+          subject:'Bloqueo de usuario.',
+          email:session?.user.email,
+          message:`Tu usario en Bookturn ha sido bloqueado, para más información podes contactarte con la empresa.`
+        }))
         setChange(!change)
       };
 

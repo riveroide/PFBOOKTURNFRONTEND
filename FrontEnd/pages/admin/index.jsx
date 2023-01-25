@@ -13,7 +13,6 @@ const admin = () => {
     const {usersList} = useSelector(state => state.users)
     const [hydrated, setHydrated] = useState(false)
     const [change, setChange] = useState(false)
-    const [value, setValue] = useState("usuarios")
 
     useEffect(() => {
       setHydrated(true)
@@ -23,11 +22,10 @@ const admin = () => {
     if (!hydrated) {
         return null;
       }
-       console.log(value)
         return(
           <div>
             <div>
-            <NavBarAdmin setValue={setValue}/>
+            <NavBarAdmin />
  
               <TableUsers usersList={usersList} change={change} setChange={setChange}/> 
     
