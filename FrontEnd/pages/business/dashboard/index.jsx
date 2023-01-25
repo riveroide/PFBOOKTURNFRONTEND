@@ -6,12 +6,15 @@ import { useDispatch } from "react-redux";
 import {
   getBusinessIdByEmail,
   getBusinessData,
+  clean
 } from "redux/actions/businessAcc/getDashboardData.js";
 import PutDataForm from "../../../components/DashboardBusiness/PutDataForm";
 import Services from "../../../components/DashboardBusiness/Services";
 import Pedidos from "../../../components/DashboardBusiness/Pedidos";
 import Calendario from "../../../components/DashboardBusiness/Calendario";
-import { getSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+
+
 const dashboard = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useState(true);
@@ -20,19 +23,28 @@ const dashboard = () => {
   const { IdSession } = useSelector((state) => state.businessacc);
   const dispatch = useDispatch();
   const userEmail = session?.user.email;
-  const [loader,setLoader] = useState(false)
-  
+  const [loader, setLoader] = useState(false);
+
   useEffect(() => {
-      setLoader(true)
-      dispatch(getBusinessIdByEmail(userEmail));
-      dispatch(getBusinessData(IdSession));
-    setLoader(false)
-  }, [dispatch,session]);
+    setLoader(true);
+    dispatch(getBusinessIdByEmail(userEmail));
+    dispatch(getBusinessData(IdSession));
+    setLoader(false);
+  }, [dispatch, session, IdSession]);
 
   const handlerClick = (e, pagina) => {
     e.preventDefault();
     setPage(pagina);
   };
+
+  const handlerClose = (e)=>{
+    e.preventDefault();
+    console.log(1)
+    signOut()
+    console.log(2)
+    dispatch(clean());
+    console.log(3)
+  }
 
   const Menus = [
     {
@@ -72,9 +84,9 @@ const dashboard = () => {
   ];
 
   // if (hydrated) {
-    if(loader === false && !BusinessAcc){
-      return (<h1>cargando pa</h1>)
-    }else {
+  if (loader === false && !BusinessAcc) {
+    return <h1>cargando pa</h1>;
+  } else {
     return (
       <div className="flex scroll-smooth min-h-screen ">
         <div
@@ -124,6 +136,21 @@ const dashboard = () => {
                 </span>
               </div>
             ))}
+            <div
+              className={`flex justify-center items-center rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm gap-x-4 mt-96 bg-light-white `}
+            >
+              {/* <Link href={"/business"}> */}
+              {
+                open? 
+                <button onClick={(e) => handlerClose(e)} class="group relative h-10 w-32 overflow-hidden rounded-lg bg-white text-lg shadow">
+                <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                <span class="relative text-black text-base group-hover:text-white">
+                  Cerrar Sesion
+                </span>
+              </button>:<img src="https://res.cloudinary.com/dquxxjngk/image/upload/c_scale,w_20/v1674648614/Bookturn/src/image_10_lp7ieu.png"/>
+              }
+              {/* </Link> */}
+            </div>
           </ul>
         </div>
         <div
@@ -133,48 +160,22 @@ const dashboard = () => {
         >
           {
             page === 1 ? (
-              <PutDataForm />
+              <PutDataForm userEmail={userEmail} />
             ) : page === 2 ? (
               <Services />
-            ) : page === 3 ? (<Pedidos/>
-            ) : (page === 4 && <Calendario/>)
+            ) : page === 3 ? (
+              <Pedidos />
+            ) : (
+              page === 4 && <Calendario />
+            )
             // ):(
             //   <div>asdas</div>
             // )
           }
         </div>
       </div>
-    )}
-  // } else {
-  //   return null;
-  // }
+    );
+  }
 };
-
-// export async function getServerSideProps(context) {
-//   //si no hay sesion iniciada redirige al login
-//   const session = await getSession(context);
-
-//   if (session.status === "unauthenticated") {
-//     return {
-//       redirect: {
-//         destination: "/client/login",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/client/login",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: { session },
-//   };
-// }
 
 export default dashboard;
