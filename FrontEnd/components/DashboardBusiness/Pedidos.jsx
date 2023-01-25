@@ -89,7 +89,7 @@ const Pedidos = (idBusiness) => {
                 </div> */}
                 </div>
                 <div class="font-semibold text-gray-800 text-2xl text-center md:text-left px-2">
-                  {bookings.attributes.services?.data[0]?.attributes.name}
+                  {bookings.attributes?.services.data[0]?.attributes.name}
                 </div>
 
                 <div class="text-gray-800 font-medium text-sm pt-1 text-center md:text-left px-2">
