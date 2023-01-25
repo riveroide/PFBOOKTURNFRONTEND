@@ -23,9 +23,9 @@ export const NabvarResults = () => {
 
   return (
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-blue-700">
-      <div class="container flex items-center justify-between mx-auto">
+      <div class="container flex items-center md:justify-between justify-around mx-auto">
         <Link href="/" class="flex items-center">
-          <span class="self-center text-4xl font-semibold font-cool_p whitespace-nowrap dark:text-white tracking-wider">
+          <span class="self-center md:text-4xl text-2xl font-semibold font-cool_p whitespace-nowrap dark:text-white tracking-wider">
             Bookturn
           </span>
         </Link>
@@ -40,11 +40,11 @@ export const NabvarResults = () => {
               />
             </Link>
           ) : (
-            <div>
+            <div className="flex flex-col md:flex-row">
                 <Link href="/client/login">
               <button
                 type="button"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm md:px-5 px-2 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                 Acceder
               </button>{" "}
@@ -52,7 +52,7 @@ export const NabvarResults = () => {
                   <Link href="/client/login/createform">
               <button
                 type="button"
-                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
+                class="py-2.5 md:px-5 px-2 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
                 >
                 Registrarse
               </button>
