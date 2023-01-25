@@ -29,10 +29,10 @@ const dashboard = () => {
         await dispatch(getBusinessIdByEmail(userEmail))
       }
       fetchBusinessEmail()
-      async function fetchData() {
-        await dispatch(getBusinessData(IdSession));
-      }
-      fetchData();
+      // async function fetchData() {
+      //   await dispatch(getBusinessData(IdSession));
+      // }
+      // fetchData();
     } catch (error) {
       console.log(error.message);
     }

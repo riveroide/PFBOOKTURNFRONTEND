@@ -13,7 +13,7 @@ const Services = () => {
   let index = 0;
   const servicio = BusinessAcc.attributes.services?.data;
   const { IdSession } = useSelector((state) => state.businessacc);
-  const servi = servicio.map((s) => {
+  const servi = servicio?.map((s) => {
     return {
       index: index++,
       id: s.id,
