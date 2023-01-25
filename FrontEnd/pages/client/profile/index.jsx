@@ -12,6 +12,7 @@ import { display } from 'redux/actions/clients/displayOption'
 import FavCard from '../../../components/Favourites/FavCard'
 import BookedList from '../../../components/BookedList/BookedList'
 import Loader from '../../../components/Loader/Loader'
+import { useRouter } from 'next/router';
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ const Profile = () => {
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
+  const router = useRouter()
 
   useEffect(() => {
     setLoading(true)
@@ -206,9 +208,14 @@ const Profile = () => {
           ):displayOption === 'Configuracion' ?(
             <div className='flex flex-col items-center'>
               <h1 className='font-cool_g text-4xl mb-4'>ACA SETTINGS DE USUARIO</h1>
-              <Link href='/client/login'>
-                <button className="overflow-hidden px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" >Salir del Perfil</button>   
-              </Link>
+              
+                <button className="overflow-hidden px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" 
+                onClick={() =>{
+                   signOut({
+                    callbackUrl: "/"
+                   })
+                  }}>Cerrar sesión</button>   
+              
             </div>
             
           ):(

@@ -1,6 +1,7 @@
 import React from "react";
 import stylesNavBar from "../styles/NavBarClients.module.css";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 export default function NavBarClients() {
   return (
@@ -14,9 +15,9 @@ export default function NavBarClients() {
         <div className={stylesNavBar.logo}>bookturn</div>
 
         <div className={stylesNavBar.buttonsLogin}>
-          <Link href="/client/login">
-            <button className={stylesNavBar.acceder}>acceder</button>
-          </Link>
+
+            <button className={stylesNavBar.acceder} onClick={()=>signIn()}>acceder</button>
+
 
           <Link href="/client/login/createform">
             <button className={stylesNavBar.resgistrarse}>Registrarse</button>
