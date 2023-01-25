@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postBooking } from "../../redux/actions/Bookings/postBooking";
 import { postEmailNotif } from "../../redux/actions/emailNotifications/postEmail"
 import { getSession, useSession } from "next-auth/react";
+import { getClientEmail } from "../../redux/actions/businessAcc/getDashboardData";
 
 const BookingService = () => {
   const { clientAcc: client } = useSelector((state) => state.clients);
