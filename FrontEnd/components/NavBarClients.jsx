@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import stylesNavBar from "../styles/NavBarClients.module.css";
 import Link from "next/link";
-<<<<<<< business-sections-styles
 import AOS from "aos";
 import "aos/dist/aos.css";
-=======
 import { signIn } from "next-auth/react";
 
->>>>>>> main
 export default function NavBarClients() {
   useEffect(() => {
     AOS.init();
