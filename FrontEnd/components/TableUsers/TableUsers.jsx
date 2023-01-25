@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { putUser } from "../../redux/actions/users/putUser";
 import { useDispatch } from "react-redux";
 import { useSession } from "next-auth/react";
-
+import { postEmailNotif } from "../../redux/actions/emailNotifications/postEmail";
 //material ui
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -59,9 +59,14 @@ const TableUsers = ({usersList, change, setChange}) => {
     }
 
     //handlers
-    const handleChange = (e) => {
+    const handleChange = ({e, email}) => {
         let id = parseInt(e.target.id)
         dispatch(putUser(id, {blocked: e.target.checked}))
+        dispatch(postEmailNotif({
+          subject:'Bloqueo de usuario.',
+          email:email,
+          message:`Tu usario en Bookturn ha sido bloqueado, para recibir más información puedes contactarte con la empresa.`
+        }))
         setChange(!change)
       };
 
@@ -130,7 +135,7 @@ const TableUsers = ({usersList, change, setChange}) => {
             control={
               <Switch 
               id={`${e.id}`} 
-              defaultChecked={e.blocked} onChange={e => handleChange(e)} />
+              defaultChecked={e.blocked} onChange={e => handleChange(e, e.email)} />
             }
             // label={e.blocked? "Bloqueado" : "Desbloqueado"} 
           /></td>
