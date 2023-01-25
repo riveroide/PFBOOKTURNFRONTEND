@@ -1,36 +1,46 @@
-import React from 'react'
-import Navbar from 'components/Navbar/Navbar.jsx'
-import NavbarCategories from 'components/NavbarCategories/NavbarCategories'
-import AboutUsCard from "components/AboutUsCard/AboutUsCard"
+import React, { useState } from "react";
+import Navbar from "components/Navbar/Navbar.jsx";
+
+import AboutUsCard from "components/AboutUsCard/AboutUsCard";
 import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
 
 const index = () => {
-
-
+  const [data, setData] = useState({
+    name: "",
+    image: "",
+    position: "",
+  });
   return (
     <>
-    <Navbar/>
-    <NavbarCategories/>
-    <div className="">
-    <div className="">
-      <h3>Somos un equipo de 7 personas y Camilo. Desarrollamos esta app para aprobar el PF de Soy Henry el mejor bootcamp de toda la wea conchesumare</h3>
-    </div>
-   <div className="">
-    <ul>
-      <li><AboutUsCard/></li>
-      <li><AboutUsCard/></li>
-      <li><AboutUsCard/></li>
-      <li><AboutUsCard/></li>
-      <li><AboutUsCard/></li>
-      <li><AboutUsCard/></li>
-      <li><AboutUsCard/></li>
-      <li><AboutUsCard/></li>
-    </ul>
-   </div>
-    </div>
-    <FooterBussines/>
-    </>
-  )
-}
+      <Navbar />
 
-export default index
+      <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center items-center h-screen">
+          <div className="grid grid-cols-3 gap-4">
+            <ol className="p-2 w-auto">
+              <AboutUsCard />
+            </ol>
+            <ol className="p-2">
+              <AboutUsCard />
+            </ol>
+            <ol className="p-2">
+              <AboutUsCard />
+            </ol>
+            <ol className="p-2">
+              <AboutUsCard />
+            </ol>
+            <ol className="p-2">
+              <AboutUsCard />
+            </ol>
+            <ol className="p-2">
+              <AboutUsCard />
+            </ol>
+          </div>
+        </div>
+      </div>
+      <FooterBussines />
+    </>
+  );
+};
+
+export default index;

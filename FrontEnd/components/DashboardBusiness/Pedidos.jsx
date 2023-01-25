@@ -13,6 +13,7 @@ const Pedidos = (idBusiness) => {
   const { unconfirmedBookings } = useSelector((state) => state.businessacc);
   const { IdSession } = useSelector((state) => state.businessacc);
   const [reload, setReload] = useState(false);
+
   const put = async () => {
     await dispatch(putBooking(e.target.id, { confirmed: true }));
   };
@@ -54,8 +55,11 @@ const Pedidos = (idBusiness) => {
   };
 
   useEffect(() => {
-    dispatch(BookingsUnconfirmed(IdSession));
-  }, [dispatch, reload]);
+    console.log("como la chupa ")
+    if(IdSession){
+      dispatch(BookingsUnconfirmed(IdSession));
+    }
+  }, [dispatch, reload, IdSession ]);
   return (
     <div className="flex flex-col flex-wrap w-full h-fit items-center font-cool_p tracking-wide">
       <div class="w-full max-w-lg flex justify-center mb-6">

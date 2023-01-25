@@ -65,7 +65,7 @@ const TableUsers = ({usersList, change, setChange}) => {
         dispatch(postEmailNotif({
           subject:'Bloqueo de usuario.',
           email:email,
-          message:`Tu usario en Bookturn ha sido bloqueado, para recibir más información puedes contactarte con la empresa.`
+          message:`Tu usario en Bookturn ha sido ${e.target.checked? "bloqueado" : "desbloqueado"}, para recibir más información puedes contactarte con la empresa.`
         }))
         setChange(!change)
       };
