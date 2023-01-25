@@ -7,29 +7,19 @@ import "aos/dist/aos.css";
 function valida(input) {
   let errors = {};
 
-  if (!input.name || input.name === "") {
-    errors.name = "Name required";
-  } else if (/[a-z][a-zA-Z][a-z]/.test(input.name)) {
+  if (!input.name) {
     errors.name = "Invalid name";
   }
 
-  if (!input.email || input.email === "") {
+  if (!input.email) {
     errors.email = "Email required";
-  } else if (!/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(input.name)) {
-    errors.email = "Invalid email";
   }
 
-  if (!input.password || input.password === "") {
+  if (!input.password) {
     errors.password = "Password required";
-  } else if (
-    !/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/.test(input.password)
-  ) {
-    errors.password = "Invalid password";
   }
 
-  if (!input.repeatPassword || input.repeatPassword === "") {
-    errors.repeatPassword = "You must confirm your password";
-  } else if (input.password !== input.repeatPassword) {
+  if (input.password !== input.repeatPassword) {
     errors.repeatPassword = "Passwords don't matches";
   }
 
@@ -37,13 +27,15 @@ function valida(input) {
 }
 
 const Step1 = ({ step, setStep, setUserEmail, setName, setFinalData }) => {
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState(false);
   const [input, setInput] = useState({
     username: "",
     email: "",
     password: "",
     role: "2",
   });
+
+  console.log(input, "input value");
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -92,13 +84,13 @@ const Step1 = ({ step, setStep, setUserEmail, setName, setFinalData }) => {
             type="text"
             name="username"
             onChange={(e) => {
-              handleChange(e);
+              () => handleChange(e);
               valida(e);
             }}
             placeholder="Tu Usuario"
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
-          <p>{errors && errors.name}</p>
+          {errors.name && <p className="text-xs text-red-600">{errors.name}</p>}
         </label>
 
         <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
@@ -111,8 +103,11 @@ const Step1 = ({ step, setStep, setUserEmail, setName, setFinalData }) => {
             placeholder="email@ejemplo.com"
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
+          {errors.email && (
+            <p className="text-xs text-red-600">{errors.email}</p>
+          )}
         </label>
-        <p>{errors.email}</p>
+
         <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
           <span className="text-xs font-medium text-gray-700">
             {" "}
@@ -126,8 +121,10 @@ const Step1 = ({ step, setStep, setUserEmail, setName, setFinalData }) => {
             placeholder="***********"
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
+          {errors.password && (
+            <p className="text-xs text-red-600">{errors.password}</p>
+          )}
         </label>
-        <p>{errors.password}</p>
 
         <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
           <span className="text-xs font-medium text-gray-700">
@@ -142,12 +139,15 @@ const Step1 = ({ step, setStep, setUserEmail, setName, setFinalData }) => {
             placeholder="***********"
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
+          {errors.repeatPassword && (
+            <p className="text-xs text-red-600">{errors.repeatPassword}</p>
+          )}
         </label>
-        <p>{errors.repeatPassword}</p>
 
         <input type="text" name="password" onChange={(e) => handleChange(e)} />
         <div className="mt-12">
           <button
+            // disabled={errors && true}
             type="submit"
             onClick={(e) => {
               handleSubmit();

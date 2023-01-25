@@ -54,7 +54,7 @@ const Stepper = () => {
       </>
     );
   }
-  if (step === 3) {
+  if (step === 4) {
     return (
       <>
         <Step5
@@ -68,7 +68,7 @@ const Stepper = () => {
       </>
     );
   }
-  if (step === 4) {
+  if (step === 3) {
     return (
       <>
         step 444444 /{" "}

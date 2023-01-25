@@ -26,12 +26,12 @@ const Step5 = ({ step, setStep, finalData, finalServices }) => {
         <h1 className="font-cool_g text-3xl mb-8">
           Confimar datos de empresa:
         </h1>
-        <p>{finalData.name}</p>
-        <p>{finalData.businessemail}</p>
-        <p>{finalData.address}</p>
-        <p>{finalData.telephone}</p>
-        <p>{finalData.openhour}</p>
-        <p>{finalData.closehour}</p>
+        <p className="font-cool_g text-3xl mb-8">{finalData.name}</p>
+        <p className="font-cool_g text-3xl mb-8">{finalData.businessemail}</p>
+        <p className="font-cool_g text-3xl mb-8">{finalData.address}</p>
+        <p className="font-cool_g text-3xl mb-8">{finalData.telephone}</p>
+        <p className="font-cool_g text-3xl mb-8">{finalData.openhour}</p>
+        <p className="font-cool_g text-3xl mb-8">{finalData.closehour}</p>
         <h1 className="font-cool_g text-3xl mb-8">
           Confimar servicios ingresados:
         </h1>

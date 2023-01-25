@@ -10,17 +10,13 @@ function valida(input) {
   let errors = {};
 
   //only letters
-  if (!input.name || input.name === "") {
+  if (!input.name) {
     errors.name = "Service name required";
-  } else if (/[0-9]/.test(input.name)) {
-    errors.name = "Services name isonly letters";
   }
 
   // numeros
-  if (!input.price || input.price === "") {
+  if (!input.price) {
     errors.price = "Price required";
-  } else if (/[0-9]/.test(input.price)) {
-    errors.price = "Price is only numbers";
   }
 
   return errors;
