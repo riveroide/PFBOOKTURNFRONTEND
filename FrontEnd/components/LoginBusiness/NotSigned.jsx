@@ -21,7 +21,7 @@ const NotSigned = () => {
               Login
             </button>
             <p class="mb-6 mt-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
-              O hace click <Link href="/client/login/createform">aquí</Link>{" "}
+              O hace click <Link href="/business/login/createform">aquí</Link>{" "}
               para registrarte
             </p>
           </div>

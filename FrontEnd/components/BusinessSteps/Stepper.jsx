@@ -71,7 +71,6 @@ const Stepper = () => {
   if (step === 3) {
     return (
       <>
-        step 444444 /{" "}
         <Step3
           emailBusiness={emailBusiness}
           setStep={setStep}

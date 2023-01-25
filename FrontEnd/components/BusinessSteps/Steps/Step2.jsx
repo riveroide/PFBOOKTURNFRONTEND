@@ -72,7 +72,7 @@ const Step2 = ({
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-      user: userInfo[0].id,
+      user: userInfo[0]?.id,
     });
     setEmailBusiness(input.email); // validar para que no rompa
     setFinalData({
