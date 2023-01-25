@@ -24,9 +24,9 @@ export const NabvarResults = () => {
 
   return (
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-blue-700">
-      <div class="container flex items-center justify-between mx-auto">
+      <div class="container flex items-center md:justify-between justify-around mx-auto">
         <Link href="/" class="flex items-center">
-          <span class="self-center text-4xl font-semibold font-cool_p whitespace-nowrap dark:text-white tracking-wider">
+          <span class="self-center md:text-4xl text-2xl font-semibold font-cool_p whitespace-nowrap dark:text-white tracking-wider">
             Bookturn
           </span>
         </Link>
@@ -41,6 +41,7 @@ export const NabvarResults = () => {
               />
             </Link>
           ) : (
+
             <div>
                 
               <button
@@ -54,7 +55,7 @@ export const NabvarResults = () => {
                   <Link href="/client/login/createform">
               <button
                 type="button"
-                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
+                class="py-2.5 md:px-5 px-2 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
                 >
                 Registrarse
               </button>

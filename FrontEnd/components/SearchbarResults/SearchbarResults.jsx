@@ -28,9 +28,9 @@ return (
             placeholder="Buscar"
             value={input}
             onChange={handleChange}
-            className="bg-purple-white shadow rounded border-0 p-3 relative"
+            className="bg-purple-white shadow rounded border-0 p-3 relative w-4/5 md:w-full"
           ></input>
-          <button className="absolute pin-r pin-t mt-3 -mr-36 text-purple-lighter">
+          <button className="absolute pin-r pin-t mt-3 -mr-36 text-purple-lighter hidden md:flex">
             <svg
               width="24"
               height="24"
