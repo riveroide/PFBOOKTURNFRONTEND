@@ -81,6 +81,7 @@ export default function TableReportes({ allRatings, change, setChange }) {
           const handleElimnate = (e) => {
             dispatch(deleteRating(e.target.id))
             setOpen(false);
+            setChange(!change)
           };
   
       return(
