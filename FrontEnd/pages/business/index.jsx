@@ -1,25 +1,21 @@
-import React, { useEffect } from 'react'
-
+import React, { useEffect } from "react";
+import LandingInfoBussines from "../../components/HomeBussines/LandingInfoBussines/LandingInfoBussines.jsx";
 import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
-import LandingInfoBussines from "../../components/HomeBussines/LandingInfoBussines/LandingInfoBussines"
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import NavBar2 from 'components/Navbar/Navbar';
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+import NavBar2 from "components/Navbar/Navbar";
 
 const index = () => {
   useEffect(() => {
-    AOS.init()
-
-  })
+    AOS.init();
+  });
   return (
     <>
-      <NavBar2/>
+      <NavBar2 />
       <LandingInfoBussines />
       <FooterBussines />
-      
     </>
-  )
-}
+  );
+};
 
-export default index
+export default index;
