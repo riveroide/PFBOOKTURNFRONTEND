@@ -59,7 +59,7 @@ const TableUsers = ({usersList, change, setChange}) => {
     }
 
     //handlers
-    const handleChange = ({e, email}) => {
+    const handleChange = (e, email) => {
         let id = parseInt(e.target.id)
         dispatch(putUser(id, {blocked: e.target.checked}))
         dispatch(postEmailNotif({
@@ -135,7 +135,7 @@ const TableUsers = ({usersList, change, setChange}) => {
             control={
               <Switch 
               id={`${e.id}`} 
-              defaultChecked={e.blocked} onChange={e => handleChange(e, e.email)} />
+              defaultChecked={e.blocked} onChange={a => handleChange(a, e.email)} />
             }
             // label={e.blocked? "Bloqueado" : "Desbloqueado"} 
           /></td>
