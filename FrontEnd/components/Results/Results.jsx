@@ -78,7 +78,7 @@ export default function Results() {
                 image={
                   e.attributes?.BusinessPic.data?.attributes
                     ? e.attributes?.BusinessPic.data?.attributes?.formats.large?.url
-                    : "https://avalos.sv/wp-content/uploads/295-default-featured-image.png"
+                    : "https://res.cloudinary.com/dquxxjngk/image/upload/v1674746317/295_default_featured_image_bed585cc5a.png?updated_at=2023-01-26T15:18:38.196Z"
                 }
                 session={session}
                 rating={ rating ? Math.round(rating) : 0}
