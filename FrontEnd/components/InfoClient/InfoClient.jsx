@@ -12,6 +12,15 @@ const PutDataForm = (props) => {
     email: props?.props.attributes?.user.data?.attributes.email,
   });
 
+  useEffect(()=>{
+    if(putData.userName === undefined){
+      setPutData({
+        userName: props?.props.attributes?.user.data?.attributes.username,
+        telephone: props?.props.attributes.telephone,
+        email: props?.props.attributes?.user.data?.attributes.email,
+      })
+    }
+  },[clientId])
     
   if (AccData)
     return (
