@@ -8,19 +8,19 @@ function valida(input) {
   let errors = {};
 
   if (!input.username) {
-    errors.username = "Invalid name";
+    errors.username = "Nombre requerido ";
   }
 
   if (!input.email) {
-    errors.email = "Email required";
+    errors.email = "Email requerido";
   }
 
   if (!input.password) {
-    errors.password = "Password required";
+    errors.password = "Constraseña requerida";
   }
 
   if (input.password !== input.repeatPassword) {
-    errors.repeatPassword = "Passwords don't matches";
+    errors.repeatPassword = "Las contraseñas no son iguales";
   }
 
   return errors;
