@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import swal from 'sweetalert2'
 
 export default function CardResult({ name, services, image, id, categories, session }) {
   const router = useRouter()
@@ -11,8 +12,11 @@ export default function CardResult({ name, services, image, id, categories, sess
 
   const onClick = (e) => {
     if(!session){
-      alert("Primero debes loguearte.")
-      router.push("/client/login")
+      swal.fire({
+        icon: 'warning',
+        text: 'Primero debe loguearse o registrarse.',
+        timer: 3000
+      })
     }else{
       router.push(`/business/about/${e.target.id}`)
     }
