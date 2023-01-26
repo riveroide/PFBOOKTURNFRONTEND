@@ -2,12 +2,27 @@ import Link from "next/link";
 import React, {useEffect} from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const NavBar2 = () => {
+
+  const router = useRouter();
+  const {data: session} = useSession()
+
   useEffect(() => {
     
     AOS.init()
   })
+
+  const handler = () => {
+    if(session){
+      router.push("/business/dashboard")
+    }else{
+      alert("Primero debes iniciar sesión.")
+      router.push("/business/login")
+    }
+  }
 
   return (
     <nav className="bg-white shadow dark:bg-blue-700">
@@ -55,12 +70,12 @@ const NavBar2 = () => {
         >
           Contacto
         </Link>
-        <Link
-          href="/business/dashboard"
-          className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
+        <div
+           onClick={()=> handler()}
+          className="cursor-pointer border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
         >
           Dashboard
-        </Link>
+        </div>
         <Link
           href="/business/login"
           className="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
