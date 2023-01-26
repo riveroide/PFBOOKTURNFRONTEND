@@ -95,10 +95,6 @@ const Step2 = ({
     dispatch(postBusiness(input));
   };
 
-  const handleFile = (e) => {
-    console.log(e.target.files[0]);
-  };
-
   useEffect(() => {
     dispatch(getUserByEmail(userEmail));
     AOS.init();
