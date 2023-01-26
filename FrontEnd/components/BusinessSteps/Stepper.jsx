@@ -26,8 +26,6 @@ const Stepper = () => {
     price: "",
   });
 
-  console.log(finalData);
-
   if (step === 1) {
     return (
       <>
