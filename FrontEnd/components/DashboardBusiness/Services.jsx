@@ -22,9 +22,9 @@ const Services = () => {
       active: s.attributes?.active,
     };
   });
-  // console.log(servi)
+
   const [data, setData] = useState(servi);
-  console.log("soy data", data)
+
 
   useEffect(() => {
     dispatch(getBusinessData(IdSession));
@@ -60,7 +60,6 @@ const Services = () => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    console.log("opa")
     data.map( (s) => {
        dispatch(
         putServices(s.id, {active: s.active })

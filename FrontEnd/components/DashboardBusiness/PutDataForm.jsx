@@ -26,8 +26,6 @@ const PutDataForm = (userEmail) => {
 
   useEffect(() => {
     dispatch(getBusinessData(IdSession));
-    console.log(putData);
-
     if (putData.name === undefined)
       setPutData({
         name: AccData?.name,
@@ -53,13 +51,13 @@ const PutDataForm = (userEmail) => {
     e.preventDefault();
     let id = BusinessAcc[0]?.id;
     let data = putData
+    console.log(data)
     dispatch(putBusiness(id, data));
     alert("se actualiza");
     setDisabled(!disabled);
   };
   const showPreview = (e) => {
     if (e.target.files.length > 0) {
-      console.log(e.target.files)
       let src = URL.createObjectURL(e.target.files[0]);
       let preview = document.getElementById("file-ip-1-preview");
       preview.src = src;

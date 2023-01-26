@@ -38,12 +38,10 @@ const dashboard = () => {
   };
 
   const handlerClose = (e)=>{
-    e.preventDefault();
-    console.log(1)
-    signOut()
-    console.log(2)
+    signOut({
+      callbackUrl: "/business"
+    })
     dispatch(clean());
-    console.log(3)
   }
 
   const Menus = [
