@@ -36,11 +36,11 @@ export const NabvarResults = () => {
         <div class="flex items-center md:order-2 text-center">
           {session ? (
             <Link href={`/client/profile`}>
-              <img
-                class="w-10 h-10 rounded-full"
-                src={client.attributes.profilePic?.data ? `${client.attributes.profilePic.data[0].attributes.url}` : session.user.image ? `${session.user.image}` : "https://icon-library.com/images/generic-profile-icon/generic-profile-icon-23.jpg"} 
-                alt="user photo"
-              />
+              <button 
+              type="button"
+              className="text-white  focus:ring-4  font-medium rounded-lg text-lg px-5 py-2.5 mr-10 mb-2 focus:outline-none">
+                Ir al perfil
+              </button>
             </Link>
           ) : (
 

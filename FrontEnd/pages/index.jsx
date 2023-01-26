@@ -30,7 +30,7 @@ const Home /*: NextPage*/ = () => {
 
         <div className='absolute -z-10 w-full h-full overflow-y-hidden top-0 left-0 '>
           <video autoPlay muted loop controls={false} className="relative w-full h-full object-cover pointer-events-none">
-            <source src="/videopeluqueria.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dquxxjngk/video/upload/v1674748004/videopeluqueria_a5975bfc02.mp4?updated_at=2023-01-26T15:46:48.652Z" type="video/mp4" />
           </video>
         </div>
 

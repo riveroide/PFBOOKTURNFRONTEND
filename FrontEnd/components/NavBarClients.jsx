@@ -9,8 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function NavBarClients() {
   const { data: session } = useSession()
-  const {clientAcc: user, clientId: client} = useSelector((state) => state.clients)
-  console.log(client)
 
   useEffect(() => {
     AOS.init();
@@ -27,11 +25,13 @@ export default function NavBarClients() {
 
         {session ? (
             <Link href={`/client/profile`}>
-              <img
-                class="w-10 h-10 rounded-full mr-28"
-                src={client.attributes?.profilePic?.data ? `${client.attributes?.profilePic.data[0].attributes?.url}` : session.user.image ? `${session.user.image}` : "https://res.cloudinary.com/dquxxjngk/image/upload/v1674747334/generic_profile_icon_23_6494cf1151.png?updated_at=2023-01-26T15:35:36.199Z"} 
-                alt="user photo"
-              />
+
+              <button 
+              type="button"
+              className="text-white  focus:ring-4  font-medium rounded-lg text-lg px-5 py-2.5 mr-10 mb-2 focus:outline-none">
+                Ir al perfil
+              </button>
+
             </Link>
           ) : (
 
