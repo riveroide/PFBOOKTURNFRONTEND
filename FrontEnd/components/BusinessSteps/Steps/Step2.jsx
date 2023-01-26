@@ -55,7 +55,7 @@ const Step2 = ({
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.users);
   const [errors, setErrors] = useState({});
-  console.log(finalData, "soy final data");
+  console.log(userInfo[0]?.id, "soy userinfoID");
 
   const [input, setInput] = useState({
     name: "",
