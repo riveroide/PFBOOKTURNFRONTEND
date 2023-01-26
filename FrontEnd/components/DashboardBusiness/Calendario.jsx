@@ -37,8 +37,6 @@ const Calendario = () => {
         confirmedBookings?.map((bookings) => {
           const fecha = bookings.attributes.dateinfo?.split(" ");
           const fechaCalendar = date?.split(" ");
-          console.log(fecha);
-          console.log(fechaCalendar);
           if (fecha[2] == fechaCalendar[2] && fecha[1] == fechaCalendar[1]) {
             return (
               <div

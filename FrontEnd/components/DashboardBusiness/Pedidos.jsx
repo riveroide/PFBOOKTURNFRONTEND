@@ -6,9 +6,10 @@ import { putBooking } from "../../redux/actions/Bookings/putBooking";
 import { deleteBooking } from "../../redux/actions/Bookings/deleteBooking";
 import { useState } from "react";
 import { postEmailNotif } from "../../redux/actions/emailNotifications/postEmail";
+import Swal from 'sweetalert2'
 
 
-const Pedidos = (idBusiness) => {
+const Pedidos = () => {
   const dispatch = useDispatch();
   const { unconfirmedBookings } = useSelector((state) => state.businessacc);
   const { IdSession } = useSelector((state) => state.businessacc);
@@ -27,6 +28,10 @@ const Pedidos = (idBusiness) => {
       console.log(error.message);
     }
     setReload(!reload);
+    Toast.fire({
+      icon: "success",
+      title: "Se confirmo correctamente!",
+    });
     dispatch(
       postEmailNotif({
         subject: "Pedido de reserva",
@@ -37,6 +42,18 @@ const Pedidos = (idBusiness) => {
     
   };
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
   const handleClickDelete = async (e) => {
     try {
       await dispatch(deleteBooking(e.target.id));
@@ -44,6 +61,10 @@ const Pedidos = (idBusiness) => {
       console.log(error.message);
     }
     setReload(!reload);
+    Toast.fire({
+      icon: "success",
+      title: "Se cancelo correctamente!",
+    });
     dispatch(
       postEmailNotif({
         subject: "Pedido de reserva",
