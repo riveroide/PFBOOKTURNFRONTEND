@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import swal from 'sweetalert2'
 
 export default function CardResult({ name, services, image, id, categories, session }) {
   const router = useRouter()
@@ -11,8 +12,11 @@ export default function CardResult({ name, services, image, id, categories, sess
 
   const onClick = (e) => {
     if(!session){
-      alert("Primero debes loguearte.")
-      router.push("/client/login")
+      swal.fire({
+        icon: 'warning',
+        text: 'Primero debe loguearse o registrarse.',
+        timer: 3000
+      })
     }else{
       router.push(`/business/about/${e.target.id}`)
     }
@@ -27,16 +31,15 @@ export default function CardResult({ name, services, image, id, categories, sess
         <div className="mt-8 lg:-mx-6 lg:flex lg:items-center w-full justify-center">
           <div className="relative mr-8 lg:w-96 w-full">
             <div
-            id={id}
-             onClick={e => onClick(e)}
-              className="rounded-xl mr-8 relative"
+            
+              className="rounded-xl mr-8 relative cursor-pointer w-full"
             >
               <img
                 className="object-cover w-full lg:ml-6 lg:w-full rounded-xl h-72 lg:h-90"
+                id={id}
+             onClick={e => onClick(e)}
                 src={image}
                 alt={name}
-                width="150"
-                height="150"
               />
             </div>
           </div>
@@ -54,7 +57,7 @@ export default function CardResult({ name, services, image, id, categories, sess
             <div
             id={id}
              onClick={e => onClick(e)}
-              className="block mt-4 text-2xl font-semibold text-gray-800 hover:underline md:text-3xl h-10 capitalize"
+              className="cursor-pointer mt-4 text-3xl font-semibold text-gray-800 hover:underline md:text-3xl h-10 capitalize inline-block"
             >
               {/* dark:text-white */}
               {name}.
@@ -62,12 +65,12 @@ export default function CardResult({ name, services, image, id, categories, sess
 
             {arrServices?.map((e) => {
               return (
-                <div key={e.id} className="flex flex-row justify-between w-2/3 font-cool_g tracking-widest">
-                  <p key={e.id} className="mt-3 text-sm text-gray-500 md:text-xl underline capitalize">
+                <div key={e.id} className="flex flex-row justify-between xl:w-2/3 w-full font-cool_g tracking-widest">
+                  <p key={e.id} className="mt-3 text-xl text-gray-500 md:text-xl underline capitalize">
                     {/* dark:text-gray-300*/}
                     {e.attributes?.name}
                   </p>
-                  <p key={e.id} className="mt-3 text-sm text-blue-500 md:text-xl ">
+                  <p key={e.id} className="mt-3 text-xl text-blue-500 md:text-xl ">
                     {" "}
                     ${e.attributes?.price}{" "}
                   </p>

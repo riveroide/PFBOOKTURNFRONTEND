@@ -26,7 +26,7 @@ justify-content: center;
 .div_clientes{  
   display: flex;
   justify-content: center;
-  background-color: rgba(214, 176, 6, 0.247);
+  background-color: #d6b0063f;
   width: 40vw;
   height: 25rem;
   margin: 2rem;
@@ -37,7 +37,7 @@ justify-content: center;
 .div_empresa{  
   display: flex;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.082);
+  background-color: #00000015;
   width: 40vw;
  height: 25rem;
   margin: 2rem;

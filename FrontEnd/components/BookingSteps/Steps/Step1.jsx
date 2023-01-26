@@ -33,12 +33,13 @@ const Step1 = ({setbookingPost , bookingPost , finaldata , setfinaldata}) => {
       {services.data?.map((e) => {
         if (e.attributes.active) {
           return (
-            <div className="flex w-1/4 items-center">
+            <div className="flex md:w-1/4 md:justify-start w-full justify-center items-center">
               <input
                 id={e.id}
                 type="radio"
                 className="cursor-pointer rounded border-gray-300 text-blue-600 transition focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75 mr-2"
                 value={e.attributes.name}
+                checked={e.id == bookingPost.services ? true : false}
                 name="service"
                 onChange={(e) => {
                   handlerServices(e)

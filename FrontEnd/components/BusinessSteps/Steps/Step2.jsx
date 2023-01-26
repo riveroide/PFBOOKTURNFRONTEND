@@ -10,35 +10,35 @@ function valida(input) {
 
   //only letters
   if (!input.name) {
-    errors.name = "Name required";
+    errors.name = "Nombre requerido ";
   }
   //letters and numbers
   if (!input.address) {
-    errors.address = "Address required";
+    errors.address = "Direccion requerida";
   }
 
   // numeros
   if (!input.telephone) {
-    errors.telephone = "Telephone required";
+    errors.telephone = "Telefono requerido";
   }
 
   //email
   if (!input.email) {
-    errors.email = "Email required";
+    errors.email = "Email requerido";
   }
 
   //only numbers
   if (!input.openhour) {
-    errors.openhour = "Open hour required";
+    errors.openhour = "Horario de apertura requerido";
   } else if (input.openhour < 0 || input.openhour > 24) {
-    errors.openhour = "open hour must be between 0 and 24";
+    errors.openhour = "Debes ingresasr un numero entre 0 y 24";
   }
 
   //only numbers
   if (!input.closehour) {
-    errors.closehour = "Close hour required";
+    errors.closehour = "Horario de cierre requerido";
   } else if (input.closehour < 0 || input.closehour > 24) {
-    errors.closehour = "close hour must be between 0 and 24";
+    errors.closehour = "Debes ingresasr un numero entre 0 y 24";
   }
 
   return errors;
@@ -55,8 +55,7 @@ const Step2 = ({
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.users);
   const [errors, setErrors] = useState({});
-  console.log(finalData, "soy final data");
-
+  console.log(userInfo[0]?.id, "soy userinfoID");
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -64,6 +63,7 @@ const Step2 = ({
     telephone: "",
     openhour: "",
     closehour: "",
+    BusinessPic: "",
     user: "",
   });
 
@@ -72,7 +72,7 @@ const Step2 = ({
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-      user: userInfo[0].id,
+      user: userInfo[0]?.id,
     });
     setEmailBusiness(input.email); // validar para que no rompa
     setFinalData({
@@ -123,7 +123,7 @@ const Step2 = ({
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-        <p>{errors.name}</p>
+        {errors.name && <p className="text-xs text-red-600">{errors.name}</p>}
         <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
           <span className="text-xs font-medium text-gray-700"> Dirección </span>
 
@@ -135,7 +135,9 @@ const Step2 = ({
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-        <p>{errors.address}</p>
+        {errors.address && (
+          <p className="text-xs text-red-600">{errors.address}</p>
+        )}
         <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
           <span className="text-xs font-medium text-gray-700"> Teléfono </span>
 
@@ -147,7 +149,9 @@ const Step2 = ({
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-        <p>{errors.telephone}</p>
+        {errors.telephone && (
+          <p className="text-xs text-red-600">{errors.telephone}</p>
+        )}
         <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
           <span className="text-xs font-medium text-gray-700">
             {" "}
@@ -162,7 +166,7 @@ const Step2 = ({
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-        <p>{errors.email}</p>
+        {errors.email && <p className="text-xs text-red-600">{errors.email}</p>}
         <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
           <span className="text-xs font-medium text-gray-700">
             {" "}
@@ -177,7 +181,9 @@ const Step2 = ({
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-        <p>{errors.openhour}</p>
+        {errors.openhour && (
+          <p className="text-xs text-red-600">{errors.openhour}</p>
+        )}
         <label className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
           <span className="text-xs font-medium text-gray-700">
             {" "}
@@ -192,7 +198,10 @@ const Step2 = ({
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
         </label>
-        <p>{errors.closehour}</p>
+        {errors.closehour && (
+          <p className="text-xs text-red-600">{errors.closehour}</p>
+        )}
+
         <div className="mt-4">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-24"

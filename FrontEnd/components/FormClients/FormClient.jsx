@@ -47,16 +47,16 @@ return error
       [e.target.name]:e.target.value
     }))
   }
-  function handleSubmit (){
+  async function handleSubmit (){
     dispatch(postClient(clientinfo))
-    swal.fire({
+    await swal.fire({
       title:'Listo!',
-      text: 'Su cuenta fue creada correctamente',
+      text: 'Su cuenta fue creada correctamente,ingresá a "acceder" para iniciar sesión',
       icon: 'success',
-      timer: 3000,
+      timer: 3500,
       stopKeydownPropagation: true,
     });
-   router.push("/client/login")
+   router.push("/")
   }
   console.log(clientinfo)
   return (

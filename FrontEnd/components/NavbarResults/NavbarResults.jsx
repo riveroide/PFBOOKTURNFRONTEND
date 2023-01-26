@@ -5,6 +5,7 @@ import SearchbarResults from "../SearchbarResults/SearchbarResults";
 import {getClient, getClientByEmail} from "../../redux/actions/clients/getClients"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "next-auth/react";
 
 export const NabvarResults = () => {
     
@@ -23,9 +24,11 @@ export const NabvarResults = () => {
 
   return (
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-blue-700">
-      <div class="container flex items-center justify-between mx-auto">
+      <div class="container flex items-center md:justify-between justify-around mx-auto">
         <Link href="/" class="flex items-center">
-          <span class="self-center text-4xl font-semibold font-cool_p whitespace-nowrap dark:text-white tracking-wider">
+          <span class="self-center text-xl md:text-4xl font-semibold font-cool_p whitespace-nowrap dark:text-white tracking-wider">
+
+
             Bookturn
           </span>
         </Link>
@@ -35,24 +38,26 @@ export const NabvarResults = () => {
             <Link href={`/client/profile`}>
               <img
                 class="w-10 h-10 rounded-full"
-                src={client.attributes.profilePic?.data ? `${client.attributes.profilePic.data}` : session.user.image ? `${session.user.image}` : "https://icon-library.com/images/generic-profile-icon/generic-profile-icon-23.jpg"} 
+                src={client.attributes.profilePic?.data ? `${client.attributes.profilePic.data[0].attributes.url}` : session.user.image ? `${session.user.image}` : "https://icon-library.com/images/generic-profile-icon/generic-profile-icon-23.jpg"} 
                 alt="user photo"
               />
             </Link>
           ) : (
+
             <div>
-                <Link href="/client/login">
+                
               <button
                 type="button"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                onClick={() => signIn()}
                 >
                 Acceder
               </button>{" "}
-                  </Link>
+                  
                   <Link href="/client/login/createform">
               <button
                 type="button"
-                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
+                class="py-2.5 md:px-5 px-2 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
                 >
                 Registrarse
               </button>

@@ -38,7 +38,6 @@ const Pedidos = (idBusiness) => {
   };
 
   const handleClickDelete = async (e) => {
-    console.log(e.target.id);
     try {
       await dispatch(deleteBooking(e.target.id));
     } catch (error) {
@@ -55,7 +54,6 @@ const Pedidos = (idBusiness) => {
   };
 
   useEffect(() => {
-    console.log("como la chupa ")
     if(IdSession){
       dispatch(BookingsUnconfirmed(IdSession));
     }

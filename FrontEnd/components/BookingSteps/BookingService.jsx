@@ -60,7 +60,7 @@ const BookingService = () => {
 
   return (
     <div key={business?.id}>
-      <div>
+      <div className="md:w-screen w-full">
         <StepsNav stepnum={stepnum} />
       </div>
       <div>
@@ -85,7 +85,7 @@ const BookingService = () => {
           Anterior
         </button>
         <button
-          className={`px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg  focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 font-cool_p text-2xl ${bookingPost.services ? "hover:bg-blue-500" : "cursor-not-allowed"}`}
+          className={`px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg  focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 font-cool_p text-2xl ${stepnum === 1 ? bookingPost.services ? "hover:bg-blue-500" : "cursor-not-allowed" : stepnum === 2 ? bookingPost.dateinfo ? "hover:bg-blue-500" : "cursor-not-allowed" : ""}`}
           onClick={() => {
             if (stepnum < 3) {
               setstepnum(stepnum + 1);
@@ -98,7 +98,7 @@ const BookingService = () => {
               handleSubmit();
             }
           }}
-          disabled={bookingPost.services ? false : true} >
+          disabled={ stepnum === 1 ? bookingPost.services ? false : true : stepnum === 2 ? bookingPost.dateinfo ? false : true : ""} >
           Proximo
         </button>
       </div>

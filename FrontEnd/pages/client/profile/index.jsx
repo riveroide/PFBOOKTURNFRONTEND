@@ -12,6 +12,8 @@ import { display } from 'redux/actions/clients/displayOption'
 import FavCard from '../../../components/Favourites/FavCard'
 import BookedList from '../../../components/BookedList/BookedList'
 import Loader from '../../../components/Loader/Loader'
+import InfoClient from '../../../components/InfoClient/InfoClient'
+import { useRouter } from 'next/router';
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -22,11 +24,13 @@ const Profile = () => {
   const {clientAcc} = useSelector((state) => state.clients)
   const {favouritesList} = useSelector((state) => state.clients)
   const {bookedList} = useSelector((state) => state.clients)
+  console.log(clientId)
   
   const [open, setOpen] = useState(true)
   const [hydrated, setHydrated] = useState(false)
   const [loading, setLoading] = useState(false)
   const userEmail = session?.user.email
+  const router = useRouter()
 
   useEffect(() => {
     setLoading(true)
@@ -90,7 +94,7 @@ const Profile = () => {
       //   gap: true,
     },
     {
-      title: "Configuracion",
+      title: "Salir",
       src: "https://res.cloudinary.com/dquxxjngk/image/upload/v1673587874/Bookturn/src/Setting_qjfzlb.png",
     },
   ];
@@ -161,12 +165,12 @@ const Profile = () => {
             <h1>TUS MENSAJES</h1>
           ):displayOption === 'Tus turnos' ?(
             <div>
-              <h1 className='font-cool_g text-4xl'>HISTORIAL DE TURNOS</h1>
+              <h1 className='text-5xl text-gray-700 font-semibold'>HISTORIAL DE TURNOS</h1>
               {bookedList?.length === 0 ?(
                 <div>
-                  <h2 className='font-cool_p text-3xl'>Aun no tiene ningun turno agendado</h2>
+                  <h2 className='font-semibold text-3xl text-gray-700'>Aun no tiene ningun turno agendado</h2>
                   <Link href={'/results'}>
-                    <h2 className='font-cool_p text-2xl text-blue-600 hover:text-blue-500'>Ingresa aca para agendar tu primer turno!</h2>
+                    <h2 className='font-semibold text-2xl text-blue-600 hover:text-blue-500'>Ingresa aca para agendar tu primer turno!</h2>
                   </Link>
                 </div>  
               ): (
@@ -178,11 +182,11 @@ const Profile = () => {
             
           ):displayOption === 'Favoritos' ?(
             <div>
-              <h1 className='font-cool_g text-4xl'>LISTA DE FAVORITOS</h1>
+              <h1 className='text-5xl text-gray-700 font-semibold'>LISTA DE FAVORITOS</h1>
               { !favourites.length ?(
                 <div>
-                  <h2 className='font-cool_p text-3xl tracking-wide'>Tu lista de favoritos aun esta vacia!!</h2>
-                  <h2 className='font-cool_p text-3xl tracking-wide'>Agrega tus locales de confianza para encontrarlos aqui</h2>
+                  <h2 className='font-semibold text-2xl tracking-wide'>Tu lista de favoritos aun esta vacia!!</h2>
+                  <h2 className='font-semibold text-2xl tracking-wide'>Agrega tus locales de confianza para encontrarlos aqui</h2>
                 </div>
               ): (
                 <div>
@@ -203,16 +207,21 @@ const Profile = () => {
               )}
               
             </div>
-          ):displayOption === 'Configuracion' ?(
+          ):displayOption === 'Salir' ?(
             <div className='flex flex-col items-center'>
-              <h1 className='font-cool_g text-4xl mb-4'>ACA SETTINGS DE USUARIO</h1>
-              <Link href='/client/login'>
-                <button className="overflow-hidden px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" >Salir del Perfil</button>   
-              </Link>
+              <h1 className='font-semibold text-4xl mb-4'>Seguro quiere cerrar sesion??</h1>
+              
+                <button className="overflow-hidden px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" 
+                onClick={() =>{
+                   signOut({
+                    callbackUrl: "/"
+                   })
+                  }}>Cerrar sesión</button>   
+              
             </div>
             
           ):(
-            <h1 className='font-cool_g text-4xl'>BIENVENIDO A TU PERFIL</h1>
+           <InfoClient props={clientId}/> 
           )}
         </div>
       </div>

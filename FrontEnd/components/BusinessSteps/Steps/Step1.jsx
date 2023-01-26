@@ -7,20 +7,20 @@ import "aos/dist/aos.css";
 function valida(input) {
   let errors = {};
 
-  if (!input.name) {
-    errors.name = "Invalid name";
+  if (!input.username) {
+    errors.username = "Nombre requerido ";
   }
 
   if (!input.email) {
-    errors.email = "Email required";
+    errors.email = "Email requerido";
   }
 
   if (!input.password) {
-    errors.password = "Password required";
+    errors.password = "Constraseña requerida";
   }
 
   if (input.password !== input.repeatPassword) {
-    errors.repeatPassword = "Passwords don't matches";
+    errors.repeatPassword = "Las contraseñas no son iguales";
   }
 
   return errors;
@@ -82,10 +82,7 @@ const Step1 = ({ step, setStep, setUserEmail, setName, setFinalData }) => {
           <input
             type="text"
             name="username"
-            onChange={(e) => {
-              () => handleChange(e);
-              valida(e);
-            }}
+            onChange={(e) => handleChange(e)}
             placeholder="Tu Usuario"
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />

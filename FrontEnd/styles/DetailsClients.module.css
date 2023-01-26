@@ -12,7 +12,7 @@ flex-direction: column;
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: rgb(78, 57, 0);
+  color: #4e3900;
   margin-bottom: 4rem;
 }
 
@@ -20,7 +20,7 @@ flex-direction: column;
   display: flex;
   align-items: center;
   flex-direction: row;
-  color: rgb(78, 57, 0);
+  color: #4e3900;
   /*margin-bottom: 4rem;*/
 }
 
