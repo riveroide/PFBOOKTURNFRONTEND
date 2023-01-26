@@ -71,6 +71,8 @@ const Business = ({ id }) => {
           timerProgressBar: true,
           showConfirmButton: false
         })
+      dispatch(getFavouriteBusinessAndClient(clientId?.id, id))
+
     } 
     else if (favourite?.length) {
       dispatch(deleteFavourite(favourite[0]?.id))
@@ -82,6 +84,8 @@ const Business = ({ id }) => {
         timerProgressBar: true,
         showConfirmButton: false
       })
+      dispatch(getFavouriteBusinessAndClient(clientId?.id, id))
+      
     }
     dispatch(getFavouriteBusinessAndClient(clientId?.id, id))
   } 
