@@ -37,8 +37,8 @@ const index = () => {
                   Full Stack developer
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                  Bonnie drives the technical strategy of the flowbite platform
-                  and brand.
+                  Juan impulsa la estrategia técnica de la plataforma y la marca
+                  Bookturn.
                 </p>
                 <ul class="flex space-x-4 sm:mt-0">
                   <li>
@@ -98,8 +98,8 @@ const index = () => {
                   Full stack developer
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                  Bonnie drives the technical strategy of the flowbite platform
-                  and brand.
+                  Tomas impulsa la estrategia técnica de la plataforma y la
+                  marca Bookturn.
                 </p>
                 <ul class="flex space-x-4 sm:mt-0">
                   <li>
@@ -159,8 +159,8 @@ const index = () => {
                   Full stack developer
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                  Bonnie drives the technical strategy of the flowbite platform
-                  and brand.
+                  Brenda impulsa la estrategia técnica de la plataforma y la
+                  marca Bookturn.
                 </p>
                 <ul class="flex space-x-4 sm:mt-0">
                   <li>
@@ -208,7 +208,7 @@ const index = () => {
               <a href="#">
                 <img
                   class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
+                  src="https://ca.slack-edge.com/TPRS7H4PN-U03UBF5GPQC-d5f310774c74-512"
                   alt="Bonnie Avatar"
                 />
               </a>
@@ -220,8 +220,8 @@ const index = () => {
                   Full stack developer
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                  Bonnie drives the technical strategy of the flowbite platform
-                  and brand.
+                  Juan Camilo impulsa la estrategia técnica de la plataforma y
+                  la marca Bookturn.
                 </p>
                 <ul class="flex space-x-4 sm:mt-0">
                   <li>
@@ -281,8 +281,8 @@ const index = () => {
                   Full stack developer
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                  Jese drives the technical strategy of the flowbite platform
-                  and brand.
+                  Ignacio impulsa la estrategia técnica de la plataforma y la
+                  marca Bookturn.
                 </p>
                 <ul class="flex space-x-4 sm:mt-0">
                   <li>
@@ -341,8 +341,8 @@ const index = () => {
                   Full stack developer
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                  Michael drives the technical strategy of the flowbite platform
-                  and brand.
+                  Nicolas impulsa la estrategia técnica de la plataforma y la
+                  marca Bookturn.
                 </p>
                 <ul class="flex space-x-4 sm:mt-0">
                   <li>
@@ -401,8 +401,8 @@ const index = () => {
                   Full stack developer
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                  Lana drives the technical strategy of the flowbite platform
-                  and brand.
+                  Agustin impulsa la estrategia técnica de la plataforma y la
+                  marca Bookturn.
                 </p>
                 <ul class="flex space-x-4 sm:mt-0">
                   <li>
