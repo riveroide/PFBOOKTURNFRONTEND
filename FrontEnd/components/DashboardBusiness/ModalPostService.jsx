@@ -45,7 +45,11 @@ export const ModalPostService = ({ index, setData, idBusiness }) => {
       await dispatch(postServices(data));
     } catch (error) {console.log(error.message)}
     setData([...serviData,{...data, index:index++}]);
-    
+    setDataC({
+      name: "",
+      price: 0,
+      businesses: BusinessAcc[0].id,
+    });
     setShowModal(false);
   };
 
