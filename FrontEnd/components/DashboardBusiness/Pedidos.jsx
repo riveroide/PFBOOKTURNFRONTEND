@@ -88,7 +88,7 @@ const Pedidos = () => {
       </div>
       {unconfirmedBookings &&
         unconfirmedBookings?.map((bookings) => {
-          const fecha = bookings.attributes.dateinfo?.split(" ");
+          const fecha = bookings?.attributes?.dateinfo?.split(" ");
           return (
             <div
               key={bookings.id}
@@ -112,23 +112,23 @@ const Pedidos = () => {
                 </div> */}
                 </div>
                 <div class="font-semibold text-gray-800 text-2xl text-center md:text-left px-2">
-                  {bookings.attributes?.services.data[0]?.attributes.name}
+                  {bookings?.attributes?.services.data[0]?.attributes?.name}
                 </div>
 
                 <div class="text-gray-800 font-medium text-sm pt-1 text-center md:text-left px-2">
                   <p>
                     Cliente:{" "}
-                    {bookings.attributes.client.data.attributes.nameComplete}
+                    {bookings?.attributes?.client.data.attributes?.nameComplete}
                   </p>
                   <p>
                     Telefono:{" "}
-                    {bookings.attributes.client.data.attributes.telephone}
+                    {bookings?.attributes?.client.data.attributes?.telephone}
                   </p>
                 </div>
               </div>
               <div class="flex flex-row items-center w-full md:h-2/2 md:w-1/3 md:justify-end justify-center px-2 py-1 lg:px-0 ">
                 <button
-                  name={bookings.attributes.emailClient}
+                  name={bookings?.attributes?.emailClient}
                   id={bookings.id}
                   onClick={(e) => {
                     handleClickConfirm(e);
@@ -138,7 +138,7 @@ const Pedidos = () => {
                   Confirmar Reserva
                 </button>
                 <button
-                  name={bookings.attributes.emailClient}
+                  name={bookings?.attributes?.emailClient}
                   id={bookings.id}
                   onClick={(e) => {
                     handleClickDelete(e);
