@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getClient, getClientByEmail } from 'redux/actions/clients/getClients';
 import { getFavourites } from 'redux/actions/clients/getFavourites'
 import { getBooked } from 'redux/actions/clients/getBooked'
+import { clear } from 'redux/actions/clients/clearClient'
 import { display } from 'redux/actions/clients/displayOption'
 import FavCard from '../../../components/Favourites/FavCard'
 import BookedList from '../../../components/BookedList/BookedList'
@@ -37,15 +38,10 @@ const Profile = () => {
     setHydrated(true)
     dispatch(getClientByEmail(userEmail))
     dispatch(getClient(clientAcc?.id))
-
-       dispatch(getFavourites(clientAcc?.id))
-     
-    
-      
-       dispatch(getBooked(clientAcc?.id))
-    
-      dispatch(display(''))
-      setLoading(false)
+    dispatch(getFavourites(clientAcc?.id))
+    dispatch(getBooked(clientAcc?.id))
+    dispatch(display(''))
+    setLoading(false)
   },[userEmail, dispatch])
 
   if (!hydrated) {
@@ -55,6 +51,14 @@ const Profile = () => {
   const handleClick = async (e) => {
     await dispatch(display(e.target.title))
   }
+
+  const handlerClose = (e) => {
+    e.preventDefault()
+    signOut({
+      callbackUrl: "/",
+    });
+    dispatch(clear());
+  };
   
   const Menus = [
     // {
@@ -199,11 +203,7 @@ const Profile = () => {
               <h1 className='font-semibold text-4xl mb-4'>Seguro quiere cerrar sesion??</h1>
               
                 <button className="overflow-hidden px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" 
-                onClick={() =>{
-                   signOut({
-                    callbackUrl: "/"
-                   })
-                  }}>Cerrar sesión</button>   
+                onClick={(e) =>handlerClose(e)}>Cerrar sesión</button>   
                  
                  {session.role === 3? 
                  <button className="m-[1.3rem] overflow-hidden px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" 
