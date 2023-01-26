@@ -16,7 +16,7 @@ const FormClient = ({ emailuser }) => {
     telephone:"",
     user: "",
   });
-  console.log(emailuser, "LO QUE ROMPE")
+  console.log(userInfo, "LO QUE ROMPE")
 
   function validate (userinfo){
     let error = {}

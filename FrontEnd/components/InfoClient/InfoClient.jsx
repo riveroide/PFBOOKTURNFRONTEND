@@ -7,9 +7,9 @@ const PutDataForm = (props) => {
   const [disabled, setDisabled] = useState(true);
   const AccData = clientId?.attributes;
   const [putData, setPutData] = useState({
-    userName: props?.props.attributes?.user.data?.attributes.username,
-    telephone: props?.props.attributes.telephone,
-    email: props?.props.attributes?.user.data?.attributes.email,
+    userName: props?.props.attributes?.user.data?.attributes?.username,
+    telephone: props?.props.attributes?.telephone,
+    email: props?.props.attributes?.user.data?.attributes?.email,
   });
 
     

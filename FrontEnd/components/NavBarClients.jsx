@@ -25,11 +25,13 @@ export default function NavBarClients() {
 
         {session ? (
             <Link href={`/client/profile`}>
+
               <button 
               type="button"
               className="text-white  focus:ring-4  font-medium rounded-lg text-lg px-5 py-2.5 mr-10 mb-2 focus:outline-none">
                 Ir al perfil
               </button>
+
             </Link>
           ) : (
 
