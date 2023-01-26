@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import Navbar from "components/Navbar/Navbar.jsx";
 import FooterBussines from "components/FooterBussines/FooterBussines.jsx";
 import AOS from "aos";
@@ -9,6 +10,7 @@ const index = () => {
   useEffect(() => {
     AOS.init();
   });
+
   const sendEmail = (e) => {
     e.preventDefault();
 
