@@ -6,14 +6,13 @@ import { useDispatch } from "react-redux";
 import {
   getBusinessIdByEmail,
   getBusinessData,
-  clean
+  clean,
 } from "redux/actions/businessAcc/getDashboardData.js";
 import PutDataForm from "../../../components/DashboardBusiness/PutDataForm";
 import Services from "../../../components/DashboardBusiness/Services";
 import Pedidos from "../../../components/DashboardBusiness/Pedidos";
 import Calendario from "../../../components/DashboardBusiness/Calendario";
 import { signOut } from "next-auth/react";
-
 
 const dashboard = () => {
   const { data: session } = useSession();
@@ -28,21 +27,22 @@ const dashboard = () => {
   useEffect(() => {
     setLoader(true);
     dispatch(getBusinessIdByEmail(userEmail));
-    dispatch(getBusinessData(IdSession));
+    // dispatch(getBusinessData(IdSession));
     setLoader(false);
-  }, [dispatch, session, IdSession]);
+  }, [dispatch, session]);
 
   const handlerClick = (e, pagina) => {
     e.preventDefault();
     setPage(pagina);
   };
 
-  const handlerClose = (e)=>{
+  const handlerClose = (e) => {
+    e.preventDefault()
     signOut({
-      callbackUrl: "/business"
-    })
+      callbackUrl: "/business",
+    });
     dispatch(clean());
-  }
+  };
 
   const Menus = [
     {
@@ -121,7 +121,7 @@ const dashboard = () => {
               <div
                 key={index}
                 onClick={(e) => handlerClick(e, Menu.page)}
-                className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+                className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
                 ${Menu.gap ? "mt-0" : "mt-0"} ${
                   index === 0 && "bg-light-white"
                 } `}
@@ -134,19 +134,22 @@ const dashboard = () => {
                 </span>
               </div>
             ))}
+            <hr class="h-px my-6 bg-gray-200 border-0 " />
             <div
-              className={`flex justify-center items-center rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm gap-x-4 mt-96 bg-light-white `}
+              className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm gap-x-3 bg-light-white pl-3`}
             >
               {/* <Link href={"/business"}> */}
-              {
-                open? 
-                <button onClick={(e) => handlerClose(e)} class="group relative h-10 w-32 overflow-hidden rounded-lg bg-white text-lg shadow">
-                <div class="absolute inset-0 w-3 bg-blue-500 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                <span class="relative text-black text-base group-hover:text-white">
-                  Cerrar Sesion
-                </span>
-              </button>:<img src="https://res.cloudinary.com/dquxxjngk/image/upload/c_scale,w_20/v1674648614/Bookturn/src/image_10_lp7ieu.png"/>
-              }
+              <img
+                onClick={(e) => handlerClose(e)}
+                src="https://res.cloudinary.com/dquxxjngk/image/upload/c_scale,w_20/v1674648614/Bookturn/src/image_10_lp7ieu.png"
+                className="w-5 h-5"
+              />
+              <span
+                onClick={(e) => handlerClose(e)}
+                className={`${!open && "hidden"} origin-left duration-200`}
+              >
+                Cerrar sesion
+              </span>
               {/* </Link> */}
             </div>
           </ul>

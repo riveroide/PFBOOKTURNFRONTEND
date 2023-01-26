@@ -7,8 +7,10 @@ import {
   getBusinessData,
   getBusinessIdByEmail,
 } from "../../redux/actions/businessAcc/getDashboardData.js";
+import Swal from 'sweetalert2'
+import Image from "next/image";
 
-const PutDataForm = (userEmail) => {
+const PutDataForm = () => {
   const dispatch = useDispatch();
   const { BusinessAcc } = useSelector((state) => state.businessacc);
   const [disabled, setDisabled] = useState(true);
@@ -21,7 +23,7 @@ const PutDataForm = (userEmail) => {
     address: AccData?.address,
     openhour: AccData?.openhour,
     closehour: AccData?.closehour,
-    BusinessPic: AccData?.BusinessPic.data?.attributes.url,
+    
   });
 
   useEffect(() => {
@@ -34,14 +36,22 @@ const PutDataForm = (userEmail) => {
         address: AccData?.address,
         openhour: AccData?.openhour,
         closehour: AccData?.closehour,
-        BusinessPic: "",
+        
       });
   }, [dispatch, putData]);
 
-  const hours = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    21, 22, 23, 24,
-  ];
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
   const handlerClick = (e) => {
     e.preventDefault();
@@ -51,9 +61,11 @@ const PutDataForm = (userEmail) => {
     e.preventDefault();
     let id = BusinessAcc[0]?.id;
     let data = putData
-    console.log(data)
     dispatch(putBusiness(id, data));
-    alert("se actualiza");
+    Toast.fire({
+      icon: 'success',
+      title: 'Se actualizo correctamente!'
+    })
     setDisabled(!disabled);
   };
   const showPreview = (e) => {
@@ -96,7 +108,7 @@ const PutDataForm = (userEmail) => {
             <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
-                for="grid-first-name"
+                
               >
                 Nombre
               </label>
@@ -113,7 +125,7 @@ const PutDataForm = (userEmail) => {
             <div class="w-full md:w-1/2 px-3 mb-3">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
-                for="grid-last-name"
+                
               >
                 Telefono
               </label>
@@ -132,7 +144,7 @@ const PutDataForm = (userEmail) => {
             <div class="w-full px-3 mb-3">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
-                for="grid-password"
+                
               >
                 Email
               </label>
@@ -149,7 +161,7 @@ const PutDataForm = (userEmail) => {
             <div class="w-full px-3 mb-3">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
-                for="grid-city"
+                
               >
                 Direccion
               </label>
@@ -168,43 +180,27 @@ const PutDataForm = (userEmail) => {
             <div class="w-full md:w-3/6 px-3 mb-3 md:mb-0">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
-                for="grid-state"
+                
               >
                 Hora de Apertura
               </label>
               <div class="relative">
-                <select
+                <input
+                  type="number"
+                  min="0"
+                  max="24"
                   disabled={disabled}
                   onChange={(e) => handleChange(e)}
+                  value={putData.openhour}
                   name="openhour"
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                >
-                  <option selected disabled hidden>
-                    {putData.openhour}
-                  </option>
-                  {hours.map((e) => {
-                    return (
-                      <option key={e.id} value={e}>
-                        {e}
-                      </option>
-                    );
-                  })}
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg
-                    class="fill-current h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </div>
+                />
               </div>
             </div>
             <div class="w-full md:w-3/6 px-3 mb-6 md:mb-0">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2"
-                for="grid-state"
+                
               >
                 Hora de Cierre
               </label>
@@ -225,16 +221,18 @@ const PutDataForm = (userEmail) => {
           <div className="flex flex-col h-auto w-full justify-center items-center gap-4">
             <label
               class="block uppercase tracking-wide text-gray-700 text-2xl font-bold "
-              for="grid-state"
+              
             >
               Imagen de Perfil
             </label>
-            <img
+            <Image
+              width={1000}
+              height={665}
               id="file-ip-1-preview"
               className=" h-64 w-3/4"
               src={
-                AccData?.BusinessPic.data?.attributes.url
-                  ? AccData?.BusinessPic.data.attributes.url
+                AccData?.BusinessPic.data?.attributes
+                  ? AccData?.BusinessPic.data.attributes.formats.large.url
                   : "https://avalos.sv/wp-content/uploads/295-default-featured-image.png"
               }
               alt="xd"

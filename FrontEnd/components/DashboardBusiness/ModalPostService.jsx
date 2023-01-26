@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { postServices } from "../../redux/actions/services/postServices";
 import { useSelector } from "react-redux";
 import { getBusinessData } from "../../redux/actions/businessAcc/getDashboardData";
-import { ConstructionOutlined } from "@mui/icons-material";
+import Swal from 'sweetalert2'
 
 export const ModalPostService = ({ index, setData, idBusiness }) => {
   const dispatch = useDispatch();
@@ -39,6 +39,18 @@ export const ModalPostService = ({ index, setData, idBusiness }) => {
     // setData(serviData)
   };
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -51,6 +63,10 @@ export const ModalPostService = ({ index, setData, idBusiness }) => {
       businesses: BusinessAcc[0].id,
     });
     setShowModal(false);
+    Toast.fire({
+      icon: "success",
+      title: "Se creo correctamente!",
+    });
   };
 
   return (
