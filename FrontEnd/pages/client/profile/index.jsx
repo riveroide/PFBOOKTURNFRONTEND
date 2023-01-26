@@ -90,7 +90,7 @@ const Profile = () => {
     },
   ];
   
-  if(!loading && clientId){
+  if(!loading && clientId !== null){
     const {nameComplete} = clientId?.attributes
     const favourites = favouritesList?.map(e => e.attributes?.businesses.data)
     return (
