@@ -27,7 +27,7 @@ const NotSigned = () => {
           </div>
         </div>
       </section> */}
-      <section className="flex bg-white h-full">
+      <section className="flex bg-white h-screen">
         <div className="container flex flex-col items-center px-4 py-28 mx-auto text-center ">
           <h2 className="max-w-2xl mx-auto text-3xl font-semibold tracking-tight text-gray-800 xl:text-6xl font-cool_p tracking-wider">
             Ven con tu empresa a BookTurn y sentite en{" "}
@@ -40,9 +40,11 @@ const NotSigned = () => {
             con un simple clic en "Registrate"
           </p>
 
-          <div className="inline-flex w-full mt-6 sm:w-auto gap-8" >
-            <button className="inline-flex items-center justify-center w-full px-6 py-2 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
-            onClick={()=>signIn()}>
+          <div className="inline-flex w-full mt-6 sm:w-auto gap-8">
+            <button
+              className="inline-flex items-center justify-center w-full px-6 py-2 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+              onClick={() => signIn()}
+            >
               Ingresar
             </button>
             <Link href="/business/login/createform">
