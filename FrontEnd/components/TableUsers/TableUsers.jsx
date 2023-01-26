@@ -117,7 +117,6 @@ const TableUsers = ({usersList, change, setChange}) => {
               <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Id</th>
               <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Username</th>
               <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Email</th>
-              <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Confirmados</th>
               <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Bloqueados</th>
               </tr>
             </thead>
@@ -130,7 +129,6 @@ const TableUsers = ({usersList, change, setChange}) => {
                 <td className="py-3 px-6">{e.id}</td>
                 <td className="py-3 px-6">{e.username}</td>
                 <td className="py-3 px-6">{e.email}</td>
-                <td className="py-3 px-6">{e.confirmed? "confirmado":"no confirmado"}</td>
                 <td className="py-3 px-6"><FormControlLabel
             control={
               <Switch 
