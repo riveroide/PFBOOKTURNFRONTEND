@@ -81,7 +81,6 @@ export default function TableReportes({ allRatings, change, setChange }) {
           const handleElimnate = (e) => {
             dispatch(deleteRating(e.target.id))
             setOpen(false);
-            setChange(!change)
           };
   
       return(
@@ -119,8 +118,8 @@ export default function TableReportes({ allRatings, change, setChange }) {
                 <tr>
                 <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Id</th>
                 <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Rating</th>
-                <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">En</th>
                 <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Comentario</th>
+                <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Titulo</th>
                 <th className="py-3 border-b-[1px] border-[rgba(224, 224, 224, 1)]">Eliminar</th>
                 </tr>
               </thead>
@@ -137,7 +136,7 @@ export default function TableReportes({ allRatings, change, setChange }) {
                   <tr key={e.id} className=" hover:bg-[#3b82f6] cursor-pointer duration-300">
                  <td className="py-3 px-6">{e.id}</td>
                 <td className="py-3 px-6">{e.attributes.score}</td>
-                <td className="py-3 px-6">{e.attributes.locale}</td>
+                <td className="py-3 px-6">{e.attributes.comment}</td>
                 <td className="py-3 px-6">{e.attributes.title}</td>
                 <td>
       <div>
