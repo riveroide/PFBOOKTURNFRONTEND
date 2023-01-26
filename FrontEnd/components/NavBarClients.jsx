@@ -29,7 +29,7 @@ export default function NavBarClients() {
             <Link href={`/client/profile`}>
               <img
                 class="w-10 h-10 rounded-full mr-28"
-                src={client.attributes.profilePic?.data ? `${client.attributes.profilePic.data[0].attributes.url}` : session.user.image ? `${session.user.image}` : "https://icon-library.com/images/generic-profile-icon/generic-profile-icon-23.jpg"} 
+                src={client.attributes?.profilePic?.data ? `${client.attributes?.profilePic.data[0].attributes?.url}` : session.user.image ? `${session.user.image}` : "https://res.cloudinary.com/dquxxjngk/image/upload/v1674747334/generic_profile_icon_23_6494cf1151.png?updated_at=2023-01-26T15:35:36.199Z"} 
                 alt="user photo"
               />
             </Link>
