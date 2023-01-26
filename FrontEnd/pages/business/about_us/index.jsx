@@ -11,11 +11,13 @@ const index = () => {
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
           <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-900">
-              Equipo Bookturn
+              Somos Bookturn
             </h2>
             <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">
-              Explore the whole collection of open-source web components and
-              elements built with the utility classes from Tailwind
+              Conoce al equipo detrás del Bookturn. Somos un galardonado startup
+              de software dedicado a proporcionar soluciones de negocios para la
+              industria de la salud y la belleza. Desarrollamos un sistema de
+              gestión simple y móvil para profesionales de servicios.
             </p>
           </div>
           <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
@@ -84,7 +86,7 @@ const index = () => {
               <a href="#">
                 <img
                   class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
+                  src="https://ca.slack-edge.com/TPRS7H4PN-U0434DMCKEU-606069debbef-512"
                   alt="Bonnie Avatar"
                 />
               </a>
@@ -327,7 +329,7 @@ const index = () => {
               <a href="#">
                 <img
                   class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://ca.slack-edge.com/TPRS7H4PN-U03UA0E054K-fa3bf801c230-512"
+                  src="https://res.cloudinary.com/dquxxjngk/image/upload/c_scale,w_512/v1674752512/small_profile_pic_5_17b978ec8f.png "
                   alt="Michael Avatar"
                 />
               </a>
@@ -387,7 +389,7 @@ const index = () => {
               <a href="#">
                 <img
                   class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png"
+                  src="https://ca.slack-edge.com/TPRS7H4PN-U040GQNPJ58-d44fe3a7486d-512"
                   alt="Sofia Avatar"
                 />
               </a>
