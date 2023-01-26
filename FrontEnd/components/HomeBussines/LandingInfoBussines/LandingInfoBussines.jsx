@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import styles from "./LandingInfoBussines.module.css";
-import Image from "next/image";
+
 import RegisterButtomBusiness from "../RegisterButtomBusiness/RegisterButtomBusiness";
-import ImageSlider from "../ImageSlider/ImageSlider";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -39,9 +39,7 @@ const LandingInfoBussines = () => {
         <div className={`${styles.wave} ${styles.wave3}`}></div>
         <div className={`${styles.wave} ${styles.wave4}`}></div>
       </div>
-      <div className={styles.prueba}>
-        <ImageSlider />
-      </div>
+      <div className={styles.prueba}></div>
     </div>
   );
 };
