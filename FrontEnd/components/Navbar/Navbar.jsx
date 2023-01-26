@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import swal from 'sweetalert2'
 
 
 const NavBar2 = () => {
@@ -19,7 +20,10 @@ const NavBar2 = () => {
     if(session){
       router.push("/business/dashboard")
     }else{
-      alert("Primero debes iniciar sesión.")
+      swal.fire({
+        text: 'Primero debes iniciar sesion',
+        timer: 3000
+      })
       router.push("/business/login")
     }
   }
