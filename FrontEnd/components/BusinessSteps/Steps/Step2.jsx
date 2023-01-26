@@ -55,7 +55,7 @@ const Step2 = ({
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.users);
   const [errors, setErrors] = useState({});
-  console.log(userInfo[0]?.id, "soy userinfoID");
+  
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -63,27 +63,26 @@ const Step2 = ({
     telephone: "",
     openhour: "",
     closehour: "",
-    BusinessPic: "",
-    user: "",
+    user:"",
+   
   });
-
+  console.log(input, "soy lo que se va a postear");
   const handleChange = (e) => {
-    e.preventDefault();
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-      user: userInfo[0]?.id,
+      user: userInfo[0]?.id
     });
     setEmailBusiness(input.email); // validar para que no rompa
-    setFinalData({
-      ...finalData,
-      name: input.name,
-      email: input.email,
-      address: input.address,
-      telephone: input.telephone,
-      openhour: input.openhour,
-      closehour: input.closehour,
-    });
+    // setFinalData({
+    //   ...finalData,
+    //   name: input.name,
+    //   email: input.email,
+    //   address: input.address,
+    //   telephone: input.telephone,
+    //   openhour: input.openhour,
+    //   closehour: input.closehour,
+    // });
     setErrors(
       valida({
         ...input,
@@ -99,7 +98,7 @@ const Step2 = ({
   useEffect(() => {
     dispatch(getUserByEmail(userEmail));
     AOS.init();
-  }, [userEmail]);
+  }, [dispatch]);
 
   return (
     <div
