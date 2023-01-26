@@ -34,31 +34,18 @@ const Profile = () => {
 
   useEffect(() => {
     setLoading(true)
-    try {
-      if(userEmail){  
-      setHydrated(true)
-      async function fetchClientEmail(){
-        await dispatch(getClientByEmail(userEmail))
-      }
-      fetchClientEmail()
-      async function fetchClient(){
-        await dispatch(getClient(clientAcc?.id))
-      }
-      fetchClient()
-      async function fetchFavList(){
-        await dispatch(getFavourites(clientAcc?.id))
-      }
-      fetchFavList()
-      async function fetchBookList(){
-        await dispatch(getBooked(clientAcc?.id))
-      }
-      fetchBookList()
+    setHydrated(true)
+    dispatch(getClientByEmail(userEmail))
+    dispatch(getClient(clientAcc?.id))
+
+       dispatch(getFavourites(clientAcc?.id))
+     
+    
+      
+       dispatch(getBooked(clientAcc?.id))
+    
       dispatch(display(''))
       setLoading(false)
-    }
-    } catch (error) {
-      console.log(error.message)
-    } 
   },[userEmail, dispatch])
 
   if (!hydrated) {

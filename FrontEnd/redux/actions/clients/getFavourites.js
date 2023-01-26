@@ -4,8 +4,8 @@ import {
   getOneFavourite,
 } from "redux/reducers/clientsSlice";
 
-export const getFavourites = (id) => (dispatch) => {
-  axios(
+export const getFavourites = (id) => async(dispatch) => {
+  await axios(
     `https://plankton-app-jy8jr.ondigitalocean.app/api/favourite-lists?populate=*&filters[clients][id][$eq]=${id}`
   )
     .then((res) => {
