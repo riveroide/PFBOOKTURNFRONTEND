@@ -51,9 +51,9 @@ const SearchAndFilter = () => {
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             aria-label="Default select example"
           >
-            <option value="">Orden Rating</option>
-            <option value="Rating asc">Rating asc</option>
-            <option value="Rating desc">Rating desc</option>
+            <option value="">Orden Alfabético</option>
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
           </select>
           {/* <select
             onChange={(e) => handleOrder(e)}

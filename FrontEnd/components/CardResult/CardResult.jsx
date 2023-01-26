@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import swal from 'sweetalert2'
 
-export default function CardResult({ name, services, image, id, categories, session }) {
+export default function CardResult({ name, services, image, id, categories, session, rating }) {
   const router = useRouter()
   let arrServices = [];
 
@@ -53,6 +53,11 @@ export default function CardResult({ name, services, image, id, categories, sess
                 </p>
               );
             })}
+
+          <div className="flex ml-[24rem] items-end">
+          <p class="text-2xl mx-1 mb-4"> {rating} </p>
+          <span className="text-yellow-300 text-2xl mb-4"> &#9733;</span>
+          </div>
 
             <div
             id={id}
