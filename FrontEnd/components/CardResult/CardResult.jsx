@@ -11,15 +11,7 @@ export default function CardResult({ name, services, image, id, categories, sess
   } else arrServices = services;
 
   const onClick = (e) => {
-    if(!session){
-      swal.fire({
-        icon: 'warning',
-        text: 'Primero debe loguearse o registrarse.',
-        timer: 3000
-      })
-    }else{
-      router.push(`/business/about/${e.target.id}`)
-    }
+      router.push(`/business/about/${e.target.id}`) 
   }
   
   return (
