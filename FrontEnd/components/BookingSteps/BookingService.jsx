@@ -57,7 +57,7 @@ const BookingService = () => {
     });
     router.push("/client/profile")
   }
-
+  
   return (
     <div key={business?.id}>
       <div className="md:w-screen w-full">
@@ -75,10 +75,18 @@ const BookingService = () => {
         <button
           className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 font-cool_p text-2xl"
           onClick={() => {
-            if (stepnum !== 1) {
-              setstepnum(stepnum - 1);
-            } else {
-              null;
+            if(!session){
+              swal.fire({
+                icon: 'warning',
+                text: 'Primero debe loguearse o registrarse.',
+                timer: 3000
+              })
+            }else{
+              if (stepnum !== 1) {
+                setstepnum(stepnum - 1);
+              } else {
+                null;
+              }
             }
           }}
         >
@@ -87,6 +95,13 @@ const BookingService = () => {
         <button
           className={`px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg  focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80 font-cool_p text-2xl ${stepnum === 1 ? bookingPost.services ? "hover:bg-blue-500" : "cursor-not-allowed" : stepnum === 2 ? bookingPost.dateinfo ? "hover:bg-blue-500" : "cursor-not-allowed" : ""}`}
           onClick={() => {
+            if(!session){
+              swal.fire({
+                icon: 'warning',
+                text: 'Primero debe loguearse o registrarse.',
+                timer: 3000
+              })
+            }else{
             if (stepnum < 3) {
               setstepnum(stepnum + 1);
               setbookingPost({
@@ -97,6 +112,7 @@ const BookingService = () => {
             } else {
               handleSubmit();
             }
+          }
           }}
           disabled={ stepnum === 1 ? bookingPost.services ? false : true : stepnum === 2 ? bookingPost.dateinfo ? false : true : ""} >
           Proximo
