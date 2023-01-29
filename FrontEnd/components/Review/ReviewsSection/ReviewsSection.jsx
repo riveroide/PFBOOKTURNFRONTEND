@@ -28,7 +28,7 @@ export const ReviewsSection = () => {
 return (
     <div className="md:w-2/5 md:mx-0 justify-start w-full px-4">
         {
-            actualReview?.map(e => <Review score={e.attributes.score} title={e.attributes.title} comment={e.attributes.comment}/>)
+            actualReview?.map(e => <Review id={e.id} score={e.attributes.score} title={e.attributes.title} comment={e.attributes.comment}/>)
         }
         { ratings?.length > 6 ? <PaginadoReviews paginado={paginado} reviewsPerPage={state.reviews} reviews={ratings?.length} currentPage={state.page} /> : <></>}
     </div>
