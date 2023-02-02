@@ -18,7 +18,7 @@ const FormClient = ({ emailuser }) => {
   });
   console.log(userInfo, "LO QUE ROMPE")
 
-  function validate (userinfo){
+  function validate (clientinfo){
     let error = {}
   if (!clientinfo.nameComplete){
     error.nameComplete="Nombre Completo requerido"

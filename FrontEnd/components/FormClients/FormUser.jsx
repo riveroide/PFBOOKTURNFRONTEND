@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../redux/actions/users/postUser";
-
+import swal from 'sweetalert2'
 
 
 const FormUser = ({ setformstep, formstep, setemailuser }) => {
@@ -46,8 +46,15 @@ return error
     setemailuser(userinfo.email);
   }
  
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
       dispatch(postUser(userinfo));
+      await swal.fire({
+        title:'Usuario Creado!',
+        text: 'Su usuario fue creado satisfactoriamente ',
+        icon: 'success',
+        timer: 2500,
+        stopKeydownPropagation: true,
+      });
       setformstep(formstep + 1);
   }
   console.log(userinfo);
