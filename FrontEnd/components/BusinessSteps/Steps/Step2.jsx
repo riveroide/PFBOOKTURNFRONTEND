@@ -4,6 +4,7 @@ import { postBusiness } from "../../../redux/actions/business/postBusiness";
 import { getUserByEmail } from "../../../redux/actions/users/getUsers";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import swal from 'sweetalert2'
 
 function valida(input) {
   let errors = {};
@@ -73,7 +74,7 @@ const Step2 = ({
       [e.target.name]: e.target.value,
       user: userInfo[0]?.id
     });
-    setEmailBusiness(input.email); // validar para que no rompa
+     // validar para que no rompa
     // setFinalData({
     //   ...finalData,
     //   name: input.name,
@@ -91,14 +92,23 @@ const Step2 = ({
     );
   };
 
-  const handleSubmit = (e) => {
-    dispatch(postBusiness(input));
+  const handleSubmit = async(e) => {
+    setEmailBusiness(input.email);
+   dispatch(postBusiness(input));
+    await swal.fire({
+      title:'Empresa Creada!',
+      text: 'Su empresa fue creada satisfactoriamente ',
+      icon: 'success',
+      timer: 2500,
+      stopKeydownPropagation: true,
+    });
+    setStep(3);
   };
 
   useEffect(() => {
     dispatch(getUserByEmail(userEmail));
     AOS.init();
-  }, [dispatch]);
+  }, [userEmail, dispatch]);
 
   return (
     <div
@@ -173,7 +183,7 @@ const Step2 = ({
           </span>
 
           <input
-            type="openhour"
+            type="text"
             name="openhour"
             onChange={(e) => handleChange(e)}
             placeholder="00-24"
@@ -190,7 +200,7 @@ const Step2 = ({
           </span>
 
           <input
-            type="closehour"
+            type="text"
             name="closehour"
             onChange={(e) => handleChange(e)}
             placeholder="00-24"
@@ -207,7 +217,7 @@ const Step2 = ({
             type="submit"
             onClick={(e) => {
               handleSubmit(e);
-              setStep(3);
+              
             }}
           >
             Siguiente

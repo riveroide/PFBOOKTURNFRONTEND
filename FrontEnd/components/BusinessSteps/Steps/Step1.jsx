@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "../../../redux/actions/users/postUser";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import swal from 'sweetalert2'
 
 function valida(input) {
   let errors = {};
@@ -56,8 +57,15 @@ const Step1 = ({ step, setStep, setUserEmail, setName, setFinalData }) => {
   };
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     dispatch(postUser(input));
+    await swal.fire({
+      title:'Usuario Creado!',
+      text: 'Su usuario fue creado satisfactoriamente ',
+      icon: 'success',
+      timer: 2500,
+      stopKeydownPropagation: true,
+    });
   };
 
   useEffect(() => {
