@@ -143,7 +143,7 @@ const LandingInfoBussines = () => {
               </h3>
               <p data-aos="fade-up" class="text-gray-500 dark:text-gray-400">
                 Incluso si es después de horas del cierre de tu peluquería,
-                barbería, gimnasio, spa u otro, Booksy está disponible para
+                barbería, gimnasio, spa u otro, Bookturn está disponible para
                 todos tus clientes. La gente puede comprobar los días libres de
                 reserva y reservar tus visitas 24/7 desde cualquier lugar con la
                 aplicación gratuita de Bookturn para clientes.
@@ -261,7 +261,7 @@ const LandingInfoBussines = () => {
               </h3>
               <p data-aos="fade-up" class="text-gray-500 dark:text-gray-400">
                 Bookturn te brinda las herramientas que necesitas para llegar a
-                clientes nuevos. Tu cuenta incluye un perfil público en Booksy y
+                clientes nuevos. Tu cuenta incluye un perfil público en Bookturn y
                 una aplicación para clientes gratuita, así como widgets para tus
                 redes sociales. Todo esto permite a los clientes verificar sus
                 servicios y disponibilidad, ver tu trabajo, conectarse desde sus
