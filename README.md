@@ -32,6 +32,9 @@
    - Aceptar o rechazar turnos de clientes.
 ```
 
+### Link del proyecto:
+- https://bookturn.vercel.app/
+
 ###  Las tecnología usadas fueron:
 
 <p align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> 
