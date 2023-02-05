@@ -5,7 +5,9 @@
 ### 📚 Introducción:
 
 ```
-- Este es el repositorio para una página web de servicios estéticos. Los usuarios pueden registrarse para contratar servicios y las empresas también pueden registrarse para ofrecer esos servicios.
+- Este es el repositorio para una página web de servicios estéticos.
+ Los usuarios pueden registrarse para contratar servicios y
+ las empresas también pueden registrarse para ofrecer esos servicios.
 ```
 
 ### 🔍 Funcionalidades:
