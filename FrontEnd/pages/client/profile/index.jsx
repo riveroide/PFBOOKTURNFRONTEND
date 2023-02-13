@@ -50,7 +50,7 @@ const Profile = () => {
   const refreshPage = () => {
     setTimeout(() => {
       window.location.reload(false);
-    }, 2000)
+    }, 1000)
   }
 
   const handleClick = async (e) => {
