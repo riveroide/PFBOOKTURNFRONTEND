@@ -25,7 +25,6 @@ const Profile = () => {
   const {clientAcc} = useSelector((state) => state.clients)
   const {favouritesList} = useSelector((state) => state.clients)
   const {bookedList} = useSelector((state) => state.clients)
-  console.log(clientId)
   
   const [open, setOpen] = useState(true)
   const [hydrated, setHydrated] = useState(false)
@@ -46,6 +45,12 @@ const Profile = () => {
 
   if (!hydrated) {
     return null;
+  }
+
+  const refreshPage = () => {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 2000)
   }
 
   const handleClick = async (e) => {
@@ -220,6 +225,9 @@ const Profile = () => {
       </div>
      )
   } else {
+    if(clientId === null){
+      refreshPage()
+    }
     return(
       <Loader/>
     )
